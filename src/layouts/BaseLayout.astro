@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import { useTranslations } from '../utils/i18n';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+}
+
+const { title, description, lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
+const pageTitle = title ? `${title} - ${t.site.title}` : t.site.title;
+const pageDescription = description || t.site.description;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content={Astro.generator}>
+
+  <!-- SEO Meta Tags -->
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription}>
+  <meta name="author" content="Przemysław Kępka">
+  <meta name="keywords" content="data consultant, full-stack data solutions, data engineering, Python, data automation, web applications">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={Astro.url}>
+  <meta property="og:title" content={pageTitle}>
+  <meta property="og:description" content={pageDescription}>
+  <meta property="og:image" content="/images/og-image.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content={Astro.url}>
+  <meta property="twitter:title" content={pageTitle}>
+  <meta property="twitter:description" content={pageDescription}>
+  <meta property="twitter:image" content="/images/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <slot />
+</body>
+</html>

@@ -1,0 +1,105 @@
+{
+  "site": {
+    "title": "Przemysław Kępka - PK Data Solutions",
+    "description": "Konsultant danych full-stack specjalizujący się w inżynierii danych, automatyzacji i aplikacjach webowych"
+  },
+  "nav": {
+    "start": "Start",
+    "about": "O mnie",
+    "services": "Usługi",
+    "projects": "Projekty",
+    "technologies": "Technologie",
+    "blog": "Blog",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "greeting": "Cześć, jestem Przemek.",
+    "tagline": "Zajmuję się danymi.",
+    "description": "Łączę świat biznesu i IT, tworząc kompleksowe rozwiązania danych:",
+    "point1": "Od surowych danych do stron internetowych, dashboardów i analiz",
+    "point2": "Od małych skryptów automatyzujących do w pełni rozwiniętych aplikacji webowych"
+  },
+  "cta": {
+    "viewWork": "Zobacz moje prace",
+    "contactMe": "Skontaktuj się"
+  },
+  "about": {
+    "title": "O mnie",
+    "subtitle": "Łączę światy biznesu i IT",
+    "background": "Mając doświadczenie w finansach, przekształciłem się w specjalistę danych z ponad 7-letnim doświadczeniem na różnych stanowiskach związanych z danymi i systemami. Łączę wiedzę biznesową z ekspertyzą techniczną, dostarczając kompleksowe rozwiązania.",
+    "yearsExp": "7+ lat",
+    "yearsExpLabel": "Lat Doświadczenia",
+    "industriesLabel": "Branże",
+    "valueTitle": "Co oferuję",
+    "value1": "Wiedza biznesowa połączona z ekspertyzą techniczną",
+    "value2": "Rozumiem zarówno potrzeby biznesowe, jak i implementację techniczną",
+    "value3": "Kompleksowe rozwiązywanie problemów"
+  },
+  "services": {
+    "title": "Usługi",
+    "subtitle": "Kompleksowy przepływ rozwiązań danych",
+    "fullStack": "Mogę obsłużyć cały proces od początku do końca (kompleksowe rozwiązania danych)",
+    "flexible": "Mogę również zająć się konkretnymi częściami w zależności od Twoich potrzeb",
+    "step1Title": "Pozyskiwanie Danych",
+    "step1Items": ["Web scraping", "Integracje API", "Łączenie wielu źródeł danych"],
+    "step2Title": "Projektowanie i Zarządzanie Bazami Danych",
+    "step2Items": ["Projektowanie schematów", "Optymalizacja zapytań", "Modelowanie danych"],
+    "step3Title": "ETL i Automatyzacja",
+    "step3Items": ["Potoki transformacji danych", "Automatyczne raportowanie (w tym Excel)", "Zaplanowane procesy", "Automatyzacja e-maili", "Automatyzacja procesów"],
+    "step4Title": "Analizy i Dostarczanie",
+    "step4Items": ["Interaktywne dashboardy", "Aplikacje webowe", "Analizy ad-hoc (Jupyter notebooks)", "Raporty Business Intelligence"],
+    "industriesTitle": "Doświadczenie branżowe",
+    "universalStatement": "Umiejętności związane z danymi wykraczają poza granice branż. Niezależnie od tego, czy chodzi o transakcje księgowe, modele ryzyka kredytowego, logi urządzeń IoT czy analitykę mediów społecznościowych - narzędzia i techniki pozostają zasadniczo podobne. Stosuję sprawdzone wzorce danych w teoretycznie odrębnych domenach."
+  },
+  "projects": {
+    "title": "Projekty",
+    "categories": {
+      "all": "Wszystkie Projekty",
+      "fte": "Projekty Korporacyjne",
+      "current": "Bieżące Projekty",
+      "side": "Projekty Poboczne"
+    },
+    "seeMore": "Zobacz Więcej",
+    "viewGithub": "Zobacz na GitHub",
+    "viewLive": "Odwiedź Stronę",
+    "sideNote": "Projekty poboczne pokazują rzeczywiste możliwości zastosowania w kontekście biznesowym"
+  },
+  "technologies": {
+    "title": "Technologie",
+    "preface1": "Najpierw rozwiązanie, potem technologie.",
+    "preface2": "Nie ma stosu technologicznego bez prawdziwego problemu biznesowego.",
+    "learning": "Obecnie uczę się",
+    "foundations": "Podstawy",
+    "foundationsDesc": "Moje podstawowe technologie, z Pythonem jako głównym narzędziem do wszystkich rzeczy związanych z danymi",
+    "dataManipulation": "Manipulacja Danymi i Analityka",
+    "databases": "Bazy Danych",
+    "etl": "ETL i Planowanie Zadań",
+    "dataApps": "Aplikacje Danych i Dashboardy",
+    "fullStack": "Rozwój Full-Stack",
+    "automation": "Automatyzacja",
+    "infrastructure": "Infrastruktura i Deployment",
+    "ides": "IDE i Rozwój Wspomagany AI"
+  },
+  "blog": {
+    "title": "Blog",
+    "allPosts": "Zobacz Wszystkie Posty",
+    "readMore": "Czytaj Więcej",
+    "publishedOn": "Opublikowano",
+    "readTime": "min czytania"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Chcesz wspólnie wykorzystać moc danych? Porozmawiajmy.",
+    "nameLabel": "Imię",
+    "emailLabel": "Email",
+    "subjectLabel": "Temat",
+    "messageLabel": "Wiadomość",
+    "submitButton": "Wyślij Wiadomość",
+    "successMessage": "Dziękuję! Twoja wiadomość została wysłana.",
+    "errorMessage": "Ups! Coś poszło nie tak. Spróbuj ponownie."
+  },
+  "footer": {
+    "copyright": "© 2026 Przemysław Kępka. Wszelkie prawa zastrzeżone.",
+    "builtWith": "Zbudowane z Astro, Tailwind CSS i Vue.js"
+  }
+}

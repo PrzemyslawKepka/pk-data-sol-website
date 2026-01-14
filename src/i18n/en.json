@@ -1,0 +1,105 @@
+{
+  "site": {
+    "title": "Przemysław Kępka - PK Data Solutions",
+    "description": "Full-stack data consultant specializing in data engineering, automation, and web applications"
+  },
+  "nav": {
+    "start": "Start",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "technologies": "Technologies",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm Przemek (🇬🇧 Sh-am-ack).",
+    "tagline": "I do all things data.",
+    "description": "I make business and IT worlds come together by developing full-stack data solutions:",
+    "point1": "From raw data to websites, dashboards and insights",
+    "point2": "From small automation scripts to fully-fledged web applications"
+  },
+  "cta": {
+    "viewWork": "View My Work",
+    "contactMe": "Contact Me"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Bridging the worlds of business and IT",
+    "background": "With a finance background, I've evolved into a data specialist with 7+ years of experience across different data and systems positions. I combine business acumen with technical expertise to deliver end-to-end solutions.",
+    "yearsExp": "7+ years",
+    "yearsExpLabel": "Years of Experience",
+    "industriesLabel": "Industries",
+    "valueTitle": "What I Bring",
+    "value1": "Business acumen meets technical expertise",
+    "value2": "Understand both stakeholder needs and technical implementation",
+    "value3": "End-to-end problem solver"
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Full-Stack Data Solutions Pipeline",
+    "fullStack": "I can handle the entire process end-to-end (full-stack data solutions)",
+    "flexible": "I can also tackle specific parts based on your needs",
+    "step1Title": "Data Ingestion",
+    "step1Items": ["Web scraping", "API integrations", "Multiple data source connections"],
+    "step2Title": "Database Design & Management",
+    "step2Items": ["Schema design", "Query optimization", "Data modeling"],
+    "step3Title": "ETL & Automation",
+    "step3Items": ["Data transformation pipelines", "Automated reporting (including Excel)", "Scheduled processes", "Email automation", "Process automation"],
+    "step4Title": "Insights & Delivery",
+    "step4Items": ["Interactive dashboards", "Web applications", "Ad-hoc analyses (Jupyter notebooks)", "Business intelligence reports"],
+    "industriesTitle": "Industry Experience",
+    "universalStatement": "Data skills transcend industry boundaries. Whether it's accounting transactions, credit risk models, IoT device logs, or social media analytics - the tools and techniques remain fundamentally similar. I apply proven data patterns across theoretically distinct domains."
+  },
+  "projects": {
+    "title": "Projects",
+    "categories": {
+      "all": "All Projects",
+      "fte": "Corporate Projects",
+      "current": "Current Projects",
+      "side": "Side Projects"
+    },
+    "seeMore": "See More",
+    "viewGithub": "View on GitHub",
+    "viewLive": "Visit Website",
+    "sideNote": "Side projects showcase real capabilities applicable in business contexts"
+  },
+  "technologies": {
+    "title": "Technologies",
+    "preface1": "Solution first, technologies second.",
+    "preface2": "There's no tech stack without a real business problem in the first place.",
+    "learning": "Currently Learning",
+    "foundations": "Foundations",
+    "foundationsDesc": "My backbone technologies, with Python being my main tool for all data things possible",
+    "dataManipulation": "Data Manipulation & Analytics",
+    "databases": "Databases",
+    "etl": "ETL & Schedulers",
+    "dataApps": "Data Apps & Dashboards",
+    "fullStack": "Full-Stack Web Development",
+    "automation": "Automation",
+    "infrastructure": "Infrastructure & Deployment",
+    "ides": "IDEs & AI-Assisted Development"
+  },
+  "blog": {
+    "title": "Blog",
+    "allPosts": "See All Posts",
+    "readMore": "Read More",
+    "publishedOn": "Published on",
+    "readTime": "min read"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Want to harness some data together? Let's talk.",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "subjectLabel": "Subject",
+    "messageLabel": "Message",
+    "submitButton": "Send Message",
+    "successMessage": "Thank you! Your message has been sent.",
+    "errorMessage": "Oops! Something went wrong. Please try again."
+  },
+  "footer": {
+    "copyright": "© 2026 Przemysław Kępka. All rights reserved.",
+    "builtWith": "Built with Astro, Tailwind CSS, and Vue.js"
+  }
+}
