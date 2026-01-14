@@ -11,54 +11,27 @@ function switchLanguage(lang) {
 </script>
 
 <template>
-  <div class="language-switcher">
+  <div class="flex gap-2 items-center">
     <button
       @click="switchLanguage('en')"
-      :class="{ active: currentLang === 'en' }"
+      :class="[
+        'py-1 px-2 border-none bg-transparent cursor-pointer font-medium text-sm transition-all',
+        currentLang === 'en' ? 'text-sky-500 font-bold' : 'text-slate-400 hover:text-slate-100'
+      ]"
       aria-label="Switch to English"
     >
       EN
     </button>
-    <span class="separator">/</span>
+    <span class="text-slate-400 font-light">/</span>
     <button
       @click="switchLanguage('pl')"
-      :class="{ active: currentLang === 'pl' }"
+      :class="[
+        'py-1 px-2 border-none bg-transparent cursor-pointer font-medium text-sm transition-all',
+        currentLang === 'pl' ? 'text-sky-500 font-bold' : 'text-slate-400 hover:text-slate-100'
+      ]"
       aria-label="Przełącz na polski"
     >
       PL
     </button>
   </div>
 </template>
-
-<style scoped>
-.language-switcher {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-button {
-  padding: 0.25rem 0.5rem;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  color: var(--color-text-secondary);
-  font-weight: 500;
-  transition: all 0.2s ease;
-  font-size: 0.875rem;
-}
-
-button:hover {
-  color: var(--color-text-primary);
-}
-
-button.active {
-  color: var(--color-accent-blue);
-  font-weight: 700;
-}
-
-.separator {
-  color: var(--color-text-secondary);
-  font-weight: 300;
-}
-</style>

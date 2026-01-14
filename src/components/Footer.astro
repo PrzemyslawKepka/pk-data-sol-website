@@ -9,56 +9,56 @@ const { lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-content">
+<footer class="bg-slate-800 border-t border-slate-700 pt-12 pb-6 mt-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
       <!-- Logo and Name -->
-      <div class="footer-brand">
-        <div class="logo">
-          <span class="logo-text">PK</span>
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-gradient-to-br from-sky-500 to-blue-500 rounded-lg flex items-center justify-center font-extrabold text-xl text-white shrink-0">
+          <span class="tracking-wide">PK</span>
         </div>
         <div>
-          <h3 class="brand-name">Przemysław Kępka</h3>
-          <p class="brand-tagline">PK Data Solutions</p>
+          <h3 class="text-base font-bold text-slate-100 m-0">Przemysław Kępka</h3>
+          <p class="text-sm text-sky-500 m-0">PK Data Solutions</p>
         </div>
       </div>
 
       <!-- Quick Links -->
-      <div class="footer-section">
-        <h4 class="footer-title">{t.nav.start}</h4>
-        <ul class="footer-links">
-          <li><a href="#about">{t.nav.about}</a></li>
-          <li><a href="#services">{t.nav.services}</a></li>
-          <li><a href="#projects">{t.nav.projects}</a></li>
-          <li><a href="#technologies">{t.nav.technologies}</a></li>
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold uppercase tracking-wide text-slate-100 m-0">{t.nav.start}</h4>
+        <ul class="list-none p-0 m-0 flex flex-col gap-2">
+          <li><a href="#about" class="text-[0.9375rem] text-slate-400 hover:text-sky-500 transition-colors">{t.nav.about}</a></li>
+          <li><a href="#services" class="text-[0.9375rem] text-slate-400 hover:text-sky-500 transition-colors">{t.nav.services}</a></li>
+          <li><a href="#projects" class="text-[0.9375rem] text-slate-400 hover:text-sky-500 transition-colors">{t.nav.projects}</a></li>
+          <li><a href="#technologies" class="text-[0.9375rem] text-slate-400 hover:text-sky-500 transition-colors">{t.nav.technologies}</a></li>
         </ul>
       </div>
 
       <!-- Contact -->
-      <div class="footer-section">
-        <h4 class="footer-title">{t.nav.contact}</h4>
-        <ul class="footer-links">
-          <li><a href="#contact">{t.contact.title}</a></li>
-          <li><a href="/blog">{t.nav.blog}</a></li>
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold uppercase tracking-wide text-slate-100 m-0">{t.nav.contact}</h4>
+        <ul class="list-none p-0 m-0 flex flex-col gap-2">
+          <li><a href="#contact" class="text-[0.9375rem] text-slate-400 hover:text-sky-500 transition-colors">{t.contact.title}</a></li>
+          <li><a href="/blog" class="text-[0.9375rem] text-slate-400 hover:text-sky-500 transition-colors">{t.nav.blog}</a></li>
         </ul>
       </div>
 
       <!-- Social -->
-      <div class="footer-section">
-        <h4 class="footer-title">Social</h4>
-        <div class="social-links">
-          <a href="https://github.com/przemyslawkepka" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold uppercase tracking-wide text-slate-100 m-0">Social</h4>
+        <div class="flex gap-4">
+          <a href="https://github.com/przemyslawkepka" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-slate-400 hover:text-sky-500 transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
             </svg>
           </a>
-          <a href="https://linkedin.com/in/przemyslawkepka" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <a href="https://linkedin.com/in/przemyslawkepka" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-slate-400 hover:text-sky-500 transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
             </svg>
           </a>
-          <a href="https://twitter.com/przemyslawkepka" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-            <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <a href="https://twitter.com/przemyslawkepka" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="text-slate-400 hover:text-sky-500 transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
           </a>
@@ -66,140 +66,9 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <p class="copyright">{t.footer.copyright}</p>
-      <p class="built-with">{t.footer.builtWith}</p>
+    <div class="pt-8 border-t border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-slate-400 m-0">{t.footer.copyright}</p>
+      <p class="text-sm text-slate-400 m-0">{t.footer.builtWith}</p>
     </div>
   </div>
 </footer>
-
-<style>
-.footer {
-  background-color: var(--color-bg-secondary);
-  border-top: 1px solid var(--color-border);
-  padding: 3rem 0 1.5rem;
-  margin-top: 4rem;
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.logo {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--color-accent-blue) 0%, var(--color-accent-blue-dark) 100%);
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 1.25rem;
-  color: white;
-  flex-shrink: 0;
-}
-
-.logo-text {
-  letter-spacing: 1px;
-}
-
-.brand-name {
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 0;
-  color: var(--color-text-primary);
-}
-
-.brand-tagline {
-  font-size: 0.875rem;
-  color: var(--color-accent-blue);
-  margin: 0;
-}
-
-.footer-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.footer-title {
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-primary);
-  margin: 0;
-}
-
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.footer-links a {
-  color: var(--color-text-secondary);
-  font-size: 0.9375rem;
-  transition: color 0.2s ease;
-}
-
-.footer-links a:hover {
-  color: var(--color-accent-blue);
-}
-
-.social-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.social-icon {
-  width: 24px;
-  height: 24px;
-  color: var(--color-text-secondary);
-  transition: color 0.2s ease;
-}
-
-.social-links a:hover .social-icon {
-  color: var(--color-accent-blue);
-}
-
-.footer-bottom {
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.copyright,
-.built-with {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-  margin: 0;
-}
-
-@media (max-width: 640px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-</style>
