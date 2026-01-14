@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # PRD folder
 *PRD*
+
+# Claude folder
+.claude/
