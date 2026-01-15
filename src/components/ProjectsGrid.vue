@@ -72,11 +72,11 @@ const currentCategoryDesc = computed(() => {
   return props.translations.categoriesDesc[activeFilter.value as keyof typeof props.translations.categoriesDesc];
 });
 
-// Project type badge colors
+// Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
 const typeColors: Record<string, string> = {
-  fte: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-  current: 'bg-green-500/20 text-green-400 border-green-500/30',
-  side: 'bg-purple-500/20 text-purple-400 border-purple-500/30'
+  fte: 'bg-blue-600/90 text-white border-blue-400/50 backdrop-blur-sm shadow-lg',
+  current: 'bg-green-600/90 text-white border-green-400/50 backdrop-blur-sm shadow-lg',
+  side: 'bg-purple-600/90 text-white border-purple-400/50 backdrop-blur-sm shadow-lg'
 };
 
 const typeLabels: Record<string, string> = {
@@ -146,7 +146,7 @@ const typeLabels: Record<string, string> = {
             </div>
 
             <!-- Category Badge -->
-            <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-amber-500/20 text-amber-400 border border-amber-500/30">
+            <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg">
               {{ project.data.category }}
             </div>
           </div>

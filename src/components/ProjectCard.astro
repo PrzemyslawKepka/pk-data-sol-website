@@ -25,11 +25,11 @@ interface Props {
 const { project, translations } = Astro.props;
 const { data, slug } = project;
 
-// Project type badge colors
+// Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
 const typeColors = {
-  fte: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-  current: 'bg-green-500/20 text-green-400 border-green-500/30',
-  side: 'bg-purple-500/20 text-purple-400 border-purple-500/30'
+  fte: 'bg-blue-600/90 text-white border-blue-400/50 backdrop-blur-sm shadow-lg',
+  current: 'bg-green-600/90 text-white border-green-400/50 backdrop-blur-sm shadow-lg',
+  side: 'bg-purple-600/90 text-white border-purple-400/50 backdrop-blur-sm shadow-lg'
 };
 
 const typeLabels = {
@@ -42,7 +42,7 @@ const typeLabels = {
 <article class="group bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
   <a href={`/projects/${slug}`} class="block">
     <!-- Image -->
-    <div class="relative w-full h-[200px] bg-gradient-to-br from-slate-700 to-slate-900 overflow-hidden">
+    <div class="relative w-full h-[200px] bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden">
       {data.image ? (
         <img
           src={data.image}
@@ -63,7 +63,7 @@ const typeLabels = {
       </div>
 
       <!-- Category Badge -->
-      <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-amber-500/20 text-amber-400 border border-amber-500/30">
+      <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg">
         {data.category}
       </div>
     </div>
