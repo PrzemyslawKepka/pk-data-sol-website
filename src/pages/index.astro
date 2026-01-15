@@ -51,28 +51,28 @@ const servicesSteps = [
 
   <main>
     <!-- Hero/Start Section -->
-    <section id="start" class="hero-section">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <h1 class="hero-greeting">{t.hero.greeting}</h1>
-            <p class="hero-tagline text-gradient">{t.hero.tagline}</p>
-            <p class="hero-description">{t.hero.description}</p>
-            <ul class="hero-points">
-              <li>{t.hero.point1}</li>
-              <li>{t.hero.point2}</li>
+    <section id="start" class="min-h-[calc(100vh-5rem)] flex items-center py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div class="text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2 text-slate-100">{t.hero.greeting}</h1>
+            <p class="text-3xl md:text-4xl font-extrabold mb-6 text-gradient">{t.hero.tagline}</p>
+            <p class="text-lg text-slate-300 mb-4">{t.hero.description}</p>
+            <ul class="list-none p-0 my-8">
+              <li class="text-base text-slate-300 py-2 pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.hero.point1}</li>
+              <li class="text-base text-slate-300 py-2 pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.hero.point2}</li>
             </ul>
-            <div class="hero-cta">
-              <a href="#projects" class="btn btn-primary">{t.cta.viewWork}</a>
-              <a href="#contact" class="btn btn-secondary">{t.cta.contactMe}</a>
+            <div class="flex gap-4 mt-8 justify-center md:justify-start">
+              <a href="#projects" class="inline-block px-6 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-amber-500 text-white hover:bg-amber-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30">{t.cta.viewWork}</a>
+              <a href="#contact" class="inline-block px-6 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-transparent text-amber-500 border-2 border-amber-500 hover:bg-amber-500 hover:text-white">{t.cta.contactMe}</a>
             </div>
           </div>
-          <div class="hero-image">
-            <div class="image-placeholder">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="flex justify-center items-center">
+            <div class="w-[300px] h-[300px] rounded-full bg-gradient-to-br from-slate-800 to-slate-700 border-4 border-amber-500 flex flex-col items-center justify-center gap-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-[120px] h-[120px] text-slate-400">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
-              <p>Professional Photo</p>
+              <p class="text-slate-400 text-sm">Professional Photo</p>
             </div>
           </div>
         </div>
@@ -80,35 +80,35 @@ const servicesSteps = [
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">{t.about.title}</h2>
-          <p class="section-subtitle">{t.about.subtitle}</p>
+    <section id="about" class="py-16 md:py-24 bg-slate-800">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.about.title}</h2>
+          <p class="text-xl text-amber-500">{t.about.subtitle}</p>
         </div>
 
-        <div class="about-content">
-          <div class="about-text">
-            <p class="about-description">{t.about.background}</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          <div>
+            <p class="text-lg leading-relaxed text-slate-300 mb-8">{t.about.background}</p>
 
-            <div class="about-stats">
-              <div class="stat-card">
-                <div class="stat-number">7+</div>
-                <div class="stat-label">{t.about.yearsExpLabel}</div>
+            <div class="grid grid-cols-2 gap-6">
+              <div class="bg-slate-700 p-6 rounded-xl text-center">
+                <div class="text-4xl font-extrabold text-amber-500">7+</div>
+                <div class="text-sm text-slate-400 uppercase tracking-wide">{t.about.yearsExpLabel}</div>
               </div>
-              <div class="stat-card">
-                <div class="stat-number">6+</div>
-                <div class="stat-label">{t.about.industriesLabel}</div>
+              <div class="bg-slate-700 p-6 rounded-xl text-center">
+                <div class="text-4xl font-extrabold text-amber-500">6+</div>
+                <div class="text-sm text-slate-400 uppercase tracking-wide">{t.about.industriesLabel}</div>
               </div>
             </div>
           </div>
 
-          <div class="about-values">
-            <h3>{t.about.valueTitle}</h3>
-            <ul class="values-list">
-              <li>✓ {t.about.value1}</li>
-              <li>✓ {t.about.value2}</li>
-              <li>✓ {t.about.value3}</li>
+          <div>
+            <h3 class="text-2xl font-bold mb-6 text-slate-100">{t.about.valueTitle}</h3>
+            <ul class="list-none p-0">
+              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700">✓ {t.about.value1}</li>
+              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700">✓ {t.about.value2}</li>
+              <li class="py-3 text-[1.0625rem] text-slate-300">✓ {t.about.value3}</li>
             </ul>
           </div>
         </div>
@@ -116,88 +116,88 @@ const servicesSteps = [
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">{t.services.title}</h2>
-          <p class="section-subtitle">{t.services.subtitle}</p>
+    <section id="services" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.services.title}</h2>
+          <p class="text-xl text-amber-500">{t.services.subtitle}</p>
         </div>
 
-        <div class="services-pipeline">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 relative">
           {servicesSteps.map((step, index) => (
-            <div class="pipeline-step">
-              <div class="step-header">
-                <span class="step-number">{step.number}</span>
-                <span class="step-icon">{step.icon}</span>
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 relative transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-2xl font-extrabold text-amber-500">{step.number}</span>
+                <span class="text-3xl">{step.icon}</span>
               </div>
-              <h3 class="step-title">{step.title}</h3>
-              <ul class="step-items">
+              <h3 class="text-xl font-bold mb-4 text-slate-100">{step.title}</h3>
+              <ul class="list-none p-0">
                 {step.items.map(item => (
-                  <li>{item}</li>
+                  <li class="py-2 text-[0.9375rem] text-slate-400 pl-5 relative before:content-['•'] before:absolute before:left-0 before:text-amber-500">{item}</li>
                 ))}
               </ul>
               {index < servicesSteps.length - 1 && (
-                <div class="pipeline-arrow">→</div>
+                <div class="hidden lg:block absolute -right-8 top-1/2 -translate-y-1/2 text-3xl text-amber-500">→</div>
               )}
             </div>
           ))}
         </div>
 
-        <div class="services-note">
-          <p class="highlight">{t.services.fullStack}</p>
-          <p>{t.services.flexible}</p>
+        <div class="text-center p-8 bg-slate-800 rounded-xl border-2 border-amber-500 mb-12">
+          <p class="text-lg font-bold text-amber-500 mb-2">{t.services.fullStack}</p>
+          <p class="text-slate-300">{t.services.flexible}</p>
         </div>
 
         <!-- Industries -->
-        <div class="industries-section">
-          <h3 class="industries-title">{t.services.industriesTitle}</h3>
-          <div class="industries-grid">
+        <div class="mt-16">
+          <h3 class="text-2xl font-bold text-center mb-8 text-slate-100">{t.services.industriesTitle}</h3>
+          <div class="flex flex-wrap justify-center gap-4 mb-8">
             {industries.map(industry => (
-              <div class="industry-pill">
-                <span class="industry-emoji">{industry.emoji}</span>
-                <span class="industry-name">{industry.name}</span>
+              <div class="flex items-center gap-2 py-3 px-6 bg-slate-800 rounded-full border border-slate-700 transition-all hover:border-amber-500 hover:-translate-y-0.5">
+                <span class="text-xl">{industry.emoji}</span>
+                <span class="text-[0.9375rem] font-medium text-slate-100">{industry.name}</span>
               </div>
             ))}
           </div>
-          <p class="industries-note">{t.services.universalStatement}</p>
+          <p class="text-center text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">{t.services.universalStatement}</p>
         </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">{t.projects.title}</h2>
+    <section id="projects" class="py-16 md:py-24 bg-slate-800">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.projects.title}</h2>
         </div>
 
-        <div class="projects-placeholder">
-          <div class="placeholder-card card">
-            <div class="placeholder-image"></div>
-            <h3>Project Example</h3>
-            <p>Project cards will be displayed here with screenshots, descriptions, and links.</p>
-            <p class="text-sm">Coming soon: cm-rentals, tekyous, supabase-img-linker-ui, and more...</p>
+        <div class="flex justify-center">
+          <div class="max-w-xl text-center bg-slate-800 rounded-xl p-6 border border-slate-700 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 hover:border-amber-500">
+            <div class="w-full h-[200px] bg-gradient-to-br from-slate-700 to-slate-900 rounded-lg mb-4"></div>
+            <h3 class="text-xl font-bold mb-4 text-slate-100">Project Example</h3>
+            <p class="text-slate-300 mb-4">Project cards will be displayed here with screenshots, descriptions, and links.</p>
+            <p class="text-sm text-slate-400">Coming soon: cm-rentals, tekyous, supabase-img-linker-ui, and more...</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Technologies Section -->
-    <section id="technologies" class="technologies-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">{t.technologies.title}</h2>
-          <div class="tech-preface">
-            <p class="highlight">{t.technologies.preface1}</p>
-            <p>{t.technologies.preface2}</p>
+    <section id="technologies" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.technologies.title}</h2>
+          <div class="text-center max-w-xl mx-auto mt-4">
+            <p class="text-lg font-bold text-amber-500 mb-2">{t.technologies.preface1}</p>
+            <p class="text-slate-300">{t.technologies.preface2}</p>
           </div>
         </div>
 
-        <div class="tech-placeholder">
-          <div class="placeholder-card card">
-            <h3>Technologies Grid</h3>
-            <p>Interactive spinning tech cards will be displayed here showing:</p>
-            <ul>
+        <div class="flex justify-center">
+          <div class="max-w-xl text-center bg-slate-800 rounded-xl p-6 border border-slate-700 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 hover:border-amber-500">
+            <h3 class="text-xl font-bold mb-4 text-slate-100">Technologies Grid</h3>
+            <p class="text-slate-300 mb-4">Interactive spinning tech cards will be displayed here showing:</p>
+            <ul class="text-left text-slate-400 list-disc list-inside">
               <li>Python, SQL (Foundations)</li>
               <li>Pandas, Plotly, Jupyter (Data Analytics)</li>
               <li>PostgreSQL, Supabase, MS SQL, Oracle (Databases)</li>
@@ -213,67 +213,67 @@ const servicesSteps = [
     </section>
 
     <!-- Blog Section -->
-    <section id="blog" class="blog-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">{t.blog.title}</h2>
+    <section id="blog" class="py-16 md:py-24 bg-slate-800">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.blog.title}</h2>
         </div>
 
-        <div class="blog-placeholder">
-          <div class="placeholder-card card">
-            <h3>Blog Posts</h3>
-            <p>Recent blog posts will be displayed here as cards.</p>
-            <p class="text-sm">Blog functionality coming soon...</p>
+        <div class="flex justify-center">
+          <div class="max-w-xl text-center bg-slate-800 rounded-xl p-6 border border-slate-700 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 hover:border-amber-500">
+            <h3 class="text-xl font-bold mb-4 text-slate-100">Blog Posts</h3>
+            <p class="text-slate-300 mb-4">Recent blog posts will be displayed here as cards.</p>
+            <p class="text-sm text-slate-400">Blog functionality coming soon...</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">{t.contact.title}</h2>
-          <p class="section-subtitle">{t.contact.subtitle}</p>
+    <section id="contact" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.contact.title}</h2>
+          <p class="text-xl text-amber-500">{t.contact.subtitle}</p>
         </div>
 
-        <div class="contact-content">
-          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <div class="form-group">
-              <label for="name">{t.contact.nameLabel}</label>
-              <input type="text" id="name" name="name" required />
+        <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-12 max-w-4xl mx-auto">
+          <form class="flex flex-col gap-6" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="flex flex-col gap-2">
+              <label for="name" class="font-semibold text-[0.9375rem] text-slate-100">{t.contact.nameLabel}</label>
+              <input type="text" id="name" name="name" required class="p-3 rounded-lg border border-slate-700 bg-slate-800 text-slate-100 text-base focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/10" />
             </div>
 
-            <div class="form-group">
-              <label for="email">{t.contact.emailLabel}</label>
-              <input type="email" id="email" name="email" required />
+            <div class="flex flex-col gap-2">
+              <label for="email" class="font-semibold text-[0.9375rem] text-slate-100">{t.contact.emailLabel}</label>
+              <input type="email" id="email" name="email" required class="p-3 rounded-lg border border-slate-700 bg-slate-800 text-slate-100 text-base focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/10" />
             </div>
 
-            <div class="form-group">
-              <label for="subject">{t.contact.subjectLabel}</label>
-              <input type="text" id="subject" name="subject" />
+            <div class="flex flex-col gap-2">
+              <label for="subject" class="font-semibold text-[0.9375rem] text-slate-100">{t.contact.subjectLabel}</label>
+              <input type="text" id="subject" name="subject" class="p-3 rounded-lg border border-slate-700 bg-slate-800 text-slate-100 text-base focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/10" />
             </div>
 
-            <div class="form-group">
-              <label for="message">{t.contact.messageLabel}</label>
-              <textarea id="message" name="message" rows="6" required></textarea>
+            <div class="flex flex-col gap-2">
+              <label for="message" class="font-semibold text-[0.9375rem] text-slate-100">{t.contact.messageLabel}</label>
+              <textarea id="message" name="message" rows="6" required class="p-3 rounded-lg border border-slate-700 bg-slate-800 text-slate-100 text-base font-sans focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/10"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">{t.contact.submitButton}</button>
+            <button type="submit" class="inline-block px-6 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-amber-500 text-white border-none hover:bg-amber-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30">{t.contact.submitButton}</button>
           </form>
 
-          <div class="contact-info">
-            <div class="contact-card card">
-              <h3>Email</h3>
-              <p><a href="mailto:przemek@pk-data-solutions.com">przemek@pk-data-solutions.com</a></p>
+          <div class="flex flex-col gap-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 hover:border-amber-500">
+              <h3 class="text-lg font-bold mb-4 text-slate-100">Email</h3>
+              <p class="text-slate-300"><a href="mailto:przemek@pk-data-solutions.com" class="text-amber-500 hover:text-amber-600 transition-colors">przemek@pk-data-solutions.com</a></p>
             </div>
 
-            <div class="contact-card card">
-              <h3>Social</h3>
-              <div class="social-links-vertical">
-                <a href="https://github.com/przemyslawkepka" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/przemyslawkepka" target="_blank">LinkedIn</a>
-                <a href="https://twitter.com/przemyslawkepka" target="_blank">Twitter</a>
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 hover:border-amber-500">
+              <h3 class="text-lg font-bold mb-4 text-slate-100">Social</h3>
+              <div class="flex flex-col gap-3">
+                <a href="https://github.com/przemyslawkepka" target="_blank" class="text-slate-400 hover:text-amber-500 transition-colors">GitHub</a>
+                <a href="https://linkedin.com/in/przemyslawkepka" target="_blank" class="text-slate-400 hover:text-amber-500 transition-colors">LinkedIn</a>
+                <a href="https://twitter.com/przemyslawkepka" target="_blank" class="text-slate-400 hover:text-amber-500 transition-colors">Twitter</a>
               </div>
             </div>
           </div>
@@ -284,475 +284,3 @@ const servicesSteps = [
 
   <Footer lang={lang} />
 </BaseLayout>
-
-<style>
-/* Hero Section */
-.hero-section {
-  min-height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  padding: 4rem 0;
-}
-
-.hero-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-}
-
-.hero-greeting {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.hero-tagline {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-}
-
-.hero-description {
-  font-size: 1.125rem;
-  color: var(--color-text-secondary);
-  margin-bottom: 1rem;
-}
-
-.hero-points {
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0;
-}
-
-.hero-points li {
-  font-size: 1rem;
-  color: var(--color-text-secondary);
-  padding: 0.5rem 0;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.hero-points li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--color-accent-blue);
-  font-weight: bold;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-@media (max-width: 768px) {
-  .hero-cta {
-    justify-content: center;
-  }
-}
-
-.hero-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.image-placeholder {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
-  border: 4px solid var(--color-accent-blue);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.image-placeholder svg {
-  width: 120px;
-  height: 120px;
-  color: var(--color-text-secondary);
-}
-
-.image-placeholder p {
-  color: var(--color-text-secondary);
-  font-size: 0.875rem;
-}
-
-/* About Section */
-.about-section {
-  background-color: var(--color-bg-secondary);
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.section-subtitle {
-  font-size: 1.25rem;
-  color: var(--color-accent-blue);
-}
-
-.about-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-@media (max-width: 768px) {
-  .about-content {
-    grid-template-columns: 1fr;
-  }
-}
-
-.about-description {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: var(--color-text-secondary);
-  margin-bottom: 2rem;
-}
-
-.about-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-.stat-card {
-  background-color: var(--color-bg-tertiary);
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  text-align: center;
-}
-
-.stat-number {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--color-accent-blue);
-}
-
-.stat-label {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.about-values h3 {
-  margin-bottom: 1.5rem;
-}
-
-.values-list {
-  list-style: none;
-  padding: 0;
-}
-
-.values-list li {
-  padding: 0.75rem 0;
-  font-size: 1.0625rem;
-  color: var(--color-text-secondary);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.values-list li:last-child {
-  border-bottom: none;
-}
-
-/* Services Section */
-.services-pipeline {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-  position: relative;
-}
-
-@media (max-width: 768px) {
-  .services-pipeline {
-    grid-template-columns: 1fr;
-  }
-}
-
-.pipeline-step {
-  background-color: var(--color-bg-secondary);
-  padding: 2rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-border);
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.pipeline-step:hover {
-  border-color: var(--color-accent-blue);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.step-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.step-number {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--color-accent-blue);
-}
-
-.step-icon {
-  font-size: 2rem;
-}
-
-.step-title {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.step-items {
-  list-style: none;
-  padding: 0;
-}
-
-.step-items li {
-  padding: 0.5rem 0;
-  font-size: 0.9375rem;
-  color: var(--color-text-secondary);
-  padding-left: 1.25rem;
-  position: relative;
-}
-
-.step-items li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: var(--color-accent-blue);
-}
-
-.pipeline-arrow {
-  display: none;
-}
-
-@media (min-width: 1024px) {
-  .pipeline-arrow {
-    display: block;
-    position: absolute;
-    right: -2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    color: var(--color-accent-blue);
-  }
-}
-
-.services-note {
-  text-align: center;
-  padding: 2rem;
-  background-color: var(--color-bg-secondary);
-  border-radius: 0.75rem;
-  border: 2px solid var(--color-accent-blue);
-  margin-bottom: 3rem;
-}
-
-.highlight {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--color-accent-blue);
-  margin-bottom: 0.5rem;
-}
-
-.industries-section {
-  margin-top: 4rem;
-}
-
-.industries-title {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.industries-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.industry-pill {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--color-bg-secondary);
-  border-radius: 999px;
-  border: 1px solid var(--color-border);
-  transition: all 0.2s ease;
-}
-
-.industry-pill:hover {
-  border-color: var(--color-accent-blue);
-  transform: translateY(-2px);
-}
-
-.industry-emoji {
-  font-size: 1.25rem;
-}
-
-.industry-name {
-  font-size: 0.9375rem;
-  font-weight: 500;
-}
-
-.industries-note {
-  text-align: center;
-  font-size: 1rem;
-  color: var(--color-text-secondary);
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* Projects, Technologies, Blog Sections */
-.projects-section,
-.technologies-section,
-.blog-section {
-  background-color: var(--color-bg-secondary);
-}
-
-.projects-placeholder,
-.tech-placeholder,
-.blog-placeholder {
-  display: flex;
-  justify-content: center;
-}
-
-.placeholder-card {
-  max-width: 600px;
-  text-align: center;
-}
-
-.placeholder-card h3 {
-  margin-bottom: 1rem;
-}
-
-.placeholder-card ul {
-  text-align: left;
-  color: var(--color-text-secondary);
-}
-
-.placeholder-image {
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-primary) 100%);
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.text-sm {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-}
-
-/* Contact Section */
-.contact-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  .contact-content {
-    grid-template-columns: 1fr;
-  }
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.form-group label {
-  font-weight: 600;
-  font-size: 0.9375rem;
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--color-border);
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text-primary);
-  font-size: 1rem;
-  font-family: inherit;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--color-accent-blue);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-}
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.contact-card {
-  padding: 1.5rem;
-}
-
-.contact-card h3 {
-  margin-bottom: 1rem;
-}
-
-.social-links-vertical {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.social-links-vertical a {
-  color: var(--color-text-secondary);
-  transition: color 0.2s ease;
-}
-
-.social-links-vertical a:hover {
-  color: var(--color-accent-blue);
-}
-
-.tech-preface {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 2rem;
-}
-</style>
