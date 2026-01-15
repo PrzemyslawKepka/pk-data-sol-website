@@ -53,16 +53,28 @@
   },
   "projects": {
     "title": "Projects",
+    "subtitle": "A collection of projects showcasing my work across different contexts",
     "categories": {
       "all": "All Projects",
       "fte": "Corporate Projects",
       "current": "Current Projects",
       "side": "Side Projects"
     },
+    "categoriesDesc": {
+      "fte": "Projects delivered during full-time employment at various companies",
+      "current": "Active projects I'm currently working on",
+      "side": "Personal projects solving real problems"
+    },
     "seeMore": "See More",
     "viewGithub": "View on GitHub",
     "viewLive": "Visit Website",
-    "sideNote": "Side projects showcase real capabilities applicable in business contexts"
+    "backToProjects": "Back to Projects",
+    "technologies": "Technologies Used",
+    "company": "Company",
+    "year": "Year",
+    "sideNote": "Side projects showcase real capabilities applicable in business contexts",
+    "fteNote": "Due to NDAs, no real screenshots or code can be shown for corporate projects",
+    "viewAllProjects": "View All Projects"
   },
   "technologies": {
     "title": "Technologies",

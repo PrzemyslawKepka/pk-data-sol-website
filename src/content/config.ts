@@ -25,6 +25,9 @@ const projects = defineCollection({
     image: z.string().optional(),
     featured: z.boolean().default(false),
     projectType: z.enum(['fte', 'current', 'side']).default('side'),
+    company: z.string().optional(), // For FTE projects (e.g., "Santander Bank Poland")
+    year: z.string().optional(), // Year or year range (e.g., "2024" or "2021-2024")
+    order: z.number().default(0), // For custom sorting (higher = shown first)
     lang: z.enum(['en', 'pl']).default('en')
   })
 });

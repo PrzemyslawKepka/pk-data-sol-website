@@ -53,16 +53,28 @@
   },
   "projects": {
     "title": "Projekty",
+    "subtitle": "Kolekcja projektów pokazujących moją pracę w różnych kontekstach",
     "categories": {
       "all": "Wszystkie Projekty",
       "fte": "Projekty Korporacyjne",
       "current": "Bieżące Projekty",
       "side": "Projekty Poboczne"
     },
+    "categoriesDesc": {
+      "fte": "Projekty zrealizowane podczas pracy na etacie w różnych firmach",
+      "current": "Aktywne projekty, nad którymi obecnie pracuję",
+      "side": "Projekty osobiste rozwiązujące realne problemy"
+    },
     "seeMore": "Zobacz Więcej",
     "viewGithub": "Zobacz na GitHub",
     "viewLive": "Odwiedź Stronę",
-    "sideNote": "Projekty poboczne pokazują rzeczywiste możliwości zastosowania w kontekście biznesowym"
+    "backToProjects": "Powrót do Projektów",
+    "technologies": "Użyte Technologie",
+    "company": "Firma",
+    "year": "Rok",
+    "sideNote": "Projekty poboczne pokazują rzeczywiste możliwości zastosowania w kontekście biznesowym",
+    "fteNote": "Ze względu na NDA, nie można pokazać prawdziwych zrzutów ekranu ani kodu dla projektów korporacyjnych",
+    "viewAllProjects": "Zobacz Wszystkie Projekty"
   },
   "technologies": {
     "title": "Technologie",
