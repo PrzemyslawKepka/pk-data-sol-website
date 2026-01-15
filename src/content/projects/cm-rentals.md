@@ -8,7 +8,7 @@ liveUrl: "https://cm-rentals.com"
 image: "/images/projects/cm-rentals.png"
 featured: true
 projectType: "current"
-year: "2024-2025"
+year: "2025-2026"
 order: 100
 lang: "en"
 ---
