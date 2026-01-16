@@ -554,10 +554,10 @@ The `/projects` page has a **three-layer filter system**:
 - All Types, Current, Corporate, Side Projects
 
 **Categories (predefined):**
-- All Categories, Web Application, Automation, Developer Tools, Dashboard, ETL Pipeline, Data Analysis
+- All Categories, Web Application, Automation, Developer Tools, Dashboard, ETL Pipeline, Data Analysis, Web Scraping
 
 **Industries (predefined):**
-- All Industries, Finance, Credit Risk, Real Estate, IoT, E-commerce, Healthcare
+- All Industries, Finance, Credit Risk, Real Estate, IoT, Accounting, Social Media, Gaming
 
 All three filters work together - projects must match ALL selected criteria to be displayed.
 
