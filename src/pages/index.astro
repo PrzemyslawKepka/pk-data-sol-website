@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import TechnologiesSection from '../components/TechnologiesSection.astro';
 import { useTranslations } from '../utils/i18n';
 import { getCollection } from 'astro:content';
 
@@ -220,34 +221,7 @@ const servicesSteps = [
     </section>
 
     <!-- Technologies Section -->
-    <section id="technologies" class="py-16 md:py-24">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.technologies.title}</h2>
-          <div class="text-center max-w-xl mx-auto mt-4">
-            <p class="text-lg font-bold text-amber-500 mb-2">{t.technologies.preface1}</p>
-            <p class="text-slate-300">{t.technologies.preface2}</p>
-          </div>
-        </div>
-
-        <div class="flex justify-center">
-          <div class="max-w-xl text-center bg-slate-800 rounded-xl p-6 border border-slate-700 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 hover:border-amber-500">
-            <h3 class="text-xl font-bold mb-4 text-slate-100">Technologies Grid</h3>
-            <p class="text-slate-300 mb-4">Interactive spinning tech cards will be displayed here showing:</p>
-            <ul class="text-left text-slate-400 list-disc list-inside">
-              <li>Python, SQL (Foundations)</li>
-              <li>Pandas, Plotly, Jupyter (Data Analytics)</li>
-              <li>PostgreSQL, Supabase, MS SQL, Oracle (Databases)</li>
-              <li>Airflow, Cron (ETL)</li>
-              <li>Streamlit, Panel (Data Apps)</li>
-              <li>Flask, FastAPI, Vue.js (Full-Stack)</li>
-              <li>Docker, Git, VPS (Infrastructure)</li>
-              <li>VSCode, Cursor, Claude Code (AI Development)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    <TechnologiesSection translations={t.technologies} />
 
     <!-- Blog Section -->
     <section id="blog" class="py-16 md:py-24 bg-slate-800">
