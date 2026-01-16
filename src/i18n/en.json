@@ -72,7 +72,8 @@
       "developerTools": "Developer Tools",
       "dashboard": "Dashboard",
       "etl": "ETL Pipeline",
-      "dataAnalysis": "Data Analysis"
+      "dataAnalysis": "Data Analysis",
+      "webScraping": "Web Scraping"
     },
     "industries": {
       "all": "All Industries",
@@ -80,8 +81,9 @@
       "creditRisk": "Credit Risk",
       "realEstate": "Real Estate",
       "iot": "IoT",
-      "ecommerce": "E-commerce",
-      "healthcare": "Healthcare"
+      "accounting": "Accounting",
+      "socialMedia": "Social Media",
+      "gaming": "Gaming"
     },
     "seeMore": "See More",
     "viewGithub": "View on GitHub",
