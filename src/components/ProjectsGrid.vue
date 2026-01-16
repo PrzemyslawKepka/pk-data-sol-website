@@ -20,16 +20,34 @@ interface Project {
 }
 
 interface Translations {
-  categories: {
+  projectTypes: {
     all: string;
     fte: string;
     current: string;
     side: string;
   };
-  categoriesDesc: {
+  projectTypesDesc: {
     fte: string;
     current: string;
     side: string;
+  };
+  categories: {
+    all: string;
+    webApplication: string;
+    automation: string;
+    developerTools: string;
+    dashboard: string;
+    etl: string;
+    dataAnalysis: string;
+  };
+  industries: {
+    all: string;
+    finance: string;
+    creditRisk: string;
+    realEstate: string;
+    iot: string;
+    ecommerce: string;
+    healthcare: string;
   };
   seeMore: string;
   viewGithub: string;
@@ -43,20 +61,53 @@ const props = defineProps<{
   translations: Translations;
 }>();
 
-const activeFilter = ref('all');
+const activeTypeFilter = ref('all');
+const activeCategoryFilter = ref('all');
+const activeIndustryFilter = ref('all');
+
+const projectTypes = computed(() => [
+  { key: 'all', label: props.translations.projectTypes.all },
+  { key: 'current', label: props.translations.projectTypes.current },
+  { key: 'fte', label: props.translations.projectTypes.fte },
+  { key: 'side', label: props.translations.projectTypes.side }
+]);
 
 const categories = computed(() => [
   { key: 'all', label: props.translations.categories.all },
-  { key: 'current', label: props.translations.categories.current },
-  { key: 'fte', label: props.translations.categories.fte },
-  { key: 'side', label: props.translations.categories.side }
+  { key: 'Web Application', label: props.translations.categories.webApplication },
+  { key: 'Automation', label: props.translations.categories.automation },
+  { key: 'Developer Tools', label: props.translations.categories.developerTools },
+  { key: 'Dashboard', label: props.translations.categories.dashboard },
+  { key: 'ETL Pipeline', label: props.translations.categories.etl },
+  { key: 'Data Analysis', label: props.translations.categories.dataAnalysis }
+]);
+
+const industries = computed(() => [
+  { key: 'all', label: props.translations.industries.all },
+  { key: 'Finance', label: props.translations.industries.finance },
+  { key: 'Credit Risk', label: props.translations.industries.creditRisk },
+  { key: 'Real Estate', label: props.translations.industries.realEstate },
+  { key: 'IoT', label: props.translations.industries.iot },
+  { key: 'E-commerce', label: props.translations.industries.ecommerce },
+  { key: 'Healthcare', label: props.translations.industries.healthcare }
 ]);
 
 const filteredProjects = computed(() => {
   let filtered = props.projects;
 
-  if (activeFilter.value !== 'all') {
-    filtered = filtered.filter(p => p.data.projectType === activeFilter.value);
+  // Filter by project type
+  if (activeTypeFilter.value !== 'all') {
+    filtered = filtered.filter(p => p.data.projectType === activeTypeFilter.value);
+  }
+
+  // Filter by category
+  if (activeCategoryFilter.value !== 'all') {
+    filtered = filtered.filter(p => p.data.category === activeCategoryFilter.value);
+  }
+
+  // Filter by industry
+  if (activeIndustryFilter.value !== 'all') {
+    filtered = filtered.filter(p => p.data.industry === activeIndustryFilter.value);
   }
 
   // Sort by order (higher first), then by title
@@ -68,9 +119,9 @@ const filteredProjects = computed(() => {
   });
 });
 
-const currentCategoryDesc = computed(() => {
-  if (activeFilter.value === 'all') return null;
-  return props.translations.categoriesDesc[activeFilter.value as keyof typeof props.translations.categoriesDesc];
+const currentTypeDesc = computed(() => {
+  if (activeTypeFilter.value === 'all') return null;
+  return props.translations.projectTypesDesc[activeTypeFilter.value as keyof typeof props.translations.projectTypesDesc];
 });
 
 // Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
@@ -89,33 +140,70 @@ const typeLabels: Record<string, string> = {
 
 <template>
   <div>
-    <!-- Filter Buttons -->
-    <div class="flex flex-wrap justify-center gap-3 mb-8">
-      <button
-        v-for="category in categories"
-        :key="category.key"
-        @click="activeFilter = category.key"
-        :class="[
-          'px-5 py-2.5 rounded-full text-sm font-medium transition-all',
-          activeFilter === category.key
-            ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
-            : 'bg-slate-800 text-slate-300 border border-slate-700 hover:border-amber-500 hover:text-amber-500'
-        ]"
-      >
-        {{ category.label }}
-      </button>
+    <!-- Filter Section -->
+    <div class="mb-8 space-y-4">
+      <!-- Project Type Filter -->
+      <div class="flex flex-wrap justify-center gap-3">
+        <button
+          v-for="type in projectTypes"
+          :key="type.key"
+          @click="activeTypeFilter = type.key"
+          :class="[
+            'px-5 py-2.5 rounded-full text-sm font-medium transition-all',
+            activeTypeFilter === type.key
+              ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
+              : 'bg-slate-800 text-slate-300 border border-slate-700 hover:border-amber-500 hover:text-amber-500'
+          ]"
+        >
+          {{ type.label }}
+        </button>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="flex flex-wrap justify-center gap-3">
+        <button
+          v-for="category in categories"
+          :key="category.key"
+          @click="activeCategoryFilter = category.key"
+          :class="[
+            'px-4 py-2 rounded-full text-sm font-medium transition-all',
+            activeCategoryFilter === category.key
+              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
+              : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-amber-500 hover:text-amber-500'
+          ]"
+        >
+          {{ category.label }}
+        </button>
+      </div>
+
+      <!-- Industry Filter -->
+      <div class="flex flex-wrap justify-center gap-3">
+        <button
+          v-for="industry in industries"
+          :key="industry.key"
+          @click="activeIndustryFilter = industry.key"
+          :class="[
+            'px-4 py-2 rounded-full text-sm font-medium transition-all',
+            activeIndustryFilter === industry.key
+              ? 'bg-pink-600 text-white shadow-lg shadow-pink-600/30'
+              : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-pink-500 hover:text-pink-500'
+          ]"
+        >
+          {{ industry.label }}
+        </button>
+      </div>
     </div>
 
-    <!-- Category Description -->
-    <p v-if="currentCategoryDesc" class="text-center text-slate-400 mb-8 max-w-2xl mx-auto">
-      {{ currentCategoryDesc }}
+    <!-- Type Description -->
+    <p v-if="currentTypeDesc" class="text-center text-slate-400 mb-8 max-w-2xl mx-auto">
+      {{ currentTypeDesc }}
     </p>
 
     <!-- Special Notes -->
-    <div v-if="activeFilter === 'fte'" class="text-center mb-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg max-w-2xl mx-auto">
+    <div v-if="activeTypeFilter === 'fte'" class="text-center mb-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg max-w-2xl mx-auto">
       <p class="text-blue-400 text-sm">{{ translations.fteNote }}</p>
     </div>
-    <div v-if="activeFilter === 'side'" class="text-center mb-8 p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg max-w-2xl mx-auto">
+    <div v-if="activeTypeFilter === 'side'" class="text-center mb-8 p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg max-w-2xl mx-auto">
       <p class="text-purple-400 text-sm">{{ translations.sideNote }}</p>
     </div>
 
