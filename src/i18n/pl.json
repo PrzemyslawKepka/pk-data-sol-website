@@ -54,16 +54,34 @@
   "projects": {
     "title": "Projekty",
     "subtitle": "Kolekcja projektów pokazujących moją pracę w różnych kontekstach",
-    "categories": {
-      "all": "Wszystkie Projekty",
+    "projectTypes": {
+      "all": "Wszystkie Typy",
       "fte": "Projekty Korporacyjne",
       "current": "Bieżące Projekty",
       "side": "Projekty Poboczne"
     },
-    "categoriesDesc": {
+    "projectTypesDesc": {
       "fte": "Projekty zrealizowane podczas pracy na etacie w różnych firmach",
       "current": "Aktywne projekty, nad którymi obecnie pracuję",
       "side": "Projekty osobiste rozwiązujące realne problemy"
+    },
+    "categories": {
+      "all": "Wszystkie Kategorie",
+      "webApplication": "Aplikacja Webowa",
+      "automation": "Automatyzacja",
+      "developerTools": "Narzędzia Deweloperskie",
+      "dashboard": "Dashboard",
+      "etl": "Pipeline ETL",
+      "dataAnalysis": "Analiza Danych"
+    },
+    "industries": {
+      "all": "Wszystkie Branże",
+      "finance": "Finanse",
+      "creditRisk": "Ryzyko Kredytowe",
+      "realEstate": "Nieruchomości",
+      "iot": "IoT",
+      "ecommerce": "E-commerce",
+      "healthcare": "Ochrona Zdrowia"
     },
     "seeMore": "Zobacz Więcej",
     "viewGithub": "Zobacz na GitHub",

@@ -54,16 +54,34 @@
   "projects": {
     "title": "Projects",
     "subtitle": "A collection of projects showcasing my work across different contexts",
-    "categories": {
-      "all": "All Projects",
+    "projectTypes": {
+      "all": "All Types",
       "fte": "Corporate Projects",
       "current": "Current Projects",
       "side": "Side Projects"
     },
-    "categoriesDesc": {
+    "projectTypesDesc": {
       "fte": "Projects delivered during full-time employment at various companies",
       "current": "Active projects I'm currently working on",
       "side": "Personal projects solving real problems"
+    },
+    "categories": {
+      "all": "All Categories",
+      "webApplication": "Web Application",
+      "automation": "Automation",
+      "developerTools": "Developer Tools",
+      "dashboard": "Dashboard",
+      "etl": "ETL Pipeline",
+      "dataAnalysis": "Data Analysis"
+    },
+    "industries": {
+      "all": "All Industries",
+      "finance": "Finance",
+      "creditRisk": "Credit Risk",
+      "realEstate": "Real Estate",
+      "iot": "IoT",
+      "ecommerce": "E-commerce",
+      "healthcare": "Healthcare"
     },
     "seeMore": "See More",
     "viewGithub": "View on GitHub",
