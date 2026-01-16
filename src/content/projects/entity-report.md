@@ -7,6 +7,7 @@ featured: true
 projectType: "fte"
 company: "Santander Bank Poland"
 year: "2021-2024"
+industry: "Credit Risk"
 order: 90
 lang: "en"
 ---

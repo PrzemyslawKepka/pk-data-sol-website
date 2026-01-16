@@ -9,6 +9,7 @@ image: "/images/projects/cm-rentals.png"
 featured: true
 projectType: "current"
 year: "2025-2026"
+industry: "Real Estate"
 order: 100
 lang: "en"
 ---
