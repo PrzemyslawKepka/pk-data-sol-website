@@ -542,11 +542,100 @@ order: 0    # Appears last (default)
 
 ### Filtering on /projects Page
 
-The `/projects` page has filter buttons:
-- **All Projects** - Shows everything
-- **Current** - `projectType: "current"`
-- **Corporate** - `projectType: "fte"`
-- **Side Projects** - `projectType: "side"`
+The `/projects` page has a **three-layer filter system**:
+
+| Layer | Filter By | Default | Source Field |
+|-------|-----------|---------|--------------|
+| 1 | Project Type | All Types | `projectType` |
+| 2 | Category | All Categories | `category` |
+| 3 | Industry | All Industries | `industry` |
+
+**Project Types (predefined):**
+- All Types, Current, Corporate, Side Projects
+
+**Categories (predefined):**
+- All Categories, Web Application, Automation, Developer Tools, Dashboard, ETL Pipeline, Data Analysis
+
+**Industries (predefined):**
+- All Industries, Finance, Credit Risk, Real Estate, IoT, E-commerce, Healthcare
+
+All three filters work together - projects must match ALL selected criteria to be displayed.
+
+### Adding New Categories or Industries
+
+When you create a project with a new category or industry value, you must add it to the filter system in **3 files**:
+
+#### Step 1: Add to English translations
+
+**File:** `src/i18n/en.json`
+
+```json
+"categories": {
+  "all": "All Categories",
+  "webApplication": "Web Application",
+  "myNewCategory": "My New Category"  // Add here
+},
+"industries": {
+  "all": "All Industries",
+  "finance": "Finance",
+  "myNewIndustry": "My New Industry"  // Add here
+}
+```
+
+#### Step 2: Add to Polish translations
+
+**File:** `src/i18n/pl.json`
+
+```json
+"categories": {
+  "all": "Wszystkie Kategorie",
+  "webApplication": "Aplikacja Webowa",
+  "myNewCategory": "Moja Nowa Kategoria"  // Add here
+},
+"industries": {
+  "all": "Wszystkie Branże",
+  "finance": "Finanse",
+  "myNewIndustry": "Moja Nowa Branża"  // Add here
+}
+```
+
+#### Step 3: Add to ProjectsGrid.vue component
+
+**File:** `src/components/ProjectsGrid.vue`
+
+Update the `Translations` interface:
+```typescript
+interface Translations {
+  categories: {
+    // ...existing entries...
+    myNewCategory: string;  // Add here
+  };
+  industries: {
+    // ...existing entries...
+    myNewIndustry: string;  // Add here
+  };
+}
+```
+
+Update the `categories` computed array:
+```typescript
+const categories = computed(() => [
+  { key: 'all', label: props.translations.categories.all },
+  // ...existing entries...
+  { key: 'My New Category', label: props.translations.categories.myNewCategory }  // Add here
+]);
+```
+
+Update the `industries` computed array:
+```typescript
+const industries = computed(() => [
+  { key: 'all', label: props.translations.industries.all },
+  // ...existing entries...
+  { key: 'My New Industry', label: props.translations.industries.myNewIndustry }  // Add here
+]);
+```
+
+**Important:** The `key` value must match exactly what you use in the project's frontmatter (e.g., `category: "My New Category"`).
 
 ### Where Cards Are Rendered
 
