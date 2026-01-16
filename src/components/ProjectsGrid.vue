@@ -14,6 +14,7 @@ interface Project {
     projectType: 'fte' | 'current' | 'side';
     company?: string;
     year?: string;
+    industry?: string;
     order: number;
   };
 }
@@ -148,6 +149,14 @@ const typeLabels: Record<string, string> = {
             <!-- Category Badge -->
             <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg">
               {{ project.data.category }}
+            </div>
+
+            <!-- Industry Badge -->
+            <div
+              v-if="project.data.industry"
+              class="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-pink-600/90 text-slate-100 border border-pink-400/50 backdrop-blur-sm shadow-lg"
+            >
+              {{ project.data.industry }}
             </div>
           </div>
 
