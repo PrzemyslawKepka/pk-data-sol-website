@@ -39,6 +39,7 @@ interface Translations {
     dashboard: string;
     etl: string;
     dataAnalysis: string;
+    webScraping: string;
   };
   industries: {
     all: string;
@@ -46,8 +47,9 @@ interface Translations {
     creditRisk: string;
     realEstate: string;
     iot: string;
-    ecommerce: string;
-    healthcare: string;
+    accounting: string;
+    socialMedia: string;
+    gaming: string;
   };
   seeMore: string;
   viewGithub: string;
@@ -79,7 +81,8 @@ const categories = computed(() => [
   { key: 'Developer Tools', label: props.translations.categories.developerTools },
   { key: 'Dashboard', label: props.translations.categories.dashboard },
   { key: 'ETL Pipeline', label: props.translations.categories.etl },
-  { key: 'Data Analysis', label: props.translations.categories.dataAnalysis }
+  { key: 'Data Analysis', label: props.translations.categories.dataAnalysis },
+  { key: 'Web Scraping', label: props.translations.categories.webScraping }
 ]);
 
 const industries = computed(() => [
@@ -88,8 +91,9 @@ const industries = computed(() => [
   { key: 'Credit Risk', label: props.translations.industries.creditRisk },
   { key: 'Real Estate', label: props.translations.industries.realEstate },
   { key: 'IoT', label: props.translations.industries.iot },
-  { key: 'E-commerce', label: props.translations.industries.ecommerce },
-  { key: 'Healthcare', label: props.translations.industries.healthcare }
+  { key: 'Accounting', label: props.translations.industries.accounting },
+  { key: 'Social Media', label: props.translations.industries.socialMedia },
+  { key: 'Gaming', label: props.translations.industries.gaming }
 ]);
 
 const filteredProjects = computed(() => {
