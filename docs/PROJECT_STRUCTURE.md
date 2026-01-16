@@ -1,6 +1,6 @@
 # PK Data Solutions - Project Structure Documentation
 
-**Last Updated:** January 14, 2026
+**Last Updated:** January 16, 2026
 **Framework:** Astro + Tailwind CSS + Vue.js
 **Domain:** pk-data-solutions.com
 
@@ -14,10 +14,11 @@
 4. [How Content is Rendered](#how-content-is-rendered)
 5. [Where to Edit What](#where-to-edit-what)
 6. [Component Architecture](#component-architecture)
-7. [Styling System](#styling-system)
-8. [Internationalization (i18n)](#internationalization-i18n)
-9. [Adding New Content](#adding-new-content)
-10. [Common Tasks](#common-tasks)
+7. [Projects System](#projects-system)
+8. [Styling System](#styling-system)
+9. [Internationalization (i18n)](#internationalization-i18n)
+10. [Adding New Content](#adding-new-content)
+11. [Common Tasks](#common-tasks)
 
 ---
 
@@ -391,6 +392,294 @@ your-new-domain.com
 **Future Enhancement:** Full language switching with route changes
 
 **Why Vue?** Needs reactivity (button states, click handling)
+
+---
+
+## Projects System
+
+### Overview
+
+The projects system displays portfolio work on two pages:
+- **Homepage** (`/`) - Shows featured projects only
+- **Projects page** (`/projects`) - Shows all projects with filtering
+
+### Architecture
+
+```
+Content Layer:
+src/content/
+├── config.ts              # Schema definition (required fields, types)
+└── projects/              # Project markdown files
+    ├── cm-rentals.md
+    ├── entity-report.md
+    └── streamlit-center.md
+
+Rendering Layer:
+src/components/
+├── ProjectCard.astro      # Card component (used on homepage)
+└── ProjectsGrid.vue       # Grid + filtering (used on /projects)
+
+Page Layer:
+src/pages/
+├── index.astro            # Homepage (imports ProjectCard.astro)
+└── projects/
+    ├── index.astro        # Projects listing (imports ProjectsGrid.vue)
+    └── [slug].astro       # Individual project pages
+```
+
+### Project Schema
+
+**File:** `src/content/config.ts`
+
+Each project markdown file must include these frontmatter fields:
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `title` | string | Yes | Project name |
+| `description` | string | Yes | Short description (shown on cards) |
+| `category` | string | Yes | e.g., "Web Application", "Automation", "Dashboard" |
+| `technologies` | string[] | Yes | Array of tech used |
+| `github` | string | No | GitHub repository URL |
+| `liveUrl` | string | No | Live website URL |
+| `image` | string | No | Path to screenshot (e.g., "/images/projects/name.png") |
+| `featured` | boolean | No | If true, shows on homepage (default: false) |
+| `projectType` | enum | No | "fte" \| "current" \| "side" (default: "side") |
+| `company` | string | No | Company name (for FTE projects) |
+| `year` | string | No | Year or range (e.g., "2024" or "2021-2024") |
+| `industry` | string | No | Industry domain (e.g., "Finance", "Real Estate") |
+| `order` | number | No | Sort order - higher values appear first (default: 0) |
+| `lang` | enum | No | "en" \| "pl" (default: "en") |
+
+### Project Card Badges
+
+Cards display up to 3 badges on the image:
+
+| Badge | Position | Color | Source Field |
+|-------|----------|-------|--------------|
+| Project Type | Top-left | Blue/Green/Purple | `projectType` |
+| Category | Top-right | Amber | `category` |
+| Industry | Bottom-right | Pink | `industry` |
+
+**Project Type Colors:**
+- `fte` (Corporate) → Blue
+- `current` (Current) → Green
+- `side` (Side Project) → Purple
+
+### Adding a New Project
+
+**Step 1:** Create image (optional but recommended)
+
+```
+public/images/projects/my-project.png
+```
+
+Recommended size: 800x600px or similar aspect ratio.
+
+**Step 2:** Create markdown file
+
+```
+src/content/projects/my-project.md
+```
+
+**Step 3:** Add frontmatter and content
+
+```markdown
+---
+title: "My Project Name"
+description: "A brief description that appears on the card (keep it concise, 1-2 sentences)"
+category: "Web Application"
+technologies: ["Python", "Flask", "PostgreSQL", "HTML", "CSS"]
+github: "https://github.com/username/my-project"
+liveUrl: "https://my-project.com"
+image: "/images/projects/my-project.png"
+featured: true
+projectType: "current"
+company: "Company Name"
+year: "2025"
+industry: "Finance"
+order: 50
+lang: "en"
+---
+
+## The Problem
+
+Describe the problem you were solving...
+
+## The Solution
+
+Explain your approach and what you built...
+
+## Technical Implementation
+
+- **Backend:** Flask (Python)
+- **Database:** PostgreSQL
+- **Key features:** List main features
+
+## Results / Impact
+
+- Quantifiable results if available
+- User feedback
+- Lessons learned
+```
+
+**Step 4:** Project appears automatically
+
+- If `featured: true` → Shows on homepage
+- Always shows on `/projects` page
+- Individual page available at `/projects/my-project`
+
+### Controlling Display Order
+
+Use the `order` field to control sorting (higher = appears first):
+
+```markdown
+order: 100  # Appears first
+order: 50   # Appears in middle
+order: 0    # Appears last (default)
+```
+
+**Tip:** Use increments of 10 (10, 20, 30...) to leave room for inserting projects later.
+
+### Filtering on /projects Page
+
+The `/projects` page has a **three-layer filter system**:
+
+| Layer | Filter By | Default | Source Field |
+|-------|-----------|---------|--------------|
+| 1 | Project Type | All Types | `projectType` |
+| 2 | Category | All Categories | `category` |
+| 3 | Industry | All Industries | `industry` |
+
+**Project Types (predefined):**
+- All Types, Current, Corporate, Side Projects
+
+**Categories (predefined):**
+- All Categories, Web Application, Automation, Developer Tools, Dashboard, ETL Pipeline, Data Analysis, Web Scraping
+
+**Industries (predefined):**
+- All Industries, Finance, Credit Risk, Real Estate, IoT, Accounting, Social Media, Gaming
+
+All three filters work together - projects must match ALL selected criteria to be displayed.
+
+### Adding New Categories or Industries
+
+When you create a project with a new category or industry value, you must add it to the filter system in **3 files**:
+
+#### Step 1: Add to English translations
+
+**File:** `src/i18n/en.json`
+
+```json
+"categories": {
+  "all": "All Categories",
+  "webApplication": "Web Application",
+  "myNewCategory": "My New Category"  // Add here
+},
+"industries": {
+  "all": "All Industries",
+  "finance": "Finance",
+  "myNewIndustry": "My New Industry"  // Add here
+}
+```
+
+#### Step 2: Add to Polish translations
+
+**File:** `src/i18n/pl.json`
+
+```json
+"categories": {
+  "all": "Wszystkie Kategorie",
+  "webApplication": "Aplikacja Webowa",
+  "myNewCategory": "Moja Nowa Kategoria"  // Add here
+},
+"industries": {
+  "all": "Wszystkie Branże",
+  "finance": "Finanse",
+  "myNewIndustry": "Moja Nowa Branża"  // Add here
+}
+```
+
+#### Step 3: Add to ProjectsGrid.vue component
+
+**File:** `src/components/ProjectsGrid.vue`
+
+Update the `Translations` interface:
+```typescript
+interface Translations {
+  categories: {
+    // ...existing entries...
+    myNewCategory: string;  // Add here
+  };
+  industries: {
+    // ...existing entries...
+    myNewIndustry: string;  // Add here
+  };
+}
+```
+
+Update the `categories` computed array:
+```typescript
+const categories = computed(() => [
+  { key: 'all', label: props.translations.categories.all },
+  // ...existing entries...
+  { key: 'My New Category', label: props.translations.categories.myNewCategory }  // Add here
+]);
+```
+
+Update the `industries` computed array:
+```typescript
+const industries = computed(() => [
+  { key: 'all', label: props.translations.industries.all },
+  // ...existing entries...
+  { key: 'My New Industry', label: props.translations.industries.myNewIndustry }  // Add here
+]);
+```
+
+**Important:** The `key` value must match exactly what you use in the project's frontmatter (e.g., `category: "My New Category"`).
+
+### Where Cards Are Rendered
+
+**Important:** Project cards are rendered in two separate components:
+
+| Location | Component | Used For |
+|----------|-----------|----------|
+| Homepage | `src/components/ProjectCard.astro` | Featured projects |
+| /projects | `src/components/ProjectsGrid.vue` | All projects with filtering |
+
+When modifying card appearance, **both files may need updating**. See `docs/FUTURE_OPTIMIZATIONS.md` for notes on potential consolidation.
+
+### Quick Reference: Project File Template
+
+Copy this template for new projects:
+
+```markdown
+---
+title: ""
+description: ""
+category: ""
+technologies: []
+github: ""
+liveUrl: ""
+image: "/images/projects/.png"
+featured: false
+projectType: "side"
+company: ""
+year: ""
+industry: ""
+order: 0
+lang: "en"
+---
+
+## Overview
+
+## The Problem
+
+## The Solution
+
+## Technical Details
+
+## Results
+```
 
 ---
 
@@ -1099,6 +1388,6 @@ Now that you understand the structure, you can:
 
 ---
 
-**Last Updated:** January 14, 2026
+**Last Updated:** January 16, 2026
 **Version:** 1.0
 **Author:** Claude Code

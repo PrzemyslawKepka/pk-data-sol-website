@@ -2,10 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import { useTranslations } from '../utils/i18n';
+import { getCollection } from 'astro:content';
 
 const lang = 'en'; // Default language
 const t = useTranslations(lang);
+
+// Get featured projects for homepage
+const allProjects = await getCollection('projects', ({ data }) => data.lang === lang);
+const featuredProjects = allProjects
+  .filter(p => p.data.featured)
+  .sort((a, b) => (b.data.order || 0) - (a.data.order || 0))
+  .slice(0, 3);
 
 // Industries data
 const industries = [
@@ -49,9 +58,9 @@ const servicesSteps = [
 <BaseLayout title="Home" lang={lang}>
   <Header lang={lang} />
 
-  <main>
+  <main class="pt-8">
     <!-- Hero/Start Section -->
-    <section id="start" class="min-h-[calc(100vh-5rem)] flex items-center py-16">
+    <section id="start" class="flex items-start pt-2 pb-16">
       <div class="max-w-7xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div class="text-center md:text-left">
@@ -169,16 +178,44 @@ const servicesSteps = [
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.projects.title}</h2>
+          <p class="text-xl text-slate-300">{t.projects.subtitle}</p>
         </div>
 
-        <div class="flex justify-center">
-          <div class="max-w-xl text-center bg-slate-800 rounded-xl p-6 border border-slate-700 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 hover:border-amber-500">
-            <div class="w-full h-[200px] bg-gradient-to-br from-slate-700 to-slate-900 rounded-lg mb-4"></div>
-            <h3 class="text-xl font-bold mb-4 text-slate-100">Project Example</h3>
-            <p class="text-slate-300 mb-4">Project cards will be displayed here with screenshots, descriptions, and links.</p>
-            <p class="text-sm text-slate-400">Coming soon: cm-rentals, tekyous, supabase-img-linker-ui, and more...</p>
+        {featuredProjects.length > 0 ? (
+          <>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              {featuredProjects.map(project => (
+                <ProjectCard
+                  project={project}
+                  translations={{
+                    seeMore: t.projects.seeMore,
+                    viewGithub: t.projects.viewGithub,
+                    viewLive: t.projects.viewLive
+                  }}
+                />
+              ))}
+            </div>
+
+            <div class="text-center">
+              <a
+                href="/projects"
+                class="inline-block px-8 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-transparent text-amber-500 border-2 border-amber-500 hover:bg-amber-500 hover:text-white"
+              >
+                {t.projects.viewAllProjects}
+              </a>
+            </div>
+          </>
+        ) : (
+          <div class="text-center">
+            <p class="text-slate-400 mb-8">Projects coming soon...</p>
+            <a
+              href="/projects"
+              class="inline-block px-8 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-amber-500 text-white hover:bg-amber-600"
+            >
+              {t.projects.viewAllProjects}
+            </a>
           </div>
-        </div>
+        )}
       </div>
     </section>
 

@@ -53,16 +53,48 @@
   },
   "projects": {
     "title": "Projects",
-    "categories": {
-      "all": "All Projects",
+    "subtitle": "A collection of projects showcasing my work across different contexts",
+    "projectTypes": {
+      "all": "All Types",
       "fte": "Corporate Projects",
       "current": "Current Projects",
       "side": "Side Projects"
     },
+    "projectTypesDesc": {
+      "fte": "Projects delivered during full-time employment at various companies",
+      "current": "Active projects I'm currently working on",
+      "side": "Personal projects solving real problems"
+    },
+    "categories": {
+      "all": "All Categories",
+      "webApplication": "Web Application",
+      "automation": "Automation",
+      "developerTools": "Developer Tools",
+      "dashboard": "Dashboard",
+      "etl": "ETL Pipeline",
+      "dataAnalysis": "Data Analysis",
+      "webScraping": "Web Scraping"
+    },
+    "industries": {
+      "all": "All Industries",
+      "finance": "Finance",
+      "creditRisk": "Credit Risk",
+      "realEstate": "Real Estate",
+      "iot": "IoT",
+      "accounting": "Accounting",
+      "socialMedia": "Social Media",
+      "gaming": "Gaming"
+    },
     "seeMore": "See More",
     "viewGithub": "View on GitHub",
     "viewLive": "Visit Website",
-    "sideNote": "Side projects showcase real capabilities applicable in business contexts"
+    "backToProjects": "Back to Projects",
+    "technologies": "Technologies Used",
+    "company": "Company",
+    "year": "Year",
+    "sideNote": "Side projects showcase real capabilities applicable in business contexts",
+    "fteNote": "Due to NDAs, no real screenshots or code can be shown for corporate projects",
+    "viewAllProjects": "View All Projects"
   },
   "technologies": {
     "title": "Technologies",

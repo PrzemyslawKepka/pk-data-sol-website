@@ -53,16 +53,48 @@
   },
   "projects": {
     "title": "Projekty",
-    "categories": {
-      "all": "Wszystkie Projekty",
+    "subtitle": "Kolekcja projektów pokazujących moją pracę w różnych kontekstach",
+    "projectTypes": {
+      "all": "Wszystkie Typy",
       "fte": "Projekty Korporacyjne",
       "current": "Bieżące Projekty",
       "side": "Projekty Poboczne"
     },
+    "projectTypesDesc": {
+      "fte": "Projekty zrealizowane podczas pracy na etacie w różnych firmach",
+      "current": "Aktywne projekty, nad którymi obecnie pracuję",
+      "side": "Projekty osobiste rozwiązujące realne problemy"
+    },
+    "categories": {
+      "all": "Wszystkie Kategorie",
+      "webApplication": "Aplikacja Webowa",
+      "automation": "Automatyzacja",
+      "developerTools": "Narzędzia Deweloperskie",
+      "dashboard": "Dashboard",
+      "etl": "Pipeline ETL",
+      "dataAnalysis": "Analiza Danych",
+      "webScraping": "Web Scraping"
+    },
+    "industries": {
+      "all": "Wszystkie Branże",
+      "finance": "Finanse",
+      "creditRisk": "Ryzyko Kredytowe",
+      "realEstate": "Nieruchomości",
+      "iot": "IoT",
+      "accounting": "Księgowość",
+      "socialMedia": "Media Społecznościowe",
+      "gaming": "Gaming"
+    },
     "seeMore": "Zobacz Więcej",
     "viewGithub": "Zobacz na GitHub",
     "viewLive": "Odwiedź Stronę",
-    "sideNote": "Projekty poboczne pokazują rzeczywiste możliwości zastosowania w kontekście biznesowym"
+    "backToProjects": "Powrót do Projektów",
+    "technologies": "Użyte Technologie",
+    "company": "Firma",
+    "year": "Rok",
+    "sideNote": "Projekty poboczne pokazują rzeczywiste możliwości zastosowania w kontekście biznesowym",
+    "fteNote": "Ze względu na NDA, nie można pokazać prawdziwych zrzutów ekranu ani kodu dla projektów korporacyjnych",
+    "viewAllProjects": "Zobacz Wszystkie Projekty"
   },
   "technologies": {
     "title": "Technologie",
