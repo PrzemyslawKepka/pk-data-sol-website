@@ -186,7 +186,7 @@ const typeLabels: Record<string, string> = {
                 :key="tech"
                 class="px-2 py-1 text-xs bg-slate-700 text-slate-300 rounded"
               >
-                #{{ tech }}
+                {{ tech }}
               </span>
               <span
                 v-if="project.data.technologies.length > 5"
