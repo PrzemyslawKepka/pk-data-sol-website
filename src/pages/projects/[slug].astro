@@ -54,9 +54,9 @@ const typeLabels: Record<string, string> = {
         {project.data.image ? (
           <div class="w-full aspect-video rounded-xl overflow-hidden mb-8 border border-slate-700">
             <img
-              src={`/${project.data.image}`}
+              src={project.data.image}
               alt={project.data.title}
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover object-top"
             />
           </div>
         ) : (
