@@ -5,7 +5,7 @@ category: "Web Application"
 technologies: ["Python", "Flask", "Streamlit", "PostgreSQL", "Supabase", "HTML", "CSS", "Leaflet.js"]
 github: "https://github.com/PrzemyslawKepka/cm-rentals-flask"
 liveUrl: "https://cm-rentals.com"
-image: "/images/projects/cm-rentals.png"
+image: "public/images/projects/cm-rentals/cm-rentals.png"
 featured: true
 projectType: "current"
 year: "2025-2026"
