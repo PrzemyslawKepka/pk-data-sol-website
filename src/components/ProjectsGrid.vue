@@ -216,9 +216,9 @@ const typeLabels: Record<string, string> = {
       <article
         v-for="project in filteredProjects"
         :key="project.slug"
-        class="group bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30"
+        class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30"
       >
-        <a :href="`/projects/${project.slug}`" class="block">
+        <a :href="`/projects/${project.slug}`" class="flex-1 flex flex-col">
           <!-- Image -->
           <div class="relative w-full h-[200px] bg-gradient-to-br from-slate-700 to-slate-900 overflow-hidden">
             <img
@@ -253,7 +253,7 @@ const typeLabels: Record<string, string> = {
           </div>
 
           <!-- Content -->
-          <div class="p-6">
+          <div class="p-6 flex-1 flex flex-col">
             <div class="flex items-start justify-between gap-2 mb-2">
               <h3 class="text-xl font-bold text-slate-100 group-hover:text-amber-500 transition-colors">
                 {{ project.data.title }}
@@ -267,7 +267,7 @@ const typeLabels: Record<string, string> = {
               {{ project.data.company }}
             </p>
 
-            <p class="text-slate-300 text-sm mb-4 line-clamp-3">
+            <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">
               {{ project.data.description }}
             </p>
 
