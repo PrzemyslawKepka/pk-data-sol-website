@@ -4,7 +4,7 @@ description: "A web scraping pipeline deployed on Raspberry Pi for 4+ months to 
 category: "Web Scraping"
 technologies: ["Python", "BeautifulSoup", "Streamlit", "pandas", "plotly", "Raspberry Pi"]
 github: "https://github.com/PrzemyslawKepka/electronics-web-scraping"
-image: "public/images/projects/electronics-web-scraping/streamlit_app_black_friday_laptop_prices.png"
+image: "/images/projects/electronics-web-scraping/electronics-web-scraping-cover.png"
 featured: false
 projectType: "side"
 year: "2021"

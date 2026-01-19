@@ -4,7 +4,7 @@ description: "A browser-based meme generator built with Streamlit and Pillow, fe
 category: "Web Application"
 technologies: ["Python", "Streamlit", "Pillow", "PIL"]
 github: "https://github.com/PrzemyslawKepka/image-editor"
-image: "public/images/projects/image-editor/st_image_editor_example.jpg"
+image: "/images/projects/image-editor/image-editor-cover.png"
 featured: false
 projectType: "side"
 year: "2022"

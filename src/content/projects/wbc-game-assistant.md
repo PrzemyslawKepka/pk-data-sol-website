@@ -5,7 +5,7 @@ category: "Web Application"
 technologies: ["Python", "Streamlit", "pandas", "Pillow", "HTML/CSS"]
 github: "https://github.com/PrzemyslawKepka/wbc-game-assistant"
 liveUrl: "https://wbc-game-assistant.onrender.com/"
-image: "public/images/projects/wbc-game-assistant/wbc-game-assistant.jpg"
+image: "/images/projects/wbc-game-assistant/wbc-game-assistant-cover.png"
 featured: false
 projectType: "side"
 year: "2022"
