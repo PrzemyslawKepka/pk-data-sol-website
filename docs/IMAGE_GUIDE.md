@@ -6,10 +6,10 @@ This guide covers image requirements, optimization, and workflows for the websit
 
 ## Quick Reference
 
-| Image Type | Aspect Ratio | Recommended Size | Format |
-|------------|--------------|------------------|--------|
-| Project Cover | 16:9 (1.78:1) | 1920 x 1080 px | WebP |
-| Blog Cover | 16:9 (1.78:1) | 1920 x 1080 px | WebP |
+| Image Type | Aspect Ratio | Standard Size | Format |
+|------------|--------------|---------------|--------|
+| Project Cover | 16:9 (1.78:1) | 1280 x 720 px | WebP |
+| Blog Cover | 16:9 (1.78:1) | 1280 x 720 px | WebP |
 | Content Images | Flexible | Max 1600px width | WebP |
 
 ---
@@ -21,8 +21,7 @@ Cover images are displayed in cards and at the top of detail pages. They use a *
 ### Requirements
 
 - **Aspect Ratio:** 16:9 (1.78:1)
-- **Recommended Size:** 1920 x 1080 pixels
-- **Minimum Size:** 1280 x 720 pixels
+- **Standard Size:** 1280 x 720 pixels
 - **Format:** WebP (PNG/JPG as fallback)
 - **File Size Target:** Under 200KB
 
@@ -122,7 +121,76 @@ public/
 
 ---
 
-## 4. WebP Conversion
+## 4. Resizing Images
+
+All cover images should be resized to **1280×720** for consistency and optimal file size.
+
+### Why 1280×720?
+
+- Sharp enough for retina displays in cards
+- Reasonable quality when opened directly
+- Good balance between quality and file size
+- Matches standard 720p resolution
+
+### Resize Script (macOS)
+
+Save this as `scripts/resize-covers.sh`:
+
+```bash
+#!/bin/bash
+
+# Resize all cover images to 1280x720 (16:9)
+# Usage: ./scripts/resize-covers.sh
+# Requires: macOS (uses built-in sips command)
+
+IMAGES_DIR="public/images/projects"
+WIDTH=1280
+HEIGHT=720
+
+echo "Resizing cover images to ${WIDTH}x${HEIGHT}..."
+
+find "$IMAGES_DIR" -type f -name "*-cover.png" | while read img; do
+    # Get current dimensions
+    current_width=$(sips -g pixelWidth "$img" 2>/dev/null | grep pixelWidth | awk '{print $2}')
+    current_height=$(sips -g pixelHeight "$img" 2>/dev/null | grep pixelHeight | awk '{print $2}')
+
+    if [ "$current_width" = "$WIDTH" ] && [ "$current_height" = "$HEIGHT" ]; then
+        echo "Skipping (already ${WIDTH}x${HEIGHT}): $img"
+        continue
+    fi
+
+    echo "Resizing: $img (${current_width}x${current_height} -> ${WIDTH}x${HEIGHT})"
+    sips -z $HEIGHT $WIDTH "$img" --out "$img" 2>/dev/null
+done
+
+echo "Done!"
+```
+
+Make it executable:
+```bash
+chmod +x scripts/resize-covers.sh
+```
+
+### Single File Resize
+
+```bash
+# Resize single image to 1280x720
+sips -z 720 1280 input.png --out input.png
+
+# Check dimensions
+sips -g pixelWidth -g pixelHeight input.png
+```
+
+### Notes
+
+- The `sips` command is built into macOS (no installation needed)
+- Use `-z height width` (height comes first)
+- Images smaller than 1280×720 will be upscaled (may lose quality)
+- Always resize **before** converting to WebP
+
+---
+
+## 5. WebP Conversion
 
 WebP provides 25-35% smaller file sizes compared to PNG/JPG with similar quality.
 
@@ -203,7 +271,7 @@ cwebp -q 80 -resize 1920 0 input.png -o output.webp
 
 ---
 
-## 5. Complete Workflow
+## 6. Complete Workflow
 
 ### Adding a New Project with Images
 
@@ -221,12 +289,17 @@ cwebp -q 80 -resize 1920 0 input.png -o output.webp
    - Resize to max 1600px width
    - Use descriptive names
 
-4. **Convert to WebP:**
+4. **Resize cover images to standard size:**
+   ```bash
+   ./scripts/resize-covers.sh
+   ```
+
+5. **Convert to WebP:**
    ```bash
    ./scripts/convert-to-webp.sh
    ```
 
-5. **Update project markdown:**
+6. **Update project markdown:**
    ```yaml
    ---
    image: "/images/projects/my-new-project/my-new-project-cover.webp"
@@ -237,14 +310,26 @@ cwebp -q 80 -resize 1920 0 input.png -o output.webp
    ![Main dashboard](/images/projects/my-new-project/dashboard.webp)
    ```
 
-6. **Verify:**
+7. **Verify:**
    - Check the project card displays correctly
    - Check the project detail page
    - Test on mobile (or use browser dev tools)
 
+### Batch Processing All Images
+
+When you have multiple new images to process:
+
+```bash
+# Step 1: Resize all covers to 1280x720
+./scripts/resize-covers.sh
+
+# Step 2: Convert all PNG/JPG to WebP
+./scripts/convert-to-webp.sh
+```
+
 ---
 
-## 6. Troubleshooting
+## 7. Troubleshooting
 
 ### Image appears cropped incorrectly
 
@@ -271,7 +356,7 @@ cwebp -q 80 -resize 1920 0 input.png -o output.webp
 
 ---
 
-## 7. Tools Reference
+## 8. Tools Reference
 
 | Tool | Purpose | Install |
 |------|---------|---------|
@@ -297,8 +382,18 @@ find public/images/projects -name "*-cover.*" -exec sips -g pixelWidth -g pixelH
 
 ## Summary
 
-1. **Cover images:** Always 16:9, important content in top 60%
+1. **Cover images:** Always 16:9, standard size 1280×720
 2. **Content images:** Flexible ratio, max 1600px wide
-3. **Always convert to WebP** before committing
+3. **Resize first**, then **convert to WebP** before committing
 4. **Use the naming convention:** `{slug}-cover.webp` for covers
 5. **Test on mobile** to verify cropping looks good
+
+### Quick Commands
+
+```bash
+# Resize all covers to 1280x720
+./scripts/resize-covers.sh
+
+# Convert all images to WebP
+./scripts/convert-to-webp.sh
+```
