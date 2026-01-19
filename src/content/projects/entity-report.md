@@ -3,6 +3,7 @@ title: "Entity Report Automation"
 description: "Automated generation of a comprehensive C-level Credit Risk report in PowerPoint format, replacing a semi-manual Excel-based process and significantly reducing the time required from days to hours."
 category: "Automation"
 technologies: ["Python", "Streamlit", "pandas", "plotly", "python-pptx", "pyodbc", "openpyxl", "SharePoint API"]
+image: "/images/projects/entity-report/entity-report-cover.png"
 featured: true
 projectType: "fte"
 company: "Santander Bank Poland"
