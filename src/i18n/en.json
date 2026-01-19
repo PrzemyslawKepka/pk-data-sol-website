@@ -61,7 +61,7 @@
       "side": "Side Projects"
     },
     "projectTypesDesc": {
-      "fte": "Projects delivered during full-time employment at various companies",
+      "fte": "Projects delivered during full-time employment and contracts at various companies",
       "current": "Active projects I'm currently working on",
       "side": "Personal projects solving real problems"
     },
@@ -102,9 +102,10 @@
     "preface2": "There's no tech stack without a real business problem in the first place.",
     "learning": "Currently Learning",
     "foundations": "Foundations",
-    "foundationsDesc": "My backbone technologies, with Python being my main tool for all data things possible",
+    "foundationsDesc": "Backbone technologies, with Python being the main tool for all data things possible.",
     "dataManipulation": "Data Manipulation & Analytics",
     "databases": "Databases",
+    "databasesDesc": "Different flavors of databases used extensively before, like Teradata, MS SQL, Oracle, or InfluxDB for time-series data. Nowadays it's mostly PostgreSQL and Supabase.",
     "etl": "ETL & Schedulers",
     "dataApps": "Data Apps & Dashboards",
     "fullStack": "Full-Stack Web Development",

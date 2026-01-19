@@ -105,6 +105,7 @@
     "foundationsDesc": "Moje podstawowe technologie, z Pythonem jako głównym narzędziem do wszystkich rzeczy związanych z danymi",
     "dataManipulation": "Manipulacja Danymi i Analityka",
     "databases": "Bazy Danych",
+    "databasesDesc": "Szeroko używane różne wersje, w tym Teradata, MS SQL Server, Oracle, czy InfluxDB. Obecnie głównie PostgreSQL i Supabase.",
     "etl": "ETL i Planowanie Zadań",
     "dataApps": "Aplikacje Danych i Dashboardy",
     "fullStack": "Rozwój Full-Stack",
