@@ -1,0 +1,13 @@
+---
+title: "Tekyous"
+description: "Coming Soon 😎"
+category: "Web Application"
+technologies: ["FastAPI", "PostgreSQL", "Vue.js", "Vue Flow", "Tailwind CSS", "TypeScript"]
+featured: true
+projectType: "current"
+year: "2026"
+order: 105
+lang: "en"
+---
+
+To Be Revealed Soon 😎

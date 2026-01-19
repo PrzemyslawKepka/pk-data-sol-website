@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # Claude folder
 .claude/
+
+# Internal documents
+potential-future-projects.md
