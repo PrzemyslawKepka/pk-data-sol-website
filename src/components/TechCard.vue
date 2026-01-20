@@ -15,7 +15,9 @@ defineProps<Props>();
     <div class="tech-card">
       <!-- Front of card -->
       <div class="tech-card-front">
-        <div class="icon-wrapper" v-html="icon"></div>
+        <div class="icon-wrapper">
+          <img v-if="icon" :src="icon" :alt="name" class="tech-icon" />
+        </div>
         <span class="tech-name">{{ name }}</span>
         <span v-if="isLearning" class="learning-badge">{{ learningLabel || 'Learning' }}</span>
       </div>
@@ -88,17 +90,12 @@ defineProps<Props>();
   align-items: center;
   justify-content: center;
   margin-bottom: 8px;
-  color: rgb(148, 163, 184); /* slate-400 */
-  transition: color 0.3s ease;
 }
 
-.tech-card-container:hover .icon-wrapper {
-  color: rgb(245, 158, 11); /* amber-500 */
-}
-
-.icon-wrapper :deep(svg) {
+.tech-icon {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .tech-name {
