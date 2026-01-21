@@ -75,9 +75,11 @@ const typeLabels: Record<string, string> = {
             <span class={`px-3 py-1 rounded-full text-sm font-medium border ${typeColors[project.data.projectType]}`}>
               {typeLabels[project.data.projectType]}
             </span>
-            <span class="px-3 py-1 rounded-full text-sm font-medium bg-amber-500/20 text-amber-400 border border-amber-500/30">
-              {project.data.category}
-            </span>
+            {project.data.categories.map(category => (
+              <span class="px-3 py-1 rounded-full text-sm font-medium bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                {category}
+              </span>
+            ))}
             <span class="px-3 py-1 rounded-full text-sm font-medium bg-pink-500/20 text-pink-400 border border-pink-500/30">
               {project.data.industry}
             </span>
