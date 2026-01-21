@@ -4,11 +4,9 @@ description: "A comprehensive initiative to standardize Streamlit usage across a
 categories: ["Developer Tools"]
 technologies: ["Python", "Streamlit", "Jinja2", "LDAP", "JWT", "Posit Connect"]
 image: "/images/projects/streamlit-center/streamlit-center-cover.png"
-featured: false
 projectType: "fte"
 company: "Santander Bank Poland"
 year: "2024"
-order: 80
 lang: "en"
 ---
 

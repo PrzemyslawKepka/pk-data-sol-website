@@ -4,12 +4,10 @@ description: "A mission-critical, client-facing Streamlit application built unde
 categories: ["Web Application"]
 technologies: ["Python", "Streamlit", "SQL", "Teradata"]
 image: "/images/projects/rapid-streamlit-app/rapid-streamlit-app-cover.png"
-featured: false
 projectType: "fte"
 company: "Santander Bank Poland"
 year: "2024"
 industry: "Credit Risk"
-order: 75
 lang: "en"
 ---
 

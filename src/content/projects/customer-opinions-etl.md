@@ -4,12 +4,10 @@ description: "A production ETL pipeline processing customer feedback data from m
 categories: ["ETL Pipeline"]
 technologies: ["Python", "SQL", "Airflow", "Teradata"]
 image: "/images/projects/customer-opinions-etl/customer-opinions-etl-cover.png"
-featured: false
 projectType: "fte"
 company: "Santander Bank Poland"
 year: "2025"
 industry: "Finance"
-order: 85
 lang: "en"
 ---
 

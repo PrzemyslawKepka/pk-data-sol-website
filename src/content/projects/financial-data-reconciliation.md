@@ -4,12 +4,10 @@ description: "Python automation for reconciling financial data across multiple e
 categories: ["Automation"]
 technologies: ["Python", "pandas", "openpyxl", "Excel"]
 image: "/images/projects/financial-data-reconciliation/financial-data-reconciliation-cover.png"
-featured: false
 projectType: "fte"
 company: "JLL"
 year: "2019-2020"
 industry: "Finance"
-order: 45
 lang: "en"
 ---
 

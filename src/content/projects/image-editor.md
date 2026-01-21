@@ -5,10 +5,8 @@ categories: ["Web Application"]
 technologies: ["Python", "Streamlit", "Pillow", "PIL"]
 github: "https://github.com/PrzemyslawKepka/image-editor"
 image: "/images/projects/image-editor/image-editor-cover.png"
-featured: false
 projectType: "side"
 year: "2022"
-order: 20
 lang: "en"
 ---
 

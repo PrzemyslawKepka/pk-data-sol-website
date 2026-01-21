@@ -5,10 +5,8 @@ categories: ["Web Application"]
 technologies: ["Astro", "Vue.js", "Tailwind CSS", "TypeScript", "Markdown"]
 github: "https://github.com/PrzemyslawKepka/pk-data-sol"
 liveUrl: "https://pk-data-solutions.com"
-featured: false
 projectType: "current"
 year: "2026"
-order: 95
 lang: "en"
 ---
 

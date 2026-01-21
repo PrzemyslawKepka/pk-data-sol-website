@@ -4,12 +4,10 @@ description: "Python automation that transformed manual bank statement processin
 categories: ["Automation"]
 technologies: ["Python", "CSV", "Excel", "NetSuite"]
 image: "/images/projects/bank-statement-automation/bank-statement-automation-cover.png"
-featured: false
 projectType: "fte"
 company: "Ascensia Diabetes Care"
 year: "2018"
 industry: "Accounting"
-order: 50
 lang: "en"
 ---
 

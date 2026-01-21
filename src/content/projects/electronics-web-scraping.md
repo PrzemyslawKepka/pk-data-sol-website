@@ -5,10 +5,8 @@ categories: ["Web Scraping", "Dashboard"]
 technologies: ["Python", "BeautifulSoup", "Streamlit", "pandas", "plotly", "Raspberry Pi"]
 github: "https://github.com/PrzemyslawKepka/electronics-web-scraping"
 image: "/images/projects/electronics-web-scraping/electronics-web-scraping-cover.png"
-featured: false
 projectType: "side"
 year: "2021"
-order: 25
 lang: "en"
 ---
 
