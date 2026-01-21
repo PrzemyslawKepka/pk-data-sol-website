@@ -1,7 +1,7 @@
 ---
 title: "Electronics Price Tracker"
 description: "A web scraping pipeline deployed on Raspberry Pi for 4+ months to track laptop prices, capture Black Friday dynamics, and expose genuine vs. fake discounts through an interactive Streamlit dashboard."
-category: "Web Scraping"
+categories: ["Web Scraping", "Dashboard"]
 technologies: ["Python", "BeautifulSoup", "Streamlit", "pandas", "plotly", "Raspberry Pi"]
 github: "https://github.com/PrzemyslawKepka/electronics-web-scraping"
 image: "/images/projects/electronics-web-scraping/electronics-web-scraping-cover.png"

@@ -1,7 +1,7 @@
 ---
 title: "IoT Temperature Monitoring"
 description: "A Raspberry Pi-based system for monitoring refrigerator temperatures with DS18B20 sensors, email alerts, InfluxDB storage, and Grafana dashboards."
-category: "Dashboard"
+categories: ["Dashboard", "ETL Pipeline"]
 technologies: ["Python", "Raspberry Pi", "InfluxDB", "Grafana", "pandas", "matplotlib"]
 github: "https://github.com/PrzemyslawKepka/temperature-monitoring"
 image: "/images/projects/temperature-monitoring/temperature-monitoring-cover.png"

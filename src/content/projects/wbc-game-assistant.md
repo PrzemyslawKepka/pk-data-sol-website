@@ -1,7 +1,7 @@
 ---
 title: "WBC Game Assistant"
 description: "An interactive web application for Warlords Battlecry III players, displaying unit statistics, matchups, and combat effectiveness across 16 different races with 180+ units."
-category: "Web Application"
+categories: ["Web Application"]
 technologies: ["Python", "Streamlit", "pandas", "Pillow", "HTML/CSS"]
 github: "https://github.com/PrzemyslawKepka/wbc-game-assistant"
 liveUrl: "https://wbc-game-assistant.onrender.com/"

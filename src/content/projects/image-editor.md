@@ -1,7 +1,7 @@
 ---
 title: "Streamlit Image Editor"
 description: "A browser-based meme generator built with Streamlit and Pillow, featuring typography controls, real-time preview, and smart text positioning. Organically gained 3 GitHub stars without any marketing."
-category: "Web Application"
+categories: ["Web Application"]
 technologies: ["Python", "Streamlit", "Pillow", "PIL"]
 github: "https://github.com/PrzemyslawKepka/image-editor"
 image: "/images/projects/image-editor/image-editor-cover.png"

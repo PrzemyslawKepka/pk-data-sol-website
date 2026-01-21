@@ -1,7 +1,7 @@
 ---
 title: "CM Rentals"
 description: "A web application helping people find monthly rental accommodations in Chiang Mai, Thailand. Features an interactive map displaying verified properties with filters and detailed information."
-category: "Web Application"
+categories: ["Web Application"]
 technologies: ["Python", "Flask", "Streamlit", "PostgreSQL", "Supabase", "HTML", "CSS", "Leaflet.js"]
 github: "https://github.com/PrzemyslawKepka/cm-rentals-flask"
 liveUrl: "https://cm-rentals.com"

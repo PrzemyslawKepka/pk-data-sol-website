@@ -1,7 +1,7 @@
 ---
 title: "Rapid Production Streamlit App"
 description: "A mission-critical, client-facing Streamlit application built under extreme time pressure, serving hundreds of bank tellers with real-time customer eligibility checks."
-category: "Web Application"
+categories: ["Web Application"]
 technologies: ["Python", "Streamlit", "SQL", "Teradata"]
 image: "/images/projects/rapid-streamlit-app/rapid-streamlit-app-cover.png"
 featured: false

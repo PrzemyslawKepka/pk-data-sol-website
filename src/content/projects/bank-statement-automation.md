@@ -1,7 +1,7 @@
 ---
 title: "Bank Statement Processing Automation"
 description: "Python automation that transformed manual bank statement processing from hours of copy-paste work to minutes of automated document generation, saving up to 95% of work time."
-category: "Automation"
+categories: ["Automation"]
 technologies: ["Python", "CSV", "Excel", "NetSuite"]
 image: "/images/projects/bank-statement-automation/bank-statement-automation-cover.png"
 featured: false

@@ -18,7 +18,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.string(), // "Web Application", "ETL", "Automation", "Dashboard", etc.
+    categories: z.array(z.string()), // ["Web Application", "ETL Pipeline", "Dashboard", etc.]
     technologies: z.array(z.string()),
     github: z.string().optional(),
     liveUrl: z.string().optional(),
