@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import ProjectsGrid from '../../components/ProjectsGrid.vue';
 import { useTranslations } from '../../utils/i18n';
 import { getCollection } from 'astro:content';
+import { getProjectOrder } from '../../config/projectOrder';
 
 const lang = 'en';
 const t = useTranslations(lang);
@@ -13,6 +14,8 @@ const t = useTranslations(lang);
 const allProjects = await getCollection('projects', ({ data }) => data.lang === lang);
 
 // Transform projects for the Vue component
+// Order is derived from centralized config (lower index = higher priority, so we invert it)
+const maxOrder = allProjects.length;
 const projects = allProjects.map(project => ({
   slug: project.slug,
   data: {
@@ -28,7 +31,7 @@ const projects = allProjects.map(project => ({
     year: project.data.year,
     industry: project.data.industry,
     isCommercial: project.data.isCommercial,
-    order: project.data.order || 0
+    order: maxOrder - getProjectOrder(project.slug) // Invert so first in config = highest order
   }
 }));
 ---
