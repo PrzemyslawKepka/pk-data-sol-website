@@ -61,11 +61,9 @@ interface Translations {
   sorting?: {
     label: string;
     priority: string;
-    yearDesc: string;
-    yearAsc: string;
+    year: string;
     type: string;
-    aToZ: string;
-    zToA: string;
+    alpha: string;
   };
 }
 
@@ -136,16 +134,31 @@ function isIndustryActive(key: string): boolean {
 }
 
 // Sorting
-type SortOption = 'priority' | 'year-desc' | 'year-asc' | 'type' | 'a-z' | 'z-a';
-const activeSort = ref<SortOption>('priority');
+type SortField = 'priority' | 'year' | 'type' | 'alpha';
+type SortDirection = 'asc' | 'desc';
+
+const activeSortField = ref<SortField>('priority');
+const yearDirection = ref<SortDirection>('desc'); // desc = newest first
+const alphaDirection = ref<SortDirection>('asc'); // asc = A-Z
+
+function toggleSort(field: SortField) {
+  if (activeSortField.value === field) {
+    // Toggle direction if same field clicked
+    if (field === 'year') {
+      yearDirection.value = yearDirection.value === 'desc' ? 'asc' : 'desc';
+    } else if (field === 'alpha') {
+      alphaDirection.value = alphaDirection.value === 'asc' ? 'desc' : 'asc';
+    }
+  } else {
+    activeSortField.value = field;
+  }
+}
 
 const sortOptions = computed(() => [
-  { key: 'priority' as SortOption, label: props.translations.sorting?.priority ?? 'Priority' },
-  { key: 'year-desc' as SortOption, label: props.translations.sorting?.yearDesc ?? 'Newest First' },
-  { key: 'year-asc' as SortOption, label: props.translations.sorting?.yearAsc ?? 'Oldest First' },
-  { key: 'type' as SortOption, label: props.translations.sorting?.type ?? 'Type' },
-  { key: 'a-z' as SortOption, label: props.translations.sorting?.aToZ ?? 'A-Z' },
-  { key: 'z-a' as SortOption, label: props.translations.sorting?.zToA ?? 'Z-A' },
+  { key: 'priority' as SortField, label: props.translations.sorting?.priority ?? 'Priority', arrow: null },
+  { key: 'year' as SortField, label: props.translations.sorting?.year ?? 'Year', arrow: yearDirection.value === 'desc' ? '↓' : '↑' },
+  { key: 'type' as SortField, label: props.translations.sorting?.type ?? 'Type', arrow: null },
+  { key: 'alpha' as SortField, label: props.translations.sorting?.alpha ?? 'Name', arrow: alphaDirection.value === 'asc' ? '↓' : '↑' },
 ]);
 
 // Type sort order
@@ -206,7 +219,7 @@ const filteredProjects = computed(() => {
 
   // Apply selected sort
   return filtered.sort((a, b) => {
-    switch (activeSort.value) {
+    switch (activeSortField.value) {
       case 'priority':
         // Sort by order (higher first), then by title
         if (b.data.order !== a.data.order) {
@@ -214,18 +227,13 @@ const filteredProjects = computed(() => {
         }
         return a.data.title.localeCompare(b.data.title);
 
-      case 'year-desc':
-        // Newest first (higher year first), projects without year go last
-        const yearA = a.data.year ? parseInt(a.data.year) : 0;
-        const yearB = b.data.year ? parseInt(b.data.year) : 0;
-        if (yearB !== yearA) return yearB - yearA;
-        return a.data.title.localeCompare(b.data.title);
-
-      case 'year-asc':
-        // Oldest first (lower year first), projects without year go last
-        const yearA2 = a.data.year ? parseInt(a.data.year) : 9999;
-        const yearB2 = b.data.year ? parseInt(b.data.year) : 9999;
-        if (yearA2 !== yearB2) return yearA2 - yearB2;
+      case 'year':
+        // Projects without year go last regardless of direction
+        const yearA = a.data.year ? parseInt(a.data.year) : (yearDirection.value === 'desc' ? -Infinity : Infinity);
+        const yearB = b.data.year ? parseInt(b.data.year) : (yearDirection.value === 'desc' ? -Infinity : Infinity);
+        if (yearA !== yearB) {
+          return yearDirection.value === 'desc' ? yearB - yearA : yearA - yearB;
+        }
         return a.data.title.localeCompare(b.data.title);
 
       case 'type':
@@ -235,11 +243,10 @@ const filteredProjects = computed(() => {
         if (typeOrderA !== typeOrderB) return typeOrderA - typeOrderB;
         return a.data.title.localeCompare(b.data.title);
 
-      case 'a-z':
-        return a.data.title.localeCompare(b.data.title);
-
-      case 'z-a':
-        return b.data.title.localeCompare(a.data.title);
+      case 'alpha':
+        return alphaDirection.value === 'asc'
+          ? a.data.title.localeCompare(b.data.title)
+          : b.data.title.localeCompare(a.data.title);
 
       default:
         return 0;
@@ -329,15 +336,15 @@ const typeLabels: Record<string, string> = {
         <button
           v-for="option in sortOptions"
           :key="option.key"
-          @click="activeSort = option.key"
+          @click="toggleSort(option.key)"
           :class="[
             'px-4 py-2 rounded-full text-sm font-medium transition-all',
-            activeSort === option.key
+            activeSortField === option.key
               ? 'bg-slate-600 text-white shadow-lg shadow-slate-600/30'
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-slate-500 hover:text-slate-300'
           ]"
         >
-          {{ option.label }}
+          {{ option.label }}<span v-if="option.arrow" class="ml-1">{{ option.arrow }}</span>
         </button>
       </div>
     </div>
