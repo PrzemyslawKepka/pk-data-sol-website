@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { getCompanyLogo } from '../utils/companyLogos';
 
 interface Project {
   slug: string;
@@ -140,18 +141,6 @@ const typeLabels: Record<string, string> = {
   current: 'Current',
   side: 'Side Project'
 };
-
-// Company logo mapping
-const companyLogos: Record<string, string> = {
-  'Santander Bank Poland': '/images/icons/companies/Santander_idE2Zv_6nc_logos.svg',
-  'Ascensia Diabetes Care': '/images/icons/companies/ascensia_diabetes_care_logo.webp',
-  'JLL': '/images/icons/companies/JLL_idwD2CH2ZL_1768978037301.svg',
-};
-
-function getCompanyLogo(companyName: string | undefined): string | null {
-  if (!companyName) return null;
-  return companyLogos[companyName] || null;
-}
 </script>
 
 <template>
