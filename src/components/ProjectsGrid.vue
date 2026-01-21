@@ -58,6 +58,15 @@ interface Translations {
   viewLive: string;
   sideNote: string;
   fteNote: string;
+  sorting?: {
+    label: string;
+    priority: string;
+    yearDesc: string;
+    yearAsc: string;
+    type: string;
+    aToZ: string;
+    zToA: string;
+  };
 }
 
 const props = defineProps<{
@@ -126,6 +135,26 @@ function isIndustryActive(key: string): boolean {
   return key === 'all' ? activeIndustryFilters.value.size === 0 : activeIndustryFilters.value.has(key);
 }
 
+// Sorting
+type SortOption = 'priority' | 'year-desc' | 'year-asc' | 'type' | 'a-z' | 'z-a';
+const activeSort = ref<SortOption>('priority');
+
+const sortOptions = computed(() => [
+  { key: 'priority' as SortOption, label: props.translations.sorting?.priority ?? 'Priority' },
+  { key: 'year-desc' as SortOption, label: props.translations.sorting?.yearDesc ?? 'Newest First' },
+  { key: 'year-asc' as SortOption, label: props.translations.sorting?.yearAsc ?? 'Oldest First' },
+  { key: 'type' as SortOption, label: props.translations.sorting?.type ?? 'Type' },
+  { key: 'a-z' as SortOption, label: props.translations.sorting?.aToZ ?? 'A-Z' },
+  { key: 'z-a' as SortOption, label: props.translations.sorting?.zToA ?? 'Z-A' },
+]);
+
+// Type sort order
+const typeSortOrder: Record<string, number> = {
+  current: 1,
+  fte: 2,
+  side: 3
+};
+
 const projectTypes = computed(() => [
   { key: 'all', label: props.translations.projectTypes.all },
   { key: 'current', label: props.translations.projectTypes.current },
@@ -175,12 +204,46 @@ const filteredProjects = computed(() => {
     filtered = filtered.filter(p => p.data.industry && activeIndustryFilters.value.has(p.data.industry));
   }
 
-  // Sort by order (higher first), then by title
+  // Apply selected sort
   return filtered.sort((a, b) => {
-    if (b.data.order !== a.data.order) {
-      return b.data.order - a.data.order;
+    switch (activeSort.value) {
+      case 'priority':
+        // Sort by order (higher first), then by title
+        if (b.data.order !== a.data.order) {
+          return b.data.order - a.data.order;
+        }
+        return a.data.title.localeCompare(b.data.title);
+
+      case 'year-desc':
+        // Newest first (higher year first), projects without year go last
+        const yearA = a.data.year ? parseInt(a.data.year) : 0;
+        const yearB = b.data.year ? parseInt(b.data.year) : 0;
+        if (yearB !== yearA) return yearB - yearA;
+        return a.data.title.localeCompare(b.data.title);
+
+      case 'year-asc':
+        // Oldest first (lower year first), projects without year go last
+        const yearA2 = a.data.year ? parseInt(a.data.year) : 9999;
+        const yearB2 = b.data.year ? parseInt(b.data.year) : 9999;
+        if (yearA2 !== yearB2) return yearA2 - yearB2;
+        return a.data.title.localeCompare(b.data.title);
+
+      case 'type':
+        // Sort by type order, then by title
+        const typeOrderA = typeSortOrder[a.data.projectType] ?? 99;
+        const typeOrderB = typeSortOrder[b.data.projectType] ?? 99;
+        if (typeOrderA !== typeOrderB) return typeOrderA - typeOrderB;
+        return a.data.title.localeCompare(b.data.title);
+
+      case 'a-z':
+        return a.data.title.localeCompare(b.data.title);
+
+      case 'z-a':
+        return b.data.title.localeCompare(a.data.title);
+
+      default:
+        return 0;
     }
-    return a.data.title.localeCompare(b.data.title);
   });
 });
 
@@ -257,6 +320,24 @@ const typeLabels: Record<string, string> = {
           ]"
         >
           {{ industry.label }}
+        </button>
+      </div>
+
+      <!-- Sort Options -->
+      <div class="flex flex-wrap justify-center items-center gap-3 pt-4 border-t border-slate-700/50">
+        <span class="text-slate-500 text-sm font-medium">{{ translations.sorting?.label ?? 'Sort by' }}:</span>
+        <button
+          v-for="option in sortOptions"
+          :key="option.key"
+          @click="activeSort = option.key"
+          :class="[
+            'px-4 py-2 rounded-full text-sm font-medium transition-all',
+            activeSort === option.key
+              ? 'bg-slate-600 text-white shadow-lg shadow-slate-600/30'
+              : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-slate-500 hover:text-slate-300'
+          ]"
+        >
+          {{ option.label }}
         </button>
       </div>
     </div>
