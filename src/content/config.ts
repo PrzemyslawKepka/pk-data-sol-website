@@ -29,6 +29,7 @@ const projects = defineCollection({
     year: z.string().optional(), // Year or year range (e.g., "2024" or "2021-2024")
     industry: z.string().optional(), // Industry domain (e.g., "Finance", "Real Estate", "IoT")
     order: z.number().default(0), // For custom sorting (higher = shown first)
+    isCommercial: z.boolean().optional(), // For 'current' projects only - indicates if it's a commercial venture
     lang: z.enum(['en', 'pl']).default('en')
   })
 });
