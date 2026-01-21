@@ -65,9 +65,66 @@ const props = defineProps<{
   translations: Translations;
 }>();
 
-const activeTypeFilter = ref('all');
-const activeCategoryFilter = ref('all');
-const activeIndustryFilter = ref('all');
+// Multi-selection filters - empty Set means "all" (no specific filter applied)
+const activeTypeFilters = ref<Set<string>>(new Set());
+const activeCategoryFilters = ref<Set<string>>(new Set());
+const activeIndustryFilters = ref<Set<string>>(new Set());
+
+// Toggle filter selection - clicking 'all' clears the set, otherwise toggle the specific item
+function toggleTypeFilter(key: string) {
+  if (key === 'all') {
+    activeTypeFilters.value = new Set();
+  } else {
+    const newSet = new Set(activeTypeFilters.value);
+    if (newSet.has(key)) {
+      newSet.delete(key);
+    } else {
+      newSet.add(key);
+    }
+    activeTypeFilters.value = newSet;
+  }
+}
+
+function toggleCategoryFilter(key: string) {
+  if (key === 'all') {
+    activeCategoryFilters.value = new Set();
+  } else {
+    const newSet = new Set(activeCategoryFilters.value);
+    if (newSet.has(key)) {
+      newSet.delete(key);
+    } else {
+      newSet.add(key);
+    }
+    activeCategoryFilters.value = newSet;
+  }
+}
+
+function toggleIndustryFilter(key: string) {
+  if (key === 'all') {
+    activeIndustryFilters.value = new Set();
+  } else {
+    const newSet = new Set(activeIndustryFilters.value);
+    if (newSet.has(key)) {
+      newSet.delete(key);
+    } else {
+      newSet.add(key);
+    }
+    activeIndustryFilters.value = newSet;
+  }
+}
+
+// Check if a filter is active
+function isTypeActive(key: string): boolean {
+  return key === 'all' ? activeTypeFilters.value.size === 0 : activeTypeFilters.value.has(key);
+}
+
+function isCategoryActive(key: string): boolean {
+  return key === 'all' ? activeCategoryFilters.value.size === 0 : activeCategoryFilters.value.has(key);
+}
+
+function isIndustryActive(key: string): boolean {
+  return key === 'all' ? activeIndustryFilters.value.size === 0 : activeIndustryFilters.value.has(key);
+}
 
 const projectTypes = computed(() => [
   { key: 'all', label: props.translations.projectTypes.all },
@@ -101,19 +158,21 @@ const industries = computed(() => [
 const filteredProjects = computed(() => {
   let filtered = props.projects;
 
-  // Filter by project type
-  if (activeTypeFilter.value !== 'all') {
-    filtered = filtered.filter(p => p.data.projectType === activeTypeFilter.value);
+  // Filter by project type (if any selected)
+  if (activeTypeFilters.value.size > 0) {
+    filtered = filtered.filter(p => activeTypeFilters.value.has(p.data.projectType));
   }
 
-  // Filter by category
-  if (activeCategoryFilter.value !== 'all') {
-    filtered = filtered.filter(p => p.data.categories.includes(activeCategoryFilter.value));
+  // Filter by category (if any selected) - project matches if it has ANY of the selected categories
+  if (activeCategoryFilters.value.size > 0) {
+    filtered = filtered.filter(p =>
+      p.data.categories.some(cat => activeCategoryFilters.value.has(cat))
+    );
   }
 
-  // Filter by industry
-  if (activeIndustryFilter.value !== 'all') {
-    filtered = filtered.filter(p => p.data.industry === activeIndustryFilter.value);
+  // Filter by industry (if any selected)
+  if (activeIndustryFilters.value.size > 0) {
+    filtered = filtered.filter(p => p.data.industry && activeIndustryFilters.value.has(p.data.industry));
   }
 
   // Sort by order (higher first), then by title
@@ -126,8 +185,10 @@ const filteredProjects = computed(() => {
 });
 
 const currentTypeDesc = computed(() => {
-  if (activeTypeFilter.value === 'all') return null;
-  return props.translations.projectTypesDesc[activeTypeFilter.value as keyof typeof props.translations.projectTypesDesc];
+  // Only show description if exactly one type is selected
+  if (activeTypeFilters.value.size !== 1) return null;
+  const selectedType = Array.from(activeTypeFilters.value)[0];
+  return props.translations.projectTypesDesc[selectedType as keyof typeof props.translations.projectTypesDesc];
 });
 
 // Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
@@ -153,10 +214,10 @@ const typeLabels: Record<string, string> = {
         <button
           v-for="type in projectTypes"
           :key="type.key"
-          @click="activeTypeFilter = type.key"
+          @click="toggleTypeFilter(type.key)"
           :class="[
             'px-5 py-2.5 rounded-full text-sm font-medium transition-all',
-            activeTypeFilter === type.key
+            isTypeActive(type.key)
               ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
               : 'bg-slate-800 text-slate-300 border border-slate-700 hover:border-amber-500 hover:text-amber-500'
           ]"
@@ -170,10 +231,10 @@ const typeLabels: Record<string, string> = {
         <button
           v-for="category in categories"
           :key="category.key"
-          @click="activeCategoryFilter = category.key"
+          @click="toggleCategoryFilter(category.key)"
           :class="[
             'px-4 py-2 rounded-full text-sm font-medium transition-all',
-            activeCategoryFilter === category.key
+            isCategoryActive(category.key)
               ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-amber-500 hover:text-amber-500'
           ]"
@@ -187,10 +248,10 @@ const typeLabels: Record<string, string> = {
         <button
           v-for="industry in industries"
           :key="industry.key"
-          @click="activeIndustryFilter = industry.key"
+          @click="toggleIndustryFilter(industry.key)"
           :class="[
             'px-4 py-2 rounded-full text-sm font-medium transition-all',
-            activeIndustryFilter === industry.key
+            isIndustryActive(industry.key)
               ? 'bg-pink-600 text-white shadow-lg shadow-pink-600/30'
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-pink-500 hover:text-pink-500'
           ]"
@@ -206,10 +267,10 @@ const typeLabels: Record<string, string> = {
     </p>
 
     <!-- Special Notes -->
-    <div v-if="activeTypeFilter === 'fte'" class="text-center mb-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg max-w-2xl mx-auto">
+    <div v-if="activeTypeFilters.has('fte') && activeTypeFilters.size === 1" class="text-center mb-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg max-w-2xl mx-auto">
       <p class="text-blue-400 text-sm">{{ translations.fteNote }}</p>
     </div>
-    <div v-if="activeTypeFilter === 'side'" class="text-center mb-8 p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg max-w-2xl mx-auto">
+    <div v-if="activeTypeFilters.has('side') && activeTypeFilters.size === 1" class="text-center mb-8 p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg max-w-2xl mx-auto">
       <p class="text-purple-400 text-sm">{{ translations.sideNote }}</p>
     </div>
 
