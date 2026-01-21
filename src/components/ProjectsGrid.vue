@@ -344,7 +344,7 @@ const typeLabels: Record<string, string> = {
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-slate-500 hover:text-slate-300'
           ]"
         >
-          {{ option.label }}<span v-if="option.hasArrows" class="ml-1 inline-flex gap-0.5"><span :class="option.direction === 'asc' ? 'text-white' : 'text-slate-500'">↑</span><span :class="option.direction === 'desc' ? 'text-white' : 'text-slate-500'">↓</span></span>
+          {{ option.label }}<span v-if="option.hasArrows" class="ml-1 inline-flex gap-0.5"><span :class="activeSortField === option.key && option.direction === 'asc' ? 'text-white' : 'text-slate-500'">↑</span><span :class="activeSortField === option.key && option.direction === 'desc' ? 'text-white' : 'text-slate-500'">↓</span></span>
         </button>
       </div>
     </div>
