@@ -155,10 +155,10 @@ function toggleSort(field: SortField) {
 }
 
 const sortOptions = computed(() => [
-  { key: 'priority' as SortField, label: props.translations.sorting?.priority ?? 'Priority', arrow: null },
-  { key: 'year' as SortField, label: props.translations.sorting?.year ?? 'Year', arrow: yearDirection.value === 'desc' ? '↓' : '↑' },
-  { key: 'type' as SortField, label: props.translations.sorting?.type ?? 'Type', arrow: null },
-  { key: 'alpha' as SortField, label: props.translations.sorting?.alpha ?? 'Name', arrow: alphaDirection.value === 'asc' ? '↓' : '↑' },
+  { key: 'priority' as SortField, label: props.translations.sorting?.priority ?? 'Priority', hasArrows: false },
+  { key: 'year' as SortField, label: props.translations.sorting?.year ?? 'Year', hasArrows: true, direction: yearDirection.value },
+  { key: 'type' as SortField, label: props.translations.sorting?.type ?? 'Type', hasArrows: false },
+  { key: 'alpha' as SortField, label: props.translations.sorting?.alpha ?? 'Name', hasArrows: true, direction: alphaDirection.value },
 ]);
 
 // Type sort order
@@ -344,7 +344,7 @@ const typeLabels: Record<string, string> = {
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-slate-500 hover:text-slate-300'
           ]"
         >
-          {{ option.label }}<span v-if="option.arrow" class="ml-1">{{ option.arrow }}</span>
+          {{ option.label }}<span v-if="option.hasArrows" class="ml-1 inline-flex gap-0.5"><span :class="option.direction === 'asc' ? 'text-white' : 'text-slate-500'">↑</span><span :class="option.direction === 'desc' ? 'text-white' : 'text-slate-500'">↓</span></span>
         </button>
       </div>
     </div>
