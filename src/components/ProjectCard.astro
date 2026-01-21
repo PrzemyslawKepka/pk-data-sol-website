@@ -1,4 +1,6 @@
 ---
+import { getCompanyLogo } from '../utils/companyLogos';
+
 interface Props {
   project: {
     data: {
@@ -25,6 +27,7 @@ interface Props {
 
 const { project, translations } = Astro.props;
 const { data, slug } = project;
+const companyLogo = getCompanyLogo(data.company);
 
 // Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
 const typeColors = {
@@ -86,7 +89,12 @@ const typeLabels = {
       </div>
 
       {data.company && (
-        <p class="text-sm text-slate-400 mb-2">{data.company}</p>
+        <p class="text-sm text-slate-400 mb-2 flex items-center gap-2">
+          {companyLogo && (
+            <img src={companyLogo} alt={data.company} class="h-4 w-auto object-contain" />
+          )}
+          {data.company}
+        </p>
       )}
 
       <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">{data.description}</p>
