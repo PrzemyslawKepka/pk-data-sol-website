@@ -9,6 +9,7 @@ featured: false
 projectType: "current"
 year: "2025"
 order: 70
+isCommercial: false
 lang: "en"
 ---
 

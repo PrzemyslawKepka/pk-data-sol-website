@@ -7,6 +7,7 @@ featured: true
 projectType: "current"
 year: "2026"
 order: 105
+isCommercial: true
 lang: "en"
 ---
 
