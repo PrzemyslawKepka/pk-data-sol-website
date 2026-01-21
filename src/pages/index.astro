@@ -6,15 +6,17 @@ import ProjectCard from '../components/ProjectCard.astro';
 import TechnologiesSection from '../components/TechnologiesSection.astro';
 import { useTranslations } from '../utils/i18n';
 import { getCollection } from 'astro:content';
+import { featuredProjects as featuredSlugs } from '../config/projectOrder';
 
 const lang = 'en'; // Default language
 const t = useTranslations(lang);
 
-// Get featured projects for homepage
+// Get featured projects for homepage using centralized config
 const allProjects = await getCollection('projects', ({ data }) => data.lang === lang);
-const featuredProjects = allProjects
-  .filter(p => p.data.featured)
-  .sort((a, b) => (b.data.order || 0) - (a.data.order || 0))
+const projectMap = new Map(allProjects.map(p => [p.slug, p]));
+const featuredProjects = featuredSlugs
+  .map(slug => projectMap.get(slug))
+  .filter((p): p is NonNullable<typeof p> => p !== undefined)
   .slice(0, 3);
 
 // Industries data
