@@ -140,6 +140,18 @@ const typeLabels: Record<string, string> = {
   current: 'Current',
   side: 'Side Project'
 };
+
+// Company logo mapping
+const companyLogos: Record<string, string> = {
+  'Santander Bank Poland': '/images/icons/companies/Santander_idE2Zv_6nc_logos.svg',
+  'Ascensia Diabetes Care': '/images/icons/companies/ascensia_diabetes_care_logo.webp',
+  'JLL': '/images/icons/companies/JLL_idwD2CH2ZL_1768978037301.svg',
+};
+
+function getCompanyLogo(companyName: string | undefined): string | null {
+  if (!companyName) return null;
+  return companyLogos[companyName] || null;
+}
 </script>
 
 <template>
@@ -263,7 +275,13 @@ const typeLabels: Record<string, string> = {
               </span>
             </div>
 
-            <p v-if="project.data.company" class="text-sm text-slate-400 mb-2">
+            <p v-if="project.data.company" class="text-sm text-slate-400 mb-2 flex items-center gap-2">
+              <img
+                v-if="getCompanyLogo(project.data.company)"
+                :src="getCompanyLogo(project.data.company)!"
+                :alt="project.data.company"
+                class="h-4 w-auto object-contain"
+              />
               {{ project.data.company }}
             </p>
 
