@@ -269,7 +269,7 @@ const typeLabels: Record<string, string> = {
                 v-if="getCompanyLogo(project.data.company)"
                 :src="getCompanyLogo(project.data.company)!"
                 :alt="project.data.company"
-                class="h-4 w-auto object-contain"
+                class="h-6 w-auto object-contain"
               />
               {{ project.data.company }}
             </p>
