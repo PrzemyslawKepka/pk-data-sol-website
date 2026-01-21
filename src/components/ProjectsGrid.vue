@@ -16,6 +16,7 @@ interface Project {
     company?: string;
     year?: string;
     industry?: string;
+    isCommercial?: boolean;
     order: number;
   };
 }
@@ -256,6 +257,19 @@ const typeLabels: Record<string, string> = {
               class="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-pink-600/90 text-slate-100 border border-pink-400/50 backdrop-blur-sm shadow-lg"
             >
               {{ project.data.industry }}
+            </div>
+
+            <!-- Commercial Status Badge (only for current projects) -->
+            <div
+              v-if="project.data.projectType === 'current' && project.data.isCommercial !== undefined"
+              :class="[
+                'absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm shadow-lg border',
+                project.data.isCommercial
+                  ? 'bg-teal-600/90 text-white border-teal-400/50'
+                  : 'bg-slate-600/90 text-slate-200 border-slate-400/50'
+              ]"
+            >
+              {{ project.data.isCommercial ? 'Commercial' : 'Non-commercial' }}
             </div>
           </div>
 
