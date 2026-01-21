@@ -7,7 +7,7 @@ interface Project {
   data: {
     title: string;
     description: string;
-    category: string;
+    categories: string[];
     technologies: string[];
     github?: string;
     liveUrl?: string;
@@ -107,7 +107,7 @@ const filteredProjects = computed(() => {
 
   // Filter by category
   if (activeCategoryFilter.value !== 'all') {
-    filtered = filtered.filter(p => p.data.category === activeCategoryFilter.value);
+    filtered = filtered.filter(p => p.data.categories.includes(activeCategoryFilter.value));
   }
 
   // Filter by industry
@@ -239,9 +239,15 @@ const typeLabels: Record<string, string> = {
               {{ typeLabels[project.data.projectType] }}
             </div>
 
-            <!-- Category Badge -->
-            <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg">
-              {{ project.data.category }}
+            <!-- Category Badges -->
+            <div class="absolute top-3 right-3 flex flex-row-reverse gap-2">
+              <div
+                v-for="category in project.data.categories"
+                :key="category"
+                class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg"
+              >
+                {{ category }}
+              </div>
             </div>
 
             <!-- Industry Badge -->
