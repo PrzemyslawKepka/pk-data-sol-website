@@ -40,7 +40,7 @@
   "services": {
     "title": "Usługi",
     "subtitle": "Kompleksowy przepływ rozwiązań danych",
-    "fullStack": "Mogę obsłużyć cały proces od początku do końca (kompleksowe rozwiązania danych)",
+    "fullStack": "Obsługuję cały proces od początku do końca (kompleksowe rozwiązania danowe)",
     "flexible": "Mogę również zająć się konkretnymi częściami w zależności od Twoich potrzeb",
     "step1Title": "Pozyskiwanie Danych",
     "step1Items": ["Web scraping", "Integracje API", "Łączenie wielu źródeł danych"],
