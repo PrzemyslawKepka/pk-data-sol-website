@@ -49,7 +49,17 @@
     "step3Title": "ETL i Automatyzacja",
     "step3Items": ["Potoki transformacji danych", "Automatyczne raportowanie (w tym Excel)", "Zaplanowane procesy", "Automatyzacja e-maili", "Automatyzacja procesów"],
     "step4Title": "Analizy i Dostarczanie",
-    "step4Items": ["Interaktywne dashboardy", "Aplikacje webowe", "Analizy ad-hoc (Jupyter notebooks)", "Raporty Business Intelligence"]
+    "step4Items": ["Interaktywne dashboardy", "Aplikacje webowe", "Analizy ad-hoc (Jupyter notebooks)", "Raporty Business Intelligence"],
+    "pipelineTitle": "Jak pracuję",
+    "pipelineSubtitle": "Od pierwszej rozmowy do dostarczonego rozwiązania",
+    "pipelineStep1Title": "Poznanie",
+    "pipelineStep1Desc": "Omawiamy Twoje wyzwania, cele i obecną sytuację, aby zrozumieć, jak wygląda sukces.",
+    "pipelineStep2Title": "Propozycja",
+    "pipelineStep2Desc": "Analizuję możliwości i przedstawiam jasny plan działania z zakresem i harmonogramem.",
+    "pipelineStep3Title": "Rozwój",
+    "pipelineStep3Desc": "Iteracyjne budowanie z regularnymi spotkaniami, aby upewnić się, że jesteśmy na dobrej drodze.",
+    "pipelineStep4Title": "Dostawa",
+    "pipelineStep4Desc": "Przekazanie z dokumentacją i wsparciem, aby zapewnić płynne wdrożenie."
   },
   "projects": {
     "title": "Projekty",

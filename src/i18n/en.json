@@ -49,7 +49,17 @@
     "step3Title": "ETL & Automation",
     "step3Items": ["Data transformation pipelines", "Automated reporting (including Excel)", "Scheduled processes", "Email automation", "Process automation"],
     "step4Title": "Insights & Delivery",
-    "step4Items": ["Interactive dashboards", "Web applications", "Ad-hoc analyses (Jupyter notebooks)", "Business intelligence reports"]
+    "step4Items": ["Interactive dashboards", "Web applications", "Ad-hoc analyses (Jupyter notebooks)", "Business intelligence reports"],
+    "pipelineTitle": "Delivery Pipeline (How I Work)",
+    "pipelineSubtitle": "From first conversation to a deployed solution",
+    "pipelineStep1Title": "Discovery",
+    "pipelineStep1Desc": "We discuss your challenges, goals, and current setup to understand what success looks like.",
+    "pipelineStep2Title": "Proposal",
+    "pipelineStep2Desc": "I analyze opportunities and present a clear action plan with scope and timeline.",
+    "pipelineStep3Title": "Development",
+    "pipelineStep3Desc": "Iterative building with regular check-ins to ensure we're on track.",
+    "pipelineStep4Title": "Delivery",
+    "pipelineStep4Desc": "Handoff with documentation and support to ensure smooth adoption."
   },
   "projects": {
     "title": "Projects",
