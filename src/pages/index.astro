@@ -94,7 +94,7 @@ const servicesSteps = [
     <!-- About Section -->
     <section id="about" class="py-8 bg-slate-800">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-8">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.about.title}</h2>
           <p class="text-xl text-amber-500">{t.about.subtitle}</p>
         </div>
@@ -130,12 +130,12 @@ const servicesSteps = [
     <!-- Services Section -->
     <section id="services" class="py-8">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-8">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.services.title}</h2>
           <p class="text-xl text-amber-500">{t.services.subtitle}</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 relative">
           {servicesSteps.map((step, index) => (
             <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 relative transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
               <div class="flex justify-between items-center mb-4">
@@ -155,13 +155,13 @@ const servicesSteps = [
           ))}
         </div>
 
-        <div class="text-center p-8 bg-slate-800 rounded-xl border-2 border-amber-500 mb-12">
+        <div class="text-center p-8 bg-slate-800 rounded-xl border-2 border-amber-500 mb-8">
           <p class="text-lg font-bold text-amber-500 mb-2">{t.services.fullStack}</p>
           <p class="text-slate-300">{t.services.flexible}</p>
         </div>
 
         <!-- Industries -->
-        <div class="mt-16">
+        <div class="mt-10">
           <h3 class="text-2xl font-bold text-center mb-8 text-slate-100">{t.services.industriesTitle}</h3>
           <div class="flex flex-wrap justify-center gap-4 mb-8">
             {industries.map(industry => (
@@ -179,14 +179,14 @@ const servicesSteps = [
     <!-- Projects Section -->
     <section id="projects" class="py-8 bg-slate-800">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-8">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.projects.title}</h2>
           <p class="text-xl text-slate-300">{t.projects.subtitle}</p>
         </div>
 
         {featuredProjects.length > 0 ? (
           <>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
               {featuredProjects.map(project => (
                 <ProjectCard
                   project={project}
@@ -228,7 +228,7 @@ const servicesSteps = [
     <!-- Blog Section -->
     <section id="blog" class="py-8 bg-slate-800">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-8">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.blog.title}</h2>
         </div>
 
@@ -245,7 +245,7 @@ const servicesSteps = [
     <!-- Contact Section -->
     <section id="contact" class="py-8">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-8">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.contact.title}</h2>
           <p class="text-xl text-amber-500">{t.contact.subtitle}</p>
         </div>
