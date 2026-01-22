@@ -33,7 +33,9 @@
     "valueTitle": "What I Bring",
     "value1": "Business acumen meets technical expertise",
     "value2": "Understand both stakeholder needs and technical implementation",
-    "value3": "End-to-end problem solver"
+    "value3": "End-to-end problem solver",
+    "industriesTitle": "Industry Experience",
+    "industriesStatement": "Data skills transcend industry boundaries. Whether it's accounting transactions, credit risk models, IoT device logs, or social media analytics - the tools and techniques remain fundamentally similar. I apply proven data patterns across distinct domains, while understanding the specific business context and needs."
   },
   "services": {
     "title": "Services",
@@ -47,9 +49,7 @@
     "step3Title": "ETL & Automation",
     "step3Items": ["Data transformation pipelines", "Automated reporting (including Excel)", "Scheduled processes", "Email automation", "Process automation"],
     "step4Title": "Insights & Delivery",
-    "step4Items": ["Interactive dashboards", "Web applications", "Ad-hoc analyses (Jupyter notebooks)", "Business intelligence reports"],
-    "industriesTitle": "Industry Experience",
-    "universalStatement": "Data skills transcend industry boundaries. Whether it's accounting transactions, credit risk models, IoT device logs, or social media analytics - the tools and techniques remain fundamentally similar. I apply proven data patterns across theoretically distinct domains, while at the same time understanding the specific business context and needs."
+    "step4Items": ["Interactive dashboards", "Web applications", "Ad-hoc analyses (Jupyter notebooks)", "Business intelligence reports"]
   },
   "projects": {
     "title": "Projects",

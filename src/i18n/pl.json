@@ -33,7 +33,9 @@
     "valueTitle": "Co oferuję",
     "value1": "Wiedza biznesowa połączona z ekspertyzą techniczną",
     "value2": "Rozumiem zarówno potrzeby biznesowe, jak i implementację techniczną",
-    "value3": "Kompleksowe rozwiązywanie problemów"
+    "value3": "Kompleksowe rozwiązywanie problemów",
+    "industriesTitle": "Doświadczenie branżowe",
+    "industriesStatement": "Umiejętności pracy z danymi wykraczają poza granice branż. Czy to transakcje księgowe, modele ryzyka kredytowego, logi urządzeń IoT, czy analityka mediów społecznościowych - narzędzia i techniki pozostają zasadniczo podobne. Stosuję sprawdzone wzorce danych w różnych domenach, jednocześnie rozumiejąc specyficzny kontekst biznesowy i potrzeby."
   },
   "services": {
     "title": "Usługi",
@@ -47,9 +49,7 @@
     "step3Title": "ETL i Automatyzacja",
     "step3Items": ["Potoki transformacji danych", "Automatyczne raportowanie (w tym Excel)", "Zaplanowane procesy", "Automatyzacja e-maili", "Automatyzacja procesów"],
     "step4Title": "Analizy i Dostarczanie",
-    "step4Items": ["Interaktywne dashboardy", "Aplikacje webowe", "Analizy ad-hoc (Jupyter notebooks)", "Raporty Business Intelligence"],
-    "industriesTitle": "Doświadczenie branżowe",
-    "universalStatement": "Umiejętności związane z danymi wykraczają poza granice branż. Niezależnie od tego, czy chodzi o transakcje księgowe, modele ryzyka kredytowego, logi urządzeń IoT czy analitykę mediów społecznościowych - narzędzia i techniki pozostają zasadniczo podobne. Stosuję sprawdzone wzorce danych w teoretycznie odrębnych domenach, jednocześnie rozumiejąc kontekst biznesowy i rzeczywiste potrzeby biznesowe."
+    "step4Items": ["Interaktywne dashboardy", "Aplikacje webowe", "Analizy ad-hoc (Jupyter notebooks)", "Raporty Business Intelligence"]
   },
   "projects": {
     "title": "Projekty",
