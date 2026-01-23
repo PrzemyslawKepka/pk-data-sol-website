@@ -43,6 +43,7 @@
     "value2": "Mówię obydwoma językami - płynnie komunikując się zarówno z biznesem, jak i developerami",
     "value3": "Odpowiadam za całość - od bazy danych po dashboard, od zbierania wymagań po wdrożone rozwiązanie",
     "industriesTitle": "Doświadczenie branżowe",
+    "industriesHint": "Kliknij branżę, aby zobaczyć powiązane projekty",
     "industriesStatement": "Wzorce danych przenoszą się między branżami - czy to transakcje finansowe, czujniki IoT, czy analityka mediów społecznościowych. Ale kontekst ma znaczenie: zawsze ściśle współpracuję z ekspertami domenowymi, aby zrozumieć konkretne potrzeby biznesowe stojące za każdym rozwiązaniem technicznym."
   },
   "services": {
