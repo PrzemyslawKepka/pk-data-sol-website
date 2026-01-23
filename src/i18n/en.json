@@ -35,7 +35,8 @@
     "value2": "Understand both stakeholder needs and technical implementation",
     "value3": "End-to-end problem solver",
     "industriesTitle": "Industry Experience",
-    "industriesStatement": "Data skills transcend industry boundaries. Whether it's accounting transactions, credit risk models, IoT device logs, or social media analytics - the tools and techniques remain fundamentally similar. I apply proven data patterns across distinct domains, while understanding the specific business context and needs."
+    "industriesStatement": "Data skills transcend industry boundaries. Whether it's accounting transactions, credit risk models, IoT device logs, or social media analytics - the tools and techniques remain fundamentally similar.",
+    "industriesStatement2": "However, while proven data patterns can be applied across distinct domains, it's crucial to also understand the specific business context and actual needs. And at my various roles and projects I was always close to the business side, cooperating with Subject Matter Experts (SMEs), which allowed me to understand the importance of domain knowledge in any technical work."
   },
   "services": {
     "title": "Services",
@@ -43,14 +44,14 @@
     "fullStack": "I handle the entire process end-to-end",
     "flexible": "But also tackle specific parts based on your needs",
     "flexible2": "And I work with both small businesses and big enterprises",
-    "serviceScopeTitle": "Service Scope",
+    "serviceScopeTitle": "Services Scope",
     "serviceScopeFullIcon": "🚀",
     "serviceScopeFullTitle": "Full Pipeline",
     "serviceScopeFullDesc": "End-to-end",
     "serviceScopeSpecificIcon": "🧩",
     "serviceScopeSpecificTitle": "Single Solution",
     "serviceScopeSpecificDesc": "Selected data work",
-    "clientScopeTitle": "Client Scope",
+    "clientScopeTitle": "Clients Scope",
     "clientScopeLargeIcon": "🏢",
     "clientScopeLargeTitle": "Enterprise",
     "clientScopeLargeDesc": "Large Organizations",

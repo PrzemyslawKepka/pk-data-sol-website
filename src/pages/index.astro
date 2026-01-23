@@ -118,9 +118,9 @@ const servicesSteps = [
           <div>
             <h3 class="text-2xl font-bold mb-6 text-slate-100">{t.about.valueTitle}</h3>
             <ul class="list-none p-0">
-              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700">✓ {t.about.value1}</li>
-              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700">✓ {t.about.value2}</li>
-              <li class="py-3 text-[1.0625rem] text-slate-300">✓ {t.about.value3}</li>
+              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value1}</li>
+              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value2}</li>
+              <li class="py-3 text-[1.0625rem] text-slate-300 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value3}</li>
             </ul>
           </div>
         </div>
@@ -137,6 +137,7 @@ const servicesSteps = [
             ))}
           </div>
           <p class="text-center text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">{t.about.industriesStatement}</p>
+          <p class="text-center text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">{t.about.industriesStatement2}</p>
         </div>
       </div>
     </section>
