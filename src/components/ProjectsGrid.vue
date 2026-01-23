@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { getCompanyLogo } from '../utils/companyLogos';
 
 interface Project {
@@ -76,6 +76,47 @@ const props = defineProps<{
 const activeTypeFilters = ref<Set<string>>(new Set());
 const activeCategoryFilters = ref<Set<string>>(new Set());
 const activeIndustryFilters = ref<Set<string>>(new Set());
+
+// Read URL parameters on mount
+onMounted(() => {
+  const params = new URLSearchParams(window.location.search);
+
+  // Read industry filters
+  const industryParams = params.getAll('industry');
+  if (industryParams.length > 0) {
+    activeIndustryFilters.value = new Set(industryParams);
+  }
+
+  // Read type filters
+  const typeParams = params.getAll('type');
+  if (typeParams.length > 0) {
+    activeTypeFilters.value = new Set(typeParams);
+  }
+
+  // Read category filters
+  const categoryParams = params.getAll('category');
+  if (categoryParams.length > 0) {
+    activeCategoryFilters.value = new Set(categoryParams);
+  }
+});
+
+// Update URL when filters change (for shareability)
+function updateURL() {
+  const params = new URLSearchParams();
+
+  activeTypeFilters.value.forEach(t => params.append('type', t));
+  activeCategoryFilters.value.forEach(c => params.append('category', c));
+  activeIndustryFilters.value.forEach(i => params.append('industry', i));
+
+  const newURL = params.toString()
+    ? `${window.location.pathname}?${params.toString()}`
+    : window.location.pathname;
+
+  window.history.replaceState({}, '', newURL);
+}
+
+// Watch all filters and update URL
+watch([activeTypeFilters, activeCategoryFilters, activeIndustryFilters], updateURL, { deep: true });
 
 // Toggle filter selection - clicking 'all' clears the set, otherwise toggle the specific item
 function toggleTypeFilter(key: string) {
