@@ -6,25 +6,29 @@ import ProjectCard from '../components/ProjectCard.astro';
 import TechnologiesSection from '../components/TechnologiesSection.astro';
 import { useTranslations } from '../utils/i18n';
 import { getCollection } from 'astro:content';
+import { featuredProjects as featuredSlugs } from '../config/projectOrder';
+import { getYearsOfExperience } from '../utils/experience';
 
 const lang = 'en'; // Default language
 const t = useTranslations(lang);
+const yearsOfExperience = getYearsOfExperience();
 
-// Get featured projects for homepage
+// Get featured projects for homepage using centralized config
 const allProjects = await getCollection('projects', ({ data }) => data.lang === lang);
-const featuredProjects = allProjects
-  .filter(p => p.data.featured)
-  .sort((a, b) => (b.data.order || 0) - (a.data.order || 0))
+const projectMap = new Map(allProjects.map(p => [p.slug, p]));
+const featuredProjects = featuredSlugs
+  .map(slug => projectMap.get(slug))
+  .filter((p): p is NonNullable<typeof p> => p !== undefined)
   .slice(0, 3);
 
-// Industries data
+// Industries data - 'key' must match the filter keys in ProjectsGrid.vue
 const industries = [
-  { name: 'Finance', emoji: '💰', namepl: 'Finanse' },
-  { name: 'Accounting', emoji: '📊', namepl: 'Księgowość' },
-  { name: 'Credit Risk', emoji: '📉', namepl: 'Ryzyko Kredytowe' },
-  { name: 'Internet of Things (IoT)', emoji: '🔌', namepl: 'Internet Rzeczy (IoT)' },
-  { name: 'Real Estate', emoji: '🏢', namepl: 'Nieruchomości' },
-  { name: 'Social Media', emoji: '📱', namepl: 'Media Społecznościowe' }
+  { key: 'Finance', name: 'Finance', emoji: '💰', namepl: 'Finanse' },
+  { key: 'Accounting', name: 'Accounting', emoji: '📊', namepl: 'Księgowość' },
+  { key: 'Credit Risk', name: 'Credit Risk', emoji: '📉', namepl: 'Ryzyko Kredytowe' },
+  { key: 'IoT', name: 'Internet of Things (IoT)', emoji: '🔌', namepl: 'Internet Rzeczy (IoT)' },
+  { key: 'Real Estate', name: 'Real Estate', emoji: '🏢', namepl: 'Nieruchomości' },
+  { key: 'Social Media', name: 'Social Media', emoji: '📱', namepl: 'Media Społecznościowe' }
 ];
 
 // Services pipeline steps
@@ -61,16 +65,17 @@ const servicesSteps = [
 
   <main class="pt-8">
     <!-- Hero/Start Section -->
-    <section id="start" class="flex items-start pt-2 pb-16">
+    <section id="start" class="flex items-start pt-6 pb-8 scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div class="text-center md:text-left">
             <h1 class="text-4xl md:text-5xl font-bold mb-2 text-slate-100">{t.hero.greeting}</h1>
             <p class="text-3xl md:text-4xl font-extrabold mb-6 text-gradient">{t.hero.tagline}</p>
             <p class="text-lg text-slate-300 mb-4">{t.hero.description}</p>
-            <ul class="list-none p-0 my-8">
+            <ul class="list-none p-0">
               <li class="text-base text-slate-300 py-2 pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.hero.point1}</li>
               <li class="text-base text-slate-300 py-2 pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.hero.point2}</li>
+              <li class="text-base text-slate-300 py-2 pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.hero.point3}</li>
             </ul>
             <div class="flex gap-4 mt-8 justify-center md:justify-start">
               <a href="#projects" class="inline-block px-6 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-amber-500 text-white hover:bg-amber-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30">{t.cta.viewWork}</a>
@@ -90,25 +95,35 @@ const servicesSteps = [
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 md:py-24 bg-slate-800">
+    <section id="about" class="py-8 bg-slate-800">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-8">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.about.title}</h2>
           <p class="text-xl text-amber-500">{t.about.subtitle}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div>
-            <p class="text-lg leading-relaxed text-slate-300 mb-8">{t.about.background}</p>
+            <p class="text-lg leading-relaxed text-slate-300 mb-8">{t.about.background.replace('{years}', String(yearsOfExperience))}</p>
 
-            <div class="grid grid-cols-2 gap-6">
-              <div class="bg-slate-700 p-6 rounded-xl text-center">
-                <div class="text-4xl font-extrabold text-amber-500">7+</div>
-                <div class="text-sm text-slate-400 uppercase tracking-wide">{t.about.yearsExpLabel}</div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-slate-700 p-5 rounded-xl text-center">
+                <div class="text-3xl font-extrabold text-amber-500">{yearsOfExperience}+</div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.yearsExpLabel}</div>
               </div>
-              <div class="bg-slate-700 p-6 rounded-xl text-center">
-                <div class="text-4xl font-extrabold text-amber-500">6+</div>
-                <div class="text-sm text-slate-400 uppercase tracking-wide">{t.about.industriesLabel}</div>
+              <div class="bg-slate-700 p-5 rounded-xl text-center">
+                <div class="text-3xl font-extrabold text-amber-500">{t.about.industriesCount}</div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.industriesLabel}</div>
+              </div>
+              <div class="bg-slate-700 p-5 rounded-xl text-center">
+                <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.timeSavedPrefix}</div>
+                <div class="text-3xl font-extrabold text-amber-500">{t.about.timeSaved}</div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.timeSavedLabel}</div>
+                <div class="text-[0.85rem] text-slate-500 mt-1 normal-case">{t.about.timeSavedDesc}</div>
+              </div>
+              <div class="bg-slate-700 p-5 rounded-xl text-center">
+                <div class="text-3xl font-extrabold text-amber-500">{t.about.solutionsCount}</div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.solutionsLabel}</div>
               </div>
             </div>
           </div>
@@ -116,24 +131,39 @@ const servicesSteps = [
           <div>
             <h3 class="text-2xl font-bold mb-6 text-slate-100">{t.about.valueTitle}</h3>
             <ul class="list-none p-0">
-              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700">✓ {t.about.value1}</li>
-              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700">✓ {t.about.value2}</li>
-              <li class="py-3 text-[1.0625rem] text-slate-300">✓ {t.about.value3}</li>
+              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value1}</li>
+              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value2}</li>
+              <li class="py-3 text-[1.0625rem] text-slate-300 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value3}</li>
             </ul>
           </div>
+        </div>
+
+        <!-- Industry Experience -->
+        <div class="mt-10">
+          <h3 class="text-2xl font-bold text-center mb-2 text-slate-100">{t.about.industriesTitle}</h3>
+          <p class="text-center text-sm text-slate-500 mb-6">{t.about.industriesHint}</p>
+          <div class="flex flex-wrap justify-center gap-4 mb-6">
+            {industries.map(industry => (
+              <a href={`/projects?industry=${encodeURIComponent(industry.key)}`} class="flex items-center gap-2 py-3 px-6 bg-slate-700 rounded-full border border-slate-600 transition-all hover:border-amber-500 hover:-translate-y-0.5 cursor-pointer">
+                <span class="text-xl">{industry.emoji}</span>
+                <span class="text-[0.9375rem] font-medium text-slate-100">{industry.name}</span>
+              </a>
+            ))}
+          </div>
+          <p class="text-center text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">{t.about.industriesStatement}</p>
         </div>
       </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 md:py-24">
+    <section id="services" class="py-8">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-8">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.services.title}</h2>
           <p class="text-xl text-amber-500">{t.services.subtitle}</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 relative">
           {servicesSteps.map((step, index) => (
             <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 relative transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
               <div class="flex justify-between items-center mb-4">
@@ -153,38 +183,118 @@ const servicesSteps = [
           ))}
         </div>
 
-        <div class="text-center p-8 bg-slate-800 rounded-xl border-2 border-amber-500 mb-12">
-          <p class="text-lg font-bold text-amber-500 mb-2">{t.services.fullStack}</p>
-          <p class="text-slate-300">{t.services.flexible}</p>
+        <div class="p-8 bg-slate-800 rounded-xl border-2 border-amber-500">
+          <div class="text-center mb-6">
+            <p class="text-lg font-bold text-amber-500 mb-2">{t.services.fullStack}</p>
+            <p class="text-slate-300">{t.services.flexible}</p>
+            <p class="text-slate-300">{t.services.flexible2}</p>
+          </div>
+
+          <!-- Service Scope & Client Scope -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto">
+            <!-- Service Scope Frame -->
+            <div class="bg-slate-700/30 rounded-xl p-4 border border-slate-600 transition-all hover:border-amber-500">
+              <h4 class="text-sm font-bold text-slate-100 mb-3 border-b border-slate-600 pb-2">{t.services.serviceScopeTitle}</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="flex flex-col items-center gap-2">
+                  <div class="w-20 h-20 rounded-xl border border-slate-600 bg-slate-800 flex items-center justify-center shrink-0">
+                    <span class="text-3xl">{t.services.serviceScopeSpecificIcon}</span>
+                  </div>
+                  <h5 class="text-sm font-semibold text-slate-100 text-center">{t.services.serviceScopeSpecificTitle}</h5>
+                  <p class="text-slate-400 text-xs text-center">{t.services.serviceScopeSpecificDesc}</p>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                  <div class="w-20 h-20 rounded-xl border border-slate-600 bg-slate-800 flex items-center justify-center shrink-0">
+                    <span class="text-3xl">{t.services.serviceScopeFullIcon}</span>
+                  </div>
+                  <h5 class="text-sm font-semibold text-slate-100 text-center">{t.services.serviceScopeFullTitle}</h5>
+                  <p class="text-slate-400 text-xs text-center">{t.services.serviceScopeFullDesc}</p>
+                </div>
+              </div>
+            </div>
+            <!-- Client Scope Frame -->
+            <div class="bg-slate-700/30 rounded-xl p-4 border border-slate-600 transition-all hover:border-amber-500">
+              <h4 class="text-sm font-bold text-slate-100 mb-3 border-b border-slate-600 pb-2">{t.services.clientScopeTitle}</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="flex flex-col items-center gap-2">
+                  <div class="w-20 h-20 rounded-xl border border-slate-600 bg-slate-800 flex items-center justify-center shrink-0">
+                    <span class="text-3xl">{t.services.clientScopeSmbIcon}</span>
+                  </div>
+                  <h5 class="text-sm font-semibold text-slate-100 text-center">{t.services.clientScopeSmbTitle}</h5>
+                  <p class="text-slate-400 text-xs text-center">{t.services.clientScopeSmbDesc}</p>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                  <div class="w-20 h-20 rounded-xl border border-slate-600 bg-slate-800 flex items-center justify-center shrink-0">
+                    <span class="text-3xl">{t.services.clientScopeLargeIcon}</span>
+                  </div>
+                  <h5 class="text-sm font-semibold text-slate-100 text-center">{t.services.clientScopeLargeTitle}</h5>
+                  <p class="text-slate-400 text-xs text-center">{t.services.clientScopeLargeDesc}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Industries -->
-        <div class="mt-16">
-          <h3 class="text-2xl font-bold text-center mb-8 text-slate-100">{t.services.industriesTitle}</h3>
-          <div class="flex flex-wrap justify-center gap-4 mb-8">
-            {industries.map(industry => (
-              <div class="flex items-center gap-2 py-3 px-6 bg-slate-800 rounded-full border border-slate-700 transition-all hover:border-amber-500 hover:-translate-y-0.5">
-                <span class="text-xl">{industry.emoji}</span>
-                <span class="text-[0.9375rem] font-medium text-slate-100">{industry.name}</span>
+        <!-- Delivery Pipeline -->
+        <div class="mt-10">
+          <h3 class="text-2xl font-bold text-center mb-2 text-slate-100">{t.services.pipelineTitle}</h3>
+          <p class="text-center text-amber-500 mb-8">{t.services.pipelineSubtitle}</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+            <div class="relative">
+              <div class="flex items-center gap-4 mb-3">
+                <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg shrink-0">1</div>
+                <h4 class="text-lg font-bold text-slate-100">{t.services.pipelineStep1Title}</h4>
               </div>
-            ))}
+              <div class="border-b border-slate-700 mb-3 ml-14"></div>
+              <p class="text-slate-400 text-[0.9375rem] pl-14">{t.services.pipelineStep1Desc}</p>
+              <div class="hidden lg:block absolute -right-5 top-5 -translate-y-1/2 text-2xl text-amber-500">→</div>
+            </div>
+
+            <div class="relative">
+              <div class="flex items-center gap-4 mb-3">
+                <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg shrink-0">2</div>
+                <h4 class="text-lg font-bold text-slate-100">{t.services.pipelineStep2Title}</h4>
+              </div>
+              <div class="border-b border-slate-700 mb-3 ml-14"></div>
+              <p class="text-slate-400 text-[0.9375rem] pl-14">{t.services.pipelineStep2Desc}</p>
+              <div class="hidden lg:block absolute -right-5 top-5 -translate-y-1/2 text-2xl text-amber-500">→</div>
+            </div>
+
+            <div class="relative">
+              <div class="flex items-center gap-4 mb-3">
+                <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg shrink-0">3</div>
+                <h4 class="text-lg font-bold text-slate-100">{t.services.pipelineStep3Title}</h4>
+              </div>
+              <div class="border-b border-slate-700 mb-3 ml-14"></div>
+              <p class="text-slate-400 text-[0.9375rem] pl-14">{t.services.pipelineStep3Desc}</p>
+              <div class="hidden lg:block absolute -right-5 top-5 -translate-y-1/2 text-2xl text-amber-500">→</div>
+            </div>
+
+            <div>
+              <div class="flex items-center gap-4 mb-3">
+                <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg shrink-0">4</div>
+                <h4 class="text-lg font-bold text-slate-100">{t.services.pipelineStep4Title}</h4>
+              </div>
+              <div class="border-b border-slate-700 mb-3 ml-14"></div>
+              <p class="text-slate-400 text-[0.9375rem] pl-14">{t.services.pipelineStep4Desc}</p>
+            </div>
           </div>
-          <p class="text-center text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">{t.services.universalStatement}</p>
         </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16 md:py-24 bg-slate-800">
+    <section id="projects" class="py-8 bg-slate-800">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-8">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.projects.title}</h2>
           <p class="text-xl text-slate-300">{t.projects.subtitle}</p>
         </div>
 
         {featuredProjects.length > 0 ? (
           <>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
               {featuredProjects.map(project => (
                 <ProjectCard
                   project={project}
@@ -224,9 +334,9 @@ const servicesSteps = [
     <TechnologiesSection translations={t.technologies} />
 
     <!-- Blog Section -->
-    <section id="blog" class="py-16 md:py-24 bg-slate-800">
+    <section id="blog" class="py-8 bg-slate-800">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-8">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.blog.title}</h2>
         </div>
 
@@ -241,9 +351,9 @@ const servicesSteps = [
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24">
+    <section id="contact" class="py-8">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-8">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.contact.title}</h2>
           <p class="text-xl text-amber-500">{t.contact.subtitle}</p>
         </div>

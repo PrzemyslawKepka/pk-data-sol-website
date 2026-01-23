@@ -1,14 +1,12 @@
 ---
 title: "PK Data Solutions Portfolio"
 description: "A modern, responsive portfolio website built with Astro, Vue.js, and Tailwind CSS. Features content-driven architecture, project filtering, and i18n support."
-category: "Web Application"
+categories: ["Web Application"]
 technologies: ["Astro", "Vue.js", "Tailwind CSS", "TypeScript", "Markdown"]
 github: "https://github.com/PrzemyslawKepka/pk-data-sol"
 liveUrl: "https://pk-data-solutions.com"
-featured: false
 projectType: "current"
 year: "2026"
-order: 95
 lang: "en"
 ---
 

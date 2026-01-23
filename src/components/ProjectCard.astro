@@ -1,10 +1,12 @@
 ---
+import { getCompanyLogo } from '../utils/companyLogos';
+
 interface Props {
   project: {
     data: {
       title: string;
       description: string;
-      category: string;
+      categories: string[];
       technologies: string[];
       github?: string;
       liveUrl?: string;
@@ -13,6 +15,7 @@ interface Props {
       company?: string;
       year?: string;
       industry?: string;
+      isCommercial?: boolean;
     };
     slug: string;
   };
@@ -25,6 +28,7 @@ interface Props {
 
 const { project, translations } = Astro.props;
 const { data, slug } = project;
+const companyLogo = getCompanyLogo(data.company);
 
 // Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
 const typeColors = {
@@ -40,15 +44,15 @@ const typeLabels = {
 };
 ---
 
-<article class="group bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
-  <a href={`/projects/${slug}`} class="block">
+<article class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
+  <a href={`/projects/${slug}`} class="flex-1 flex flex-col">
     <!-- Image -->
-    <div class="relative w-full h-[200px] bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden">
+    <div class="relative w-full aspect-video bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden">
       {data.image ? (
         <img
           src={data.image}
           alt={data.title}
-          class="w-full h-full object-cover transition-transform group-hover:scale-105"
+          class="w-full h-full object-cover object-top transition-transform group-hover:scale-105"
         />
       ) : (
         <div class="w-full h-full flex items-center justify-center">
@@ -63,9 +67,13 @@ const typeLabels = {
         {typeLabels[data.projectType]}
       </div>
 
-      <!-- Category Badge -->
-      <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg">
-        {data.category}
+      <!-- Category Badges -->
+      <div class="absolute top-3 right-3 flex flex-row-reverse gap-2">
+        {data.categories.map(category => (
+          <div class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg">
+            {category}
+          </div>
+        ))}
       </div>
 
       <!-- Industry Badge -->
@@ -74,10 +82,17 @@ const typeLabels = {
           {data.industry}
         </div>
       )}
+
+      <!-- Commercial Status Badge (only for current projects) -->
+      {data.projectType === 'current' && data.isCommercial !== undefined && (
+        <div class={`absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm shadow-lg border ${data.isCommercial ? 'bg-teal-600/90 text-white border-teal-400/50' : 'bg-slate-600/90 text-slate-200 border-slate-400/50'}`}>
+          {data.isCommercial ? 'Commercial' : 'Non-commercial'}
+        </div>
+      )}
     </div>
 
     <!-- Content -->
-    <div class="p-6">
+    <div class="p-6 flex-1 flex flex-col">
       <div class="flex items-start justify-between gap-2 mb-2">
         <h3 class="text-xl font-bold text-slate-100 group-hover:text-amber-500 transition-colors">{data.title}</h3>
         {data.year && (
@@ -86,10 +101,15 @@ const typeLabels = {
       </div>
 
       {data.company && (
-        <p class="text-sm text-slate-400 mb-2">{data.company}</p>
+        <p class="text-sm text-slate-400 mb-2 flex items-center gap-2">
+          {companyLogo && (
+            <img src={companyLogo} alt={data.company} class="h-6 w-auto object-contain" />
+          )}
+          {data.company}
+        </p>
       )}
 
-      <p class="text-slate-300 text-sm mb-4 line-clamp-3">{data.description}</p>
+      <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">{data.description}</p>
 
       <!-- Technologies -->
       <div class="flex flex-wrap gap-2 mb-4">

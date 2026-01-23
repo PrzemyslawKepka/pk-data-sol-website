@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
+import { getCompanyLogo } from '../utils/companyLogos';
 
 interface Project {
   slug: string;
   data: {
     title: string;
     description: string;
-    category: string;
+    categories: string[];
     technologies: string[];
     github?: string;
     liveUrl?: string;
@@ -15,6 +16,7 @@ interface Project {
     company?: string;
     year?: string;
     industry?: string;
+    isCommercial?: boolean;
     order: number;
   };
 }
@@ -56,6 +58,13 @@ interface Translations {
   viewLive: string;
   sideNote: string;
   fteNote: string;
+  sorting?: {
+    label: string;
+    priority: string;
+    year: string;
+    type: string;
+    alpha: string;
+  };
 }
 
 const props = defineProps<{
@@ -63,9 +72,142 @@ const props = defineProps<{
   translations: Translations;
 }>();
 
-const activeTypeFilter = ref('all');
-const activeCategoryFilter = ref('all');
-const activeIndustryFilter = ref('all');
+// Multi-selection filters - empty Set means "all" (no specific filter applied)
+const activeTypeFilters = ref<Set<string>>(new Set());
+const activeCategoryFilters = ref<Set<string>>(new Set());
+const activeIndustryFilters = ref<Set<string>>(new Set());
+
+// Read URL parameters on mount
+onMounted(() => {
+  const params = new URLSearchParams(window.location.search);
+
+  // Read industry filters
+  const industryParams = params.getAll('industry');
+  if (industryParams.length > 0) {
+    activeIndustryFilters.value = new Set(industryParams);
+  }
+
+  // Read type filters
+  const typeParams = params.getAll('type');
+  if (typeParams.length > 0) {
+    activeTypeFilters.value = new Set(typeParams);
+  }
+
+  // Read category filters
+  const categoryParams = params.getAll('category');
+  if (categoryParams.length > 0) {
+    activeCategoryFilters.value = new Set(categoryParams);
+  }
+});
+
+// Update URL when filters change (for shareability)
+function updateURL() {
+  const params = new URLSearchParams();
+
+  activeTypeFilters.value.forEach(t => params.append('type', t));
+  activeCategoryFilters.value.forEach(c => params.append('category', c));
+  activeIndustryFilters.value.forEach(i => params.append('industry', i));
+
+  const newURL = params.toString()
+    ? `${window.location.pathname}?${params.toString()}`
+    : window.location.pathname;
+
+  window.history.replaceState({}, '', newURL);
+}
+
+// Watch all filters and update URL
+watch([activeTypeFilters, activeCategoryFilters, activeIndustryFilters], updateURL, { deep: true });
+
+// Toggle filter selection - clicking 'all' clears the set, otherwise toggle the specific item
+function toggleTypeFilter(key: string) {
+  if (key === 'all') {
+    activeTypeFilters.value = new Set();
+  } else {
+    const newSet = new Set(activeTypeFilters.value);
+    if (newSet.has(key)) {
+      newSet.delete(key);
+    } else {
+      newSet.add(key);
+    }
+    activeTypeFilters.value = newSet;
+  }
+}
+
+function toggleCategoryFilter(key: string) {
+  if (key === 'all') {
+    activeCategoryFilters.value = new Set();
+  } else {
+    const newSet = new Set(activeCategoryFilters.value);
+    if (newSet.has(key)) {
+      newSet.delete(key);
+    } else {
+      newSet.add(key);
+    }
+    activeCategoryFilters.value = newSet;
+  }
+}
+
+function toggleIndustryFilter(key: string) {
+  if (key === 'all') {
+    activeIndustryFilters.value = new Set();
+  } else {
+    const newSet = new Set(activeIndustryFilters.value);
+    if (newSet.has(key)) {
+      newSet.delete(key);
+    } else {
+      newSet.add(key);
+    }
+    activeIndustryFilters.value = newSet;
+  }
+}
+
+// Check if a filter is active
+function isTypeActive(key: string): boolean {
+  return key === 'all' ? activeTypeFilters.value.size === 0 : activeTypeFilters.value.has(key);
+}
+
+function isCategoryActive(key: string): boolean {
+  return key === 'all' ? activeCategoryFilters.value.size === 0 : activeCategoryFilters.value.has(key);
+}
+
+function isIndustryActive(key: string): boolean {
+  return key === 'all' ? activeIndustryFilters.value.size === 0 : activeIndustryFilters.value.has(key);
+}
+
+// Sorting
+type SortField = 'priority' | 'year' | 'type' | 'alpha';
+type SortDirection = 'asc' | 'desc';
+
+const activeSortField = ref<SortField>('priority');
+const yearDirection = ref<SortDirection>('desc'); // desc = newest first
+const alphaDirection = ref<SortDirection>('asc'); // asc = A-Z
+
+function toggleSort(field: SortField) {
+  if (activeSortField.value === field) {
+    // Toggle direction if same field clicked
+    if (field === 'year') {
+      yearDirection.value = yearDirection.value === 'desc' ? 'asc' : 'desc';
+    } else if (field === 'alpha') {
+      alphaDirection.value = alphaDirection.value === 'asc' ? 'desc' : 'asc';
+    }
+  } else {
+    activeSortField.value = field;
+  }
+}
+
+const sortOptions = computed(() => [
+  { key: 'priority' as SortField, label: props.translations.sorting?.priority ?? 'Priority', hasArrows: false },
+  { key: 'year' as SortField, label: props.translations.sorting?.year ?? 'Year', hasArrows: true, direction: yearDirection.value },
+  { key: 'type' as SortField, label: props.translations.sorting?.type ?? 'Type', hasArrows: false },
+  { key: 'alpha' as SortField, label: props.translations.sorting?.alpha ?? 'Name', hasArrows: true, direction: alphaDirection.value },
+]);
+
+// Type sort order
+const typeSortOrder: Record<string, number> = {
+  current: 1,
+  fte: 2,
+  side: 3
+};
 
 const projectTypes = computed(() => [
   { key: 'all', label: props.translations.projectTypes.all },
@@ -99,33 +241,65 @@ const industries = computed(() => [
 const filteredProjects = computed(() => {
   let filtered = props.projects;
 
-  // Filter by project type
-  if (activeTypeFilter.value !== 'all') {
-    filtered = filtered.filter(p => p.data.projectType === activeTypeFilter.value);
+  // Filter by project type (if any selected)
+  if (activeTypeFilters.value.size > 0) {
+    filtered = filtered.filter(p => activeTypeFilters.value.has(p.data.projectType));
   }
 
-  // Filter by category
-  if (activeCategoryFilter.value !== 'all') {
-    filtered = filtered.filter(p => p.data.category === activeCategoryFilter.value);
+  // Filter by category (if any selected) - project matches if it has ANY of the selected categories
+  if (activeCategoryFilters.value.size > 0) {
+    filtered = filtered.filter(p =>
+      p.data.categories.some(cat => activeCategoryFilters.value.has(cat))
+    );
   }
 
-  // Filter by industry
-  if (activeIndustryFilter.value !== 'all') {
-    filtered = filtered.filter(p => p.data.industry === activeIndustryFilter.value);
+  // Filter by industry (if any selected)
+  if (activeIndustryFilters.value.size > 0) {
+    filtered = filtered.filter(p => p.data.industry && activeIndustryFilters.value.has(p.data.industry));
   }
 
-  // Sort by order (higher first), then by title
+  // Apply selected sort
   return filtered.sort((a, b) => {
-    if (b.data.order !== a.data.order) {
-      return b.data.order - a.data.order;
+    switch (activeSortField.value) {
+      case 'priority':
+        // Sort by order (higher first), then by title
+        if (b.data.order !== a.data.order) {
+          return b.data.order - a.data.order;
+        }
+        return a.data.title.localeCompare(b.data.title);
+
+      case 'year':
+        // Projects without year go last regardless of direction
+        const yearA = a.data.year ? parseInt(a.data.year) : (yearDirection.value === 'desc' ? -Infinity : Infinity);
+        const yearB = b.data.year ? parseInt(b.data.year) : (yearDirection.value === 'desc' ? -Infinity : Infinity);
+        if (yearA !== yearB) {
+          return yearDirection.value === 'desc' ? yearB - yearA : yearA - yearB;
+        }
+        return a.data.title.localeCompare(b.data.title);
+
+      case 'type':
+        // Sort by type order, then by title
+        const typeOrderA = typeSortOrder[a.data.projectType] ?? 99;
+        const typeOrderB = typeSortOrder[b.data.projectType] ?? 99;
+        if (typeOrderA !== typeOrderB) return typeOrderA - typeOrderB;
+        return a.data.title.localeCompare(b.data.title);
+
+      case 'alpha':
+        return alphaDirection.value === 'asc'
+          ? a.data.title.localeCompare(b.data.title)
+          : b.data.title.localeCompare(a.data.title);
+
+      default:
+        return 0;
     }
-    return a.data.title.localeCompare(b.data.title);
   });
 });
 
 const currentTypeDesc = computed(() => {
-  if (activeTypeFilter.value === 'all') return null;
-  return props.translations.projectTypesDesc[activeTypeFilter.value as keyof typeof props.translations.projectTypesDesc];
+  // Only show description if exactly one type is selected
+  if (activeTypeFilters.value.size !== 1) return null;
+  const selectedType = Array.from(activeTypeFilters.value)[0];
+  return props.translations.projectTypesDesc[selectedType as keyof typeof props.translations.projectTypesDesc];
 });
 
 // Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
@@ -151,10 +325,10 @@ const typeLabels: Record<string, string> = {
         <button
           v-for="type in projectTypes"
           :key="type.key"
-          @click="activeTypeFilter = type.key"
+          @click="toggleTypeFilter(type.key)"
           :class="[
             'px-5 py-2.5 rounded-full text-sm font-medium transition-all',
-            activeTypeFilter === type.key
+            isTypeActive(type.key)
               ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
               : 'bg-slate-800 text-slate-300 border border-slate-700 hover:border-amber-500 hover:text-amber-500'
           ]"
@@ -168,10 +342,10 @@ const typeLabels: Record<string, string> = {
         <button
           v-for="category in categories"
           :key="category.key"
-          @click="activeCategoryFilter = category.key"
+          @click="toggleCategoryFilter(category.key)"
           :class="[
             'px-4 py-2 rounded-full text-sm font-medium transition-all',
-            activeCategoryFilter === category.key
+            isCategoryActive(category.key)
               ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-amber-500 hover:text-amber-500'
           ]"
@@ -185,15 +359,33 @@ const typeLabels: Record<string, string> = {
         <button
           v-for="industry in industries"
           :key="industry.key"
-          @click="activeIndustryFilter = industry.key"
+          @click="toggleIndustryFilter(industry.key)"
           :class="[
             'px-4 py-2 rounded-full text-sm font-medium transition-all',
-            activeIndustryFilter === industry.key
+            isIndustryActive(industry.key)
               ? 'bg-pink-600 text-white shadow-lg shadow-pink-600/30'
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-pink-500 hover:text-pink-500'
           ]"
         >
           {{ industry.label }}
+        </button>
+      </div>
+
+      <!-- Sort Options -->
+      <div class="flex flex-wrap justify-center items-center gap-3 pt-4 border-t border-slate-700/50">
+        <span class="text-slate-500 text-sm font-medium">{{ translations.sorting?.label ?? 'Sort by' }}:</span>
+        <button
+          v-for="option in sortOptions"
+          :key="option.key"
+          @click="toggleSort(option.key)"
+          :class="[
+            'px-4 py-2 rounded-full text-sm font-medium transition-all',
+            activeSortField === option.key
+              ? 'bg-slate-600 text-white shadow-lg shadow-slate-600/30'
+              : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-slate-500 hover:text-slate-300'
+          ]"
+        >
+          {{ option.label }}<span v-if="option.hasArrows" class="ml-1 inline-flex gap-0.5"><span :class="activeSortField === option.key && option.direction === 'asc' ? 'text-white' : 'text-slate-500'">↑</span><span :class="activeSortField === option.key && option.direction === 'desc' ? 'text-white' : 'text-slate-500'">↓</span></span>
         </button>
       </div>
     </div>
@@ -204,10 +396,10 @@ const typeLabels: Record<string, string> = {
     </p>
 
     <!-- Special Notes -->
-    <div v-if="activeTypeFilter === 'fte'" class="text-center mb-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg max-w-2xl mx-auto">
+    <div v-if="activeTypeFilters.has('fte') && activeTypeFilters.size === 1" class="text-center mb-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg max-w-2xl mx-auto">
       <p class="text-blue-400 text-sm">{{ translations.fteNote }}</p>
     </div>
-    <div v-if="activeTypeFilter === 'side'" class="text-center mb-8 p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg max-w-2xl mx-auto">
+    <div v-if="activeTypeFilters.has('side') && activeTypeFilters.size === 1" class="text-center mb-8 p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg max-w-2xl mx-auto">
       <p class="text-purple-400 text-sm">{{ translations.sideNote }}</p>
     </div>
 
@@ -216,9 +408,9 @@ const typeLabels: Record<string, string> = {
       <article
         v-for="project in filteredProjects"
         :key="project.slug"
-        class="group bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30"
+        class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30"
       >
-        <a :href="`/projects/${project.slug}`" class="block">
+        <a :href="`/projects/${project.slug}`" class="flex-1 flex flex-col">
           <!-- Image -->
           <div class="relative w-full h-[200px] bg-gradient-to-br from-slate-700 to-slate-900 overflow-hidden">
             <img
@@ -238,9 +430,15 @@ const typeLabels: Record<string, string> = {
               {{ typeLabels[project.data.projectType] }}
             </div>
 
-            <!-- Category Badge -->
-            <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg">
-              {{ project.data.category }}
+            <!-- Category Badges -->
+            <div class="absolute top-3 right-3 flex flex-row-reverse gap-2">
+              <div
+                v-for="category in project.data.categories"
+                :key="category"
+                class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg"
+              >
+                {{ category }}
+              </div>
             </div>
 
             <!-- Industry Badge -->
@@ -250,10 +448,23 @@ const typeLabels: Record<string, string> = {
             >
               {{ project.data.industry }}
             </div>
+
+            <!-- Commercial Status Badge (only for current projects) -->
+            <div
+              v-if="project.data.projectType === 'current' && project.data.isCommercial !== undefined"
+              :class="[
+                'absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm shadow-lg border',
+                project.data.isCommercial
+                  ? 'bg-teal-600/90 text-white border-teal-400/50'
+                  : 'bg-slate-600/90 text-slate-200 border-slate-400/50'
+              ]"
+            >
+              {{ project.data.isCommercial ? 'Commercial' : 'Non-commercial' }}
+            </div>
           </div>
 
           <!-- Content -->
-          <div class="p-6">
+          <div class="p-6 flex-1 flex flex-col">
             <div class="flex items-start justify-between gap-2 mb-2">
               <h3 class="text-xl font-bold text-slate-100 group-hover:text-amber-500 transition-colors">
                 {{ project.data.title }}
@@ -263,11 +474,17 @@ const typeLabels: Record<string, string> = {
               </span>
             </div>
 
-            <p v-if="project.data.company" class="text-sm text-slate-400 mb-2">
+            <p v-if="project.data.company" class="text-sm text-slate-400 mb-2 flex items-center gap-2">
+              <img
+                v-if="getCompanyLogo(project.data.company)"
+                :src="getCompanyLogo(project.data.company)!"
+                :alt="project.data.company"
+                class="h-6 w-auto object-contain"
+              />
               {{ project.data.company }}
             </p>
 
-            <p class="text-slate-300 text-sm mb-4 line-clamp-3">
+            <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">
               {{ project.data.description }}
             </p>
 
