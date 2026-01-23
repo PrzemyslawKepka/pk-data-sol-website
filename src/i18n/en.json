@@ -32,12 +32,11 @@
     "yearsExpLabel": "Years of Experience",
     "industriesLabel": "Industries",
     "valueTitle": "What I Bring",
-    "value1": "Business acumen meets technical expertise",
-    "value2": "Understand both stakeholder needs and technical implementation",
-    "value3": "End-to-end problem solver",
+    "value1": "I ask 'why' before 'how' - business goals drive technical decisions",
+    "value2": "I speak both languages - communicating seamlessly with both stakeholders and developers",
+    "value3": "I own the full picture - from database to dashboard, no handoffs needed",
     "industriesTitle": "Industry Experience",
-    "industriesStatement": "Data skills transcend industry boundaries. Whether it's accounting transactions, credit risk models, IoT device logs, or social media analytics - the tools and techniques remain fundamentally similar.",
-    "industriesStatement2": "However, while proven data patterns can be applied across distinct domains, it's crucial to also understand the specific business context and actual needs. And at my various roles and projects I was always close to the business side, cooperating with Subject Matter Experts (SMEs), which allowed me to understand the importance of domain knowledge in any technical work."
+    "industriesStatement": "Data patterns transfer across industries - whether it's financial transactions, IoT sensors, or social media analytics. But context matters: I always work closely with domain experts to understand the specific business needs behind every technical solution."
   },
   "services": {
     "title": "Services",
