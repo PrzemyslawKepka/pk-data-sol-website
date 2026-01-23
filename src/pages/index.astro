@@ -7,9 +7,11 @@ import TechnologiesSection from '../components/TechnologiesSection.astro';
 import { useTranslations } from '../utils/i18n';
 import { getCollection } from 'astro:content';
 import { featuredProjects as featuredSlugs } from '../config/projectOrder';
+import { getYearsOfExperience } from '../utils/experience';
 
 const lang = 'en'; // Default language
 const t = useTranslations(lang);
+const yearsOfExperience = getYearsOfExperience();
 
 // Get featured projects for homepage using centralized config
 const allProjects = await getCollection('projects', ({ data }) => data.lang === lang);
@@ -102,11 +104,11 @@ const servicesSteps = [
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div>
-            <p class="text-lg leading-relaxed text-slate-300 mb-8">{t.about.background}</p>
+            <p class="text-lg leading-relaxed text-slate-300 mb-8">{t.about.background.replace('{years}', String(yearsOfExperience))}</p>
 
             <div class="grid grid-cols-2 gap-4">
               <div class="bg-slate-700 p-5 rounded-xl text-center">
-                <div class="text-3xl font-extrabold text-amber-500">{t.about.yearsExp}</div>
+                <div class="text-3xl font-extrabold text-amber-500">{yearsOfExperience}+</div>
                 <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.yearsExpLabel}</div>
               </div>
               <div class="bg-slate-700 p-5 rounded-xl text-center">

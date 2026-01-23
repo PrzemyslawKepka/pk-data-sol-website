@@ -27,8 +27,7 @@
   "about": {
     "title": "About Me",
     "subtitle": "Bridging the worlds of business and IT",
-    "background": "With a finance background, I've evolved into a data specialist with 7+ years of experience across different data and systems positions. I combine business acumen with technical expertise to deliver end-to-end solutions.",
-    "yearsExp": "7+",
+    "background": "With a finance background, I've evolved into a data specialist with {years}+ years of experience across different data and systems positions. I combine business acumen with technical expertise to deliver end-to-end solutions.",
     "yearsExpLabel": "Years of Experience",
     "industriesCount": "6+",
     "industriesLabel": "Industries",

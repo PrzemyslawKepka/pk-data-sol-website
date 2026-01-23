@@ -27,8 +27,7 @@
   "about": {
     "title": "O mnie",
     "subtitle": "Łączę światy biznesu i IT",
-    "background": "Mając doświadczenie w finansach, przekształciłem się w specjalistę danych z ponad 7-letnim doświadczeniem na różnych stanowiskach związanych z danymi i systemami. Łączę wiedzę biznesową z ekspertyzą techniczną, dostarczając kompleksowe rozwiązania.",
-    "yearsExp": "7+",
+    "background": "Mając doświadczenie w finansach, przekształciłem się w specjalistę danych z ponad {years}-letnim doświadczeniem na różnych stanowiskach związanych z danymi i systemami. Łączę wiedzę biznesową z ekspertyzą techniczną, dostarczając kompleksowe rozwiązania.",
     "yearsExpLabel": "Lat Doświadczenia",
     "industriesCount": "6+",
     "industriesLabel": "Branże",
