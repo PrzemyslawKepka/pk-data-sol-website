@@ -30,9 +30,9 @@ And the process was entirely rule-based: incoming payments mapped to specific de
 
 ## Solution
 
-So I've decided to attempt building an automation for that. But I didn't now who to program yet, I was only trying to follow some programming tutorials on Python some time ago, but didn't really have any practical cases of my own, so the learning was not going so well.
+So I've decided to attempt building an automation for that. But I didn't know how to program yet - I was only trying to follow some programming tutorials on Python some time ago, but didn't really have any practical cases of my own, so the learning was not going so well.
 
-So this actually became a perfect opportunity to start my technical journey, learning new skill in a practical way, solving a real problem.
+So this actually became a **perfect opportunity to start my technical journey**, learning a new skill in a practical way, solving a real problem.
 
 ### How It Worked
 
@@ -63,10 +63,9 @@ So this actually became a perfect opportunity to start my technical journey, lea
 
 ## Professional Takeaways
 
-This project was basically my breakthrough moment - kind of a "founding story" for my professional data career, where
-I have seen a real value that my solutions can bring.
+This project was basically my **breakthrough moment** - kind of a "founding story" for my professional data career, where I have seen a real value that my solutions can bring.
 
 And it has also put for me an emphasis on:
 
-- **Learning by doing**: No tutorials - just a real problem to solve
-- **Business value of automation**: Even basic scripts can save significant time
+- **Learning by doing** - no tutorials, just a real problem to solve
+- **Business value of automation** - even basic scripts can save significant time

@@ -77,15 +77,15 @@ And it didn't really add the complexity, quite the opposite, the python script b
 So the data, in `InfluxDB`, was now stored in a database, in a single table, no more multiple files where data is scattered all over.
 And by the usage of `Grafana`, I didn't have to generate any charts on my own, I could just do it directly in the tool, while I could customize them easily using UI.
 
-## Real-world application
+## Real-world Application
 
-So in this case it was my personal application of the IoT monitoring, but in a business settings the process would be more or less the same:
-- Retreving the data from a device (could be anything, and way more of them)
-- Saving the data (files, database, we could also send the data to some server or to the cloud)
-- Monitoring the data and getting the insights
+So in this case it was my personal application of IoT monitoring, but in a business setting the process would be more or less the same:
+- **Retrieving the data** from a device (could be anything, and way more of them)
+- **Saving the data** (files, database, we could also send the data to some server or to the cloud)
+- **Monitoring the data** and getting the insights
 
 ## Professional Takeaways
 
-- So that project set me up for being able to work within IoT realm, starting from as far as from setting up the hardware as well
-- But it's not only limited to IoT, as in general it has exposed me to real-time data retrieval and monitoring
-- And additionally, using Raspberry Pi microcomputer has forced me to learn a little bit more on the infrastructure side, managing the system myself and using terminal as well
+- This project set me up for being able to **work within the IoT realm**, starting from as far as setting up the hardware
+- But it's not only limited to IoT, as in general it has exposed me to **real-time data retrieval and monitoring**
+- And additionally, using Raspberry Pi microcomputer has forced me to learn a little bit more on **the infrastructure side**, managing the system myself and using terminal as well
