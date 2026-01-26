@@ -11,81 +11,46 @@ industry: "Finance"
 lang: "en"
 ---
 
-## The Context
+## Problem Definition
 
-In my final months at Santander, I was part of a team responsible for maintaining and developing a crucial data pipeline. This pipeline collected and processed customer opinions about the bank from various sources.
+How does a bank know what customers actually think about their services? Surveys, social media, feedback forms - all this data is scattered across different systems and providers.
 
-## The Pipeline
+In my final months at Santander, I joined a team that was tackling exactly this challenge. The goal was to collect customer opinions from various sources, process them, and make them available for analysis - so data scientists could run sentiment models, UX specialists could measure experience, and the business could track NPS scores.
 
-### Data Sources
+## Solution
 
-The pipeline ingested customer feedback from multiple channels:
-- **Surveys** sent to customers
-- **Social media posts** about the bank
-- **API integrations** with external providers
-- **File-based data** sent to our servers
+This was a production ETL pipeline, already established when I joined. The data came from multiple channels:
+- Customer surveys
+- Social media mentions
+- API integrations with external providers
+- File-based data from various sources
 
-### Technical Architecture
-
-**Data Processing**
-- Python-based ETL with advanced patterns (Factory classes, multithreading)
-- SQL transformations for data preparation
-- Deployed and scheduled in Airflow
-
-**Data Consumers**
-- Data scientists running ML models
-- Researchers analyzing customer sentiment
-- UX specialists measuring experience
-- Net Promoter Score (NPS) calculations
+Everything was **Python-based**, with **SQL transformations** for data preparation, all deployed and scheduled in **Airflow**.
 
 ### My Contributions
 
-**Optimization Work**
-- Performance improvements to existing processes
-- Code refactoring and cleanup
+**Performance optimization** - improving existing processes and refactoring code that had accumulated technical debt over time.
 
-**New Data Sources**
-- Implemented integrations following established patterns
-- Worked with external data providers
+**New data source integrations** - implementing connections to additional providers, following the established patterns (even when those patterns felt overengineered, like parametrized JSON instruction files).
 
-**Documentation**
-- Created missing documentation for the pipeline
-- Helped onboard team members
+**Documentation** - the pipeline had grown organically and documentation was lacking. I worked on filling those gaps and helping onboard new team members.
 
-## Unique Aspects
+### The Different Challenge
 
-### Joining an Existing Codebase
+Unlike most of my projects where I built things from scratch, here I had to **adapt to someone else's codebase and way of thinking**. Different coding style, different patterns, some decisions I would have made differently. But this is the reality of software engineering - not every project is greenfield.
 
-Unlike my previous projects where I built from scratch, here I inherited a substantial codebase:
-- Different coding style and patterns
-- Some overengineered components (parametrized JSON instruction files)
-- Required adaptation to someone else's way of thinking
+## Impact
 
-This is normal in software engineering - not every project starts from scratch.
+The data we processed was genuinely valuable for the bank:
+- **Customer satisfaction insights** - understanding what people actually think
+- **Data-driven decisions** - supporting product and service improvements
+- **NPS tracking** - measuring the key metric over time
 
-### Business Impact
+Beyond the technical work, this role involved a lot of **stakeholder management** - regular communication with business teams, translating their needs into code, coordinating with external data providers, and navigating GDPR/data privacy requirements with legal teams.
 
-The data we processed was genuinely valuable:
-- Enabled understanding of customer satisfaction
-- Supported data-driven product decisions
-- Measured effectiveness of service improvements
+## Professional Takeaways
 
-### Stakeholder Management
-
-Beyond the technical work:
-- Regular communication with business stakeholders
-- Understanding and translating their needs into code
-- Coordination with external data providers
-- GDPR/data privacy considerations (working with legal teams)
-
-## Technical Growth
-
-This project expanded my skill set:
-- **Airflow**: First time deploying pipelines to production orchestrator
-- **Advanced Python patterns**: Factory classes, multithreading
-- **Team dynamics**: Working within an established technical team
-- **Production mindset**: Maintaining critical infrastructure others depend on
-
-## Personal Note
-
-This project represented a full-circle moment: from data collection through processing to enabling insights - a proper data engineering role. It reinforced that data pipelines are the backbone that makes analytics, ML, and business intelligence possible.
+- **First production Airflow deployment** - finally working with a proper orchestrator, not just cron jobs
+- **Working within an established team** - adapting to existing codebases and team dynamics
+- **Production mindset** - maintaining critical infrastructure that others depend on, where failures have real consequences
+- This project felt like a **full-circle moment** - proper data engineering, from collection through processing to enabling insights. It reinforced that data pipelines are the backbone that makes analytics, ML, and business intelligence possible.

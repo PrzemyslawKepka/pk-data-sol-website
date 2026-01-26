@@ -10,113 +10,47 @@ year: "2022"
 lang: "en"
 ---
 
-## The Motivation
+## Context
 
-I was using various image editing tools for meme creation and was already a Streamlit fan. So why not build my own simple tool?
+I was making memes (as one does) and got slightly annoyed with the tools I was using. And since I was already a Streamlit fan at that point, I thought - **why not just build a simple meme generator myself?**
 
-## The Solution
+It's the classic "top text, bottom text" format - nothing fancy, but surprisingly useful when you want quick control over typography.
 
-A browser-based image editor focused on the classic meme format: top and bottom text overlays with extensive typography controls.
+## Solution
 
-### Key Features
+So I've built a browser-based image editor focused specifically on the meme format.
 
-**Dual Text System**
-- Top and bottom text with independent configuration
-- Real-time preview as you type
-- Smart text wrapping based on image dimensions
+### What It Does
 
-**Typography Controls**
-- 8 professional fonts including Comic Sans (meme essential!)
-- Font size customization with validation
-- Color picker for any hex color
-- Bold, italic, and uppercase options
-- Left/center/right alignment
+- **Upload any image** and add text overlays (top and bottom, independently configured)
+- **Typography controls** - font selection (including Comic Sans, of course), size, color, bold/italic, alignment
+- **Real-time preview** - changes show immediately as you type or adjust settings
+- **Smart text wrapping** - automatically wraps long text based on image dimensions
+- **One-click export** - download your creation as PNG
 
-**Smart Text Positioning**
-```python
-# Dynamic line length based on image and font
-line_length = (WIDTH / self.font_size) * 2.2
+### The Technical Bits
 
-# Adaptive bottom text positioning
-if len(text_wrap) == 1:
-    bot_text_height_start = HEIGHT - 10
-else:
-    bot_text_height_start = HEIGHT - len(text_wrap) * (0.07 * HEIGHT)
-```
+The interesting part was handling **text positioning dynamically** - the bottom text needs to adjust its position based on how many lines it wraps to, and the line length depends on both the image width and font size.
 
-**One-Click Export**
-- In-memory buffer (no server storage)
-- PNG format download
-- Success confirmation
+I used proper OOP here - a `TextParams` class encapsulates all the text rendering logic, and the same class handles both top and bottom text. Also had to deal with **cross-platform font management** (different paths on Windows vs macOS).
 
-## Technical Architecture
+### The Surprising Part
 
-```
-├── app.py                    # Main Streamlit application
-├── image_editor/
-│   ├── textboxes.py         # TextParams class (OOP)
-│   ├── fonts.py             # Cross-platform font management
-│   └── multiple_images.py   # Future feature infrastructure
-```
+The project got **3 GitHub stars without any marketing whatsoever**. No LinkedIn posts, no Reddit sharing, nothing on the Streamlit forums.
 
-### Object-Oriented Design
+How did people find it? Probably Google searches for "streamlit meme generator" or similar. Which means **the project filled a real gap** - people were looking for this, and there wasn't much else out there.
 
-The `TextParams` class encapsulates all text rendering logic:
-- Alignment, font, size, color, styling
-- TrueType font loading with variant selection
-- Intelligent text wrapping and positioning
-- Single class reused for both top and bottom text
+## Real-world Application
 
-### Cross-Platform Font Management
+This is essentially an **image processing application with a user interface**:
+- Taking user input (image + text configuration)
+- Processing with Pillow (text rendering, positioning)
+- Delivering output (the final image)
 
-- Automatic Windows/macOS detection
-- 4 font variant dictionaries (regular, bold, italic, bold+italic)
-- Dynamic font file selection based on styling
+The same patterns apply to any tool where users need to manipulate images - watermarking, resizing, format conversion, adding overlays. The Streamlit + Pillow combination works well for quick internal tools.
 
-## The Organic Discovery
+## Professional Takeaways
 
-**3 GitHub stars** received without any marketing:
-- No LinkedIn promotion
-- No Reddit posts
-- No Streamlit forum sharing
-
-**How was it found?**
-
-Likely through Google searches for "streamlit meme generator" or "streamlit image editor". This organic discovery proves the project filled a real gap in the Streamlit ecosystem.
-
-## User Experience Design
-
-**Two-Column Layout**
-- Left (2/3): Large image preview (800px)
-- Right (1/3): Configuration controls in expanders
-- Real-time updates on every change
-
-**Smart Defaults**
-- 20px font size
-- White text color (high contrast)
-- Center alignment
-
-**Input Validation**
-```python
-if not font_size.isnumeric():
-    st.error("Please insert a number for a valid font size in px")
-```
-
-## Code Quality
-
-- **Black and isort** configured for formatting
-- **Type hints** throughout
-- **Pinned dependencies** for reproducibility
-- **Modular architecture** for extensibility
-- **Documentation** with screenshot in README
-
-## Future-Ready
-
-The codebase includes infrastructure for planned features:
-- Multi-image combining (horizontal/vertical)
-- Image paste functionality
-- Code is written but UI integration pending
-
-## Personal Note
-
-This project demonstrates that quality work finds its audience. Without any promotion, people discovered and starred the repository - likely because it solved a real need they were searching for.
+- **Quality work finds its audience** - even without promotion, if you solve a real problem, people will discover it
+- **OOP has its place** - the TextParams class made the code much cleaner than having duplicate logic for top and bottom text
+- **Cross-platform considerations** - font paths are one of those things that catch you if you don't think about it upfront

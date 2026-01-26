@@ -13,43 +13,41 @@ isCommercial: false
 lang: "en"
 ---
 
-## The Problem
+## Context
 
-Finding short-term accommodation (1-3 months) in Chiang Mai, Thailand proved to be surprisingly challenging. While Airbnb works for month-long stays, it can be overpriced. Facebook groups have listings but lack map functionality, making it hard to visualize locations and compare options.
+When I arrived in Chiang Mai, Thailand, I needed to find a monthly rental for a few months. Sounds simple enough, right?
 
-## The Solution
+Well, not really. Airbnb works for month-long stays, but it's often overpriced for what you get. The real deals are in Facebook groups - locals and agents post there. But Facebook groups have no map functionality whatsoever. You're scrolling through hundreds of posts, trying to figure out where each place actually is, whether it's close to what you need, and comparing options becomes a nightmare.
 
-I built CM Rentals - a web application that aggregates and displays monthly rental properties on an interactive map. The app allows users to:
+So I thought - **why not build a tool that solves this?**
 
-- **View all properties on an interactive map** - see exactly where each property is located
-- **Filter by price range, amenities, and property type** - find exactly what you're looking for
-- **Access detailed property information** - including photos, contact details, and availability
-- **Compare options easily** - with all data in one place
+## Solution
 
-## Technical Implementation
+I've built CM Rentals - a web application that displays rental properties on an interactive map, making it actually possible to see where everything is and compare options at a glance.
 
-The project evolved through multiple iterations:
+### Core Features
 
-1. **Initial Prototype (Streamlit)** - Quick MVP to validate the idea, using Supabase as the backend
-2. **Production Version (Flask)** - Rewrote to Flask for better SEO and performance, with HTML templates and proper routing
+- **Interactive map with all properties** - finally you can see the locations
+- **Filtering by price, amenities, and property type** - to narrow down to what you actually need
+- **Detailed property pages** - with photos and contact info
 
-### Key Technical Decisions
+### Technical Evolution
 
-- **Supabase** for database and storage - free tier, PostgreSQL-based, easy to work with
-- **Leaflet.js** for interactive maps - open source, mobile-friendly
-- **Self-hosted on VPS** - full control over deployment, cost-effective
+The project went through two versions:
+- **First, a Streamlit prototype** - quick to build, good for validating if the idea even makes sense
+- **Then a Flask rewrite** - because Streamlit has SEO limitations and I wanted the site to be discoverable on Google
 
-## Impact & Reception
+I'm using **Supabase** for the database (PostgreSQL-based, free tier is generous), **Leaflet.js** for the maps, and the whole thing is **self-hosted on a VPS** for full control.
 
-Posted on Reddit and Facebook groups, the project received positive feedback:
+## Real-world Application
 
-- **Active users** finding accommodations through the platform
-- **Positive comments** from the digital nomad community
-- **Practical demonstration** of turning a personal pain point into a useful tool
+So what happened when I shared it? I posted on Reddit and in local Facebook groups, and actually got positive feedback. People started using it to find accommodations, which was quite validating.
 
-## Lessons Learned
+This project is a good example of **turning a personal pain point into something useful for others**. The data engineering side (collecting, storing, displaying property data) is straightforward, but the real value is in solving an actual problem that people have.
 
-- Sometimes the best projects come from solving your own problems
-- Streamlit is great for prototypes but has SEO limitations
-- Community feedback is invaluable for validation
-- Don't over-engineer - start simple, iterate based on real usage
+## Professional Takeaways
+
+- **The best project ideas often come from your own problems** - if something frustrates you, it probably frustrates others too
+- **Start with an MVP, then iterate** - the Streamlit prototype helped me validate the idea before investing more time
+- **Streamlit has its place, but it's not for everything** - for a public-facing site that needs SEO, a proper web framework is better
+- **Community feedback is invaluable** - real users tell you what matters

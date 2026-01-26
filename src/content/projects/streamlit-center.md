@@ -10,63 +10,55 @@ year: "2024"
 lang: "en"
 ---
 
-## The Context
+## Problem Definition
 
-Streamlit was growing rapidly within our Business Intelligence department (~150 data engineers, scientists, and analysts). Different teams were creating applications independently, leading to:
+Streamlit was growing rapidly within our Business Intelligence department - around 150 people including data engineers, scientists, and analysts. Different teams were building applications independently, which led to the predictable problems:
 
-- Inconsistent project structures
-- Duplicated effort in solving common problems
-- No standardized patterns for authentication
-- Knowledge silos between teams
+- **Inconsistent project structures** - everyone organizing code differently
+- **Duplicated effort** - teams solving the same problems over and over
+- **No standard for authentication** - everyone implementing it their own way
+- **Knowledge silos** - what one team learned didn't reach others
 
-## The Initiative
+So I was tasked with **creating global standards** for Streamlit usage and a helper tool to streamline new application development.
 
-I was tasked with creating global standards for Streamlit usage and a helper tool to streamline new application development.
+## Solution
 
-### Streamlit Center
+Rather than just writing documentation that nobody reads, I built **a Streamlit app that helps you create Streamlit apps**. We called it "Streamlit Center."
 
-Rather than just documentation, we created a Streamlit app that serves as both a guide and a code generator:
+### The Visual Cookiecutter
 
-**Visual Cookiecutter**
-- Users select configuration through a visual interface
-- Number of pages, page names, features to include
-- Generated ZIP archive with ready-to-use project template
-- Jinja2 templates ensuring consistent code patterns
+The main feature was a **project generator with a visual interface**:
+- Select how many pages you need, name them
+- Choose which features to include (authentication, database connections, etc.)
+- Click generate, download a ZIP with a **ready-to-use project template**
 
-**Guidelines Hub**
-- Best practices documentation
-- Code examples and patterns
-- Integration guides
-- Common pitfall solutions
+Under the hood, it used **Jinja2 templates** to generate consistent code patterns. So every new project would start with the same structure, the same coding style, the same patterns.
 
-### Authentication Solution
+### Authentication Module
 
-Developed a unified authentication mechanism using LDAP and Active Directory:
+One of the biggest pain points was authentication - everyone was implementing it differently, often poorly. So I developed a **unified authentication mechanism** using LDAP and Active Directory:
+- Single Sign-On for all Streamlit apps
+- JWT encoding for credential handling
+- A reusable module that any app could just import and use
 
-- **Single Sign-On** for all Streamlit applications
-- **JWT encoding** for credential handling
-- **Reusable module** that any app could integrate
-- Used across multiple applications for several months
+This ran across multiple applications for several months.
+
+### The Guidelines Hub
+
+The app also served as **a central place for documentation** - best practices, code examples, integration guides, solutions to common problems. All in one place, searchable, maintained.
 
 ## Impact
 
-- **Standardization**: New projects followed consistent patterns
-- **Knowledge sharing**: Central place for Streamlit knowledge
-- **Faster development**: Templates reduced setup time
-- **Community building**: Regular showcases and meetings
+**Standardization** - new projects actually followed consistent patterns because it was the path of least resistance (the template did it for you).
 
-## Broader Outcomes
+**Faster onboarding** - new team members could start productive faster because the patterns were documented and the templates handled the boilerplate.
 
-The initiative also led to:
+**Community building** - the initiative led to regular showcases and meetings where teams shared what they built.
 
-- **Guidelines for tool selection**: When to use Streamlit vs Power BI vs Vue.js
-- **Promotion of best practices** through meetings and demos
-- **Foundation for future work**: Ideas for AI-powered code generation
+This also led to **broader discussions** about tool selection - when to use Streamlit vs Power BI vs a proper Vue.js frontend. Sometimes the answer was "Streamlit isn't the right tool for this."
 
-## Technical Insights
+## Professional Takeaways
 
-Working on this project reinforced the importance of:
-
-- **Opinionated defaults**: Sometimes standardization requires making decisions
-- **Developer experience**: Good tooling increases adoption
-- **Documentation**: Without it, standards don't stick
+- **Developer experience matters** - if the standardized way is easier than doing it yourself, people will actually use it
+- **Opinionated defaults are valuable** - sometimes you need to just make decisions instead of offering endless configuration options
+- **Documentation without tooling doesn't stick** - the project generator was what made people actually follow the standards

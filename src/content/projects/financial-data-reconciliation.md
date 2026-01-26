@@ -11,62 +11,44 @@ industry: "Finance"
 lang: "en"
 ---
 
-## The Problem
+## Problem Definition
 
-Working in the Financial Systems team at JLL, one of my primary responsibilities was reconciling data between multiple enterprise systems:
+Working in the Financial Systems team at JLL, one of my recurring tasks was **reconciling data between multiple enterprise systems**:
+- Planning & Analytics (IBM Planning Analytics)
+- Budgeting (EPBCS)
+- Financial Consolidation (OneStream)
 
-- **Planning & Analytics system** (IBM Planning Analytics)
-- **Budgeting system** (EPBCS)
-- **Financial Consolidation system** (OneStream)
+Data flows between these systems, and the numbers need to match. When they don't - which happens more often than you'd think - you need to find where the discrepancy is.
 
-The existing process was painful:
-- Opening multiple Excel add-ins simultaneously
-- Excel frequently overwhelmed and crashing
-- Manual comparison across large datasets
-- Time-consuming and error-prone
+The existing process was brutal:
+- Opening Excel with multiple add-ins connected to different systems
+- Excel constantly crashing because it was overwhelmed
+- Manually comparing rows across huge datasets, trying to spot where things don't match
+- Slow, tedious, and error-prone
 
-Data moves between systems, and the goal was to verify that financial numbers matched across all platforms - they often didn't, and finding discrepancies was critical.
+## Solution
 
-## The Solution
+So I've built a Python script to do the comparison automatically.
 
-I built a Python script to automate the reconciliation process.
+The script would:
+- **Load exports from both systems** (Excel files with specific structures)
+- **Compare amounts** for each account and entity combination, with proper rounding
+- **Output a clean summary** of all discrepancies - Account, Entity, Amount in System A, Amount in System B, Difference
 
-### How It Worked
+Simple file selection via tkinter so you could just point it at the files you wanted to compare.
 
-**Data Loading**
-- Read data from multiple Excel sheets containing exports from different systems
-- Handled different sheet structures and skip rows as needed
-- Parsed account codes and entity information
+The output was a structured Excel file that you could immediately share or use as a starting point for investigation - much better than trying to remember which cells you manually highlighted.
 
-**Comparison Logic**
-- Iterated through accounts and entities across both datasets
-- Compared amounts with proper rounding (2 decimal places)
-- Identified matches and mismatches programmatically
+## Impact
 
-**Output Generation**
-- Created a summary Excel file with all discrepancies
-- Listed: Account, Entity, Amount in System A, Amount in System B, Difference
-- Added visual highlighting to the source file for matched items
-- Used random filename suffixes to prevent overwrites
+**Speed** - what used to take significant manual effort now ran in seconds. Load the files, run the script, get your discrepancy list.
 
-### Technical Details
+**Accuracy** - no more human error from staring at thousands of rows and hoping you didn't miss something.
 
-- **pandas** for data manipulation and comparison
-- **openpyxl** for Excel file reading and formatting
-- **tkinter** for user-friendly file selection dialog
-- Proper handling of account code parsing and entity matching
+**Documentation** - discrepancies were automatically logged in a shareable format, not just highlighted cells in a spreadsheet that might get closed without saving.
 
-## The Impact
+## Professional Takeaways
 
-- **Faster reconciliation**: What took significant manual effort now ran in seconds
-- **Reduced errors**: Eliminated human error in large dataset comparisons
-- **Clear output**: Discrepancies documented in a structured, shareable format
-
-## Lessons Learned
-
-This project reinforced that automation works best for:
-- Repetitive, rule-based processes
-- Large dataset comparisons where manual review is impractical
-- Tasks where tool limitations (Excel crashing) create bottlenecks
-
-It also showed that even when colleagues don't adopt the scripts themselves, the efficiency gains during my own work justified the development effort.
+- **Automation works best for rule-based, repetitive tasks** - comparing numbers across systems is exactly this
+- **Sometimes the tool itself is the bottleneck** - Excel crashing under load was the trigger for finding a better way
+- **Personal efficiency matters** - even if colleagues don't adopt your scripts, the time you save in your own work justifies building them

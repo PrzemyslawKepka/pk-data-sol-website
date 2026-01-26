@@ -10,45 +10,34 @@ year: "2026"
 lang: "en"
 ---
 
-## The Motivation
+## Context
 
-After years of building data solutions for others, I needed a proper online presence to showcase my work. Rather than using a template or website builder, I decided to build it myself - applying the same principles I use in data projects: clean architecture, good tooling, and practical functionality.
+After years of building data solutions for others, I realized I needed a proper online presence. A portfolio that showcases my work and explains what I actually do.
 
-## Technical Stack
+Now, I could have used a template or a website builder. But where's the fun in that? And more importantly - **if I'm claiming full-stack capabilities, shouldn't I be able to build my own website?**
+
+So I decided to build it myself.
+
+## Solution
+
+The website you're looking at right now is the result.
 
 ### Why Astro?
 
-Astro was chosen for its "content-first" philosophy:
-- **Static Site Generation**: Fast loading, great SEO
-- **Content Collections**: Markdown-based project management
-- **Island Architecture**: JavaScript only where needed
-- **Vue Integration**: For interactive components
+I chose **Astro** because of its "content-first" philosophy. The site is mostly static content (project descriptions, about page), so I don't need a heavy JavaScript framework. Astro generates static HTML, which means **fast loading and good SEO**.
 
-### Key Technologies
+But I still wanted some interactivity - the project filters, for example. That's where Astro's **"islands architecture"** comes in - I can use **Vue components** where I need them, and they only load JavaScript when necessary.
 
-**Frontend Framework**
-- Astro 5.x for static site generation
-- Vue 3.5 for interactive components (project filters, language switcher)
-- Tailwind CSS 4.x for utility-first styling
+### The Stack
 
-**Content Management**
-- Markdown files for project descriptions
-- Content collections with type-safe schemas
-- Frontmatter for project metadata
+- **Astro** for the core framework and static generation
+- **Vue** for interactive components (project filtering, etc.)
+- **Tailwind CSS** for styling
+- **Markdown** for all content - each project is a `.md` file with frontmatter for metadata
 
-**Features**
-- Responsive design (mobile-first)
-- Dark theme with amber accents
-- Project filtering by type, category, and industry
-- i18n support (prepared for EN/PL)
-- Contact form integration
+### Content Architecture
 
-## Architecture
-
-### Content-Driven Design
-
-Projects are stored as Markdown files with rich frontmatter:
-
+Each project lives as a Markdown file:
 ```
 src/content/projects/
 ├── cm-rentals.md
@@ -57,53 +46,20 @@ src/content/projects/
 └── ...
 ```
 
-Each project includes metadata like category, technologies, project type (FTE/current/side), industry, and display order.
+This makes it easy to add or edit projects - just update the Markdown file, no database needed. The frontmatter handles all the metadata (technologies, categories, project type, etc.), and Astro's content collections give me type-safety.
 
-### Component Structure
+## Real-world Application
 
-```
-src/
-├── components/
-│   ├── Header.astro
-│   ├── ProjectCard.astro
-│   ├── ProjectFilter.vue      # Interactive filtering
-│   └── ProjectsGrid.vue       # Dynamic project display
-├── layouts/
-│   └── BaseLayout.astro
-├── pages/
-│   ├── index.astro            # Homepage
-│   └── projects/
-│       ├── index.astro        # Projects listing
-│       └── [slug].astro       # Individual project pages
-└── content/
-    └── projects/*.md          # Project content
-```
+Building this site was essentially a **frontend engineering project**:
+- Component architecture and reusability
+- Responsive design (mobile-first)
+- Content management without a traditional CMS
+- Deployment and hosting considerations
 
-### Styling Approach
+It's also a demonstration of **eating your own cooking** - if I'm showcasing technical skills, the website itself should reflect that.
 
-Tailwind CSS with custom configuration:
-- Slate color palette for dark theme
-- Amber accent colors
-- Consistent spacing and typography
-- Hover states and transitions
+## Professional Takeaways
 
-## Lessons Learned
-
-**Astro's Content Collections**
-- Type-safe content management
-- Easy to add new projects
-- Markdown for long-form content
-
-**Vue + Astro Integration**
-- Islands architecture works well
-- Vue components hydrate only when needed
-- Clean separation between static and interactive
-
-**Building Your Own Portfolio**
-- Forces you to articulate your value proposition
-- Great way to learn new frontend technologies
-- Eating your own cooking - using skills you showcase
-
-## Personal Note
-
-This website itself demonstrates the full-stack mindset I bring to projects: from data-heavy Python work to modern frontend development. It's built with the same principles I apply everywhere - practical solutions, clean code, and tools that fit the job.
+- **Astro is great for content-heavy sites** - the static generation is fast, the content collections are elegant, and you can add interactivity where needed
+- **Building your own portfolio forces clarity** - you have to actually articulate what you do and what value you bring
+- **Full-stack means full-stack** - being able to go from Python data work to modern frontend development is genuinely useful
