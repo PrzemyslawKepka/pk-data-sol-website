@@ -1,6 +1,6 @@
 ---
 title: "IoT Temperature Monitoring"
-description: "A Raspberry Pi-based system for monitoring refrigerator temperatures with DS18B20 sensors, email alerts, InfluxDB storage, and Grafana dashboards."
+description: "A Raspberry Pi-based system for monitoring refrigerator temperatures with DS18B20 sensors, email alerts, InfluxDB storage, and a Grafana dashboard."
 categories: ["Dashboard", "ETL Pipeline"]
 technologies: ["Python", "Raspberry Pi", "InfluxDB", "Grafana", "pandas", "matplotlib"]
 github: "https://github.com/PrzemyslawKepka/temperature-monitoring"
@@ -11,13 +11,19 @@ industry: "IoT"
 lang: "en"
 ---
 
-## The Problem
+## Context
 
-I suspected my refrigerator wasn't working correctly. At the same time, I wanted to learn about Raspberry Pi and IoT technologies. Why not solve a real problem while learning?
+What to do when your refrigerator seems to be not working correctly? 
 
-## The Solution
+~~Calling your landlord?~~ Certainly. But in a nerdy way, where you also wanted to learn IoT and Raspberry Pi microcomputer? 
 
-I built a complete IoT monitoring system with temperature sensors connected to a Raspberry Pi 4B. The system continuously collects data and provides intelligent alerting.
+Well, then you build a fully-fledged IoT monitoring system, which will give you concrete numbers to confirm your observations.
+
+## Solution
+
+So what I've created really turned out to be a complete IoT monitoring system (still a rather simple one of course).
+
+The temperature sensors were running all the time, 24/7, saving the temperature every few seconds, assuring good accuracy. Then the data would be saved in batches, while at the same time e-mail alerts were sent if the temperature has exceeded accepted thresholds.
 
 ### Hardware Setup
 
@@ -30,69 +36,56 @@ I built a complete IoT monitoring system with temperature sensors connected to a
 ### Key Features
 
 **Continuous Monitoring**
-- 1-second polling intervals
-- Sensor identification by unique ID (not array position)
-- Graceful handling of sensor disconnection
+- 1-second polling intervals, so with some hardware delay the data would be retrieved every four seconds on average
+- Handling two sensors by retrieving their unique IDs
+- Covering an outage, issues with getting sensor data, by e-mail notification
 
-**Intelligent Alerting**
-- Temperature thresholds: Fridge >10°C, Freezer >-10°C
+**Data Persistence**
+- CSV and chart exports every 10,000 readings (can be configured differently)
+- Automatic export on script crash
+- Timestamped filenames
+
+**Intelligent E-mail Alerting**
+- Temperature thresholds: Fridge >10°C, Freezer >-10°C (could be easily set for any values)
 - **Rate limiting**: Maximum 1 email per sensor every 6 hours
 - Script failure notifications
 - Gmail SMTP integration
 
-**Data Persistence**
-- CSV exports every 10,000 readings
-- Automatic export on script crash
-- Timestamped filenames with randomized suffixes
+<img src="/images/projects/temperature-monitoring/email_notification.png" alt="E-mail notification"/>
 
 ## Technical Evolution
 
 ### Phase 1: MVP
 
-The initial version (`temperature_monitoring.py`) focused on core functionality:
-- Local Python script
-- Email notifications via SMTP
-- CSV exports and matplotlib graphs
-- Pandas data processing with smart fill strategies
+So the first version, described above, was fully functional and working well.
+- But it was operating fully on CSV files saved locally on the computer. So even if storage space would be no issue, then still after some period of time the computer would be flooded by so many extract files (or I would have huge files if changing the export frequency)
+- Similarly with charts, it wasn't a flexible solution, just generating them only for the current run
+
+Hence I've decided that I should attempt an overhaul, that would be more "production-grade".
 
 ### Phase 2: Production Enhancement
 
-The enhanced version (`data_to_influxDB.py`) added professional monitoring:
-- **InfluxDB** for time-series storage
+So the enhanced version added professional monitoring:
+- **InfluxDB**, running locally, for time-series storage
 - **Grafana** for real-time dashboards
-- **Batch processing** (10 readings per write) to reduce DB operations
-- Automatic database creation on startup
+- **Batch processing** similarly as with CSV files, here to reduce DB operations
 
-## Production-Aware Design
+<img src="/images/projects/temperature-monitoring/grafana_dashboard.png" alt="E-mail notification"/>
 
-**Rate Limiting**
-```python
-if datetime.now() > (fridge_notif_sent + timedelta(hours=6)):
-    temperature_too_high(current_temperature, current_sens)
-    fridge_notif_sent = datetime.now()
-```
+And it didn't really add the complexity, quite the opposite, the python script became even simpler, as the complexity was already tackled by using established solutions, so `InfluxDB` and `Grafana`.
 
-**Graceful Degradation**
-- Data export triggered on any failure
-- Notification sent when script goes down
-- No data loss during errors
+So the data, in `InfluxDB`, was now stored in a database, in a single table, no more multiple files where data is scattered all over.
+And by the usage of `Grafana`, I didn't have to generate any charts on my own, I could just do it directly in the tool, while I could customize them easily using UI.
 
-**Smart Data Handling**
-- Forward-fill for freezer gaps
-- Backward-fill for fridge gaps
-- Pivot tables for multi-sensor comparison
+## Real-world application
 
-## The Outcome
+So in this case it was my personal application of the IoT monitoring, but in a business settings the process would be more or less the same:
+- Retreving the data from a device (could be anything, and way more of them)
+- Saving the data (files, database, we could also send the data to some server or to the cloud)
+- Monitoring the data and getting the insights
 
-The monitoring system successfully identified the refrigerator malfunction - the freezer showed high temperature amplitude, confirming my suspicions. The data provided concrete evidence for the appliance replacement decision.
+## Professional Takeaways
 
-## Skills Demonstrated
-
-- **IoT Hardware Integration**: Physical sensor wiring, GPIO interface
-- **Time-Series Data Engineering**: InfluxDB, batch processing
-- **Monitoring & Observability**: Alerting strategies, Grafana dashboards
-- **Production Thinking**: Error handling, rate limiting, graceful degradation
-
-## Personal Note
-
-This project perfectly embodies my approach: solving real problems while learning new technologies. Not a tutorial project, but a practical solution that delivered measurable value.
+- So that project set me up for being able to work within IoT realm, starting from as far as from setting up the hardware as well
+- But it's not only limited to IoT, as in general it has exposed me to real-time data retrieval and monitoring
+- And additionally, using Raspberry Pi microcomputer has forced me to learn a little bit more on the infrastructure side, managing the system myself and using terminal as well
