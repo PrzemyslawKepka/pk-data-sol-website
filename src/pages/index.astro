@@ -97,31 +97,31 @@ const servicesSteps = [
     <!-- About Section -->
     <section id="about" class="py-8 bg-slate-800">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-8">
+        <div class="text-center mb-4">
           <h2 class="text-4xl font-bold mb-2 text-slate-100">{t.about.title}</h2>
           <p class="text-xl text-amber-500">{t.about.subtitle}</p>
         </div>
 
         <!-- Description and Fact Boxes -->
-        <div class="mb-10">
-          <p class="text-lg leading-relaxed text-slate-300 mb-8 max-w-4xl mx-auto text-center">{t.about.background.replace('{years}', String(yearsOfExperience))}</p>
+        <div class="mb-5">
+          <p class="text-lg leading-relaxed text-slate-300 mb-4 max-w-4xl mx-auto text-center">{t.about.background.replace('{years}', String(yearsOfExperience))}</p>
 
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            <div class="bg-slate-700 p-5 rounded-xl text-center">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
+            <div class="bg-slate-700 p-3 rounded-xl text-center">
               <div class="text-3xl font-extrabold text-amber-500">{yearsOfExperience}+</div>
               <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.yearsExpLabel}</div>
             </div>
-            <div class="bg-slate-700 p-5 rounded-xl text-center">
+            <div class="bg-slate-700 p-3 rounded-xl text-center">
               <div class="text-3xl font-extrabold text-amber-500">{t.about.industriesCount}</div>
               <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.industriesLabel}</div>
             </div>
-            <div class="bg-slate-700 p-5 rounded-xl text-center">
+            <div class="bg-slate-700 p-3 rounded-xl text-center">
               <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.timeSavedPrefix}</div>
               <div class="text-3xl font-extrabold text-amber-500">{t.about.timeSaved}</div>
               <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.timeSavedLabel}</div>
               <div class="text-[0.85rem] text-slate-500 mt-1 normal-case">{t.about.timeSavedDesc}</div>
             </div>
-            <div class="bg-slate-700 p-5 rounded-xl text-center">
+            <div class="bg-slate-700 p-3 rounded-xl text-center">
               <div class="text-3xl font-extrabold text-amber-500">{t.about.solutionsCount}</div>
               <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.solutionsLabel}</div>
             </div>
@@ -129,20 +129,20 @@ const servicesSteps = [
         </div>
 
         <!-- What I Bring -->
-        <div class="mb-10 max-w-2xl mx-auto">
-          <h3 class="text-2xl font-bold mb-6 text-slate-100 text-center">{t.about.valueTitle}</h3>
+        <div class="mb-2 max-w-2xl mx-auto">
+          <h3 class="text-2xl font-bold mb-3 text-slate-100 text-center">{t.about.valueTitle}</h3>
           <ul class="list-none p-0">
-            <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value1}</li>
-            <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value2}</li>
-            <li class="py-3 text-[1.0625rem] text-slate-300 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value3}</li>
+            <li class="py-2 text-[1.0625rem] text-slate-300 border-b border-slate-700 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value1}</li>
+            <li class="py-2 text-[1.0625rem] text-slate-300 border-b border-slate-700 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value2}</li>
+            <li class="py-2 text-[1.0625rem] text-slate-300 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value3}</li>
           </ul>
         </div>
 
         <!-- Industry Experience -->
-        <div class="mt-10">
+        <div class="mt-2">
           <h3 class="text-2xl font-bold text-center mb-2 text-slate-100">{t.about.industriesTitle}</h3>
-          <p class="text-center text-sm text-slate-500 mb-6">{t.about.industriesHint}</p>
-          <div class="flex flex-wrap justify-center gap-4 mb-6">
+          <p class="text-center text-sm text-slate-500 mb-3">{t.about.industriesHint}</p>
+          <div class="flex flex-wrap justify-center gap-3 mb-4">
             {industries.map(industry => (
               <a href={`/projects?industry=${encodeURIComponent(industry.key)}`} class="flex items-center gap-2 py-3 px-6 bg-slate-700 rounded-full border border-slate-600 transition-all hover:border-amber-500 hover:-translate-y-0.5 cursor-pointer">
                 <span class="text-xl">{industry.emoji}</span>
