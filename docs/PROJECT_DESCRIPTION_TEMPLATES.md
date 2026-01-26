@@ -1,89 +1,100 @@
 # Project Description Templates
 
-Use these templates when writing/polishing project descriptions. Choose the template based on project type.
+Use these templates when writing project descriptions. Choose the template based on project type.
 
 ## Guiding Principles
 
-1. **Universal framing** - Describe problems anyone in the industry would recognize
-2. **Outcome-focused** - Lead with what was achieved, not how
-3. **Concise** - 3-5 sentences per section max
-4. **No jargon deep-dives** - Technical details only where they add value
-5. **Problem-first** - The reader should immediately understand *why* this project matters
+1. **Story-driven** - Focus on the WHY before the WHAT. The reader should understand the motivation and context before diving into details.
+2. **Personal, conversational tone** - Write like you're explaining to a colleague, not a formal report. Use "I", ask rhetorical questions, be honest about limitations.
+3. **Connect to real-world value** - Every project should tie back to practical, transferable skills or business applications.
+4. **Bold key phrases** - Use **bold** to highlight important concepts and make sections scannable.
+5. **Nested bullets for complex points** - When a bullet point has multiple aspects, break it into sub-bullets rather than writing a wall of text.
 
 ---
 
-## Template A: Enterprise/Corporate Projects (`projectType: "fte"`)
-
-Use for: Automation projects, ETL pipelines, reporting tools, internal apps at companies.
-
-```markdown
-## The Problem
-
-[1-2 sentences: Universal business pain point - what was inefficient, broken, or missing?]
-[1-2 sentences: Concrete impact - time wasted, errors, bottlenecks, costs]
-
-## The Solution
-
-[1-2 sentences: High-level description of what you built]
-
-### Key Capabilities
-- [Capability 1 - what it does, not how]
-- [Capability 2]
-- [Capability 3]
-
-## Impact
-
-- **[Metric 1]**: [Quantified outcome - time saved, error reduction, etc.]
-- **[Metric 2]**: [Business outcome - adoption, cost savings, etc.]
-- **[Metric 3]**: [Optional - career/cultural impact]
-
-## Technical Highlights
-
-[2-3 bullet points of notable technical decisions or challenges overcome - only if genuinely interesting]
-
-## Personal Note
-
-[1-2 sentences: Why this project mattered to you personally or what it taught you]
-```
-
-**Example opening (Entity Report):**
-> ## The Problem
->
-> Executive-level financial reports often require aggregating data from multiple systems into polished presentations - a process that typically involves days of manual Excel work and is prone to human error. At Santander, the monthly Credit Risk report for C-level executives followed exactly this pattern: multiple data sources, complex transformations, and a VBA-powered Excel process that took days to complete.
-
----
-
-## Template B: Side Projects / Personal Learning (`projectType: "side"`)
+## Template A: Side Projects (`projectType: "side"`)
 
 Use for: Hobby projects, learning experiments, open-source tools, personal problem-solving.
 
+**Structure:** Context → Solution → Real-world Application → Professional Takeaways
+
 ```markdown
-## The Motivation
+## Context
 
-[1-2 sentences: What sparked the idea? Personal need, curiosity, or learning goal]
+[Set the scene. What situation led to this project? What problem were you facing personally? Use a conversational tone - rhetorical questions work well here.]
 
-## The Solution
+## Solution
 
-[1-2 sentences: What you built and what it does]
+[What you built and how it works. Can include subsections like "Core Features", "How It Worked", "Technical Implementation" etc.]
 
-### Features
-- [Feature 1]
-- [Feature 2]
-- [Feature 3]
+### Core Features (or similar subsection)
+- [Feature/capability 1]
+- [Feature/capability 2]
+- [Feature/capability 3]
 
-## Key Insights
+## Real-world Application
 
-[2-4 bullet points: What you discovered, learned, or proved through this project]
+[Connect the personal project to broader, transferable skills. How would these same techniques apply in a business context? What patterns are universal?]
 
-## Personal Note
+## Professional Takeaways
 
-[1-2 sentences: Reflection on the project's significance to your growth or its reception]
+- [Key skill or insight gained - **bold** the main point]
+- [Another takeaway - use nested bullets if the point has multiple aspects:]
+  - Sub-point 1
+  - Sub-point 2
+  - Sub-point 3
 ```
 
-**Example opening (Electronics Web Scraping):**
-> ## The Motivation
+**Example opening (WBC Game Assistant):**
+> ## Context
 >
-> Are Black Friday discounts real, or just marketing illusion? Rather than trust retailer claims, I decided to collect months of pricing data and find out empirically.
+> When I briefly returned to play my childhood's favourite computer game, Warlords Battlecry, I realized that the game is actually pretty complicated.
+>
+> Many races, many units with different abilities, types of damage and resistance - it's just hard to grasp it all. And when you play in multiplayer mode, with other people, it's reasonable to try to at least not be very terrible at playing...
+
+---
+
+## Template B: Enterprise/Corporate Projects (`projectType: "fte"`)
+
+Use for: Automation projects, ETL pipelines, reporting tools, internal apps at companies.
+
+**Structure:** Problem Definition → Solution → Impact → Professional Takeaways
+
+```markdown
+## Problem Definition
+
+[Describe the business context and pain point. What was inefficient, broken, or missing? Be specific about the frustrations - crashed Excel, manual copy-paste, days of work, etc.]
+
+## Solution
+
+[What you built. Lead with the high-level approach, then break down into subsections if needed.]
+
+### How It Worked (or "What We Built", etc.)
+- [Capability/step 1]
+- [Capability/step 2]
+- [Capability/step 3]
+
+## Impact
+
+[Quantified outcomes where possible. Time savings, error reduction, cultural shifts. Can be bullet points or prose.]
+
+**Time savings** - [specific improvement]
+
+**[Other impact]** - [description]
+
+## Professional Takeaways
+
+- [Key skill or insight - **bold** the main learning]
+- [Another takeaway]
+- [Growth/milestone if relevant]
+```
+
+**Example opening (Bank Statement Automation):**
+> ## Problem Definition
+>
+> Processes in Accounting and Finance might quite often include a significant amount of manual overhead. Many systems, many files being moved around. And this means that accountants, instead of focusing on core work requiring real domain knowledge, will spend their time on tedious tasks like just copying and pasting data between files and systems.
+>
+> And my task, processing bank statements, was no different...
 
 ---
 
@@ -91,93 +102,70 @@ Use for: Hobby projects, learning experiments, open-source tools, personal probl
 
 Use for: Ongoing projects, products in development, active side ventures.
 
-```markdown
-## The Problem
+**Structure:** Same as Side Projects (Context → Solution → Real-world Application → Professional Takeaways)
 
-[1-2 sentences: Market gap or personal pain point being addressed]
-
-## The Solution
-
-[1-2 sentences: What you're building]
-
-### Current Features
-- [Feature 1]
-- [Feature 2]
-- [Feature 3]
-
-## Technical Approach
-
-[Brief description of architecture decisions and why - 2-3 sentences or bullets]
-
-## Status & Learnings
-
-[Where the project stands and what you've learned so far]
-```
-
----
-
-## Template D: Web Applications (Public-Facing)
-
-Use for: CM Rentals, portfolio site, tools with live URLs.
-
-```markdown
-## The Problem
-
-[1-2 sentences: Gap in existing solutions or unmet need]
-
-## The Solution
-
-[What you built and who it serves]
-
-### Key Features
-- [User-facing feature 1]
-- [User-facing feature 2]
-- [User-facing feature 3]
-
-## Technical Decisions
-
-[2-3 key architectural choices and their rationale]
-
-## Reception & Lessons
-
-[User feedback, metrics, or key learnings from building/launching]
-```
+These follow the side project template since they're typically personal initiatives, but with present-tense framing where appropriate.
 
 ---
 
 ## Section Header Reference
 
-For consistency, use these exact headers:
+| Project Type | Sections |
+|--------------|----------|
+| Side (`side`) | Context → Solution → Real-world Application → Professional Takeaways |
+| Corporate (`fte`) | Problem Definition → Solution → Impact → Professional Takeaways |
+| Current (`current`) | Context → Solution → Real-world Application → Professional Takeaways |
 
-| Purpose | Header |
-|---------|--------|
-| Why the project exists | `## The Problem` (enterprise/current) or `## The Motivation` (side) |
-| What was built | `## The Solution` |
-| Quantified outcomes | `## Impact` |
-| Technical details | `## Technical Highlights` or `## Technical Approach` |
-| Learnings | `## Key Insights` or `## Lessons Learned` |
-| Personal reflection | `## Personal Note` |
+Optional additional sections that can be inserted:
+- **Technical Evolution** - when a project went through significant iterations/phases
+- **Reception** - when there's notable feedback from users/community
+
+---
+
+## Styling Guidelines
+
+### Bold usage
+- **Bold key phrases** within paragraphs to aid scanning
+- Bold the main concept at the start of bullet points
+- Don't over-bold - typically 1-2 bolded phrases per paragraph max
+
+### Bullet points
+- Use bullets for lists of features, takeaways, or steps
+- Use **nested bullets** when a single point has multiple aspects:
+  ```markdown
+  - This project helped me understand **when Streamlit is a good fit**:
+    - The app is data-focused - playing to the library's strength
+    - We're not fighting against the framework
+    - Minimal session state needed
+  ```
+- Keep bullet text concise - if it's becoming a paragraph, restructure
+
+### Tone
+- Conversational: "So I thought...", "Well, not really...", "The thing is..."
+- Rhetorical questions: "But are those discounts actually real?"
+- Honest admissions: "...as far as I'm aware it was not permanently adopted 😅"
+- Active voice: "I built" not "A solution was developed"
 
 ---
 
 ## Writing Tips
 
-### For "The Problem" section:
-- Start with the universal pain, not your specific situation
-- Bad: "At Company X, we had a spreadsheet that..."
-- Good: "Financial reconciliation across enterprise systems typically requires..."
+### For "Context" / "Problem Definition":
+- Start with the situation, not the solution
+- Make the reader feel the frustration or curiosity
+- Rhetorical questions engage the reader
 
-### For "The Solution" section:
-- Lead with *what*, not *how*
-- Save implementation details for Technical section
-- Focus on capabilities, not code
+### For "Solution":
+- Lead with what it does, not how it's built
+- Technical details should serve the narrative
+- Use subsections to break up longer descriptions
 
-### For "Impact" section:
-- Quantify wherever possible (%, hours, users)
-- Include business outcomes, not just technical metrics
-- Career impact is valid (promotions, new responsibilities)
+### For "Real-world Application":
+- Connect the specific project to universal patterns
+- "The same techniques apply to..." or "In a business setting..."
+- Show transferable value
 
-### For "Personal Note":
-- Keep it brief (1-2 sentences)
-- Connect to your broader journey or values
-- Optional - skip if it would feel forced
+### For "Professional Takeaways":
+- Focus on skills gained and insights learned
+- Be specific: "First time deploying to Airflow" not "Learned about orchestration"
+- It's okay to mention career milestones (first large project, team leadership, etc.)
