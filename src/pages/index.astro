@@ -102,39 +102,45 @@ const servicesSteps = [
           <p class="text-xl text-amber-500">{t.about.subtitle}</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div>
-            <p class="text-lg leading-relaxed text-slate-300 mb-8">{t.about.background.replace('{years}', String(yearsOfExperience))}</p>
+        <!-- Description and Fact Boxes -->
+        <div class="mb-10">
+          <p class="text-lg leading-relaxed text-slate-300 mb-8 max-w-4xl mx-auto text-center">{t.about.background.replace('{years}', String(yearsOfExperience))}</p>
 
-            <div class="grid grid-cols-2 gap-4">
-              <div class="bg-slate-700 p-5 rounded-xl text-center">
-                <div class="text-3xl font-extrabold text-amber-500">{yearsOfExperience}+</div>
-                <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.yearsExpLabel}</div>
-              </div>
-              <div class="bg-slate-700 p-5 rounded-xl text-center">
-                <div class="text-3xl font-extrabold text-amber-500">{t.about.industriesCount}</div>
-                <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.industriesLabel}</div>
-              </div>
-              <div class="bg-slate-700 p-5 rounded-xl text-center">
-                <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.timeSavedPrefix}</div>
-                <div class="text-3xl font-extrabold text-amber-500">{t.about.timeSaved}</div>
-                <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.timeSavedLabel}</div>
-                <div class="text-[0.85rem] text-slate-500 mt-1 normal-case">{t.about.timeSavedDesc}</div>
-              </div>
-              <div class="bg-slate-700 p-5 rounded-xl text-center">
-                <div class="text-3xl font-extrabold text-amber-500">{t.about.solutionsCount}</div>
-                <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.solutionsLabel}</div>
-              </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div class="bg-slate-700 p-5 rounded-xl text-center">
+              <div class="text-3xl font-extrabold text-amber-500">{yearsOfExperience}+</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.yearsExpLabel}</div>
+            </div>
+            <div class="bg-slate-700 p-5 rounded-xl text-center">
+              <div class="text-3xl font-extrabold text-amber-500">{t.about.industriesCount}</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.industriesLabel}</div>
+            </div>
+            <div class="bg-slate-700 p-5 rounded-xl text-center">
+              <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.timeSavedPrefix}</div>
+              <div class="text-3xl font-extrabold text-amber-500">{t.about.timeSaved}</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.timeSavedLabel}</div>
+              <div class="text-[0.85rem] text-slate-500 mt-1 normal-case">{t.about.timeSavedDesc}</div>
+            </div>
+            <div class="bg-slate-700 p-5 rounded-xl text-center">
+              <div class="text-3xl font-extrabold text-amber-500">{t.about.solutionsCount}</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.solutionsLabel}</div>
             </div>
           </div>
+        </div>
 
-          <div>
-            <h3 class="text-2xl font-bold mb-6 text-slate-100">{t.about.valueTitle}</h3>
-            <ul class="list-none p-0">
-              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value1}</li>
-              <li class="py-3 text-[1.0625rem] text-slate-300 border-b border-slate-700 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value2}</li>
-              <li class="py-3 text-[1.0625rem] text-slate-300 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value3}</li>
-            </ul>
+        <!-- What I Bring -->
+        <div class="mb-10">
+          <h3 class="text-2xl font-bold mb-6 text-slate-100 text-center">{t.about.valueTitle}</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            <div class="bg-slate-700/50 p-5 rounded-xl border border-slate-600">
+              <p class="text-[1.0625rem] text-slate-300 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value1}</p>
+            </div>
+            <div class="bg-slate-700/50 p-5 rounded-xl border border-slate-600">
+              <p class="text-[1.0625rem] text-slate-300 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value2}</p>
+            </div>
+            <div class="bg-slate-700/50 p-5 rounded-xl border border-slate-600">
+              <p class="text-[1.0625rem] text-slate-300 pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.about.value3}</p>
+            </div>
           </div>
         </div>
 
