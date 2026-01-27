@@ -15,39 +15,63 @@ lang: "en"
 
 ## Context
 
-When I arrived in Chiang Mai, Thailand, I needed to find a monthly rental for a few months. Sounds simple enough, right?
+Apartment hunt might be a daunting task on many levels - and one of them might be the online search, especially if you use platforms that do not provide any map functionality to see the location of the place you might be interested in. So you end up with a list of places worth checking, but you cannot really visualize them together on the map, which would definitely be helpful in that process.
 
-Well, not really. Airbnb works for month-long stays, but it's often overpriced for what you get. The real deals are in Facebook groups - locals and agents post there. But Facebook groups have no map functionality whatsoever. You're scrolling through hundreds of posts, trying to figure out where each place actually is, whether it's close to what you need, and comparing options becomes a nightmare.
-
-So I thought - **why not build a tool that solves this?**
+So during my personal search for an apartment in the city of Chiang Mai, Thailand, I've come up with an idea of creating a simple tool, where I would save places through a basic form and then all of them would be displayed on a map.
 
 ## Solution
 
-I've built CM Rentals - a web application that displays rental properties on an interactive map, making it actually possible to see where everything is and compare options at a glance.
+So what started as a simple, personal tool ended up as CM Rentals - a web application that displays rental properties on an interactive map, making it actually possible to see where everything is and compare options at a glance.
 
 ### Core Features
 
 - **Interactive map with all properties** - finally you can see the locations
-- **Filtering by price, amenities, and property type** - to narrow down to what you actually need
-- **Detailed property pages** - with photos and contact info
+<img src="/images/projects/cm-rentals/map-with-popover.png" alt="Map details" width=500/>
+
+- **Properties table** - beside the map, all the places can be seen in a tabular format as well
+<img src="/images/projects/cm-rentals/listings-table.png" alt="Listings table"/>
+
+- **Property pages** - dedicated pages for every property
+<img src="/images/projects/cm-rentals/listing-details.png" alt="Listing details" width=400/>
+
+- **Availability tracking** - every place can retain availability history, displaying not only the most up-to-date status, but the previous ones as well
+<img src="/images/projects/cm-rentals/availability.png" alt="Availability section"/>
+
+- **Interactive filters** - to narrow down to what you actually need
 
 ### Technical Evolution
 
-The project went through two versions:
-- **First, a Streamlit prototype** - quick to build, good for validating if the idea even makes sense
-- **Then a Flask rewrite** - because Streamlit has SEO limitations and I wanted the site to be discoverable on Google
+The project went through three phases:
+- **Streamlit prototype as an internal tool** - used for saving and displaying places
+- **public Streamlit version** - first public version, only for viewing places
+- **Flask version** - the final, production-grade version, rewritten to Flask
 
-I'm using **Supabase** for the database (PostgreSQL-based, free tier is generous), **Leaflet.js** for the maps, and the whole thing is **self-hosted on a VPS** for full control.
+So I've started the app with Streamlit, which is great for prototyping. And I've went with it as far as to a public app, available on the internet, not as an internal tool only. However, with Streamlit limitations in both functional and visual aspects, paired with limited SEO options, I've decided to revamp the app to a 'proper web application', so that's how I ended up with Flask.
+
+(More about Streamlit to Flask transition in a dedicated blog post)
+
+### App Reception
+
+As my internal tool has successfully completed it's task for me, I've realized that I have gather quite a lot of information, in particular a quite extensive list of places offering monthly rental, which might be useful also for other people looking for an apartment in the city.
+
+So I've posted the app on Facebook and Reddit, and especially on Reddit, where I have also shared some more tips, it had very positive reception:
+- 28k post views in total
+- 32 upvotes
+- 86,4% upvote to downvote ratio
+- 12 comments, claiming the app usefulness
+
+<img src="/images/projects/cm-rentals/reddit-stats.png" alt="Reddit statistics" width=400/>
+
 
 ## Real-world Application
 
-So what happened when I shared it? I posted on Reddit and in local Facebook groups, and actually got positive feedback. People started using it to find accommodations, which was quite validating.
+This project is a good example of **turning a personal pain point into something useful for others**. The data engineering side (collecting, storing, displaying property data) might be straightforward, but the real value is in solving an actual problem that people have.
 
-This project is a good example of **turning a personal pain point into something useful for others**. The data engineering side (collecting, storing, displaying property data) is straightforward, but the real value is in solving an actual problem that people have.
+In this case I cannot commercialize this at all, as this would be against my visa, but this is how businesses can be born - starting from a real problem, which resonate to more people, and then building up the solution.
 
 ## Professional Takeaways
 
 - **The best project ideas often come from your own problems** - if something frustrates you, it probably frustrates others too
-- **Start with an MVP, then iterate** - the Streamlit prototype helped me validate the idea before investing more time
-- **Streamlit has its place, but it's not for everything** - for a public-facing site that needs SEO, a proper web framework is better
+- **Start with an MVP, then iterate** - first version doesn't have to be perfect, if it brings some value then it will be appreciated anyway, and polished solution can come loter 
+- **Embrace tool strengths, but replace it as soon as it's not a best fit anymore** - each tools has its own area where it shines, but at the same time it might be underwhelming at other aspects. So if your project grows, the scope has changed and previously perfect tool does not deliver anymore, then you shouldn't hesitate with ditching it and going with a different tool (when the switch is feasible of course)
 - **Community feedback is invaluable** - real users tell you what matters
