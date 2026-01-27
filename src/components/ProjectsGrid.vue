@@ -129,7 +129,13 @@ function toggleTypeFilter(key: string) {
     } else {
       newSet.add(key);
     }
-    activeTypeFilters.value = newSet;
+    // Auto-switch to "All" if all available options are selected
+    const availableTypes = ['current', 'fte', 'side'].filter(t => (typeCounts.value[t] || 0) > 0);
+    if (availableTypes.length > 0 && availableTypes.every(t => newSet.has(t))) {
+      activeTypeFilters.value = new Set();
+    } else {
+      activeTypeFilters.value = newSet;
+    }
   }
 }
 
@@ -143,7 +149,14 @@ function toggleCategoryFilter(key: string) {
     } else {
       newSet.add(key);
     }
-    activeCategoryFilters.value = newSet;
+    // Auto-switch to "All" if all available options are selected
+    const categoryKeys = ['Web Application', 'Automation', 'Developer Tools', 'Dashboard', 'ETL Pipeline', 'Data Analysis', 'Web Scraping'];
+    const availableCategories = categoryKeys.filter(c => (categoryCounts.value[c] || 0) > 0);
+    if (availableCategories.length > 0 && availableCategories.every(c => newSet.has(c))) {
+      activeCategoryFilters.value = new Set();
+    } else {
+      activeCategoryFilters.value = newSet;
+    }
   }
 }
 
@@ -157,7 +170,14 @@ function toggleIndustryFilter(key: string) {
     } else {
       newSet.add(key);
     }
-    activeIndustryFilters.value = newSet;
+    // Auto-switch to "All" if all available options are selected
+    const industryKeys = ['Finance', 'Credit Risk', 'Real Estate', 'IoT', 'Accounting', 'Social Media', 'Gaming'];
+    const availableIndustries = industryKeys.filter(i => (industryCounts.value[i] || 0) > 0);
+    if (availableIndustries.length > 0 && availableIndustries.every(i => newSet.has(i))) {
+      activeIndustryFilters.value = new Set();
+    } else {
+      activeIndustryFilters.value = newSet;
+    }
   }
 }
 
