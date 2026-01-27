@@ -419,6 +419,7 @@ const typeLabels: Record<string, string> = {
       <div class="flex flex-wrap justify-center gap-3">
         <button
           v-for="type in projectTypes"
+          v-show="type.key === 'all' || (typeCounts[type.key] || 0) > 0"
           :key="type.key"
           @click="toggleTypeFilter(type.key)"
           :class="[
@@ -436,6 +437,7 @@ const typeLabels: Record<string, string> = {
       <div class="flex flex-wrap justify-center gap-3">
         <button
           v-for="category in categories"
+          v-show="category.key === 'all' || (categoryCounts[category.key] || 0) > 0"
           :key="category.key"
           @click="toggleCategoryFilter(category.key)"
           :class="[
@@ -453,6 +455,7 @@ const typeLabels: Record<string, string> = {
       <div class="flex flex-wrap justify-center gap-3">
         <button
           v-for="industry in industries"
+          v-show="industry.key === 'all' || (industryCounts[industry.key] || 0) > 0"
           :key="industry.key"
           @click="toggleIndustryFilter(industry.key)"
           :class="[
