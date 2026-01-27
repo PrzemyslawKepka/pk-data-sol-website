@@ -129,7 +129,13 @@ function toggleTypeFilter(key: string) {
     } else {
       newSet.add(key);
     }
-    activeTypeFilters.value = newSet;
+    // Auto-switch to "All" if all available options are selected
+    const availableTypes = ['current', 'fte', 'side'].filter(t => (typeCounts.value[t] || 0) > 0);
+    if (availableTypes.length > 0 && availableTypes.every(t => newSet.has(t))) {
+      activeTypeFilters.value = new Set();
+    } else {
+      activeTypeFilters.value = newSet;
+    }
   }
 }
 
@@ -143,7 +149,14 @@ function toggleCategoryFilter(key: string) {
     } else {
       newSet.add(key);
     }
-    activeCategoryFilters.value = newSet;
+    // Auto-switch to "All" if all available options are selected
+    const categoryKeys = ['Web Application', 'Automation', 'Developer Tools', 'Dashboard', 'ETL Pipeline', 'Data Analysis', 'Web Scraping'];
+    const availableCategories = categoryKeys.filter(c => (categoryCounts.value[c] || 0) > 0);
+    if (availableCategories.length > 0 && availableCategories.every(c => newSet.has(c))) {
+      activeCategoryFilters.value = new Set();
+    } else {
+      activeCategoryFilters.value = newSet;
+    }
   }
 }
 
@@ -157,7 +170,14 @@ function toggleIndustryFilter(key: string) {
     } else {
       newSet.add(key);
     }
-    activeIndustryFilters.value = newSet;
+    // Auto-switch to "All" if all available options are selected
+    const industryKeys = ['Finance', 'Credit Risk', 'Real Estate', 'IoT', 'Accounting', 'Social Media', 'Gaming'];
+    const availableIndustries = industryKeys.filter(i => (industryCounts.value[i] || 0) > 0);
+    if (availableIndustries.length > 0 && availableIndustries.every(i => newSet.has(i))) {
+      activeIndustryFilters.value = new Set();
+    } else {
+      activeIndustryFilters.value = newSet;
+    }
   }
 }
 
@@ -237,6 +257,101 @@ const industries = computed(() => [
   { key: 'Social Media', label: props.translations.industries.socialMedia },
   { key: 'Gaming', label: props.translations.industries.gaming }
 ]);
+
+// Filter counts - calculated based on OTHER active filters
+// Type counts: filtered by current category and industry selections
+const typeCounts = computed(() => {
+  const counts: Record<string, number> = { all: 0 };
+
+  let baseFiltered = props.projects;
+
+  // Apply category filters
+  if (activeCategoryFilters.value.size > 0) {
+    baseFiltered = baseFiltered.filter(p =>
+      p.data.categories.some(cat => activeCategoryFilters.value.has(cat))
+    );
+  }
+
+  // Apply industry filters
+  if (activeIndustryFilters.value.size > 0) {
+    baseFiltered = baseFiltered.filter(p =>
+      p.data.industry && activeIndustryFilters.value.has(p.data.industry)
+    );
+  }
+
+  // Count all projects matching current filters
+  counts.all = baseFiltered.length;
+
+  // Count per type
+  for (const project of baseFiltered) {
+    const type = project.data.projectType;
+    counts[type] = (counts[type] || 0) + 1;
+  }
+
+  return counts;
+});
+
+// Category counts: filtered by current type and industry selections
+const categoryCounts = computed(() => {
+  const counts: Record<string, number> = { all: 0 };
+
+  let baseFiltered = props.projects;
+
+  // Apply type filters
+  if (activeTypeFilters.value.size > 0) {
+    baseFiltered = baseFiltered.filter(p => activeTypeFilters.value.has(p.data.projectType));
+  }
+
+  // Apply industry filters
+  if (activeIndustryFilters.value.size > 0) {
+    baseFiltered = baseFiltered.filter(p =>
+      p.data.industry && activeIndustryFilters.value.has(p.data.industry)
+    );
+  }
+
+  // Count all projects matching current filters
+  counts.all = baseFiltered.length;
+
+  // Count per category (a project can have multiple categories)
+  for (const project of baseFiltered) {
+    for (const category of project.data.categories) {
+      counts[category] = (counts[category] || 0) + 1;
+    }
+  }
+
+  return counts;
+});
+
+// Industry counts: filtered by current type and category selections
+const industryCounts = computed(() => {
+  const counts: Record<string, number> = { all: 0 };
+
+  let baseFiltered = props.projects;
+
+  // Apply type filters
+  if (activeTypeFilters.value.size > 0) {
+    baseFiltered = baseFiltered.filter(p => activeTypeFilters.value.has(p.data.projectType));
+  }
+
+  // Apply category filters
+  if (activeCategoryFilters.value.size > 0) {
+    baseFiltered = baseFiltered.filter(p =>
+      p.data.categories.some(cat => activeCategoryFilters.value.has(cat))
+    );
+  }
+
+  // Count all projects matching current filters
+  counts.all = baseFiltered.length;
+
+  // Count per industry
+  for (const project of baseFiltered) {
+    if (project.data.industry) {
+      counts[project.data.industry] = (counts[project.data.industry] || 0) + 1;
+    }
+  }
+
+  return counts;
+});
 
 const filteredProjects = computed(() => {
   let filtered = props.projects;
@@ -324,6 +439,7 @@ const typeLabels: Record<string, string> = {
       <div class="flex flex-wrap justify-center gap-3">
         <button
           v-for="type in projectTypes"
+          v-show="type.key === 'all' || (typeCounts[type.key] || 0) > 0"
           :key="type.key"
           @click="toggleTypeFilter(type.key)"
           :class="[
@@ -333,7 +449,7 @@ const typeLabels: Record<string, string> = {
               : 'bg-slate-800 text-slate-300 border border-slate-700 hover:border-amber-500 hover:text-amber-500'
           ]"
         >
-          {{ type.label }}
+          {{ type.label }} <span class="text-xs opacity-70">({{ typeCounts[type.key] || 0 }})</span>
         </button>
       </div>
 
@@ -341,6 +457,7 @@ const typeLabels: Record<string, string> = {
       <div class="flex flex-wrap justify-center gap-3">
         <button
           v-for="category in categories"
+          v-show="category.key === 'all' || (categoryCounts[category.key] || 0) > 0"
           :key="category.key"
           @click="toggleCategoryFilter(category.key)"
           :class="[
@@ -350,7 +467,7 @@ const typeLabels: Record<string, string> = {
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-amber-500 hover:text-amber-500'
           ]"
         >
-          {{ category.label }}
+          {{ category.label }} <span class="text-xs opacity-70">({{ categoryCounts[category.key] || 0 }})</span>
         </button>
       </div>
 
@@ -358,6 +475,7 @@ const typeLabels: Record<string, string> = {
       <div class="flex flex-wrap justify-center gap-3">
         <button
           v-for="industry in industries"
+          v-show="industry.key === 'all' || (industryCounts[industry.key] || 0) > 0"
           :key="industry.key"
           @click="toggleIndustryFilter(industry.key)"
           :class="[
@@ -367,7 +485,7 @@ const typeLabels: Record<string, string> = {
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-pink-500 hover:text-pink-500'
           ]"
         >
-          {{ industry.label }}
+          {{ industry.label }} <span class="text-xs opacity-70">({{ industryCounts[industry.key] || 0 }})</span>
         </button>
       </div>
 
