@@ -13,9 +13,16 @@ lang: "en"
 
 ## Problem Definition
 
-Every month, the Credit Risk department had to produce the "Entity Report" - a comprehensive C-level summary of all risk information for the Polish branch of the bank. Dozens of pages of PowerPoint slides, packed with charts and tables.
+"Can you bring this to Excel?"
+"Can we have it as PowerPoint slides?"
 
-The existing process? Designed by a major consulting company, and it was... painful:
+These words might be like a nightmare in the data world, haunting many people. But sometimes we don't really have an impact on that, for instance due to some formal or regulatory reasons.
+
+However, what we do have an impact on is **how we generate these slides** (or Excel files, but in this case it will be the slides).
+
+So in this project, every month, the Credit Risk department had to produce the "Entity Report" - a comprehensive C-level summary of all risk information for the Polish branch of the bank. Dozens of pages of PowerPoint slides, packed with charts and tables.
+
+And the existing process? Designed by a major consulting company, and it was... painful:
 - Multiple Excel sheets aggregating data from different sources
 - SQL queries feeding into Excel, which then fed into more Excel
 - VBA macros trying to generate the final PowerPoint
@@ -25,9 +32,11 @@ And when something broke (which it did), debugging VBA macros in Excel was not e
 
 ## Solution
 
-I was tasked with **overhauling the entire process** and creating a Python-based solution. The key requirement was simple: at the end, a less technical team member should be able to generate the report themselves, without needing to understand the code.
+So my responsibility **overhaul the entire process** and creating a Python-based solution. The key requirement was simple: at the end, a less technical team member should be able to generate the report themselves, without needing to understand the code.
 
-So what I've built was:
+And the rest? How to implement? Well, it was left for my ~~fantasy~~...expertise I mean, of course.
+
+And what I've built together with my coworkers was:
 - **Data layer** connecting to multiple SQL databases and processing Excel files
 - **Visualization engine** generating dozens of charts with Plotly, exported as images
 - **Report generator** using `python-pptx` to create and manipulate PowerPoint slides, including dynamic slide creation and table generation

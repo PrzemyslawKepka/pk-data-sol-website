@@ -12,6 +12,8 @@ lang: "en"
 
 ## Problem Definition
 
+What happens when a tool becomes popular but nobody coordinates how it's used?
+
 Streamlit was growing rapidly within our Business Intelligence department - around 150 people including data engineers, scientists, and analysts. Different teams were building applications independently, which led to the predictable problems:
 
 - **Inconsistent project structures** - everyone organizing code differently

@@ -13,7 +13,11 @@ lang: "en"
 
 ## Problem Definition
 
-Working in the Financial Systems team at JLL, one of my recurring tasks was **reconciling data between multiple enterprise systems**:
+Do the numbers match?
+
+That's the fundamental question in data reconciliation. And when you're dealing with **multiple enterprise systems**, getting to the answer can be surprisingly tedious.
+
+Working in the Financial Systems team at JLL, one of my recurring tasks was exactly this - **reconciling data between multiple enterprise systems**:
 - Planning & Analytics (IBM Planning Analytics)
 - Budgeting (EPBCS)
 - Financial Consolidation (OneStream)
