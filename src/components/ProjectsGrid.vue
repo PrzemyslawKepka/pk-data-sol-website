@@ -428,7 +428,7 @@ const typeLabels: Record<string, string> = {
               : 'bg-slate-800 text-slate-300 border border-slate-700 hover:border-amber-500 hover:text-amber-500'
           ]"
         >
-          {{ type.label }} ({{ typeCounts[type.key] || 0 }})
+          {{ type.label }} <span class="text-xs opacity-70">({{ typeCounts[type.key] || 0 }})</span>
         </button>
       </div>
 
@@ -445,7 +445,7 @@ const typeLabels: Record<string, string> = {
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-amber-500 hover:text-amber-500'
           ]"
         >
-          {{ category.label }} ({{ categoryCounts[category.key] || 0 }})
+          {{ category.label }} <span class="text-xs opacity-70">({{ categoryCounts[category.key] || 0 }})</span>
         </button>
       </div>
 
@@ -462,7 +462,7 @@ const typeLabels: Record<string, string> = {
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-pink-500 hover:text-pink-500'
           ]"
         >
-          {{ industry.label }} ({{ industryCounts[industry.key] || 0 }})
+          {{ industry.label }} <span class="text-xs opacity-70">({{ industryCounts[industry.key] || 0 }})</span>
         </button>
       </div>
 
