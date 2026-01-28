@@ -38,7 +38,7 @@ I used proper OOP here - a `TextParams` class encapsulates all the text renderin
 
 The project got **3 GitHub stars without any marketing whatsoever**. No LinkedIn posts, no Reddit sharing, nothing on the Streamlit forums.
 
-How did people find it? Probably Google searches for "streamlit meme generator" or similar. Which means **the project filled a real gap** - people were looking for this, and there wasn't much else out there.
+How did people find it? Probably Google searches for "streamlit meme generator" or similar (although when I tried to do the Google search myself I would never see my repository). But it means that **the project filled a real gap** - people could have been looking for image editing in Streamlit, and there wasn't much else out there.
 
 ## Real-world Application
 
@@ -47,10 +47,10 @@ This is essentially an **image processing application with a user interface**:
 - Processing with Pillow (text rendering, positioning)
 - Delivering output (the final image)
 
-The same patterns apply to any tool where users need to manipulate images - watermarking, resizing, format conversion, adding overlays. The Streamlit + Pillow combination works well for quick internal tools.
+The same patterns apply to any tool where users need to manipulate images - watermarking, resizing, format conversion, adding overlays. The Streamlit + Pillow combination works well for quick internal tools. And Streamlit's auto reload after every action is actually desirable here, as with image editing we want to see changes immediately.
 
 ## Professional Takeaways
 
-- **Quality work finds its audience** - even without promotion, if you solve a real problem, people will discover it
+- **Quality work finds its audience** - even without promotion, if you solve a real problem, people will discover it (Yes, 3 stars ain't much, but it was literally shared nowhere at all)
 - **OOP has its place** - the TextParams class made the code much cleaner than having duplicate logic for top and bottom text
 - **Cross-platform considerations** - font paths are one of those things that catch you if you don't think about it upfront
