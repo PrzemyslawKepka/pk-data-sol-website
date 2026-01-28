@@ -13,14 +13,14 @@ lang: "en"
 
 ## Problem Definition
 
-"Can you bring this to Excel?"
-"Can we have it as PowerPoint slides?"
+*"Can you bring this to Excel?"*
+*"Can we have it as PowerPoint slides?"*
 
 These words might be like a nightmare in the data world, haunting many people. But sometimes we don't really have an impact on that, for instance due to some formal or regulatory reasons.
 
 However, what we do have an impact on is **how we generate these slides** (or Excel files, but in this case it will be the slides).
 
-And of the biggest slides decks I have encountered was "Entity Report" - a comprehensive C-level summary of all risk information for the Polish branch of the bank, created by Credit Risk department on a monthly basis. Dozens of pages of PowerPoint slides, packed with charts and tables.
+And one of the biggest slide decks I have encountered was **"Entity Report"** - a comprehensive **C-level summary** of all risk information for the Polish branch of the bank, created by Credit Risk department on a **monthly basis**. Dozens of pages of PowerPoint slides, packed with charts and tables.
 
 And how to create it? The process was already semi-automated, Excel-based:
 - Source data would come from SQL database and other Excel files
@@ -28,17 +28,17 @@ And how to create it? The process was already semi-automated, Excel-based:
 - Based on loaded source data, charts and tables were generated inside the Excel file
 - And then VBA macros would generate PowerPoint file, taking tables and charts created in the Excel file
 
-Does not sound that bad? Could be worse, that's true, but it still had some pain points:
-- Only part of the whole process was covered by the centalized Excel file
-- Beside charts and tables, there was way more content to be added to the slides themselves, as well as pre-made slides to be integrated as a whole deck, so a lot of manual work was still required
-- Checking the availability of source data or running the whole process in seperate, modular parts was not really possible
-- And the maintenance of VBA macros wasn't the most pleasant experience
+Does not sound that bad? Could be worse, that's true, but it still had some **pain points**:
+- Only **part of the whole process** was covered by the centralized Excel file
+- Besides charts and tables, there was way more content to be added to the slides themselves, as well as pre-made slides to be integrated as a whole deck, so **a lot of manual work** was still required
+- Checking the **availability of source data** or running the whole process in **separate, modular parts** was not really possible
+- And the **maintenance of VBA macros** wasn't the most pleasant experience
 - So in the end, **the entire process took days to complete**
 
 
 ## Solution
 
-So my responsibility was to **overhaul the entire process** and creating a Python-based solution. The key requirement was simple: at the end, a less technical team member should be able to generate the report themselves, without needing to understand the python code.
+So my responsibility was to **overhaul the entire process** and creating a Python-based solution. The key requirement was simple: at the end, a less technical team member should be able to generate the report themselves, without needing to understand the Python code.
 
 And the rest? How to implement it? Well, it was left for my ~~fantasy~~...expertise I mean, of course.
 
@@ -54,17 +54,17 @@ The interface was crucial - it made the whole thing accessible to non-technical 
 
 **Time savings** - a reduction from up to a few days to hours, or just 1-2 days.
 
-It was still not 100% fully automated process, as there was a need of a human involvement anyway, like Subject Matter Experts confirming the final content of the slides, or the requirements or source data would change over time, but it was a very significant reduction of manual work required.
+It was still not a 100% fully automated process, as there was a need for human involvement anyway, like Subject Matter Experts confirming the final content of the slides, or the requirements or source data would change over time, but it was a very significant reduction of manual work required.
 
-**Process modularity and reliability** - the process flow became clearly defined now, with an ability to resume the process not from scrath all the time, but from a selected module
+**Process modularity and reliability** - the process flow became clearly defined now, with an ability to resume the process not from scratch all the time, but from a selected module
 
-**Promoting the *build in public* approach across the organization**: Additionally, the work on that project was kind of public, shared among python enthusiasts across the whole department, who were also voluntarily participating to the project if their backlog allowed that, so in the end sharing internally developed solutions was promoted across different teams
+**Promoting the *build in public* approach across the organization**: Additionally, the work on that project was kind of public, shared among python enthusiasts across the whole department, who were also voluntarily participating in the project if their backlog allowed that, so in the end sharing internally developed solutions was promoted across different teams
 
 ## Professional Takeaways
 
 This project was also significant milestone in my professional development:
 
-- **First large-scale Python application** - somewhere between 10k-20k lines of code, he biggest thing I had built at that point
+- **First large-scale Python application** - somewhere between 10k-20k lines of code, the biggest thing I had built at that point
 - **Learned proper modularity** - moved from single-file scripts to actual project structure with modules and packages
 - **First real use of classes** - finally applied OOP in a meaningful context
 - **Team leadership** - Responsible for managing interns and junior analysts working on parts of the project
