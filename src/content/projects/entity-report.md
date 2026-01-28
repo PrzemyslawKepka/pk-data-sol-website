@@ -6,7 +6,7 @@ technologies: ["Python", "Streamlit", "pandas", "plotly", "python-pptx", "pyodbc
 image: "/images/projects/entity-report/entity-report-cover.png"
 projectType: "fte"
 company: "Santander Bank Poland"
-year: "2021-2024"
+year: "2021-2023"
 industry: "Credit Risk"
 lang: "en"
 ---
