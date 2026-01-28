@@ -6,7 +6,7 @@ technologies: ["Python", "pandas", "SQLite", "matplotlib", "plotly", "Jupyter", 
 github: "https://github.com/PrzemyslawKepka/facebook-archive-analysis"
 image: "/images/projects/facebook-archive-analysis/facebook-archive-analysis-cover.png"
 projectType: "side"
-year: "2020-2021"
+year: "2020"
 industry: "Social Media"
 lang: "en"
 ---
