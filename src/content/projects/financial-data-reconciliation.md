@@ -17,45 +17,45 @@ lang: "en"
 
 That's the fundamental question in data reconciliation. And when you're dealing with **multiple enterprise systems**, getting to the answer can be surprisingly tedious.
 
-In big organizations, data might actually have quite an extensive journey:
-- The start would be at an ERP System, where the accounting transactions are made (Oracle PeopleSoft Financial)
-- Then there's a separate system for Planning and Analytics (IBM Planning Analytics)
-- And another one for Budgeting (ePBCS)
-- And there's a system for Financial Consolidation as well (OneStream)
+In large organizations, financial data travels quite an extensive journey:
+- It starts in the ERP system, where accounting transactions originate (Oracle PeopleSoft Financials)
+- Then flows to a separate system for Planning and Analytics (IBM Planning Analytics)
+- Another system handles Budgeting (ePBCS)
+- And yet another manages Financial Consolidation (OneStream)
 
-So when the road is so long, a lot can happen among the way. One transaction is missing somehow, and then there's a discrepancy that has to be verified and potentially fixed.
+With such a long road, things can go wrong along the way. A transaction goes missing somewhere, creating a discrepancy that needs to be tracked down and fixed.
 
-So three systems had to be reconcilied regularly (ERP and Planning and Analytics systems were always matching). And how to do that? Well, the process was rather...challenging:
-- These systems could be accessed directly as an app in the browser, but then it would require manual exports
-- But all of them had Excel add-ins at the same time, so the numbers could be pull down from there
-- So a Profit&Loss Statements (or Balance Sheets) would be retrieved from all the systems
-- And then manually going account by account, the numbers would either match, or you find the discrepancy
-- At the same time Excel would be constantly crashing because it was overwhelmed by using 3 add-ins at the same time, so trying to run some VBA macros could cause the same
+Three systems required regular reconciliation (the ERP and Planning Analytics systems were always in sync). But how was this done? Well, the process was rather... challenging:
+- The systems could be accessed directly through browser apps, but that meant manual exports
+- But all systems had Excel add-ins, allowing data to be pulled directly into spreadsheets
+- So Profit & Loss Statements (or Balance Sheets) would be retrieved from each system
+- Then came the tedious part: going account by account, checking if numbers matched or noting discrepancies
+- Meanwhile, Excel would constantly crash under the strain of running three add-ins simultaneously, making VBA macros unreliable as well
 
-So doing a manual reconciliation, marking rows one by one as either green or red, depending if they're matching or not, does not sound like an efficient (and pleasant) solution.
+Manually reconciling data—marking rows green or red one by one—was neither efficient nor pleasant.
 
 ## Solution
 
-So I've built a Python script (fairly simple one to be honest) to do the comparison automatically.
+I built a Python script (rather a simple one to be honest) to automate the comparison entirely.
 
 The script would:
 - **Load exports from two systems** (Excel files with specific structures)
-- **Compare amounts** for each account and entity combination, with proper rounding
-- **Output a clean summary** of all discrepancies - Account, Entity, Amount in System A, Amount in System B, Difference
-- **Output an original file with added highlighting as well** - so in standard way, but without the manual work
+- **Compare amounts** for each account and entity combination, handling rounding properly
+- **Generate a clean summary** of all discrepancies: Account, Entity, Amount in System A, Amount in System B, and Difference
+- **Produce a highlighted version of the original file** preserving the familiar format, but without the manual work
 
-So the solution at the same time kept the old way, but also introduced a new file, where the discrepancies could be tracked, without the heavy add ins.
+This approach maintained compatibility with the existing workflow while introducing a cleaner discrepancy tracking method—free from the burden of heavy add-ins.
 
 ## Impact
 
-**Speed** - what used to take significant manual effort now ran in seconds. Load the files, run the script, get your discrepancy list.
+**Speed** — What used to require significant manual effort now completed in seconds. Load the files, run the script, get your discrepancy list (of course that would not be the end of the process, rather a beginning of new one, explaining this particular discrepancy).
 
-**Accuracy** - no more human error from staring at thousands of rows and hoping you didn't miss something.
+**Accuracy** — No more human error from staring at thousands of rows and hoping nothing was missed.
 
-**Documentation** - discrepancies were automatically logged in a shareable format, not just highlighted cells in a spreadsheet that might get closed without saving.
+**Documentation** — Discrepancies were automatically logged in a shareable format, not just highlighted cells in a spreadsheet that might get closed without saving.
 
 ## Professional Takeaways
 
-- **Automation works best for rule-based, repetitive tasks** - comparing numbers across systems is exactly this
-- **Sometimes the tool itself is the bottleneck** - Excel crashing under load was the trigger for finding a better way
-- **Personal efficiency matters** - even if colleagues don't adopt your scripts, the time you save in your own work justifies building them (I've created the script at my last months in the company, and even though I've shared it, as far as I'm aware it might have not been adopted widely)
+- **Automation excels at rule-based, repetitive tasks** — Comparing numbers across systems is a textbook example
+- **Sometimes the tool itself is the bottleneck** — Excel crashing under load was the catalyst for finding a better approach
+- **Personal efficiency has value** — Even if colleagues don't adopt your scripts, the time saved in your own work justifies building them (I created this during my final months at the company and shared it, though I'm not sure how widely it was adopted after I left)
