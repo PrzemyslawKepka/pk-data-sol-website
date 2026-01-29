@@ -45,6 +45,10 @@ All table names, column mappings, and settings live in a single config file. Dif
 
 **Future plans:** UI-based configuration, so you won't need to touch config files at all - just fire up the app and work from there.
 
+### Privacy Considerations
+
+This app runs locally - it's not a third-party service you access through a browser. Your Supabase credentials stay on your machine, never shared with anyone.
+
 ### Why Panel Instead of Streamlit?
 
 I'm primarily a Streamlit user, but I chose **Panel** for this project to expand my toolkit. Panel gives more control over layout and styling, handles complex UI states better, and has a proper reactive programming model. Good to have another tool in the belt.
