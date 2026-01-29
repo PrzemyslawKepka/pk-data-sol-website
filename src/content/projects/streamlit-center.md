@@ -70,7 +70,7 @@ The app also served as **a central place for documentation** - best practices, c
 
 **Standardization** - new projects actually followed consistent patterns because it was the path of least resistance (the template did it for you).
 
-**Faster onboarding** - new team members could start productive faster because the patterns were documented and the templates handled the boilerplate.
+**Faster onboarding** - new team members could become productive faster because the patterns were documented and the templates handled the boilerplate.
 
 **Community building** - the initiative led to regular showcases and meetings where teams shared what they built.
 
