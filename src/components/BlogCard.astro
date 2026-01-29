@@ -1,0 +1,104 @@
+---
+interface Props {
+  post: {
+    data: {
+      title: string;
+      description: string;
+      publishDate: Date;
+      category: 'Technical' | 'Business';
+      tags: string[];
+      image?: string;
+      readTime?: number;
+    };
+    slug: string;
+  };
+  translations: {
+    seeFullPost: string;
+    minRead: string;
+  };
+}
+
+const { post, translations } = Astro.props;
+const { data, slug } = post;
+
+// Category badge colors
+const categoryColors = {
+  Technical: 'bg-blue-600/90 text-white border-blue-400/50 backdrop-blur-sm shadow-lg',
+  Business: 'bg-green-600/90 text-white border-green-400/50 backdrop-blur-sm shadow-lg'
+};
+
+// Format date as YYYY-MM-DD
+const formattedDate = data.publishDate.toISOString().split('T')[0];
+---
+
+<article class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
+  <a href={`/blog/${slug}`} class="flex-1 flex flex-col">
+    <!-- Image -->
+    <div class="relative w-full aspect-video bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden">
+      {data.image ? (
+        <img
+          src={data.image}
+          alt={data.title}
+          class="w-full h-full object-cover object-top transition-transform group-hover:scale-105"
+        />
+      ) : (
+        <div class="w-full h-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 text-slate-600">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+        </div>
+      )}
+
+      <!-- Category Badge -->
+      <div class={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${categoryColors[data.category]}`}>
+        {data.category}
+      </div>
+
+      <!-- Read Time Badge -->
+      {data.readTime && (
+        <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-slate-600/90 text-slate-200 border border-slate-400/50 backdrop-blur-sm shadow-lg">
+          {data.readTime} {translations.minRead}
+        </div>
+      )}
+    </div>
+
+    <!-- Content -->
+    <div class="p-6 flex-1 flex flex-col">
+      <div class="flex items-start justify-between gap-2 mb-2">
+        <h3 class="text-xl font-bold text-slate-100 group-hover:text-amber-500 transition-colors">{data.title}</h3>
+        <span class="text-sm text-slate-500 whitespace-nowrap">{formattedDate}</span>
+      </div>
+
+      <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">{data.description}</p>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        {data.tags.slice(0, 5).map(tag => (
+          <span class="px-2 py-1 text-xs bg-slate-700 text-slate-300 rounded">#{tag}</span>
+        ))}
+        {data.tags.length > 5 && (
+          <span class="px-2 py-1 text-xs bg-slate-700 text-slate-400 rounded">+{data.tags.length - 5}</span>
+        )}
+      </div>
+    </div>
+  </a>
+
+  <!-- Action Links -->
+  <div class="px-6 pb-6 flex gap-3">
+    <a
+      href={`/blog/${slug}`}
+      class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
+    >
+      {translations.seeFullPost}
+    </a>
+  </div>
+</article>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
