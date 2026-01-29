@@ -78,10 +78,10 @@ This makes it easy to add or edit projects - just update the Markdown file, no d
 ## Real-world Application
 
 Building this site was essentially a **frontend engineering project**:
-- Component architecture and reusability
-- Responsive design (mobile-first)
-- Content management without a traditional CMS
-- Deployment and hosting considerations
+- **Component architecture** and reusability
+- **Responsive design** (mobile-first)
+- **Content management** without a traditional CMS
+- **Deployment and hosting** considerations
 
 ## Professional Takeaways
 
