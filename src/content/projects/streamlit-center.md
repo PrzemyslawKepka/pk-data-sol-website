@@ -34,31 +34,33 @@ The main feature was a **project generator with a visual interface**:
 - Choose which features to include
 - Click generate, download a ZIP with a **ready-to-use project template**
 
-Under the hood, it used  **Python Cookiecutter** module and **Jinja2 templates** to generate consistent code patterns. So every new project would start with the same structure, the same coding style, the same patterns (no more different logos for every app).
+Under the hood, it used the **Python Cookiecutter** module and **Jinja2 templates** to generate consistent code patterns. Every new project would start with the same structure, coding style, and patterns (no more different logos for every app).
 
 ### Authentication Module
 
-One of the biggest pain points was authentication - not every app was supposed to be accessible for everyone in the organization. So I developed a **unified authentication mechanism** using LDAP and Active Directory:
-- Single Sign-On for all Streamlit apps
-- JWT encoding for credential handling
-- A reusable code that could be easily implemented in any project (ultimately it was supposed to be releasy internally as a library).
-- So then the app owners would indivually decided who will have the access
+One of the biggest pain points was authentication - not every app should be accessible to everyone in the organization. I developed a **unified authentication mechanism** using LDAP and Active Directory:
+- **Single Sign-On** for all Streamlit apps
+- **JWT encoding** for credential handling
+- **Reusable code** that could be easily implemented in any project (ultimately intended to be released as an internal library)
+- **Per-app access control** - app owners could individually decide who gets access
 
-This ran across multiple applications for several months (until licensing changes at Posit Connect, the hosting platform, made this solution to be deprecated).
+This ran across multiple applications for several months, until licensing changes at Posit Connect (the hosting platform) deprecated this approach.
 
-### Logging module
+### Logging Module
 
-Crucial part for some of the apps is to track its usage - who visits the app, and who clicks what (or sometimes - who broke what). So we have implemented a custom, simple logging solution:
-- we would set up logging tables in a dedicated MS SQL Server database
-- and then in the app code we would implement a class connected to the database, having INSERT permission to write new rows
+For some apps, tracking usage is crucial - who visits, who clicks what (and sometimes, who broke what). We implemented a custom logging solution:
 
-And then the logging methods would be implemented inside Streamlit logging, basically tracking two types of activity:
-- page visit
-- executed action, like clicking the button
+#### Infrastructure
+- **Dedicated logging tables** in MS SQL Server
+- **Database class** with INSERT permissions, implemented in app code
 
-And at the same time we would restrain duplicated entries to be saved (Streamlit re-run at every interaction could result in many duplicated logs being saved).
+#### What We Track
+- **Page visits**
+- **Executed actions** (button clicks, etc.)
 
-So in the end a couple of apps have successfully implemented the logging process, some of them having the tables logged with tens of thounsands rows (now probably hundreds of thousands).
+We also handled **deduplication** - Streamlit's re-run on every interaction could otherwise result in many duplicate log entries.
+
+Several apps successfully implemented this logging. Some tables now have tens of thousands of rows (probably hundreds of thousands by now).
 
 ### The Guidelines Hub
 
