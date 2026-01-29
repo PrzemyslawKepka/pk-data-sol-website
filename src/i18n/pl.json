@@ -148,10 +148,26 @@
   },
   "blog": {
     "title": "Blog",
+    "subtitle": "Przemyslenia o danych, technologii i budowaniu rozwiazań",
     "allPosts": "Zobacz Wszystkie Posty",
+    "seeFullPost": "Zobacz Cały Post",
     "readMore": "Czytaj Więcej",
     "publishedOn": "Opublikowano",
-    "readTime": "min czytania"
+    "readTime": "min czytania",
+    "minRead": "min",
+    "backToBlog": "Powrót do Bloga",
+    "tableOfContents": "Spis Treści",
+    "categories": {
+      "all": "Wszystkie Kategorie",
+      "Technical": "Techniczny",
+      "Business": "Biznesowy"
+    },
+    "filterByCategory": "Filtruj po kategorii",
+    "sorting": {
+      "label": "Sortuj",
+      "date": "Data",
+      "alpha": "Nazwa"
+    }
   },
   "contact": {
     "title": "Kontakt",

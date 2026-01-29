@@ -148,10 +148,26 @@
   },
   "blog": {
     "title": "Blog",
+    "subtitle": "Thoughts on data, technology, and building solutions",
     "allPosts": "See All Posts",
+    "seeFullPost": "See Full Post",
     "readMore": "Read More",
     "publishedOn": "Published on",
-    "readTime": "min read"
+    "readTime": "min read",
+    "minRead": "min",
+    "backToBlog": "Back to Blog",
+    "tableOfContents": "Table of Contents",
+    "categories": {
+      "all": "All Categories",
+      "Technical": "Technical",
+      "Business": "Business"
+    },
+    "filterByCategory": "Filter by category",
+    "sorting": {
+      "label": "Sort by",
+      "date": "Date",
+      "alpha": "Name"
+    }
   },
   "contact": {
     "title": "Contact",
