@@ -13,63 +13,62 @@ lang: "en"
 
 ## Problem Definition
 
-Being suddenly asked by your superiors
+*"What are your plans for the next 24 hours?"*
 
-*"What are your plans for the next 24 hours?*
+When your superiors ask this, it usually means overtime and a lot of coffee at unusual hours.
 
-Usually do not foreshadow anything good, but overtime and a lot of coffee to be consumed at not the most usual hours.
+I was asked to quickly develop an app for bank tellers to check clients' eligibility for financial products.
 
-So I was approached to quickly develop an app that would be a complimentary tool for bank tellers to check clients availability for financial products.
-
-In theory it does not sound that bad, right? Just a simple interface and a database check. Well...not exactly. There were some complications as well:
+Sounds simple, right? Just an interface and a database check. But there were complications:
 - **Business logic was still being finalized** while we were building
-- **A new database had to be set up** because the standard one was too slow
-- **A daily ETL process** needed to be established
-- So far Streamlit apps in our organization were rather non-critical, while this was supposed to be a **production-grade Streamlit deployment**, client-facing actually
-- And we would expect dozens of concurrent users at the same time, and potentially even hundreds of users daily in total, so a way **higher scale than the apps we had before**.
+- **New database needed** - the standard one was too slow
+- **Daily ETL process** had to be established
+- **Production-grade deployment** - previous Streamlit apps were non-critical; this one was client-facing
+- **Higher scale** - dozens of concurrent users, potentially hundreds daily
 
-And the app should be ready for yesterday. Well...good luck there then.
+And the app should have been ready yesterday.
 
 ## Solution
 
-Building a functional app in just one day? Easy-peasy with AI one might say (although heavily debatable). But what if the usage of AI is still limited at your organization, and you have to come up with the solution yourself?
+Building a functional app in one day? With AI tools, maybe. But AI usage was still limited at the organization - I had to build this myself.
 
-Streamlit to the rescue!
+**Streamlit** was the answer. Already established in the organization and known for rapid development, it was a natural choice.
 
-Already established in the organization, known for rapid development, that's the reason why it was chosen for this task.
-
-And turned out to be a good fit.
-
-Why? Because the app was **backend-heavy but UI-light**. All the complex logic happened in the database queries and Python code. The interface was rather simple - an input field and results display. No fancy interactivity, no complex session state management. Just: enter ID → query → show result.
+And it turned out to be a good fit. The app was **backend-heavy but UI-light** - all the complex logic happened in database queries and Python code. The interface was simple: an input field and results display. No fancy interactivity, no complex session state. Just: enter ID → query → show result.
 
 ### What We Built
 
-- Client ID input with validation
-- Real-time database queries for eligibility checks
-- Clear decision display (yes/no with relevant details)
-- Error handling for edge cases
-- LDAP authentication, used before for other Streamlit apps (no seperate accounts, just a corporate acount used within the organization)
-- **Usage logging** - tracking who checked which client, when (important for audit purposes), everything saved in the database
-- **Admin panel** - with not only usage logs, but also for maintaining business logic rules (so not everything had to be hard-coded and edited by us in code, but Control Analysts could edit some of the rules themselves)
+#### Core Features
+- **Client ID input** with validation
+- **Real-time eligibility checks** via database queries
+- **Clear decision display** - yes/no with relevant details
+- **Error handling** for edge cases
 
-And separately we have established a new database with a daily ETL process (this part was mostly handed by boss, while I was responsible for the Streamlit part).
+#### Authentication & Compliance
+- **LDAP authentication** - no separate accounts, just corporate credentials already used in the organization
+- **Usage logging** - tracking who checked which client and when, saved to database for audit purposes
+
+#### Administration
+- **Admin panel** - not just usage logs, but also business logic rule maintenance. Control Analysts could edit some rules themselves without touching code.
+
+Separately, we established a new database with a daily ETL process (my boss handled this part while I focused on Streamlit).
 
 ### How It Went
 
-After a few exhausting days (it stretched beyond the initial 24 hours, of course), the application was deployed. And it worked.
+After a few exhausting days (it stretched beyond 24 hours, of course), the application was deployed. And it worked:
 
-- **Handled hundreds of users** without falling over
-- **Dozens of concurrent sessions** - Streamlit handled it better than we have expected
-- Zero critical failures after initial stabilization
+- **Hundreds of users** handled without issues
+- **Dozens of concurrent sessions** - Streamlit performed better than expected
+- **Zero critical failures** after initial stabilization
 - Successfully served its purpose
 
 ## Impact
 
-This was a **proof point for Streamlit in production** at the bank. Previously it was considered more of a prototyping tool, but this showed it can handle real load when the use case fits.
+This was a **proof point for Streamlit in production** at the bank. Previously considered just a prototyping tool, this project showed it can handle real load when the use case fits.
 
-The app served as a temporary solution while a more permanent system was being developed - but "temporary" in enterprise often means "runs for longer than expected," and it held up. But eventually it was replaced by an app written in Vue, and the subsequent app was just better. Not only in terms of the UI, but also in terms of additional features, which would be very limited in Streamlit.
+The app served as a temporary solution while a permanent system was being developed. Of course, "temporary" in enterprise often means "runs longer than expected" - and it held up.
 
-But the Streamlit app was good enough for the start, and even though the Vue was created rather rapidly as well, it didn't have to be created under the same pressure.
+Eventually it was replaced by a Vue app with better UI and additional features that would have been limited in Streamlit. But the Streamlit version was good enough for the start, and the Vue replacement didn't have to be built under the same time pressure.
 
 ## Professional Takeaways
 
