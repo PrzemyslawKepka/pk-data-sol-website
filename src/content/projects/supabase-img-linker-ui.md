@@ -13,31 +13,35 @@ lang: "en"
 
 ## Context
 
-While building CM Rentals, I kept running into an annoying workflow for managing property images:
+While building [CM Rentals](http://pk-data-solutions.com/projects/cm-rentals), I kept running into an annoying workflow for managing property images:
 
 1. Save image from some source (Facebook listing, provided file, wherever)
 2. Upload to Supabase Storage through their web UI
 3. Generate a signed URL (with some expiration date)
 4. Copy that URL back to the database record
 
-Repeat this dozens of times. And when images from external sources (like Facebook) expire, you get to do it all over again.
+Repeat this dozens of times. 
+
+And if I decided to skip steps two and three, and just use URLs from external sources like Facebook, then they will expire after some time, making you to do it all over again.
 
 It was tedious enough that I decided to **build a tool to handle it**.
 
 ## Solution
 
-I've built a web application that streamlines the entire image management workflow. Show me all records, tell me which ones have broken images, let me fix them with one click.
+I've built a web application that streamlines the entire image management workflow. Shows me all records, tells me which ones have broken images, let me fix them with one click.
 
 ### What It Does
 
-- **Dashboard view** - all records with their current image status (working/broken)
+- **Dashboard view** - all records with their current image status (working/broken), so your user won't be the first to notice a broken image link
 - **Parallel URL checking** - validates all image URLs on load, fast enough to be usable
-- **One-click updates** - upload a new image (file or URL), it gets optimized, uploaded to Supabase, signed URL generated, database updated. Done.
+- **One-click updates** - upload a new image (file or URL), it gets optimized, uploaded to Supabase, signed URL generated, database updated. Done (okay, maybe three clicks minimum, but still way less than going fully manual).
 - **Automatic optimization** - images get resized and compressed (50-80% size reduction typical)
 
 ### The Configuration-Driven Part
 
-I built it to be **universal** - works with any Supabase table. All the table names, column mappings, and settings live in a single config file. Switch to a different use case? Just change the config, no code modifications needed.
+As with many solutions - it was built to solve my pain point, but then I realize I cannot be alone in this. So I built it to be **universal** - works with any Supabase table. All the table names, column mappings, and settings live in a single config file. Switch to a different use case? Just change the config, no code modifications needed.
+
+Future updates: To make it even more accessible, I plan to allow the configuration to be done via UI as well. So no digging in config files - you just fire up the app and work only there.
 
 ### Why Panel Instead of Streamlit?
 
@@ -52,6 +56,8 @@ This is essentially **image asset management** - a common need:
 - Property listings need images
 
 The patterns are the same: validation, upload, optimization, URL management. The configuration-driven architecture means this tool can adapt to any of these use cases.
+
+And it's a CRUD app as well - we upload files to a Storage, retrieve data from the database and we run Updates there.
 
 ## Professional Takeaways
 
