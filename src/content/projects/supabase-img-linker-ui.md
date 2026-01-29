@@ -20,28 +20,30 @@ While building [CM Rentals](http://pk-data-solutions.com/projects/cm-rentals), I
 3. Generate a signed URL (with some expiration date)
 4. Copy that URL back to the database record
 
-Repeat this dozens of times. 
+Repeat this dozens of times.
 
-And if I decided to skip steps two and three, and just use URLs from external sources like Facebook, then they will expire after some time, making you to do it all over again.
+And if I skipped steps two and three by using URLs from external sources like Facebook? Those expire after some time, forcing you to do it all over again.
 
-It was tedious enough that I decided to **build a tool to handle it**.
+Tedious enough that I decided to **build a tool to handle it**.
 
 ## Solution
 
-I've built a web application that streamlines the entire image management workflow. Shows me all records, tells me which ones have broken images, let me fix them with one click.
+A web application that streamlines the entire image management workflow. It shows all records, flags which ones have broken images, and lets me fix them quickly.
 
 ### What It Does
 
 - **Dashboard view** - all records with their current image status (working/broken), so your user won't be the first to notice a broken image link
 - **Parallel URL checking** - validates all image URLs on load, fast enough to be usable
-- **One-click updates** - upload a new image (file or URL), it gets optimized, uploaded to Supabase, signed URL generated, database updated. Done (okay, maybe three clicks minimum, but still way less than going fully manual).
+- **One-click updates** - upload a new image (file or URL), it gets optimized, uploaded to Supabase, signed URL generated, database updated. Done. (Okay, maybe three clicks - but still far less than doing it manually.)
 - **Automatic optimization** - images get resized and compressed (50-80% size reduction typical)
 
 ### The Configuration-Driven Part
 
-As with many solutions - it was built to solve my pain point, but then I realize I cannot be alone in this. So I built it to be **universal** - works with any Supabase table. All the table names, column mappings, and settings live in a single config file. Switch to a different use case? Just change the config, no code modifications needed.
+This started as a solution for my specific pain point, but I realized I can't be alone in this. So I built it to be **universal** - it works with any Supabase table.
 
-Future updates: To make it even more accessible, I plan to allow the configuration to be done via UI as well. So no digging in config files - you just fire up the app and work only there.
+All table names, column mappings, and settings live in a single config file. Different use case? Just change the config, no code modifications needed.
+
+**Future plans:** UI-based configuration, so you won't need to touch config files at all - just fire up the app and work from there.
 
 ### Why Panel Instead of Streamlit?
 
@@ -57,7 +59,7 @@ This is essentially **image asset management** - a common need:
 
 The patterns are the same: validation, upload, optimization, URL management. The configuration-driven architecture means this tool can adapt to any of these use cases.
 
-And it's a CRUD app as well - we upload files to a Storage, retrieve data from the database and we run Updates there.
+It's also a **CRUD** app at the same time - uploading files to Storage, retrieving data from the database, and running Updates.
 
 ## Professional Takeaways
 
