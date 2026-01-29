@@ -24,3 +24,136 @@
     @apply bg-gradient-to-br from-amber-500 to-amber-600 bg-clip-text text-transparent;
   }
 }
+
+/* Prose styles for markdown content (projects, blog posts) */
+.prose {
+  --tw-prose-body: #cbd5e1;
+  --tw-prose-headings: #f1f5f9;
+  --tw-prose-links: #f59e0b;
+  --tw-prose-bold: #f1f5f9;
+  --tw-prose-counters: #94a3b8;
+  --tw-prose-bullets: #f59e0b;
+  --tw-prose-hr: #334155;
+  --tw-prose-quotes: #f1f5f9;
+  --tw-prose-quote-borders: #f59e0b;
+  --tw-prose-code: #f1f5f9;
+  --tw-prose-pre-bg: #1e293b;
+  --tw-prose-pre-code: #e2e8f0;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #334155;
+  color: #f1f5f9;
+  scroll-margin-top: 5rem;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #f1f5f9;
+  scroll-margin-top: 5rem;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+  line-height: 1.625;
+  color: #cbd5e1;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+  color: #cbd5e1;
+}
+
+.prose a {
+  color: #f59e0b;
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: #fbbf24;
+}
+
+.prose code {
+  background-color: #1e293b;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: #f1f5f9;
+}
+
+.prose pre {
+  background-color: #1e293b;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.prose blockquote {
+  border-left: 4px solid #f59e0b;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #94a3b8;
+}
+
+.prose img {
+  border-radius: 0.5rem;
+  border: 1px solid #334155;
+}
+
+.prose strong {
+  color: #f1f5f9;
+  font-weight: 700;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.prose th {
+  background-color: #1e293b;
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid #334155;
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+.prose td {
+  padding: 0.75rem;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+}
+
+.prose tr:nth-child(even) {
+  background-color: #1e293b40;
+}
