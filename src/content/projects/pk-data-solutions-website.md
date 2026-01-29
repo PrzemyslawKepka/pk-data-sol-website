@@ -12,9 +12,9 @@ lang: "en"
 
 ## Context
 
-Building solutions is one thing, but building an online presence, showcasing what you can do, so in the end you can...build even more, is another. So I've decided that I need my own website.
+Building solutions is one thing. Building an online presence that showcases what you can do? That's another challenge entirely. So I decided I need my own website.
 
-And while as a "data guy" building visually sophisticated websites is not my main cup of tea, I do claim full-stack capabilities, so why wouldn't I be able to be a robust site for myself as well?
+As a "data guy," building visually polished websites isn't my main cup of tea. But I do claim full-stack capabilities - so why not build a robust site for myself?
 
 ## Solution
 
@@ -22,32 +22,38 @@ The website you're looking at right now is the result.
 
 ### Building process
 
-Before a first line of code was even written, I already had to put in quite a lot of effort:
-- I want to build my own website, so I have to know (more or less) how I want it to look like and what content it is supposed to have. So as my extensive research process I have checked dozens of websites from other professionals, potentially my competitors even, deceding on website content and how it's supposed to work
-- Then I have prepered a very detailed document, where I have described how I envision the whole website, it's design and layout. I would go as deep here, as explaining the logic and niity gritties for each section
-Note: I didn't say anything about the tech stack here yet
-- And based on my vision, the AI (Claude Code) have prepared a detailed PRD document
+#### Planning & Research
 
-And only having the PRD document was beginning of the coding process:
-- I have set up base Astro project myself
-- Then Claude Code has generate the code based on the PRD
-- And from that on it was an iterative process of improving and implementing all the functionalities
+Before writing a single line of code:
+- **Research** - I checked dozens of websites from other professionals (potential competitors, even) to decide on content and functionality
+- **Vision document** - I described how I envision the website: design, layout, and the logic behind each section
+- **PRD generation** - Based on my vision, Claude Code prepared a detailed PRD document
 
-So the AI just built you a website in one day? Well, I wish that was the case, but that wasn't even close to that. The site is content-heavy, so it couldn't be that simple:
-- Even though the AI had samples of my writing, still what it was able to produce in most of the cases didn't really resemble what I would create
-- And as I have decided to go pretty detailed in describing my projects, it meant a lot of writing for me
-- And instead of AI-generated images, I went with a route of providing screenshots, images, or generating mockup screenshots for the projects where I was unable to show any real photos
-- So even with leveraging the LLMs quite heavily, it wasn't the straighforward to create a website I will be genuinely pleased at (and that is actually a requirement)
+Note: no tech stack decisions yet at this point - that came later.
+
+#### Development
+
+With the PRD ready, the coding could begin:
+- **Setup** - I set up the base Astro project myself
+- **Code generation** - Claude Code generated the initial code based on the PRD
+- **Iteration** - From there, it was an iterative process of improving and implementing features
+
+#### The Reality of Content-Heavy Sites
+
+So AI just built you a website in one day? I wish. It wasn't that simple:
+- **Writing** - Even with samples of my writing, AI-generated content rarely matched my voice. Detailed project descriptions meant a lot of writing on my end
+- **Visuals** - Instead of AI-generated images, I used real screenshots or created mockups where actual photos weren't available
+- **Effort** - Even leveraging LLMs heavily, creating a website I'm genuinely pleased with took real work (and being pleased with it is a requirement)
 
 ### Why Astro?
 
-The AI had a lot of context before starting this endeavour - not only my vision for the website, but also a broader picture with my plans, technologies that I know, and want to learn as well.
+The AI had a lot of context before starting - not just my vision for the website, but also my broader plans and the technologies I know and want to learn.
 
-And I have heard about **Astro** before, and it indeed looks like a perfect fit here.
+I had heard about **Astro** before, and it looked like a perfect fit.
 
-its "content-first" philosophy alignes with the sheer volume fo content I'm about have here, growing over time with new projects and blog posts. And as the site is mostly static content (project descriptions, blog, postsabout page), so I don't need a heavy JavaScript framework. Astro generates static HTML, which means **fast loading and good SEO**.
+Its "content-first" philosophy aligns with the volume of content I have here, growing over time with new projects and blog posts. Since the site is mostly static (project descriptions, blog posts, about page), I don't need a heavy JavaScript framework. Astro generates static HTML, which means **fast loading and good SEO**.
 
-But I still wanted some interactivity - the project filters, for example. That's where Astro's **"islands architecture"** comes in - I can use **Vue components** where I need them, and they only load JavaScript when necessary. And this goes pretty well with my next projects, where Vue will be used extensively.
+But I still wanted some interactivity - the project filters, for example. That's where Astro's **"islands architecture"** comes in: I can use **Vue components** where I need them, and they only load JavaScript when necessary. This also aligns well with my upcoming projects, where Vue will be used extensively.
 
 ### The Stack
 
