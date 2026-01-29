@@ -3,7 +3,7 @@ title: "Financial Data Reconciliation Tool"
 description: "Python automation for reconciling financial data across multiple enterprise systems, replacing a tedious Excel-based process prone to crashes and errors."
 categories: ["Automation"]
 technologies: ["Python", "pandas", "openpyxl", "Excel"]
-image: "/images/projects/financial-data-reconciliation/financial-data-reconciliation-cover.png"
+image: "/images/projects/financial-data-reconciliation/financial-data-reconciliation-cover.webp"
 projectType: "fte"
 company: "JLL"
 year: "2019-2020"

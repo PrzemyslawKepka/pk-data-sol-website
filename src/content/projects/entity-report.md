@@ -3,7 +3,7 @@ title: "Report Automation Framework"
 description: "Automated generation of a comprehensive C-level Credit Risk report in PowerPoint format, replacing a semi-manual Excel-based process and significantly reducing the time required from days to hours."
 categories: ["Automation"]
 technologies: ["Python", "Streamlit", "pandas", "plotly", "python-pptx", "pyodbc", "openpyxl", "PowerPoint", "SharePoint"]
-image: "/images/projects/entity-report/entity-report-cover.png"
+image: "/images/projects/entity-report/entity-report-cover.webp"
 projectType: "fte"
 company: "Santander Bank Poland"
 year: "2021-2023"

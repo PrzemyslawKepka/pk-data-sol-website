@@ -4,7 +4,7 @@ description: "A modular Panel web application for managing images in any Supabas
 categories: ["Developer Tools"]
 technologies: ["Python", "Panel", "Supabase", "Pillow", "PostgreSQL"]
 github: "https://github.com/PrzemyslawKepka/supabase-img-linker-ui"
-image: "/images/projects/supabase-img-linker-ui/supabase-img-linker-ui-cover.png"
+image: "/images/projects/supabase-img-linker-ui/supabase-img-linker-ui-cover.webp"
 projectType: "current"
 year: "2025"
 isCommercial: false

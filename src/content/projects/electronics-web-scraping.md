@@ -4,7 +4,7 @@ description: "A web scraping pipeline intended to capture the best deals, while 
 categories: ["Web Scraping", "Dashboard"]
 technologies: ["Python", "BeautifulSoup", "Streamlit", "pandas", "plotly", "Raspberry Pi"]
 github: "https://github.com/PrzemyslawKepka/electronics-web-scraping"
-image: "/images/projects/electronics-web-scraping/electronics-web-scraping-cover.png"
+image: "/images/projects/electronics-web-scraping/electronics-web-scraping-cover.webp"
 projectType: "side"
 year: "2021"
 lang: "en"

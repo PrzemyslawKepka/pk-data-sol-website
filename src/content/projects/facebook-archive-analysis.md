@@ -4,7 +4,7 @@ description: "A data pipeline that processes Facebook's personal data archive to
 categories: ["Data Analysis"]
 technologies: ["Python", "pandas", "SQLite", "matplotlib", "plotly", "Jupyter", "DB Browser for SQLite"]
 github: "https://github.com/PrzemyslawKepka/facebook-archive-analysis"
-image: "/images/projects/facebook-archive-analysis/facebook-archive-analysis-cover.png"
+image: "/images/projects/facebook-archive-analysis/facebook-archive-analysis-cover.webp"
 projectType: "side"
 year: "2020"
 industry: "Social Media"

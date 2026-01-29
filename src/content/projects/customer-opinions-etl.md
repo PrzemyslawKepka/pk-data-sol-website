@@ -3,7 +3,7 @@ title: "Customer Opinions ETL Pipeline"
 description: "A production ETL pipeline processing customer feedback data from multiple sources, enabling data scientists and researchers to analyze sentiment, measure NPS, and understand customer experience."
 categories: ["ETL Pipeline"]
 technologies: ["Python", "SQL", "Airflow", "Teradata"]
-image: "/images/projects/customer-opinions-etl/customer-opinions-etl-cover.png"
+image: "/images/projects/customer-opinions-etl/customer-opinions-etl-cover.webp"
 projectType: "fte"
 company: "Santander Bank Poland"
 year: "2025"

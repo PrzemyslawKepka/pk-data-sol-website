@@ -3,7 +3,7 @@ title: "Rapid Production Streamlit App"
 description: "A mission-critical, client-facing Streamlit application built under very high time pressure."
 categories: ["Web Application"]
 technologies: ["Python", "Streamlit", "SQL", "Teradata"]
-image: "/images/projects/rapid-streamlit-app/rapid-streamlit-app-cover.png"
+image: "/images/projects/rapid-streamlit-app/rapid-streamlit-app-cover.webp"
 projectType: "fte"
 company: "Santander Bank Poland"
 year: "2024"

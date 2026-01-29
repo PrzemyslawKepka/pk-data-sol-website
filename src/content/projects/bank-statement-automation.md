@@ -3,7 +3,7 @@ title: "Bank Statement Processing Automation"
 description: "Python automation that transformed manual bank statement processing from hours of copy-paste work to minutes of automated document generation, saving up to 95% of work time."
 categories: ["Automation"]
 technologies: ["Python", "CSV", "Excel", "NetSuite"]
-image: "/images/projects/bank-statement-automation/bank-statement-automation-cover.png"
+image: "/images/projects/bank-statement-automation/bank-statement-automation-cover.webp"
 projectType: "fte"
 company: "Ascensia Diabetes Care"
 year: "2018"

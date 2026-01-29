@@ -4,7 +4,7 @@ description: "A Raspberry Pi-based system for monitoring refrigerator temperatur
 categories: ["Dashboard", "ETL Pipeline"]
 technologies: ["Python", "Raspberry Pi", "InfluxDB", "Grafana", "pandas", "matplotlib"]
 github: "https://github.com/PrzemyslawKepka/temperature-monitoring"
-image: "/images/projects/temperature-monitoring/temperature-monitoring-cover.png"
+image: "/images/projects/temperature-monitoring/temperature-monitoring-cover.webp"
 projectType: "side"
 year: "2020-2021"
 industry: "IoT"
