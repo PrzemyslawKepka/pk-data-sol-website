@@ -14,7 +14,7 @@ lang: "en"
 
 ## Context
 
-When I have briefly returned to play my childhood's favourite computer game, Warlords Battlecry, I have realized that the game is actually pretty complicated.
+When I briefly returned to play my childhood's favorite computer game, Warlords Battlecry, I realized the game is actually pretty complicated.
 
 Many races, many units with different abilities, types of damage and resistance, it's just hard to grasp it all. And when you play in a multiplayer mode, with other people, it is reasonable to try to at least not be very terrible at playing the game, so your teammates cannot blame you all the time if the enemy team wins.
 
@@ -28,7 +28,7 @@ I built an interactive app, which in a highly visual way helps you pick up a str
 
 - In the game you can play one of 16 races, so in the app you select your race and up to 5 enemy races
 - Each race produce many different units, and these units are then displayed in the app with their images and statistics
-- And every unit deals damage to other units, while at the same time there are different types of damage, and also each unit might be resistant or vulnarable to specific type of damage. So the core functionality of the app is to show matchups, which units might counter another, effectively helping you in forging your strategy for the game.
+- **Unit matchups** - every unit deals a specific damage type, and each unit has resistances and vulnerabilities. The core functionality is showing which units counter which, helping you forge a winning strategy.
 
 ### Technical Implementation
 

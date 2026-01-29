@@ -38,7 +38,7 @@ Does not sound that bad? Could be worse, that's true, but it still had some **pa
 
 ## Solution
 
-So my responsibility was to **overhaul the entire process** and creating a Python-based solution. The key requirement was simple: at the end, a less technical team member should be able to generate the report themselves, without needing to understand the Python code.
+My responsibility was to **overhaul the entire process** and create a Python-based solution. The key requirement was simple: a less technical team member should be able to generate the report themselves, without needing to understand the Python code.
 
 And the rest? How to implement it? Well, it was left for my ~~fantasy~~...expertise I mean, of course.
 
@@ -58,11 +58,11 @@ It was still not a 100% fully automated process, as there was a need for human i
 
 **Process modularity and reliability** - the process flow became clearly defined now, with an ability to resume the process not from scratch all the time, but from a selected module
 
-**Promoting the *build in public* approach across the organization**: Additionally, the work on that project was kind of public, shared among python enthusiasts across the whole department, who were also voluntarily participating in the project if their backlog allowed that, so in the end sharing internally developed solutions was promoted across different teams
+**Promoting internal collaboration**: The project was developed openly, shared among Python enthusiasts across the department. Team members from other areas voluntarily contributed when their backlog allowed, promoting a culture of sharing internally developed solutions across teams.
 
 ## Professional Takeaways
 
-This project was also significant milestone in my professional development:
+This project was also a significant milestone in my professional development:
 
 - **First large-scale Python application** - somewhere between 10k-20k lines of code, the biggest thing I had built at that point
 - **Learned proper modularity** - moved from single-file scripts to actual project structure with modules and packages

@@ -41,7 +41,7 @@ Everything was **Python-based**, with **SQL transformations** for data preparati
 
 ### The Different Challenge
 
-Unlike most of my projects where I built things from scratch, here I had to **adapt to someone else's codebase and way of thinking**, which could be deemed by me as overengineered. Different coding style, different patterns, some decisions I would have made differently. But this is the reality of software engineering - not every project is greenfield.
+Unlike most of my projects where I built things from scratch, here I had to **adapt to someone else's codebase and way of thinking** - which I personally found overengineered in places. Different coding style, different patterns, decisions I would have made differently. But this is the reality of software engineering - not every project is greenfield.
 
 ## Impact
 

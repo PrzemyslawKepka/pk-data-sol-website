@@ -52,7 +52,7 @@ So I've started the app with Streamlit, which is great for prototyping. And I've
 
 ### App Reception
 
-As my internal tool has successfully completed it's task for me, I've realized that I have gather quite a lot of information, in particular a quite extensive list of places offering monthly rental, which might be useful also for other people looking for an apartment in the city.
+Once my internal tool had successfully completed its task, I realized I had gathered quite a lot of information - an extensive list of places offering monthly rentals that might be useful for others looking for an apartment in the city.
 
 So I've posted the app on Facebook and Reddit, and especially on Reddit, where I have also shared some more tips, it had very positive reception:
 - **28k** post views in total
@@ -67,7 +67,7 @@ So I've posted the app on Facebook and Reddit, and especially on Reddit, where I
 
 This project is a good example of **turning a personal pain point into something useful for others**. The data engineering side (collecting, storing, displaying property data) might be straightforward, but the real value is in **solving an actual problem** that people have.
 
-In this case I cannot commercialize this at all, as this would be against my visa, but this is how businesses can be born - starting from a real problem, which resonate to more people, and then building up the solution.
+In this case I can't commercialize it (visa restrictions), but this is how businesses are born - starting from a real problem that resonates with others, then building up the solution.
 
 ## Professional Takeaways
 

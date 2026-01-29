@@ -21,7 +21,7 @@ Well, then you build a fully-fledged IoT monitoring system, which will give you 
 
 ## Solution
 
-So what I've created really turned out to be a complete IoT monitoring system (still a rather simple one of course).
+What I created turned out to be a complete IoT monitoring system (a simple one, but complete).
 
 The temperature sensors were running all the time, 24/7, saving the temperature every few seconds, assuring good accuracy. Then the data would be saved in batches, while at the same time e-mail alerts were sent if the temperature has exceeded accepted thresholds.
 
@@ -72,10 +72,10 @@ So the enhanced version added professional monitoring:
 
 <img src="/images/projects/temperature-monitoring/grafana_dashboard.png" alt="E-mail notification"/>
 
-And it didn't really add the complexity, quite the opposite, the python script became even simpler, as the complexity was already tackled by using established solutions, so `InfluxDB` and `Grafana`.
+It didn't add complexity - quite the opposite. The Python script became simpler because the complexity was handled by established solutions: `InfluxDB` and `Grafana`.
 
-So the data, in `InfluxDB`, was now stored in a database, in a single table, no more multiple files where data is scattered all over.
-And by the usage of `Grafana`, I didn't have to generate any charts on my own, I could just do it directly in the tool, while I could customize them easily using UI.
+The data was now stored in a single `InfluxDB` table - no more scattered files.
+And with `Grafana`, I didn't need to generate charts programmatically. I could create and customize them directly in the UI.
 
 ## Real-world Application
 

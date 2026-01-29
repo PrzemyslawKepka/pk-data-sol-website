@@ -65,7 +65,7 @@ So this actually became a **perfect opportunity to start my technical journey**,
 
 This project was basically my **breakthrough moment** - kind of a "founding story" for my professional data career, where I have seen a real value that my solutions can bring.
 
-And it has also put for me an emphasis on:
+It also reinforced key lessons:
 
 - **Learning by doing** - no tutorials, just a real problem to solve
 - **Business value of automation** - even basic scripts can save significant time
