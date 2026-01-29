@@ -2,107 +2,75 @@
 title: "Facebook Archive Analysis"
 description: "A data pipeline that processes Facebook's personal data archive to extract insights about messaging patterns, friend connections, and communication habits using Python and SQL."
 categories: ["Data Analysis"]
-technologies: ["Python", "pandas", "SQLite", "matplotlib", "plotly", "Jupyter"]
+technologies: ["Python", "pandas", "SQLite", "matplotlib", "plotly", "Jupyter", "DB Browser for SQLite"]
 github: "https://github.com/PrzemyslawKepka/facebook-archive-analysis"
 image: "/images/projects/facebook-archive-analysis/facebook-archive-analysis-cover.png"
 projectType: "side"
-year: "2020-2021"
+year: "2020"
 industry: "Social Media"
 lang: "en"
 ---
 
-## The Motivation
+## Context
 
-I was curious about my Facebook messaging patterns and communication habits over the years. Instead of just scrolling through old conversations, I decided to build a proper data pipeline to analyze the archive.
+Most social media platforms, including Facebook, allow you to download your data archive. All your messages, friend connections, likes, comments - Facebook exports it all as JSON files.
 
-## The Solution
+I got curious: how do my stats actually look? What are my communication patterns?
 
-A complete data engineering pipeline that transforms raw JSON exports into a queryable database with rich visualizations.
+Instead of just scrolling through old chats, I decided to build a proper data pipeline to analyze this systematically.
 
-### Data Processing Pipeline
+## Solution
 
-**Multi-File JSON Ingestion**
-- Recursively processes all message JSON files
-- Handles 255+ files in ~13 seconds
-- Proper encoding conversion (Latin1 → UTF-8)
-- Graceful handling of missing fields
+The project turned into a **complete ETL pipeline** (although run on demand, not on schedule) - from raw JSON files to a queryable SQLite database with visualizations.
 
-**User-Friendly File Selection**
-```python
-groups_directory = tkinter.filedialog.askdirectory(
-    title='Please choose the directory of the unzipped archive'
-)
-```
+### Processing the Archive
 
-### Data Enrichment
+Facebook exports your data as hundreds of JSON files scattered across folders. My pipeline:
+- Recursively finds and processes all message files (handled **255+ files in about 13 seconds**)
+- Deals with Facebook's weird encoding choices (Latin1 → UTF-8 conversion)
+- Enriches the data with derived fields - extracting year, day, hour from timestamps, classifying sent vs. received messages
 
-The pipeline transforms raw Facebook data into an enriched schema:
+### Building the Database
 
-| Original | Enriched |
-|----------|----------|
-| Raw timestamp | datetime, Year, Day, Hour |
-| Sender name | Sent/Received classification |
-| Thread type | Conversation type |
+Everything gets loaded into a **SQLite database** with proper tables for messages and friend connections. This makes it easy to run SQL queries and explore the data however you want. 
 
-### Database Creation
+The data can be explored using Python, but also queried directly using a database UI tool like `DB Browser for SQLite`.
 
-Automatic SQLite database generation with two main tables:
-- **Messages**: Full message history with derived fields
-- **Friends**: Friend list with connection dates
+<img src="/images/projects/facebook-archive-analysis/db-sqlite-data.png" alt="DB Browser for SQLite UI" width=500/>
 
-### Analysis Capabilities
+### What I Discovered
 
-**Messaging Patterns**
-- Time-of-day activity patterns
-- Multi-year aggregations
-- Sent vs. received balance by conversation
+Some interesting findings from analyzing my own data:
+- **5.6M+ words** across all conversations (that's a lot of chatting over the years)
+- **42.3%** of my Facebook friends had actual message history with me
+- Clear patterns in when I'm most active - time-of-day communication habits
+- Some conversations were pretty one-sided (either them or me doing most of the talking)
+<img src="/images/projects/facebook-archive-analysis/sent-to-received-message-ratio.png" alt="Sent to received messages ratio" width=400/>
 
-**Top Conversations**
-- Message count rankings
-- Percentage share of total communication
-- Communication reciprocity analysis
+I also generated a **word cloud** from all messages to see vocabulary patterns (though it needs additional filtering to be truly meaningful).
+<img src="/images/projects/facebook-archive-analysis/word-cloud.png" alt="Word cloud"/>
 
-**SQL Analytics**
-- 42.3% of friends had direct message conversations
-- Most common first names among connections
-- Complex subqueries and aggregations
+### Privacy Considerations
 
-**Text Visualization**
-- Word cloud from 5.6M+ words
-- Stopword filtering
-- Vocabulary pattern identification
+Since this involves personal data and I wanted to share the project publicly, I built in **anonymization** - all names are replaced with randomly generated ones before any visualizations are shared. Some numbers are also randomized.
 
-## Privacy-Conscious Implementation
+<img src="/images/projects/facebook-archive-analysis/anon1.png" alt="Anonymization process"/>
+<img src="/images/projects/facebook-archive-analysis/anon2.png" alt="Anonymization process2"/>
 
-The project includes data anonymization for sharing:
 
-```python
-random_names = {i: names.get_full_name() for i in df['Conversation'].unique()}
-```
+## Real-world Application
 
-This allows sharing analysis and visualizations without exposing personal data.
+This is basically a **data engineering project applied to personal data**:
+- **ETL pipeline** - extracting from messy source files, transforming, loading into a database
+- **Encoding issues** - a classic real-world data problem
+- **Multiple analysis approaches** - both pandas and SQL
+- **Visualization** - using the right tool for each use case
 
-## Technical Highlights
+The same techniques apply to any JSON-based data source - API responses, log files, export archives from various platforms.
 
-- **Performance tracking** with execution time measurement
-- **Batch DataFrame creation** (accumulate lists, create DataFrame once)
-- **Multiple visualization libraries** (matplotlib, plotly, wordcloud)
-- **Both Python and SQL analysis** approaches
-- **Cross-platform file dialog** for easy path selection
+## Professional Takeaways
 
-## Insights Discovered
-
-- **5.6M+ words** analyzed across all conversations
-- **42.3%** of Facebook friends had message history
-- Clear patterns in communication frequency by time of day
-- Identification of one-sided vs. balanced conversations
-
-## Skills Demonstrated
-
-This project showcases full-stack data capabilities:
-
-- **Data Engineering**: ETL pipeline, encoding handling, database design
-- **Data Analysis**: EDA, statistical aggregations, time series
-- **SQL Proficiency**: Complex queries with subqueries, type casting
-- **Visualization**: Multiple libraries for different use cases
-- **Privacy Awareness**: Anonymization techniques for sensitive data
+- **Handling messy real-world data** - encoding issues, inconsistent structures, missing fields
+- **Building proper pipelines** - not just notebooks, but reusable code that processes data consistently
+- **SQL and Python together** - using each where it makes sense
+- **Privacy awareness** - thinking about anonymization when working with personal data. This is especially relevant in the LLM era, where we should be cautious about what we share not only with people, but with AI as well

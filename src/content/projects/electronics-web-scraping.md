@@ -1,6 +1,6 @@
 ---
 title: "Electronics Price Tracker"
-description: "A web scraping pipeline deployed on Raspberry Pi for 4+ months to track laptop prices, capture Black Friday dynamics, and expose genuine vs. fake discounts through an interactive Streamlit dashboard."
+description: "A web scraping pipeline intended to capture the best deals, while exposing fake discounts at the same time."
 categories: ["Web Scraping", "Dashboard"]
 technologies: ["Python", "BeautifulSoup", "Streamlit", "pandas", "plotly", "Raspberry Pi"]
 github: "https://github.com/PrzemyslawKepka/electronics-web-scraping"
@@ -10,95 +10,57 @@ year: "2021"
 lang: "en"
 ---
 
-## The Motivation
+## Context
 
-I wanted to buy a new laptop and hoped to find good Black Friday discounts. But are those "50% off" deals real or just marketing tricks? I decided to find out with data.
+*"Should I buy it now, or wait for a discount?"*
 
-## The Solution
+A common dilemma we all face. Then the (in)famous Black Friday arrives, you see an allegedly big price drop, you're about to click "buy", but then you suddenly think:
 
-I built an automated price monitoring system and deployed it on my Raspberry Pi for 4+ months (August - December 2021), capturing price trends leading up to and through Black Friday.
+*"Is this discount real? Was it actually this expensive before?"*
 
-### Web Scraping Pipeline
+Facing exactly this while shopping for a new laptop, I decided to build a web scraping pipeline to collect price data from an online store over time - allowing me to spot **real discounts** and expose the fake ones.
 
-**Multi-Page Scraping**
-- Dynamic page detection and iteration
-- Comprehensive data extraction: name, specs, price, former price, ratings
-- Robust error handling for layout variations
-- Polish character encoding support
+*Note: this project predates the 2023 EU directive requiring sellers to display the lowest price from the past 30 days, which now effectively exposes these "fake discount" practices.*
 
-**Data Collected**
-- Product details and technical specs (screen, processor, memory, graphics)
-- Current price vs. "former" price (pre-discount)
-- Star ratings and review counts
-- Delivery availability
+## Solution
 
-**Production Deployment**
-- Raspberry Pi autonomous operation
-- Scheduled execution via cron
-- Append-mode CSV for continuous collection
-- Zero-maintenance for 4+ months
+I built an automated price monitoring system and deployed it on my Raspberry Pi. It ran for **over 4 months** (August - December 2021), scraping laptop prices from one of Poland's largest electronics retailers - capturing pricing trends leading up to and through Black Friday.
 
-### Alternative API Exploration
+### How It Worked
 
-I also discovered and documented x-kom's mobile API:
-- REST API with structured JSON responses
-- Cleaner than HTML scraping
-- Pagination and filtering support
+The scraper ran on a cron schedule, processing all laptop listings every half hour and collecting:
+- Product names and specs
+- **Current price** and **"former price"** (the crossed-out one)
+- Ratings and availability
 
-### Interactive Dashboard
+Everything was saved to CSV files in append mode, building up a historical price record. The Raspberry Pi just sat there quietly doing its job - **zero maintenance for over 4 months**.
 
-A Streamlit application for exploring the collected data:
+### The Dashboard
 
-**Features**
-- Product selection filtered to 20%+ price variance (genuine discounts)
-- Time range slider for Black Friday week
-- Technical specs display
-- Lowest/highest price in range
-- Star rating visualization
+To make sense of the data, I built a Streamlit dashboard that lets you:
+- Select specific products and view their price history
+- Filter to products with **20%+ price variance** (focusing on items with actual price movement)
+- Zoom into the Black Friday period
+- Compare lowest and highest prices across any time range
 
-**Interactive Price Chart**
-- Plotly line chart with current vs. former prices
-- Hover tooltips for exact values
-- Time series showing price fluctuations
+### What Did I Find?
 
-## Key Findings
+Ironically, I didn't end up buying a laptop through some amazing deal discovered by the pipeline - I just found a reasonable price while browsing the store's website directly.
 
-**Discount Validation**
-- Filtering for 20%+ variance revealed many "deals" were smaller
-- Some products had "current price" higher than "former price"
-- Historical baseline exposed pre-event price inflation
+But the analytics clearly showed how prices were fluctuating, when the best time to buy actually was, and whether discounts were real. If I had paired this with a notification system, it could have landed me a genuinely good deal.
 
-**The Value of Long-Term Monitoring**
-- 4 months of data provided statistical confidence
-- Could verify if Black Friday prices were actually year's lowest
-- Identified products with genuine vs. manufactured discounts
+## Real-world Application
 
-## Technical Implementation
+This is basically **price monitoring and competitive intelligence** - a common business application:
+- Retailers track competitor prices
+- Consumers use price history tools (like CamelCamelCamel for Amazon)
+- E-commerce platforms monitor market dynamics
 
-```
-├── laptops_scraping.py         # Main scraper
-├── st_app.py                   # Streamlit dashboard
-├── dash_app.py                 # Dash exploration
-├── black_friday.ipynb          # Data analysis
-└── xkom.ipynb                  # API exploration
-```
+The techniques are the same whether you're tracking laptops for yourself or building a business intelligence system - web scraping, data persistence, time series analysis, and visualization.
 
-### Production Considerations
+## Professional Takeaways
 
-- **Append mode** for continuous data collection
-- **Timestamps** for tracking scrape times
-- **Error resilience** with try/except for missing fields
-- **Caching** in Streamlit for performance
-
-## Technical Growth
-
-This project demonstrated:
-- **Web scraping** with BeautifulSoup at scale
-- **API discovery** and integration
-- **Production deployment** on edge devices
-- **Interactive visualization** with multiple frameworks
-- **Long-term system reliability** (4+ months autonomous operation)
-
-## Personal Note
-
-This second Raspberry Pi deployment (after temperature monitoring) proved I could build reliable, autonomous systems. The edge computing approach meant zero cloud costs while gathering months of valuable data.
+- **Second Raspberry Pi deployment** (after the temperature monitoring project) - further proved I could build reliable, autonomous systems that just work
+- **Long-term system reliability** - 4+ months of unattended operation is a solid test of robustness
+- **Web scraping at scale** - handling pagination, encoding issues, and layout changes
+- **Prefer APIs when available** - while this particular scraping wasn't overly complex, some sites require mimicking full browser behavior. When the same data is exposed via an internal API, it's often simpler to use that instead (respecting the site's terms of service, of course). I briefly explored another retailer's site and successfully connected to their API

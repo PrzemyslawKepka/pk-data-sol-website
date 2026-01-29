@@ -11,81 +11,51 @@ industry: "Finance"
 lang: "en"
 ---
 
-## The Context
+## Problem Definition
 
-In my final months at Santander, I was part of a team responsible for maintaining and developing a crucial data pipeline. This pipeline collected and processed customer opinions about the bank from various sources.
+*You write a **comment about your bank** somewhere on the internet, or you complete a survey, and then you might wonder - **will anybody care?***
 
-## The Pipeline
+And the answer is: **Yes, pretty much.**
 
-### Data Sources
+But on the opposite side of the fence, from a technical standpoint, it's **not easy** for any company to thoroughly track what customers really think about their services. Different surveys, social media posts and comments, feedback forms - all this data might be **scattered across different platforms, systems and providers**.
 
-The pipeline ingested customer feedback from multiple channels:
-- **Surveys** sent to customers
-- **Social media posts** about the bank
-- **API integrations** with external providers
-- **File-based data** sent to our servers
+In my final months at Santander, I joined a team that was tackling exactly this challenge. The goal was to **collect customer opinions** from various sources, **process them**, and **make them available for analysis** - so data scientists could run sentiment models, UX specialists could measure experience, and the business could track NPS scores.
 
-### Technical Architecture
+## Solution
 
-**Data Processing**
-- Python-based ETL with advanced patterns (Factory classes, multithreading)
-- SQL transformations for data preparation
-- Deployed and scheduled in Airflow
+This was a production ETL pipeline, already established when I joined. The data came from multiple channels:
+- Customer surveys
+- API integrations with external providers
+- File-based data from various sources
+- Social media mentions
 
-**Data Consumers**
-- Data scientists running ML models
-- Researchers analyzing customer sentiment
-- UX specialists measuring experience
-- Net Promoter Score (NPS) calculations
+Everything was **Python-based**, with **SQL transformations** for data preparation, all deployed and scheduled in **Airflow**.
 
 ### My Contributions
 
-**Optimization Work**
-- Performance improvements to existing processes
-- Code refactoring and cleanup
+**Performance optimization** - improving existing processes and refactoring code that had accumulated technical debt over time.
 
-**New Data Sources**
-- Implemented integrations following established patterns
-- Worked with external data providers
+**New data source integrations** - implementing connections to additional providers, following the established patterns, but also requiring distinct solutions (like connecting to a new API, or extending database structures to accommodate new data).
 
-**Documentation**
-- Created missing documentation for the pipeline
-- Helped onboard team members
+**Documentation** - the pipeline had grown organically and documentation was lacking. I worked on filling those gaps and helping onboard new team members.
 
-## Unique Aspects
+### The Different Challenge
 
-### Joining an Existing Codebase
+Unlike most of my projects where I built things from scratch, here I had to **adapt to someone else's codebase and way of thinking** - which I personally found overengineered in places. Different coding style, different patterns, decisions I would have made differently. But this is the reality of software engineering - not every project is greenfield.
 
-Unlike my previous projects where I built from scratch, here I inherited a substantial codebase:
-- Different coding style and patterns
-- Some overengineered components (parametrized JSON instruction files)
-- Required adaptation to someone else's way of thinking
+## Impact
 
-This is normal in software engineering - not every project starts from scratch.
+The data we processed was genuinely valuable for the bank:
+- **Customer satisfaction insights** - understanding what people actually think
+- **Data-driven decisions** - supporting product and service improvements
+- **NPS tracking** - measuring the key metric over time
 
-### Business Impact
+And by having this **centralized pipeline** and **single point of truth** for all customer opinions, we have saved many hours of work from other teams on data processing tasks, instead enabling them to focus on their core work like research or modeling.
 
-The data we processed was genuinely valuable:
-- Enabled understanding of customer satisfaction
-- Supported data-driven product decisions
-- Measured effectiveness of service improvements
+Beyond the technical work, this role involved a lot of **stakeholder management** - regular communication with business teams, translating their needs into code, coordinating with external data providers, and navigating GDPR/data privacy requirements with legal teams.
 
-### Stakeholder Management
+## Professional Takeaways
 
-Beyond the technical work:
-- Regular communication with business stakeholders
-- Understanding and translating their needs into code
-- Coordination with external data providers
-- GDPR/data privacy considerations (working with legal teams)
-
-## Technical Growth
-
-This project expanded my skill set:
-- **Airflow**: First time deploying pipelines to production orchestrator
-- **Advanced Python patterns**: Factory classes, multithreading
-- **Team dynamics**: Working within an established technical team
-- **Production mindset**: Maintaining critical infrastructure others depend on
-
-## Personal Note
-
-This project represented a full-circle moment: from data collection through processing to enabling insights - a proper data engineering role. It reinforced that data pipelines are the backbone that makes analytics, ML, and business intelligence possible.
+- **Working within an established technical team** - before I would quite often work within more business-focused teams, being the most technical person there, while here I was working with technical experts more experienced than me, so I had to adapt to existing codebases and team dynamics, but I could also extensively learn from them
+- **Production mindset** - maintaining critical infrastructure that others depend on, where failures have real consequences
+- This project felt like a **full-circle moment** - proper data engineering, from collection through processing to enabling insights. It reinforced that data pipelines are the backbone that makes analytics, ML, and business intelligence possible.

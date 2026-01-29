@@ -11,62 +11,51 @@ industry: "Finance"
 lang: "en"
 ---
 
-## The Problem
+## Problem Definition
 
-Working in the Financial Systems team at JLL, one of my primary responsibilities was reconciling data between multiple enterprise systems:
+*"Do the numbers match?"*
 
-- **Planning & Analytics system** (IBM Planning Analytics)
-- **Budgeting system** (EPBCS)
-- **Financial Consolidation system** (OneStream)
+That's the fundamental question in data reconciliation. And when you're dealing with **multiple enterprise systems**, getting to the answer can be surprisingly tedious.
 
-The existing process was painful:
-- Opening multiple Excel add-ins simultaneously
-- Excel frequently overwhelmed and crashing
-- Manual comparison across large datasets
-- Time-consuming and error-prone
+In large organizations, financial data travels quite an extensive journey:
+- It starts in the ERP system, where accounting transactions originate (Oracle PeopleSoft Financials)
+- Then flows to a separate system for Planning and Analytics (IBM Planning Analytics)
+- Another system handles Budgeting (ePBCS)
+- And yet another manages Financial Consolidation (OneStream)
 
-Data moves between systems, and the goal was to verify that financial numbers matched across all platforms - they often didn't, and finding discrepancies was critical.
+With such a long road, things can go wrong along the way. A transaction goes missing somewhere, creating a discrepancy that needs to be tracked down and fixed.
 
-## The Solution
+Three systems required regular reconciliation (the ERP and Planning Analytics systems were always in sync). But how was this done? Well, the process was rather... challenging:
+- The systems could be accessed directly through browser apps, but that meant manual exports
+- But all systems had Excel add-ins, allowing data to be pulled directly into spreadsheets
+- So Profit & Loss Statements (or Balance Sheets) would be retrieved from each system
+- Then came the tedious part: going account by account, checking if numbers matched or noting discrepancies
+- Meanwhile, Excel would constantly crash under the strain of running three add-ins simultaneously, making VBA macros unreliable as well
 
-I built a Python script to automate the reconciliation process.
+Manually reconciling data—marking rows green or red one by one—was neither efficient nor pleasant.
 
-### How It Worked
+## Solution
 
-**Data Loading**
-- Read data from multiple Excel sheets containing exports from different systems
-- Handled different sheet structures and skip rows as needed
-- Parsed account codes and entity information
+I built a Python script (rather a simple one to be honest) to automate the comparison entirely.
 
-**Comparison Logic**
-- Iterated through accounts and entities across both datasets
-- Compared amounts with proper rounding (2 decimal places)
-- Identified matches and mismatches programmatically
+The script would:
+- **Load exports from two systems** (Excel files with specific structures)
+- **Compare amounts** for each account and entity combination, handling rounding properly
+- **Generate a clean summary** of all discrepancies: Account, Entity, Amount in System A, Amount in System B, and Difference
+- **Produce a highlighted version of the original file** preserving the familiar format, but without the manual work
 
-**Output Generation**
-- Created a summary Excel file with all discrepancies
-- Listed: Account, Entity, Amount in System A, Amount in System B, Difference
-- Added visual highlighting to the source file for matched items
-- Used random filename suffixes to prevent overwrites
+This approach maintained compatibility with the existing workflow while introducing a cleaner discrepancy tracking method—free from the burden of heavy add-ins.
 
-### Technical Details
+## Impact
 
-- **pandas** for data manipulation and comparison
-- **openpyxl** for Excel file reading and formatting
-- **tkinter** for user-friendly file selection dialog
-- Proper handling of account code parsing and entity matching
+**Speed** — What used to require significant manual effort now completed in seconds. Load the files, run the script, get your discrepancy list (of course that would not be the end of the process, rather a beginning of new one, explaining this particular discrepancy).
 
-## The Impact
+**Accuracy** — No more human error from staring at thousands of rows and hoping nothing was missed.
 
-- **Faster reconciliation**: What took significant manual effort now ran in seconds
-- **Reduced errors**: Eliminated human error in large dataset comparisons
-- **Clear output**: Discrepancies documented in a structured, shareable format
+**Documentation** — Discrepancies were automatically logged in a shareable format, not just highlighted cells in a spreadsheet that might get closed without saving.
 
-## Lessons Learned
+## Professional Takeaways
 
-This project reinforced that automation works best for:
-- Repetitive, rule-based processes
-- Large dataset comparisons where manual review is impractical
-- Tasks where tool limitations (Excel crashing) create bottlenecks
-
-It also showed that even when colleagues don't adopt the scripts themselves, the efficiency gains during my own work justified the development effort.
+- **Automation excels at rule-based, repetitive tasks** — Comparing numbers across systems is a textbook example
+- **Sometimes the tool itself is the bottleneck** — Excel crashing under load was the catalyst for finding a better approach
+- **Personal efficiency has value** — Even if colleagues don't adopt your scripts, the time saved in your own work justifies building them (I created this during my final months at the company and shared it, though I'm not sure how widely it was adopted after I left)

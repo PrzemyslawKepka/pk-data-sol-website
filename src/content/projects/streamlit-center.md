@@ -10,63 +10,74 @@ year: "2024"
 lang: "en"
 ---
 
-## The Context
+## Problem Definition
 
-Streamlit was growing rapidly within our Business Intelligence department (~150 data engineers, scientists, and analysts). Different teams were creating applications independently, leading to:
+What happens when a tool becomes popular but nobody coordinates how it's used?
 
-- Inconsistent project structures
-- Duplicated effort in solving common problems
-- No standardized patterns for authentication
-- Knowledge silos between teams
+Streamlit was growing rapidly within our Business Intelligence department - around 150 people including data engineers, data scientists and data analysts. Different teams were building applications independently, which led to the predictable problems:
 
-## The Initiative
+- **Inconsistent project structures** - everyone organizing code differently
+- **Duplicated effort** - teams solving the same problems over and over
+- **No standard for authentication** - everyone implementing it their own way
+- **Knowledge silos** - what one team learned didn't reach others
 
-I was tasked with creating global standards for Streamlit usage and a helper tool to streamline new application development.
+So my role was to **create global standards** for Streamlit usage and a helper tool to streamline new application development.
 
-### Streamlit Center
+## Solution
 
-Rather than just documentation, we created a Streamlit app that serves as both a guide and a code generator:
+Rather than just writing documentation that nobody reads, I built **a Streamlit app that helps you create Streamlit apps**. We called it "Streamlit Center."
 
-**Visual Cookiecutter**
-- Users select configuration through a visual interface
-- Number of pages, page names, features to include
-- Generated ZIP archive with ready-to-use project template
-- Jinja2 templates ensuring consistent code patterns
+### The Visual Cookiecutter
 
-**Guidelines Hub**
-- Best practices documentation
-- Code examples and patterns
-- Integration guides
-- Common pitfall solutions
+The main feature was a **project generator with a visual interface**:
+- Select how many pages you need, name them
+- Choose which features to include
+- Click generate, download a ZIP with a **ready-to-use project template**
 
-### Authentication Solution
+Under the hood, it used the **Python Cookiecutter** module and **Jinja2 templates** to generate consistent code patterns. Every new project would start with the same structure, coding style, and patterns (no more different logos for every app).
 
-Developed a unified authentication mechanism using LDAP and Active Directory:
+### Authentication Module
 
-- **Single Sign-On** for all Streamlit applications
+One of the biggest pain points was authentication - not every app should be accessible to everyone in the organization. I developed a **unified authentication mechanism** using LDAP and Active Directory:
+- **Single Sign-On** for all Streamlit apps
 - **JWT encoding** for credential handling
-- **Reusable module** that any app could integrate
-- Used across multiple applications for several months
+- **Reusable code** that could be easily implemented in any project (ultimately intended to be released as an internal library)
+- **Per-app access control** - app owners could individually decide who gets access
+
+This ran across multiple applications for several months, until licensing changes at Posit Connect (the hosting platform) deprecated this approach.
+
+### Logging Module
+
+For some apps, tracking usage is crucial - who visits, who clicks what (and sometimes, who broke what). We implemented a custom logging solution:
+
+#### Infrastructure
+- **Dedicated logging tables** in MS SQL Server
+- **Database class** with INSERT permissions, implemented in app code
+
+#### What We Track
+- **Page visits**
+- **Executed actions** (button clicks, etc.)
+
+We also handled **deduplication** - Streamlit's re-run on every interaction could otherwise result in many duplicate log entries.
+
+Several apps successfully implemented this logging. Some tables now have tens of thousands of rows (probably hundreds of thousands by now).
+
+### The Guidelines Hub
+
+The app also served as **a central place for documentation** - best practices, code examples, integration guides, solutions to common problems. All in one place, searchable, maintained.
 
 ## Impact
 
-- **Standardization**: New projects followed consistent patterns
-- **Knowledge sharing**: Central place for Streamlit knowledge
-- **Faster development**: Templates reduced setup time
-- **Community building**: Regular showcases and meetings
+**Standardization** - new projects actually followed consistent patterns because it was the path of least resistance (the template did it for you).
 
-## Broader Outcomes
+**Faster onboarding** - new team members could become productive faster because the patterns were documented and the templates handled the boilerplate.
 
-The initiative also led to:
+**Community building** - the initiative led to regular showcases and meetings where teams shared what they built.
 
-- **Guidelines for tool selection**: When to use Streamlit vs Power BI vs Vue.js
-- **Promotion of best practices** through meetings and demos
-- **Foundation for future work**: Ideas for AI-powered code generation
+This also led to **broader discussions** about tool selection - when to use Streamlit vs Power BI vs a proper Vue.js frontend. Sometimes the answer was "Streamlit isn't the right tool for this."
 
-## Technical Insights
+## Professional Takeaways
 
-Working on this project reinforced the importance of:
-
-- **Opinionated defaults**: Sometimes standardization requires making decisions
-- **Developer experience**: Good tooling increases adoption
-- **Documentation**: Without it, standards don't stick
+- **Developer experience matters** - if the standardized way is easier than doing it yourself, people will actually use it
+- **Opinionated defaults are valuable** - sometimes you need to just make decisions instead of offering endless configuration options
+- **Documentation without tooling doesn't stick** - the project generator was what made people actually follow the standards

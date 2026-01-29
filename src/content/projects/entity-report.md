@@ -1,69 +1,71 @@
 ---
-title: "Entity Report Automation"
+title: "Report Automation Framework"
 description: "Automated generation of a comprehensive C-level Credit Risk report in PowerPoint format, replacing a semi-manual Excel-based process and significantly reducing the time required from days to hours."
 categories: ["Automation"]
-technologies: ["Python", "Streamlit", "pandas", "plotly", "python-pptx", "pyodbc", "openpyxl", "SharePoint API"]
+technologies: ["Python", "Streamlit", "pandas", "plotly", "python-pptx", "pyodbc", "openpyxl", "PowerPoint", "SharePoint"]
 image: "/images/projects/entity-report/entity-report-cover.png"
 projectType: "fte"
 company: "Santander Bank Poland"
-year: "2021-2024"
+year: "2021-2023"
 industry: "Credit Risk"
 lang: "en"
 ---
 
-## The Challenge
+## Problem Definition
 
-The Entity Report was a monthly C-level summary of all Credit Risk information for the Polish branch of the bank - a comprehensive document spanning dozens of pages in PowerPoint format.
+*"Can you bring this to Excel?"*
+*"Can we have it as PowerPoint slides?"*
 
-The existing process, designed by a major consulting company, was Excel-based:
-- Multiple Excel sheets aggregating data from different sources
-- SQL queries and Excel files feeding into the process
-- VBA macros generating the final PowerPoint
-- **The entire process took days to complete**
+These words might be like a nightmare in the data world, haunting many people. But sometimes we don't really have an impact on that, for instance due to some formal or regulatory reasons.
 
-## The Solution
+However, what we do have an impact on is **how we generate these slides** (or Excel files, but in this case it will be the slides).
 
-I was tasked with overhauling the entire process and creating a Python-based solution. The requirements were simple: a less technical team member should be able to generate the report themselves.
+And one of the biggest slide decks I have encountered was **"Entity Report"** - a comprehensive **C-level summary** of all risk information for the Polish branch of the bank, created by Credit Risk department on a **monthly basis**. Dozens of pages of PowerPoint slides, packed with charts and tables.
 
-### Technical Architecture
+And how to create it? The process was already semi-automated, Excel-based:
+- Source data would come from SQL database and other Excel files
+- Then this data would populate many sheets in this one, central Excel file
+- Based on loaded source data, charts and tables were generated inside the Excel file
+- And then VBA macros would generate PowerPoint file, taking tables and charts created in the Excel file
 
-The solution consisted of several interconnected components:
+Does not sound that bad? Could be worse, that's true, but it still had some **pain points**:
+- Only **part of the whole process** was covered by the centralized Excel file
+- Besides charts and tables, there was way more content to be added to the slides themselves, as well as pre-made slides to be integrated as a whole deck, so **a lot of manual work** was still required
+- Checking the **availability of source data** or running the whole process in **separate, modular parts** was not really possible
+- And the **maintenance of VBA macros** wasn't the most pleasant experience
+- So in the end, **the entire process took days to complete**
 
-1. **Data Layer**
-   - Connections to multiple SQL databases via `pyodbc`
-   - Excel file processing with `openpyxl` and `pandas`
-   - SharePoint integration for pre-ready slides
 
-2. **Visualization Engine**
-   - Dozens of charts generated with `plotly`
-   - Charts exported as images for PowerPoint integration
+## Solution
 
-3. **Report Generation**
-   - `python-pptx` for creating and manipulating PowerPoint slides
-   - Dynamic slide creation, merging, and content insertion
-   - Native table creation within PowerPoint
+My responsibility was to **overhaul the entire process** and create a Python-based solution. The key requirement was simple: a less technical team member should be able to generate the report themselves, without needing to understand the Python code.
 
-4. **Control Interface**
-   - Streamlit-based UI (internally called "Control Panel")
-   - Step-by-step workflow guiding users through the process
-   - Source availability checking before processing
+And the rest? How to implement it? Well, it was left for my ~~fantasy~~...expertise I mean, of course.
+
+And what I've built together with my coworkers was:
+- **Data layer** connecting to multiple SQL databases and processing Excel files, checking data availability in the first place as well
+- **Visualization engine** generating dozens of charts with Plotly, exported as images
+- **Report generator** using `python-pptx` to create and manipulate PowerPoint slides, including dynamic slide creation and table generation
+- **Streamlit "Control Panel"** - a user-friendly interface guiding users step by step through the process, checking if all data sources are available before proceeding
+
+The interface was crucial - it made the whole thing accessible to non-technical users who just needed to click through the steps.
 
 ## Impact
 
-- **Time savings**: Process reduced from days to hours
-- **Higher automation level**: Most steps now automated
-- **User-friendly interface**: Non-technical users can run the process
-- **Maintainability**: Modular code structure for easy updates
+**Time savings** - a reduction from up to a few days to hours, or just 1-2 days.
 
-## Technical Growth
+It was still not a 100% fully automated process, as there was a need for human involvement anyway, like Subject Matter Experts confirming the final content of the slides, or the requirements or source data would change over time, but it was a very significant reduction of manual work required.
 
-This project was a significant milestone in my development:
+**Process modularity and reliability** - the process flow became clearly defined now, with an ability to resume the process not from scratch all the time, but from a selected module
 
-- **First large-scale Python application** (10k-20k lines of code)
-- **Learned modularity**: Moved from single-file scripts to proper project structure
-- **First use of classes** in a real project context
-- **Led a team**: Managed interns and junior analysts
+**Promoting internal collaboration**: The project was developed openly, shared among Python enthusiasts across the department. Team members from other areas voluntarily contributed when their backlog allowed, promoting a culture of sharing internally developed solutions across teams.
 
-## Key Takeaway
+## Professional Takeaways
 
-This project demonstrated the value of automation in enterprise settings. The original solution from a major consulting firm was expensive and underwhelming - our internal solution delivered better results at a fraction of the cost.
+This project was also a significant milestone in my professional development:
+
+- **First large-scale Python application** - somewhere between 10k-20k lines of code, the biggest thing I had built at that point
+- **Learned proper modularity** - moved from single-file scripts to actual project structure with modules and packages
+- **First real use of classes** - finally applied OOP in a meaningful context
+- **Team leadership** - Responsible for managing interns and junior analysts working on parts of the project
+
