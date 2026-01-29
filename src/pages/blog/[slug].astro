@@ -1,0 +1,266 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations } from '../../utils/i18n';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const lang = post.data.lang || 'en';
+const t = useTranslations(lang);
+
+const { Content, headings } = await post.render();
+
+// Category badge colors
+const categoryColors: Record<string, string> = {
+  Technical: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  Business: 'bg-green-500/20 text-green-400 border-green-500/30'
+};
+
+// Format date as YYYY-MM-DD
+const formattedDate = post.data.publishDate.toISOString().split('T')[0];
+
+// Filter to only include h2 and h3 headings for TOC
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+---
+
+<BaseLayout title={`${post.data.title} | ${t.blog.title}`} lang={lang}>
+  <Header lang={lang} />
+
+  <main class="pt-8">
+    <article class="pt-2 pb-8">
+      <div class="max-w-4xl mx-auto px-4">
+        <!-- Back Link -->
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 text-slate-400 hover:text-amber-500 transition-colors mb-8"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+          {t.blog.backToBlog}
+        </a>
+
+        <!-- Hero Image -->
+        {post.data.image ? (
+          <div class="w-full aspect-video rounded-xl overflow-hidden mb-8 border border-slate-700">
+            <img
+              src={post.data.image}
+              alt={post.data.title}
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+        ) : (
+          <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 flex items-center justify-center mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-24 h-24 text-slate-600">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+            </svg>
+          </div>
+        )}
+
+        <!-- Header -->
+        <header class="mb-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class={`px-3 py-1 rounded-full text-sm font-medium border ${categoryColors[post.data.category]}`}>
+              {post.data.category}
+            </span>
+            <span class="text-slate-400 text-sm">{formattedDate}</span>
+            {post.data.readTime && (
+              <span class="flex items-center gap-1 text-slate-400 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {post.data.readTime} {t.blog.readTime}
+              </span>
+            )}
+          </div>
+
+          <h1 class="text-4xl md:text-5xl font-bold text-slate-100 mb-4">{post.data.title}</h1>
+          <p class="text-xl text-slate-300 leading-relaxed">{post.data.description}</p>
+        </header>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mb-8">
+          {post.data.tags.map((tag: string) => (
+            <span class="px-3 py-1 bg-slate-800 text-slate-400 rounded-lg border border-slate-700 text-sm">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <!-- Table of Contents -->
+        {tocHeadings.length > 0 && (
+          <nav class="mb-12 p-6 bg-slate-800/50 rounded-xl border border-slate-700">
+            <h2 class="text-lg font-bold text-slate-100 mb-4 flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+              </svg>
+              {t.blog.tableOfContents}
+            </h2>
+            <ul class="space-y-2">
+              {tocHeadings.map(heading => (
+                <li class={heading.depth === 3 ? 'ml-4' : ''}>
+                  <a
+                    href={`#${heading.slug}`}
+                    class="text-slate-400 hover:text-amber-500 transition-colors text-sm"
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+
+        <!-- Content -->
+        <div class="prose prose-invert prose-lg max-w-none">
+          <Content />
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>
+
+<style is:global>
+  .prose {
+    --tw-prose-body: #cbd5e1;
+    --tw-prose-headings: #f1f5f9;
+    --tw-prose-links: #f59e0b;
+    --tw-prose-bold: #f1f5f9;
+    --tw-prose-counters: #94a3b8;
+    --tw-prose-bullets: #f59e0b;
+    --tw-prose-hr: #334155;
+    --tw-prose-quotes: #f1f5f9;
+    --tw-prose-quote-borders: #f59e0b;
+    --tw-prose-code: #f1f5f9;
+    --tw-prose-pre-bg: #1e293b;
+    --tw-prose-pre-code: #e2e8f0;
+  }
+
+  .prose h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #334155;
+    color: #f1f5f9;
+    scroll-margin-top: 5rem;
+  }
+
+  .prose h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #f1f5f9;
+    scroll-margin-top: 5rem;
+  }
+
+  .prose p {
+    margin-bottom: 1rem;
+    line-height: 1.625;
+    color: #cbd5e1;
+  }
+
+  .prose ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+    color: #cbd5e1;
+  }
+
+  .prose a {
+    color: #f59e0b;
+    text-decoration: underline;
+  }
+
+  .prose a:hover {
+    color: #fbbf24;
+  }
+
+  .prose code {
+    background-color: #1e293b;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    color: #f1f5f9;
+  }
+
+  .prose pre {
+    background-color: #1e293b;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+
+  .prose pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .prose blockquote {
+    border-left: 4px solid #f59e0b;
+    padding-left: 1rem;
+    font-style: italic;
+    color: #94a3b8;
+  }
+
+  .prose img {
+    border-radius: 0.5rem;
+    border: 1px solid #334155;
+  }
+
+  .prose strong {
+    color: #f1f5f9;
+    font-weight: 700;
+  }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+
+  .prose th {
+    background-color: #1e293b;
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #334155;
+    color: #f1f5f9;
+    font-weight: 600;
+  }
+
+  .prose td {
+    padding: 0.75rem;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+  }
+
+  .prose tr:nth-child(even) {
+    background-color: #1e293b40;
+  }
+</style>
