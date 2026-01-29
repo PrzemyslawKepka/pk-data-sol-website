@@ -26,16 +26,16 @@ So what started as a simple, personal tool ended up as CM Rentals - a web applic
 ### Core Features
 
 - **Interactive map with all properties** - finally you can see the locations
-<img src="/images/projects/cm-rentals/map-with-popover.png" alt="Map details" width=500/>
+<img src="/images/projects/cm-rentals/map-with-popover.webp" alt="Map details" width=500/>
 
 - **Properties table** - beside the map, all the places can be seen in a tabular format as well
-<img src="/images/projects/cm-rentals/listings-table.png" alt="Listings table"/>
+<img src="/images/projects/cm-rentals/listings-table.webp" alt="Listings table"/>
 
 - **Property pages** - dedicated pages for every property
-<img src="/images/projects/cm-rentals/listing-details.png" alt="Listing details" width=400/>
+<img src="/images/projects/cm-rentals/listing-details.webp" alt="Listing details" width=400/>
 
 - **Availability tracking** - every place can retain availability history, displaying not only the most up-to-date status, but the previous ones as well
-<img src="/images/projects/cm-rentals/availability.png" alt="Availability section"/>
+<img src="/images/projects/cm-rentals/availability.webp" alt="Availability section"/>
 
 - **Interactive filters** - to narrow down to what you actually need
 
@@ -60,7 +60,7 @@ So I've posted the app on Facebook and Reddit, and especially on Reddit, where I
 - **86.4%** upvote to downvote ratio
 - **12** comments, claiming the app usefulness
 
-<img src="/images/projects/cm-rentals/reddit-stats.png" alt="Reddit statistics" width=400/>
+<img src="/images/projects/cm-rentals/reddit-stats.webp" alt="Reddit statistics" width=400/>
 
 
 ## Real-world Application

@@ -51,7 +51,7 @@ The temperature sensors were running all the time, 24/7, saving the temperature 
 - Script failure notifications
 - Gmail SMTP integration
 
-<img src="/images/projects/temperature-monitoring/email_notification.png" alt="E-mail notification"/>
+<img src="/images/projects/temperature-monitoring/email_notification.webp" alt="E-mail notification"/>
 
 ## Technical Evolution
 
@@ -70,7 +70,7 @@ So the enhanced version added professional monitoring:
 - **Grafana** for real-time dashboards
 - **Batch processing** similarly as with CSV files, here to reduce DB operations
 
-<img src="/images/projects/temperature-monitoring/grafana_dashboard.png" alt="E-mail notification"/>
+<img src="/images/projects/temperature-monitoring/grafana_dashboard.webp" alt="E-mail notification"/>
 
 It didn't add complexity - quite the opposite. The Python script became simpler because the complexity was handled by established solutions: `InfluxDB` and `Grafana`.
 

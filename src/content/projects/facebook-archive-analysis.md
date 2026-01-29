@@ -36,7 +36,7 @@ Everything gets loaded into a **SQLite database** with proper tables for message
 
 The data can be explored using Python, but also queried directly using a database UI tool like `DB Browser for SQLite`.
 
-<img src="/images/projects/facebook-archive-analysis/db-sqlite-data.png" alt="DB Browser for SQLite UI" width=500/>
+<img src="/images/projects/facebook-archive-analysis/db-sqlite-data.webp" alt="DB Browser for SQLite UI" width=500/>
 
 ### What I Discovered
 
@@ -45,17 +45,17 @@ Some interesting findings from analyzing my own data:
 - **42.3%** of my Facebook friends had actual message history with me
 - Clear patterns in when I'm most active - time-of-day communication habits
 - Some conversations were pretty one-sided (either them or me doing most of the talking)
-<img src="/images/projects/facebook-archive-analysis/sent-to-received-message-ratio.png" alt="Sent to received messages ratio" width=400/>
+<img src="/images/projects/facebook-archive-analysis/sent-to-received-message-ratio.webp" alt="Sent to received messages ratio" width=400/>
 
 I also generated a **word cloud** from all messages to see vocabulary patterns (though it needs additional filtering to be truly meaningful).
-<img src="/images/projects/facebook-archive-analysis/word-cloud.png" alt="Word cloud"/>
+<img src="/images/projects/facebook-archive-analysis/word-cloud.webp" alt="Word cloud"/>
 
 ### Privacy Considerations
 
 Since this involves personal data and I wanted to share the project publicly, I built in **anonymization** - all names are replaced with randomly generated ones before any visualizations are shared. Some numbers are also randomized.
 
-<img src="/images/projects/facebook-archive-analysis/anon1.png" alt="Anonymization process"/>
-<img src="/images/projects/facebook-archive-analysis/anon2.png" alt="Anonymization process2"/>
+<img src="/images/projects/facebook-archive-analysis/anon1.webp" alt="Anonymization process"/>
+<img src="/images/projects/facebook-archive-analysis/anon2.webp" alt="Anonymization process2"/>
 
 
 ## Real-world Application
