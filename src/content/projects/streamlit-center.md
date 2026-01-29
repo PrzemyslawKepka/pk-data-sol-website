@@ -14,14 +14,14 @@ lang: "en"
 
 What happens when a tool becomes popular but nobody coordinates how it's used?
 
-Streamlit was growing rapidly within our Business Intelligence department - around 150 people including data engineers, scientists, and analysts. Different teams were building applications independently, which led to the predictable problems:
+Streamlit was growing rapidly within our Business Intelligence department - around 150 people including data engineers, data scientists and data analysts. Different teams were building applications independently, which led to the predictable problems:
 
 - **Inconsistent project structures** - everyone organizing code differently
 - **Duplicated effort** - teams solving the same problems over and over
 - **No standard for authentication** - everyone implementing it their own way
 - **Knowledge silos** - what one team learned didn't reach others
 
-So I was tasked with **creating global standards** for Streamlit usage and a helper tool to streamline new application development.
+So my role was to **create global standards** for Streamlit usage and a helper tool to streamline new application development.
 
 ## Solution
 
@@ -31,19 +31,34 @@ Rather than just writing documentation that nobody reads, I built **a Streamlit 
 
 The main feature was a **project generator with a visual interface**:
 - Select how many pages you need, name them
-- Choose which features to include (authentication, database connections, etc.)
+- Choose which features to include
 - Click generate, download a ZIP with a **ready-to-use project template**
 
-Under the hood, it used **Jinja2 templates** to generate consistent code patterns. So every new project would start with the same structure, the same coding style, the same patterns.
+Under the hood, it used  **Python Cookiecutter** module and **Jinja2 templates** to generate consistent code patterns. So every new project would start with the same structure, the same coding style, the same patterns (no more different logos for every app).
 
 ### Authentication Module
 
-One of the biggest pain points was authentication - everyone was implementing it differently, often poorly. So I developed a **unified authentication mechanism** using LDAP and Active Directory:
+One of the biggest pain points was authentication - not every app was supposed to be accessible for everyone in the organization. So I developed a **unified authentication mechanism** using LDAP and Active Directory:
 - Single Sign-On for all Streamlit apps
 - JWT encoding for credential handling
-- A reusable module that any app could just import and use
+- A reusable code that could be easily implemented in any project (ultimately it was supposed to be releasy internally as a library).
+- So then the app owners would indivually decided who will have the access
 
-This ran across multiple applications for several months.
+This ran across multiple applications for several months (until licensing changes at Posit Connect, the hosting platform, made this solution to be deprecated).
+
+### Logging module
+
+Crucial part for some of the apps is to track its usage - who visits the app, and who clicks what (or sometimes - who broke what). So we have implemented a custom, simple logging solution:
+- we would set up logging tables in a dedicated MS SQL Server database
+- and then in the app code we would implement a class connected to the database, having INSERT permission to write new rows
+
+And then the logging methods would be implemented inside Streamlit logging, basically tracking two types of activity:
+- page visit
+- executed action, like clicking the button
+
+And at the same time we would restrain duplicated entries to be saved (Streamlit re-run at every interaction could result in many duplicated logs being saved).
+
+So in the end a couple of apps have successfully implemented the logging process, some of them having the tables logged with tens of thounsands rows (now probably hundreds of thousands).
 
 ### The Guidelines Hub
 
