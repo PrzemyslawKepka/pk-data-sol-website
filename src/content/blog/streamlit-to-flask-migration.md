@@ -4,7 +4,7 @@ description: "A practical guide to migrating from Streamlit to Flask, based on r
 publishDate: 2026-01-29
 category: "Technical"
 tags: ["Python", "Flask", "Streamlit", "Web Development", "Migration"]
-image: "/images/blog/streamlit-to-flask-migration/cover.webp"
+image: "/images/blog/streamlit-to-flask-migration/streamlit-to-flask-migration-cover.png"
 readTime: 8
 lang: "en"
 ---
