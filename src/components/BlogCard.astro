@@ -74,7 +74,7 @@ const formattedDate = data.publishDate.toISOString().split('T')[0];
       <!-- Tags -->
       <div class="flex flex-wrap gap-2 mb-4">
         {data.tags.slice(0, 5).map(tag => (
-          <span class="px-2 py-1 text-xs bg-slate-700 text-slate-300 rounded">#{tag}</span>
+          <span class="px-2 py-1 text-xs bg-slate-700 text-slate-300 rounded">{tag}</span>
         ))}
         {data.tags.length > 5 && (
           <span class="px-2 py-1 text-xs bg-slate-700 text-slate-400 rounded">+{data.tags.length - 5}</span>

@@ -249,7 +249,7 @@ function formatDate(date: Date): string {
                 :key="tag"
                 class="px-2 py-1 text-xs bg-slate-700 text-slate-300 rounded"
               >
-                #{{ tag }}
+                {{ tag }}
               </span>
               <span
                 v-if="post.data.tags.length > 5"
