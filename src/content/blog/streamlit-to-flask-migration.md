@@ -11,31 +11,35 @@ lang: "en"
 
 ## Introduction
 
-Creating apps in Streamlit feel like a natural extension for data work in python. You have loaded your source data, you have your dataframes, charts, possible already visualised using Jupyter Notebook. Then you decide to share your work as a web app, so you fire up Streamlit and...everything is so smooth.
+Creating apps in **Streamlit** feels like a **natural extension for data work in Python**. You've loaded your source data, you have your dataframes, charts, possibly already visualized using Jupyter Notebook. Then you decide to share your work as a web app, so you fire up Streamlit and..**.everything is so smooth**.
 
-You're still within your known realm, so operating on dataframes and charts, while the usage of Streamlit feels very easy and effective at the same time. You call just one method and boom, your whole table is displayed. Adding just two more lines of code and you have a filter or a clickable button as well.
+You're still within your known realm, operating on dataframes and charts, while Streamlit itself feels very easy and effective. You call just one method and boom, your whole table is displayed. Adding just two more lines of code and you have a filter or a clickable button as well.
 
-It's less then a few hours and it feels like you have already built a fully-fledged app. Everything is so great, very idyllic...until it isn't. You start hitting the wall, you're literally battling the framework and you're trying to squeeze from it more than it's supposed to offer.
+It's less than a few hours and it feels like you have already built a fully-fledged app. Everything is so great, very idyllic...**until it isn't**. You start **hitting a wall**, you're literally **battling the framework** and you're trying to squeeze out more than it's meant to offer.
 
-A fantasy scenario? Not necessarily. It can be a reality of developing Streamlit applications. But it doesn't have to be a harsh reality.
-Streamlit can be a fantastic tool when you embrace its strengths, and at the same time you're aware of its limitations.
+A fantasy scenario? Not necessarily. This can be a reality of developing Streamlit applications. But it doesn't have to be a harsh reality.
+Streamlit can be a fantastic tool when you **embrace its strengths**, while being **aware of its limitations**.
 
-So in this guide we will tackle the problem of Streamlit not being the best fit anymore. The line of when it's shining and when it's underperforming might be blurry, so we will cover the process from the very beginning until the end, so a successful migration to another tool.
+So in this guide we will tackle the problem of Streamlit not being the best fit anymore. The line between when it's shining and when it's underperforming can be blurry, so we will cover the process from the very beginning until the end - a successful migration to another tool.
 
-And we approach it from a practical perspective - I do have a couple of Streamlit applications under my belt, and with the last one, [CM Rentals](https://pk-data-solutions.com/projects/cm-rentals), I went exactly through the migration path to Flask.
+And we approach it from a practical perspective - I do have a couple of Streamlit applications under my belt, and with the last one, [CM Rentals](https://pk-data-solutions.com/projects/cm-rentals), I went through exactly this migration path to Flask.
 
 ## What makes Streamlit unique
 
-Traditional web development usually seperate the application logic layer (backend) and the interface layer, with which the user interacts (frontend).
-So at the frontend foundations we would have HTML,CSS and JavaScript, possibly wrapped around a framework like React or Vue.js, while at the backend we can have even more programing languages and frameworks.
+**Traditional web development** usually separates the **application logic layer (backend)** and the **interface layer** that the user interacts with (**frontend**).
+So at the frontend foundations we would have HTML, CSS and JavaScript, possibly wrapped in a framework like React or Vue.js, while at the backend we can have even more programming languages and frameworks.
 
-So that's potentially a lot of technologies involved. And at the same time, in the data world quite often the dashboards weren't enough, and then the data professionals, like data scientists, data analysts or data engingeers were supposed to create web applications. But it would mean a technology mismatch: even though you could use Python at the backend, knowledge of frontend technologies isn't something a data professional would usually possess.
+So that's potentially **a lot of technologies involved**. And at the same time, in the data world quite often the dashboards weren't enough, and then the data professionals, like data scientists, data analysts or data engineers were expected to create web applications.
 
-And that's where Streamlit comes in clutch. It's an abstraction layer, allowing to have all the application logic and the frontend part all in one language, in Python, and just in one framework, so in Streamlit.
+But it would mean a technology mismatch: even though you could use Python at the backend, knowledge of frontend technologies isn't something a data professional would usually possess.
 
-Sounds too good to be real? Well, to achieve simplification at the development process it means that we need some serious complexity under the hood, as in the end we still need to generate the HTML file for the website and we need CSS for styling as well (and also JavaScript for the interactivity part). So this is abstracted away in Streamlit, but the ease in development comes at the cost of many compromises.
+And that's where **Streamlit comes in clutch**. It's an abstraction layer, allowing you to have all the application logic and the frontend part **all in one language**, in Python, and just in one framework, so in Streamlit.
 
-What we can achieve "traditionally" might not be possible in Streamlit at all, or will turn out to be overly complex. Crucial part of Streamlit is it's reactivity - every interaction with the app, like clicking a button, means that the code for the whole app will be re-run. This introduces concepts of caching and session state management, which can quickly turn a simple code to a real headache.
+Sounds too good to be real? Well, to achieve simplification of the development process, we need some serious complexity under the hood - in the end, we still need to generate HTML, CSS and JavaScript for the browser.
+
+So this is all abstracted away in Streamlit, but the **ease of development** comes at the cost of many **compromises**.
+
+What we can achieve "traditionally" might not be possible in Streamlit at all, or will turn out to be overly complex. A crucial part of Streamlit is its **reactivity** - every interaction with the app, like clicking a button, means that the code for the whole app will be re-run. This introduces concepts of caching and session state management, which can quickly turn simple code into a real headache.
 
 ## When Streamlit Works Great
 
@@ -44,7 +48,7 @@ Before diving into limitations, let's acknowledge where Streamlit excels:
 - **Rapid prototyping** - Get a working app in hours (yes, one can argue that with AI you can build any app with any tech stack that quickly, but if we talk about really owning and understanding the code then it's really hard to compete with Streamlit)
 - **Data-focused applications** - Built-in support for charts, tables, and data manipulation
 - **ML/AI demos** - And the data focus extends to ML and AI, with built-in functions for features like chatbots
-- **Internal tools** - All the users will get the link to the app, it won't be public and you don't care about search engines, with users discovering the app organically
+- **Internal tools** - All users get the link to the app directly, so you don't need to worry about search engines or organic discovery
 - **Single-page applications** - When you need one view with interactive widgets
 - **Utility first, appearance second** - You focus on the app being functional, not on customizing the appearance
 
@@ -55,55 +59,55 @@ Before diving into limitations, let's acknowledge where Streamlit excels:
 
 Streamlit's interactivity is a blessing and a curse at the same time. A full app re-run at every interaction means that:
 - If you're loading a table from a database, Streamlit will attempt to load it again anytime you click something in the app
-- If you're displaying a message after clicking a button and then you use another widget, like filter, the button message will disappear unless retain explicitly
+- If you're displaying a message after clicking a button and then you use another widget, like filter, the button message will disappear unless retained explicitly
 
-Streamlit of course provides measure to prevent this and maintain the app state:
+Streamlit of course provides measures to prevent this and maintain the app state:
 - Caching for saving the output of a function, meaning that effectively we can just load our dataset once
-- Session state for retaining the state of the app, meaning that what we have clicked once will be here to stay
+- Session state for retaining the state of the app, meaning that what we've clicked once is here to stay
 
-And while caching might be a little bit easier to harness, session state might be a real hassle if we want just want to retain too much.
+And while caching might be a little bit easier to harness, session state might be a real hassle if we just want to retain too much.
 
 ### 2. Performance
 
-Even if somehow we have managed to have an immaculate caching and session state, Streamlit still needs to do a very heavy lifting in the background to render our python-only code with a local web server and the frontend code.
+Even if somehow we have managed to have immaculate caching and session state, Streamlit still needs to do very heavy lifting in the background to render our Python-only code with a local web server and the frontend.
 
-So not matter how much optimization we implement in our code, Streamlit is still an extra abstraction layer, and real performance boost might be possible only by...not using Streamlit.
+So no matter how much optimization we implement in our code, Streamlit is still an extra abstraction layer, and a real performance boost might be possible only by...not using Streamlit.
 
 ### 3. SEO Limitations
 
-Streamlit apps are essentially single-page applications rendered client-side. Search engines struggle to index dynamic content, so there's limited control over meta tags, URLs, and page structure.
+Streamlit apps are essentially single-page applications rendered client-side. There's limited control over meta tags, URLs, and page structure, so search engines struggle to index the content properly.
 
-So if our app goes 'public', there's a big chance that it will struggle to climb to that #1 position in Google search. 
+So if our app goes 'public', there's a good chance it will struggle to climb to that #1 position in Google search. 
 
 ### 4. Dynamic pages
 
-Streamlit also allows multipage apps, so we can create many pages of our app, which also helps the code to stay more organized.
+Streamlit also allows multipage apps, so we can create many pages of our app, which also helps keep the code more organized.
 
-However, under the hood it's still one HTML file, one document.
+However, under the hood it's still **one HTML file, one document**.
 
 So in our case, for CM Rentals, we wanted to have dynamic pages for two aspects:
-- functional - sepearate, dedicated pages with all the information about selected property
-- search-engine optimization - each dedicated page for a property should be indexed seperately by Google Search Engine, meaning that they can be discovered directly
+- **functional** - separate, dedicated pages with all the information about a selected property
+- **SEO** - each dedicated page for a property should be indexed separately by Google, meaning they can be discovered directly
 
-So to basically have an URL address like this:  
+So to basically have a URL like this:  
 https://cm-rentals.com/listing/cosy-apartment
 
-However, this is not effectively possible in Streamlit.
+However, this is effectively impossible in Streamlit.
 
-Each "page" has to be declared explicitly. And dynamic page is a keyword here - we will be loading properties from a database, they might change over time, so we cannot specify all of them. The app should just be able of handling all of them and create the URLS by itself.
+Each "page" has to be declared explicitly. And **dynamic** is the keyword here - we will be loading properties from a database, they might change over time, so we cannot specify all of them. The app should just be able to handle all of them and generate the URLs on its own.
 
-What we could only try to achieve in Streamlit is to create dynamic sections/subheaders in the app like:
+The most we could try to achieve in Streamlit is creating dynamic sections/subheaders in the app like:
 https://cmrentals.tojest.dev/#cosy-apartment
 
 But this would be neither effective nor remotely close to what we want to achieve.
 
 ### 5. Layout Constraints
 
-Streamlit comes with with a pre-designed layout. Fully functional and looks good out-of-the box. But if you want to go more custom, than it can be very cumbersome to try to make it your way.
+Streamlit comes with a pre-designed layout. Fully functional and looks good out of the box. But if you want to go more custom, then it can be very cumbersome to make it your own.
 
 ### 6. Mobile capabilities
 
-By default, Streamlit does not come with any features that can make the app more mobile-friendly. However, with external libraries it's possible to retrieve user's screen size and such, so we can adjust the app at least a little bit. But this is still far from perfect, and won't be as pleasant experience as the desktop.
+By default, Streamlit doesn't come with any built-in features to make the app mobile-friendly. However, with external libraries it's possible to retrieve the user's screen size and such, so we can adjust the app at least a little bit. But this is still far from perfect, and won't be as pleasant an experience as on desktop.
 
 
 ## What's next? The Migration path
