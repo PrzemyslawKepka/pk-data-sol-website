@@ -15,7 +15,7 @@ Creating apps in **Streamlit** feels like a **natural extension for data work in
 
 You're still within your known realm, operating on dataframes and charts, while Streamlit itself feels very easy and effective. You call just one method and boom, your whole table is displayed. Adding just two more lines of code and you have a filter or a clickable button as well.
 
-It's less than a few hours and it feels like you have already built a fully-fledged app. Everything is so great, very idyllic...**until it isn't**. You start **hitting a wall**, you're literally **battling the framework** and you're trying to squeeze out more than it's meant to offer.
+It's less than a few hours and it feels like you have already built a fully-fledged app. Everything is so great, very idyllic...**until it isn't**. You start **hitting a wall**, you're literally **battling the framework** and you're trying to **squeeze out more than it's meant to offer**.
 
 A fantasy scenario? Not necessarily. This can be a reality of developing Streamlit applications. But it doesn't have to be a harsh reality.
 Streamlit can be a fantastic tool when you **embrace its strengths**, while being **aware of its limitations**.
@@ -29,9 +29,9 @@ And we approach it from a practical perspective - I do have a couple of Streamli
 **Traditional web development** usually separates the **application logic layer (backend)** and the **interface layer** that the user interacts with (**frontend**).
 So at the frontend foundations we would have HTML, CSS and JavaScript, possibly wrapped in a framework like React or Vue.js, while at the backend we can have even more programming languages and frameworks.
 
-So that's potentially **a lot of technologies involved**. And at the same time, in the data world quite often the dashboards weren't enough, and then the data professionals, like data scientists, data analysts or data engineers were expected to create web applications.
+So that's potentially **a lot of technologies involved**. And at the same time, in the data world quite often the dashboards weren't enough, and then the **data professionals**, like data scientists, data analysts or data engineers were expected to **create web applications**.
 
-But it would mean a technology mismatch: even though you could use Python at the backend, knowledge of frontend technologies isn't something a data professional would usually possess.
+But it would mean a **technology mismatch**: even though you could use Python at the backend, knowledge of frontend technologies isn't something a data professional would usually possess.
 
 And that's where **Streamlit comes in clutch**. It's an abstraction layer, allowing you to have all the application logic and the frontend part **all in one language**, in Python, and just in one framework, so in Streamlit.
 
@@ -110,126 +110,77 @@ Streamlit comes with a pre-designed layout. Fully functional and looks good out 
 By default, Streamlit doesn't come with any built-in features to make the app mobile-friendly. However, with external libraries it's possible to retrieve the user's screen size and such, so we can adjust the app at least a little bit. But this is still far from perfect, and won't be as pleasant an experience as on desktop.
 
 
-## What's next? The Migration path
+## What's next? The Migration Path
 
 ### Identifying bottlenecks
 
+So at this point, we know that Streamlit might not be the best fit anymore. But before jumping to conclusions and immediately starting to code something new, it's worth taking a step back and **clearly identifying what's not working**.
+
+Not all of the limitations mentioned above might apply to your case. Maybe you only struggle with one or two of them. And that's important, because the bottlenecks you identify will directly influence what tool you choose next.
+
+In our case, for CM Rentals, the main pain points were:
+- **Dynamic pages** - we needed dedicated, individually accessible pages for each property
+- **SEO** - the app was public, and we needed Google to index each property page separately
+- **Layout & mobile** - the default Streamlit look wasn't cutting it for a public-facing app
+- **Performance** - the app was noticeably slow, even with caching in place
+
+So essentially, we outgrew Streamlit in all the areas that matter for a **public-facing web application**. For an internal tool, most of these wouldn't even be a concern.
+
 ### Choosing the new tech stack
+
+Once we know our bottlenecks, we can start looking for a tool that addresses them. And with Python in the picture, we have a few directions to explore.
 
 #### Python-based data frameworks
 
+If our main issue was just about having more features while staying in the data-focused realm, there are alternatives to Streamlit:
+
+- **Dash** (by Plotly) - more flexible layouts and callbacks, but still an abstraction layer with similar limitations
+- **Gradio** - great for ML demos, but even more limited than Streamlit for general web apps
+- **Panel** - similar concept, different ecosystem
+
+But here's the thing - if we're hitting Streamlit's limitations on SEO, dynamic routing and layout control, **switching to another data framework won't solve these problems**. They share the same fundamental constraints.
+
 #### Full-stack frameworks
+
+So if data frameworks won't cut it, the next step is looking at actual web frameworks. And within Python, the main contenders are:
+
+- **Flask** - lightweight and flexible, you build what you need without unnecessary boilerplate
+- **Django** - batteries included, great for larger projects, but might be too opinionated for a smaller one
+- **FastAPI** - excellent for building APIs, but if you need server-rendered pages with HTML templates, it's not its primary strength
+
+For CM Rentals, **Flask** was the natural choice:
+- It's **lightweight** - I didn't need a full-blown framework with ORM, admin panel and everything else Django provides
+- It's **flexible** - I could structure the project exactly how I wanted
+- It supports **Jinja2 templates** - server-side rendering, which is exactly what we need for SEO
+- And most importantly, it's **Python** - so the transition from Streamlit isn't as dramatic as jumping to a completely different ecosystem
 
 ### Implementation plan
 
-## Flask vs Streamlit - core differences
+Before writing any code, I documented what I had and what I needed:
 
-## Results
+- **All features** of the current Streamlit app - map display, property details, filtering
+- **Database schema** - this one was crucial. I decided to **keep it unchanged**. No point in adding complexity by reorganizing the data layer during migration
+- **External integrations** - Supabase for the database, Folium for maps
+- **What to improve** - URL structure, SEO, mobile experience
+- **What to drop** - the admin panel (would rebuild it later, separately)
 
-## Lessons Learned
+The key principle was: **migrate the presentation layer, keep everything else intact**. The database stays, the data logic stays, we're just changing how things are displayed and served to the user.
 
-### 1. Don't Over-Engineer
+## Flask vs Streamlit - Core Differences
 
-I initially planned to use React for the frontend. That would have doubled the development time. Flask with Jinja2 and a bit of HTMX was sufficient.
+So what does it actually look like to go from Streamlit to Flask? The fundamental difference is that **Flask separates what Streamlit combines**.
 
-### 2. Keep the Database
+In Streamlit, your Python code **is** your app - the logic, the layout, the interactivity, all in one place. In Flask, these concerns are split:
 
-Changing the database schema during migration adds unnecessary complexity. Migrate the presentation layer first, optimize data later.
+- **Routes** (Python) - define what happens when someone visits a URL
+- **Templates** (HTML/Jinja2) - define what the page looks like
+- **Static files** (CSS/JS) - handle styling and interactivity
 
-### 3. Streamlit Skills Transfer
+This means more files and more structure, but also **full control**. Every HTML element, every CSS rule, every URL is yours to define.
 
-Understanding Python web concepts in Streamlit (sessions, caching, database queries) made Flask much easier to learn.
+To illustrate with a simple example:
 
-### 4. Consider Hybrid Approach
-
-For internal admin tools, I still use Streamlit. Public-facing pages use Flask. Best of both worlds.
-
-## When to Stay with Streamlit
-
-Migration isn't always the answer. Stay with Streamlit if:
-
-- Your app is internal-only
-- SEO doesn't matter
-- You need rapid iteration over polish
-- Your team knows Python but not web development
-- The app is data-exploration focused
-
-## Conclusion
-
-The Streamlit to Flask migration for CM Rentals took about 4 weeks of part-time work. The investment paid off with better SEO, faster performance, and complete design control.
-
-The key insight: **Streamlit and Flask aren't competitors - they're different tools for different stages.** Start fast with Streamlit, migrate when you hit its limits.
-
-If you're facing similar decisions, feel free to reach out. I'm happy to share more specific details about the migration process.
-
-
----------
-Old, deprecated
-
-## Planning the Migration
-
-### Step 1: Audit Your Current App
-
-Before writing any code, I documented:
-
-- **All features** currently in the Streamlit app
-- **Database schema** (unchanged - this was a huge advantage)
-- **External integrations** (Supabase, map APIs)
-- **User flows** from the analytics
-
-### Step 2: Choose Your Stack
-
-For CM Rentals, I chose:
-
-- **Flask** - Lightweight, flexible, Python-based (matching my Streamlit skills)
-- **Jinja2 templates** - Server-side rendering for SEO
-- **Leaflet.js** - Same map library I was comfortable with
-- **HTMX** - For interactive elements without heavy JavaScript
-
-Why Flask over Django or FastAPI?
-
-- **Django** - Too opinionated for a small project
-- **FastAPI** - Great for APIs, but I needed server-rendered pages
-- **Flask** - Just right: flexible, well-documented, and Python
-
-### Step 3: Define the Migration Scope
-
-Not everything needed to migrate. I categorized features:
-
-| Keep | Improve | Remove |
-|------|---------|--------|
-| Map display | URL structure | Admin panel (rebuild later) |
-| Property details | SEO optimization | |
-| Filtering | Mobile experience | |
-
-## The Migration Process
-
-### Phase 1: Core Structure (Week 1)
-
-Set up the Flask application structure:
-
-```
-cm-rentals/
-├── app/
-│   ├── __init__.py
-│   ├── routes/
-│   │   ├── main.py
-│   │   └── properties.py
-│   ├── templates/
-│   │   ├── base.html
-│   │   └── properties/
-│   └── static/
-├── config.py
-└── run.py
-```
-
-Key decision: Keep the same database. No schema changes meant the data layer worked immediately.
-
-### Phase 2: Template Migration (Week 2)
-
-This was the most time-consuming part. Converting Streamlit's automatic rendering to Jinja2 templates:
-
-**Before (Streamlit):**
+**Streamlit** - display a property:
 ```python
 st.write(f"# {property.title}")
 st.write(property.description)
@@ -238,91 +189,87 @@ with col1:
     st.metric("Price", f"${property.price}/month")
 ```
 
-**After (Flask/Jinja2):**
+**Flask** - the same thing, but separated into a route and a template:
+
+Route (Python):
+```python
+@app.route('/listing/<slug>')
+def listing(slug):
+    property = get_property_by_slug(slug)
+    return render_template('listing.html', property=property)
+```
+
+Template (HTML/Jinja2):
 ```html
 <h1>{{ property.title }}</h1>
 <p>{{ property.description }}</p>
-<div class="grid grid-cols-2">
-    <div class="metric">
-        <span class="label">Price</span>
-        <span class="value">${{ property.price }}/month</span>
-    </div>
-</div>
+<div class="price">{{ property.price }}/month</div>
 ```
 
-### Phase 3: Interactive Features (Week 3)
+More code? Yes. But notice what we got: a **clean URL** (`/listing/cosy-apartment`), **full HTML control**, and the ability to add **meta tags, structured data, or any CSS** we want. These are the things that weren't possible in Streamlit.
 
-Streamlit handles interactivity automatically. With Flask, I used:
+And for interactivity like filtering? No need for anything fancy. Standard **HTML forms** with a GET request do the job - the user selects their filters, clicks "Apply", and the page reloads with the filtered results. Simple, reliable, and no JavaScript framework required.
 
-- **HTMX** for filtering without full page reloads
-- **JavaScript** for map interactions
-- **Form submissions** for user inputs
-
-Example: Property filtering with HTMX
-
-```html
-<select name="bedrooms"
-        hx-get="/api/properties"
-        hx-target="#property-list"
-        hx-trigger="change">
-    <option value="">All</option>
-    <option value="1">1 Bedroom</option>
-    <option value="2">2 Bedrooms</option>
-</select>
-```
-
-### Phase 4: SEO Implementation (Week 4)
-
-The main reason for migration. I added:
-
-- **Dynamic meta tags** for each property
-- **Sitemap generation** for search engines
-- **Clean URLs** with Flask routes
-- **Structured data** (JSON-LD) for rich snippets
+In Streamlit, filtering is arguably easier to set up with built-in widgets. But in Flask, once you write the form and the filtering logic, you have **full control** over how the filters look, how the URL changes, and how the results are displayed.
 
 ## Results
 
-After migration:
+After the migration, the differences were clear:
 
-| Metric | Before (Streamlit) | After (Flask) |
-|--------|-------------------|---------------|
+| Metric | Streamlit | Flask |
+|--------|-----------|-------|
 | Initial load | ~3s | ~800ms |
 | Google indexed pages | 1 | 50+ |
 | Lighthouse Performance | 45 | 85 |
 | Mobile usability | Limited | Full |
+| Layout control | Constrained | Complete |
+
+The **performance** improvement was significant - almost 4x faster initial load. But the biggest win was **SEO**: going from just one indexable page to over 50 individual property pages, each discoverable through Google search.
+
+And the **layout freedom** - being able to design the pages exactly how I wanted, without fighting Streamlit's constraints - was honestly a relief.
 
 ## Lessons Learned
 
 ### 1. Don't Over-Engineer
 
-I initially planned to use React for the frontend. That would have doubled the development time. Flask with Jinja2 and a bit of HTMX was sufficient.
+I initially planned to use **React** for the frontend. Separate frontend and backend, API-driven, the whole thing. But that would have been a massive increase in complexity for what is, at its core, a content-focused website.
+
+Flask with **Jinja2 templates** and **vanilla CSS/JS** turned out to be more than sufficient. The lesson: pick the simplest tool that solves your problem.
 
 ### 2. Keep the Database
 
-Changing the database schema during migration adds unnecessary complexity. Migrate the presentation layer first, optimize data later.
+This was probably the best decision of the whole migration. I didn't touch the database schema at all - same tables, same columns, same Supabase setup.
+
+The migration was **purely about the presentation layer**. Changing the database at the same time would have introduced a whole new category of bugs and complexity. Optimize data later, once the new frontend is stable.
 
 ### 3. Streamlit Skills Transfer
 
-Understanding Python web concepts in Streamlit (sessions, caching, database queries) made Flask much easier to learn.
+Here's the good news if you're coming from Streamlit: **you're not starting from zero**. The concepts of session management, caching, and database queries all carry over to Flask. The mental models are the same, just implemented differently.
 
-### 4. Consider Hybrid Approach
+If anything, having wrestled with Streamlit's session state gave me a much better appreciation for how Flask handles state (spoiler: it's simpler).
 
-For internal admin tools, I still use Streamlit. Public-facing pages use Flask. Best of both worlds.
+### 4. Consider a Hybrid Approach
+
+Not everything has to migrate. For CM Rentals, the **public-facing pages** are served by Flask, but I still use a **Streamlit app as an admin panel** for managing properties.
+
+Why? Because for an internal tool where only I interact with it, Streamlit is genuinely perfect - rapid development, no need for SEO or custom layouts. Each tool where it shines.
 
 ## When to Stay with Streamlit
 
-Migration isn't always the answer. Stay with Streamlit if:
+Migration isn't always the answer. Before committing to a rewrite, honestly assess if you actually need it. **Stay with Streamlit** if:
 
-- Your app is internal-only
-- SEO doesn't matter
-- You need rapid iteration over polish
-- Your team knows Python but not web development
-- The app is data-exploration focused
+- Your app is **internal-only** - no SEO concerns, no public users
+- **Appearance is secondary** - the default look is fine for your use case
+- You need **rapid iteration** over polish - shipping fast matters more than pixel-perfect design
+- Your team **knows Python but not web development** - and learning HTML/CSS/JS isn't on the roadmap
+- The app is **data-exploration focused** - exactly what Streamlit was built for
+
+And there's nothing wrong with that. Not every app needs to be a polished, SEO-optimized web application. Sometimes a Streamlit app is **exactly the right tool** - and acknowledging that is just as important as knowing when to move on.
 
 ## Conclusion
 
-The Streamlit to Flask migration for CM Rentals took about 4 weeks of part-time work. The investment paid off with better SEO, faster performance, and complete design control.
+The Streamlit to Flask migration for CM Rentals was a significant effort. But the result - a **faster, SEO-friendly, mobile-responsive** application with complete design control - made it worth it.
 
-The key insight: **Streamlit and Flask aren't competitors - they're different tools for different stages.** Start fast with Streamlit, migrate when you hit its limits.
+The real takeaway isn't "Flask is better than Streamlit." It's that **Streamlit and Flask aren't competitors - they're tools for different stages and different needs**. Start fast with Streamlit to validate your idea, and migrate when (and if) you outgrow it.
 
-If you're facing similar decisions, feel free to reach out. I'm happy to share more specific details about the migration process.
+And if you're facing a similar decision right now - take a look at the [CM Rentals project page](https://pk-data-solutions.com/projects/cm-rentals) to see the end result, and feel free to reach out if you want to chat about the specifics.
