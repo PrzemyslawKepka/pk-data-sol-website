@@ -114,33 +114,57 @@ By default, Streamlit doesn't come with any built-in features to make the app mo
 
 ### Identifying bottlenecks
 
-So at this point, we know that Streamlit might not be the best fit anymore. But before jumping to conclusions and immediately starting to code something new, it's worth taking a step back and **clearly identifying what's not working**.
+So the Streamlit app is working, it has received a positive feedback, why would we change anything? That's a very valid point, and if we would consider the project as finished then we could just end it here.
 
-Not all of the limitations mentioned above might apply to your case. Maybe you only struggle with one or two of them. And that's important, because the bottlenecks you identify will directly influence what tool you choose next.
+But if we will continue working on it, we have to **identify what is working and what is not**, basically weighing what bears lesser cost (time to outcome):
+- Staying with Streamlit, but potentially struggle with the app growth (or even prevent the growth)
+- Spending extra time on migrating the app to another tech stack, but with a prospect of potential time savings in the future, streamling the app growth as well
 
-In our case, for CM Rentals, the main pain points were:
-- **Dynamic pages** - we needed dedicated, individually accessible pages for each property
-- **SEO** - the app was public, and we needed Google to index each property page separately
-- **Layout & mobile** - the default Streamlit look wasn't cutting it for a public-facing app
-- **Performance** - the app was noticeably slow, even with caching in place
+So we got functional app almost in no time, that have definitely worked very well. But if we wanted to go forward with the app, the pain points were making it a little bit bleak:
+- **Dynamic pages** - we needed dedicated, individually accessible pages for each property, which we cannot achieve in Streamlit
+- **SEO** - the app was public, so we wanted some search visibilty, and Streamlit does not shine at it either 
+- **Layout & mobile** - while we have even made the app mobile-responsive, the default Streamlit look wasn't cutting it for a public-facing app
+- **Performance** - the app was not that slow, but had some visible loading times (although maybe I could have optimized it better, but then the code simplicity would have to be compromised)
 
 So essentially, we outgrew Streamlit in all the areas that matter for a **public-facing web application**. For an internal tool, most of these wouldn't even be a concern.
 
+Additionally, we were also a little bit **outside data-centric** app boundaries here. Even though we did load data from a database, it would only be dozens or hundreds or records of records and no heavy data manipulation and computation (actually none at all). Just retrieve the records and display them. So beside functional layer, importance of the appearance was actually knocking here.
+
+### Redefining the requirements
+
+But before we delve onto all the possible options, we should stop for a second and think about our requirements for the app.
+Using Streamlit imposes some rules on us.
+
+
 ### Choosing the new tech stack
 
-Once we know our bottlenecks, we can start looking for a tool that addresses them. And with Python in the picture, we have a few directions to explore.
+So the decision is made. Farewall Streamlit it is. But what's next?
+The abundance of options, so a number of technologies in which we can create a web app, might be stagggering and intimidating at the same.
+
+So we should be smart here. We need some constraints. Using Streamlit means Python background, so that should be our starting point:
+- We don't want to use some totally distinct technologies, so we're not gonna use PHP or .Net
+- But we should rather stay with Python
+- Although if staying 100% with Python is not possible, then we should accept a need to grasp some new technologies
+- But as the complexity of our app won't be that high, we shouldn't pick frameworks with highest learning curves, aimed at more complicated projects
+
+That's a start now.
 
 #### Python-based data frameworks
 
-If our main issue was just about having more features while staying in the data-focused realm, there are alternatives to Streamlit:
+Streamlit is actually not a one of a kind. There are more tools boasting to be all-in-one, alllowing to create web apps only with Python, focusing on data. **Dash**, **Panel**, **NiceGUI**, **Reflex**, the list can go on.
 
-- **Dash** (by Plotly) - more flexible layouts and callbacks, but still an abstraction layer with similar limitations
-- **Gradio** - great for ML demos, but even more limited than Streamlit for general web apps
-- **Panel** - similar concept, different ecosystem
+They would differ in the architecture compared to Streamlit, usually avoiding this problematic full re-run like Streamlit does, and some of them might actually have bigger capabilities in terms of creating a fully-fledged app rather than a prototype.
 
-But here's the thing - if we're hitting Streamlit's limitations on SEO, dynamic routing and layout control, **switching to another data framework won't solve these problems**. They share the same fundamental constraints.
+However, we have identified Streamlit's limitations on SEO, dynamic routing and layout control, and **switching to another data framework won't solve these problems**. They share the same fundamental constraints, and the improvement could potentially be only partial, not what we expect.
 
 #### Full-stack frameworks
+
+So we have no choice, but to enter the full-stack world.
+And that world is vast, with basically three types of setups available:
+- **Separate Backend and Frontend frameworks** - the most complex combination, but also giving us the most in terms of what can be achieved
+- **Backend only + HTML templates** - JavaScript-based frontend frameworks like React or Vue.js still have to generate an HTML file, but they add high interactivity. But if interactivity is not what we care about the most, then at the exepnse of it we can simplify our approach and avoid going full-stack route - 
+- **Frontend + Backend-as-a- Service** - this is actually an opposite approach to Backend only option. Here, we use a Frontend framework which will communicate with a da
+
 
 So if data frameworks won't cut it, the next step is looking at actual web frameworks. And within Python, the main contenders are:
 
@@ -153,6 +177,9 @@ For CM Rentals, **Flask** was the natural choice:
 - It's **flexible** - I could structure the project exactly how I wanted
 - It supports **Jinja2 templates** - server-side rendering, which is exactly what we need for SEO
 - And most importantly, it's **Python** - so the transition from Streamlit isn't as dramatic as jumping to a completely different ecosystem
+
+
+Important Note: Every migration assessment should be customised to the specific project.
 
 ### Implementation plan
 
