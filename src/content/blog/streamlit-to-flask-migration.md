@@ -133,15 +133,35 @@ Additionally, we were also a little bit **outside data-centric** app boundaries 
 ### Redefining the requirements
 
 But before we delve onto all the possible options, we should stop for a second and think about our requirements for the app.
-Using Streamlit imposes some rules on us.
+Usage of Streamlit imposes some rules on us. It's not only the functional and visual constraints, but also the reactivity. App reload after every interaction is actually a highest degree of interactivity that we can have in the we bapp.
+
+But do we actually need that much interactivity? The answer is - no, not at all.
+
+Our requirements are as following:
+- We keep **all features** of the current Streamlit app - map display, property table, filtering
+- We also retain the **database schema** - there's no point in adding complexity by reorganizing the data layer during migration, especially that it works seamlessly already
+- **External integrations** should be here to stay - Supabase for the database, Folium for maps
+- We add **dedicating property pages** - for SEO and better user experience
+- Simiarly, we also improve the general **layout and mobile responsiveness**
+
+And the reactivity part:
+- We retrieve all the data from database while loading the website
+- When we go to specific property page then we already have all the data
+- We will have Filters feature for properties, but it doesn't have to be that interactive, reload just after we changes some parameters. It is more than acceptable to click an extra button to apply the filter changes
+
+So we reach a conclusion here. We don't need highly interactive application. We will be more than happy with a static website, where the content of the webiste will be pre-loaded for us by the server, and not changed dynamically while browsing the app.
+That's almost a breakthrough. It not only aligns with our main goal improving the SEO, but should generally mean that the app code might be simpler.
 
 
 ### Choosing the new tech stack
 
-So the decision is made. Farewall Streamlit it is. But what's next?
-The abundance of options, so a number of technologies in which we can create a web app, might be stagggering and intimidating at the same.
+So the decision is made. Farewall Streamlit it is. And we have already revisited our requirements, so we have a direction we're headed to.
 
-So we should be smart here. We need some constraints. Using Streamlit means Python background, so that should be our starting point:
+Bu the abundance of options, so a number of technologies in which we can create a web app, might be stagggering and intimidating at the same.
+
+#### Tech-stack prerequisites
+
+So we should be stay smart here. We need some constraints. Using Streamlit means Python background, so that should be our starting point:
 - We don't want to use some totally distinct technologies, so we're not gonna use PHP or .Net
 - But we should rather stay with Python
 - Although if staying 100% with Python is not possible, then we should accept a need to grasp some new technologies
@@ -161,9 +181,13 @@ However, we have identified Streamlit's limitations on SEO, dynamic routing and 
 
 So we have no choice, but to enter the full-stack world.
 And that world is vast, with basically three types of setups available:
-- **Separate Backend and Frontend frameworks** - the most complex combination, but also giving us the most in terms of what can be achieved
-- **Backend only + HTML templates** - JavaScript-based frontend frameworks like React or Vue.js still have to generate an HTML file, but they add high interactivity. But if interactivity is not what we care about the most, then at the exepnse of it we can simplify our approach and avoid going full-stack route - 
-- **Frontend + Backend-as-a- Service** - this is actually an opposite approach to Backend only option. Here, we use a Frontend framework which will communicate with a da
+- **Separate Backend and Frontend frameworks** - The most complex combination, but also giving us the most in terms of what can be achieved
+- **Backend only + HTML templates** - JavaScript-based frontend frameworks like React or Vue.js still have to generate an HTML file, but they add high interactivity. But if interactivity is not what we care about the most, then at the exepnse of it we can simplify our approach and avoid going full-stack route - known as Server-Side Rendering (SSR)
+- **Frontend + Backend-as-a- Service** - An opposite approach to Backend only option. Here, we use a Frontend framework which will communicate with a database through API, effectively serving as backend - heavily interactive approach, following Client-Side Rendering (we load minimal HTML file, and the whole app logic happens when the user clicks through the website)
+
+Thanks to our requirements redefinions, we can substantially narrow down our choice here:
+- 
+unable to leverage python background
 
 
 So if data frameworks won't cut it, the next step is looking at actual web frameworks. And within Python, the main contenders are:
@@ -263,7 +287,7 @@ I initially planned to use **React** for the frontend. Separate frontend and bac
 
 Flask with **Jinja2 templates** and **vanilla CSS/JS** turned out to be more than sufficient. The lesson: pick the simplest tool that solves your problem.
 
-### 2. Keep the Database
+### 2. Database is the backbone, no matter the technologies used for the app itself
 
 This was probably the best decision of the whole migration. I didn't touch the database schema at all - same tables, same columns, same Supabase setup.
 
