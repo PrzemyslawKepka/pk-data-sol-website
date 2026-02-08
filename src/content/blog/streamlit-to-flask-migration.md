@@ -161,7 +161,7 @@ Bu the abundance of options, so a number of technologies in which we can create 
 
 #### Tech-stack prerequisites
 
-So we should be stay smart here. We need some constraints. Using Streamlit means Python background, so that should be our starting point:
+So we should stay smart here as well. We need some constraints. Using Streamlit means Python background, so that should be our starting point:
 - We don't want to use some totally distinct technologies, so we're not gonna use PHP or .Net
 - But we should rather stay with Python
 - Although if staying 100% with Python is not possible, then we should accept a need to grasp some new technologies
@@ -171,7 +171,7 @@ That's a start now.
 
 #### Python-based data frameworks
 
-Streamlit is actually not a one of a kind. There are more tools boasting to be all-in-one, alllowing to create web apps only with Python, focusing on data. **Dash**, **Panel**, **NiceGUI**, **Reflex**, the list can go on.
+Streamlit is actually not a one of a kind. There are more tools boasting to be all-in-one, allowing to create web apps only with Python, focusing on data. **Dash**, **Panel**, **NiceGUI**, **Reflex**, the list can go on.
 
 They would differ in the architecture compared to Streamlit, usually avoiding this problematic full re-run like Streamlit does, and some of them might actually have bigger capabilities in terms of creating a fully-fledged app rather than a prototype.
 
@@ -185,37 +185,42 @@ And that world is vast, with basically three types of setups available:
 - **Backend only + HTML templates** - JavaScript-based frontend frameworks like React or Vue.js still have to generate an HTML file, but they add high interactivity. But if interactivity is not what we care about the most, then at the exepnse of it we can simplify our approach and avoid going full-stack route - known as Server-Side Rendering (SSR)
 - **Frontend + Backend-as-a- Service** - An opposite approach to Backend only option. Here, we use a Frontend framework which will communicate with a database through API, effectively serving as backend - heavily interactive approach, following Client-Side Rendering (we load minimal HTML file, and the whole app logic happens when the user clicks through the website)
 
-Thanks to our requirements redefinions, we can substantially narrow down our choice here:
-- 
-unable to leverage python background
+#### Decision process
 
+Thanks to our requirements redefinion, we can substantially narrow down our choice here:
+- Firstly we can cross out the Frontend + Backend-as-a-Service option - this approach does not favour SEO, it would require some extra effort, and it's a JavaScriptheavy choice as well, so it means we would be unable to leverage our Python background
+- We can also exclude the full-stack option - we have already concluded, that our project is not that complicated, and also we aim for static website, meaning that going with fully-fledged frontend would mean overengineering
 
-So if data frameworks won't cut it, the next step is looking at actual web frameworks. And within Python, the main contenders are:
+So that leaves to the usage of a Backend framework + Templates. And within Python, the main contenders are:
 
-- **Flask** - lightweight and flexible, you build what you need without unnecessary boilerplate
-- **Django** - batteries included, great for larger projects, but might be too opinionated for a smaller one
-- **FastAPI** - excellent for building APIs, but if you need server-rendered pages with HTML templates, it's not its primary strength
+- **Flask** - lightweight and flexible
+- **Django** - called as "batteries included", great for larger projects, but might just be too heave for a smaller one
+- **FastAPI** - excellent for building APIs, also allows to create server-rendered pages with HTML templates, but it's not its primary strength
 
 For CM Rentals, **Flask** was the natural choice:
 - It's **lightweight** - I didn't need a full-blown framework with ORM, admin panel and everything else Django provides
-- It's **flexible** - I could structure the project exactly how I wanted
+- It's **flexible** - I could structure the project exactly how I wanted, without too much overhead
 - It supports **Jinja2 templates** - server-side rendering, which is exactly what we need for SEO
-- And most importantly, it's **Python** - so the transition from Streamlit isn't as dramatic as jumping to a completely different ecosystem
-
-
-Important Note: Every migration assessment should be customised to the specific project.
 
 ### Implementation plan
 
-Before writing any code, I documented what I had and what I needed:
+We have our winner now. So how to proceed with the migration to Flask now?
 
-- **All features** of the current Streamlit app - map display, property details, filtering
-- **Database schema** - this one was crucial. I decided to **keep it unchanged**. No point in adding complexity by reorganizing the data layer during migration
-- **External integrations** - Supabase for the database, Folium for maps
-- **What to improve** - URL structure, SEO, mobile experience
-- **What to drop** - the admin panel (would rebuild it later, separately)
+1. First and foremost, we don't want to completely erase our Streamlit code right now. Quite the opposite, this is our foundation, a reference on which we will be building up the new app
+- So from technical point, we don't overwrite the code of our app. We just create a new git repository, so in the end we will be left with two codebases, which will help us in fully understanding Flask code, as we would be able to compare it with deprecated Streamlit code
 
-The key principle was: **migrate the presentation layer, keep everything else intact**. The database stays, the data logic stays, we're just changing how things are displayed and served to the user.
+2. And what about the coding? Basically we have two approaches here (can be mixed together):
+- We start writing the code ourselves, which is already a little bit old-fashioned considering how fast the things in the tech world are moving
+- Or...we create the code with AI. No matter what's your approach to the usage of AI, or what you think about the quality of LLM-generated code, there was never a better time to just say:  
+*I have my app written in technology X, please rewrite it using technology Y*
+
+3. But before writing the code, we have to know exactly what we want to achieve. If we go the AI route, we cannot just say *copy this* and expect a working app, fully meating meeting our expectiations. We should write down what we need, so creating a Product Requirements Document (PRD). 
+
+We should already have it, as we did redefine our requirements before choosing the tech stack. So listing features to retain, new features to add, and the expectations about the layout - specifying all of this will significantly decrease the chance of being dissapointed at the first version.
+
+4. Whether the code will be generated by the AI, or we  decide to write it ourselves to reinforce our understanding of Flask, it won't be an instant process, but rather an iteration. We should work on features one by one, ensuring that they work properly before jumping to another one.
+
+5. And while working on the code, we cannot forget to the test our app throught the process. And not only on the desktop, but on a mobile device as well.
 
 ## Flask vs Streamlit - Core Differences
 
@@ -280,6 +285,9 @@ The **performance** improvement was significant - almost 4x faster initial load.
 And the **layout freedom** - being able to design the pages exactly how I wanted, without fighting Streamlit's constraints - was honestly a relief.
 
 ## Lessons Learned
+
+Important Note: Every migration assessment should be customised to the specific project. If interactivity would be our main concert, then a frontend framework would be more advisable. Similarly, if the app logic would be more complex, 
+
 
 ### 1. Don't Over-Engineer
 
