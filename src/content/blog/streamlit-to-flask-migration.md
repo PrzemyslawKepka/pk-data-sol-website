@@ -333,11 +333,20 @@ The **performance** improvement was significant - almost 4x faster initial load.
 
 And the **layout freedom** - being able to design the pages exactly how I wanted, without fighting Streamlit's constraints - was honestly a relief.
 
+So does the new version of the app look any better actually?
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
   <img src="/images/blog/streamlit-to-flask-migration/streamlit-interface.png" alt="Streamlit interface" style="width: min(100%, 420px);" />
   <img src="/images/blog/streamlit-to-flask-migration/flask-interface.png" alt="Flask interface" style="width: min(100%, 420px);" />
 </div>
 
+So the UI is much cleaner now, we have also implemented traditional layout with headers at the top, making it easy to navigate the site.
+
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+  <img src="/images/blog/streamlit-to-flask-migration/streamlit-listings-table.png" alt="Streamlit table" style="width: min(100%, 420px);" />
+  <img src="/images/blog/streamlit-to-flask-migration/flask-listings-table.png" alt="Flask table" style="width: min(100%, 420px);" />
+</div>
+
+Big improvement is also visible at the table element.
 ## Lessons Learned
 
 ### 1. Each project migration is be different
