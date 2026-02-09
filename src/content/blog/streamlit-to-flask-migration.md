@@ -325,7 +325,7 @@ After the migration, the differences were clear:
 |--------|-----------|-------|
 | Initial load | ~3s | ~800ms |
 | Google indexed pages | 1 | 50+ |
-| Lighthouse Performance | 45 | 85 |
+| Lighthouse Performance | 46 | 68 |
 | Mobile usability | Limited | Full |
 | Layout control | Constrained | Complete |
 
@@ -333,7 +333,8 @@ The **performance** improvement was significant - almost 4x faster initial load.
 
 And the **layout freedom** - being able to design the pages exactly how I wanted, without fighting Streamlit's constraints - was honestly a relief.
 
-So does the new version of the app look any better actually?
+But does the new version of the app look any better actually?
+
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
   <img src="/images/blog/streamlit-to-flask-migration/streamlit-interface.png" alt="Streamlit interface" style="width: min(100%, 420px);" />
   <img src="/images/blog/streamlit-to-flask-migration/flask-interface.png" alt="Flask interface" style="width: min(100%, 420px);" />
@@ -346,7 +347,8 @@ So the UI is much cleaner now, we have also implemented traditional layout with 
   <img src="/images/blog/streamlit-to-flask-migration/flask-listings-table.png" alt="Flask table" style="width: min(100%, 420px);" />
 </div>
 
-Big improvement is also visible at the table element.
+Significant improvement is also visible at the table element, making it much more appealing. Of course we could have tried to make it look more sophisticated in Streamlit as well, but this would most likely require direct HTML usage, so making it not that straightforward.
+
 ## Lessons Learned
 
 ### 1. Each project migration is be different
