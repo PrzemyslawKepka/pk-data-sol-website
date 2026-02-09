@@ -69,13 +69,13 @@ And while caching might be a little bit easier to harness, session state might b
 
 ### 2. Performance
 
-Even if somehow we have managed to have immaculate caching and session state, Streamlit still needs to do very heavy lifting in the background to render our Python-only code with a local web server and the frontend.
+Even if somehow we have managed to have immaculate caching and session state, Streamlit still needs to do **very heavy lifting in the background** to render our Python-only code with a local web server and the frontend.
 
-So no matter how much optimization we implement in our code, Streamlit is still an extra abstraction layer, and a real performance boost might be possible only by...not using Streamlit.
+So no matter how much optimization we implement in our code, Streamlit is still an **extra abstraction layer**, and a real performance boost might be possible only by...not using Streamlit.
 
 ### 3. SEO Limitations
 
-Streamlit apps are essentially single-page applications rendered client-side. There's limited control over meta tags, URLs, and page structure, so search engines struggle to index the content properly.
+Streamlit apps are essentially **single-page applications rendered client-side**. There's **limited control** over meta tags, URLs, and page structure, so search engines struggle to index the content properly.
 
 So if our app goes 'public', there's a good chance it will struggle to climb to that #1 position in Google search. 
 
@@ -103,11 +103,11 @@ But this would be neither effective nor remotely close to what we want to achiev
 
 ### 5. Layout Constraints
 
-Streamlit comes with a pre-designed layout. Fully functional and looks good out of the box. But if you want to go more custom, then it can be very cumbersome to make it your own.
+Streamlit comes with a **pre-designed layout**. Fully functional and looks good out of the box. But if you want to go more custom, then it can be **very cumbersome** to make it your own.
 
 ### 6. Mobile capabilities
 
-By default, Streamlit doesn't come with any built-in features to make the app mobile-friendly. However, with external libraries it's possible to retrieve the user's screen size and such, so we can adjust the app at least a little bit. But this is still far from perfect, and won't be as pleasant an experience as on desktop.
+By default, Streamlit doesn't come with any **built-in features** to make the app mobile-friendly. However, with external libraries it's possible to retrieve the user's screen size and such, so we can adjust the app at least a little bit. But this is still **far from perfect**, and won't be as pleasant an experience as on desktop.
 
 
 ## What's next? The Migration Path
@@ -117,8 +117,8 @@ By default, Streamlit doesn't come with any built-in features to make the app mo
 So the Streamlit app is working, it has received positive feedback, why would we change anything? That's a very valid point, and if we consider the project as finished then we could just end it here.
 
 But if we will continue working on it, we have to **identify what is working and what is not**, basically weighing what bears lesser cost (time to outcome):
-- Staying with Streamlit, but potentially struggle with the app growth (or even prevent the growth)
-- Spending extra time on migrating the app to another tech stack, but with a prospect of potential time savings in the future, streamlining the app growth as well
+- **Staying with Streamlit**, but potentially struggle with the app growth (or even prevent the growth)
+- **Migrating the app** to another tech stack, spending extra time but with a prospect of potential time savings in the future, streamlining the app growth as well
 
 So we got a functional app almost in no time, that had definitely worked very well. But if we wanted to go forward with the app, the pain points were making it a little bit bleak:
 - **Dynamic pages** - we needed dedicated, individually accessible pages for each property, which we cannot achieve in Streamlit
@@ -145,9 +145,9 @@ Our requirements are as follows:
 - Similarly, we also improve the general **layout and mobile responsiveness**
 
 And the reactivity part:
-- We retrieve all the data from database while loading the website
-- When we go to specific property page then we already have all the data
-- We will have Filters feature for properties, but it doesn't have to be that interactive, reload just after we change some parameters. It is more than acceptable to click an extra button to apply the filter changes
+- We **retrieve all the data** from database while loading the website
+- When we go to a specific property page then we **already have all the data**
+- We will have Filters feature for properties, but it doesn't have to be that interactive, reload just after we change some parameters. It is **more than acceptable** to click an extra button to apply the filter changes
 
 So we reach a conclusion here. **We don't need a highly interactive application**. We will be more than happy with a static website, where the content of the website will be pre-loaded for us by the server, and not changed dynamically while browsing the app.
 That's almost a breakthrough. It not only aligns with our main goal of improving the SEO, but should generally mean that the app code might be simpler.
@@ -162,16 +162,16 @@ But the abundance of options, so a number of technologies in which we can create
 #### Tech-stack prerequisites
 
 So we should stay smart here as well. We need some constraints. Using Streamlit means Python background, so that should be our starting point:
-- We don't want to use some totally distinct technologies, so we're not gonna use PHP or .Net
-- But we should rather stay with Python
-- Although if staying 100% with Python is not possible, then we should accept a need to grasp some new technologies
-- But as the complexity of our app won't be that high, we shouldn't pick frameworks with highest learning curves, aimed at more complicated projects
+- We don't want to use some totally distinct technologies, so we're **not gonna use PHP or .Net**
+- But we should rather **stay with Python**
+- Although if staying 100% with Python is not possible, then we should accept a need to **grasp some new technologies**
+- But as the complexity of our app won't be that high, we shouldn't pick frameworks with **highest learning curves**, aimed at more complicated projects
 
 That's a start now.
 
 #### Python-based data frameworks
 
-Streamlit is actually not a one of a kind. There are more tools boasting to be all-in-one, allowing to create web apps only with Python, focusing on data. **Dash**, **Panel**, **NiceGUI**, **Reflex**, the list can go on.
+Streamlit is actually not one of a kind. There are more tools boasting to be **all-in-one**, allowing to create web apps only with Python, focusing on data. **Dash**, **Panel**, **NiceGUI**, **Reflex**, the list can go on.
 
 They would differ in the architecture compared to Streamlit, usually avoiding this problematic full re-run like Streamlit does, and some of them might actually have bigger capabilities in terms of creating a fully-fledged app rather than a prototype.
 
@@ -188,8 +188,8 @@ And that world is vast, with basically three types of setups available:
 #### Decision process
 
 Thanks to our requirements redefinition, we can substantially narrow down our choice here:
-- Firstly we can cross out the Frontend + Backend-as-a-Service option - this approach does not favour SEO, it would require some extra effort, and it's a JavaScript-heavy choice as well, so it means we would be unable to leverage our Python background
-- We can also exclude the full-stack option - we have already concluded that our project is not that complicated, and also we aim for a static website, meaning that going with a fully-fledged frontend we would potentially be overengineering
+- Firstly we can **cross out the Frontend + Backend-as-a-Service option** - this approach does not favour SEO, it would require some extra effort, and it's a JavaScript-heavy choice as well, so it means we would be unable to leverage our Python background
+- We can also **exclude the full-stack option** - we have already concluded that our project is not that complicated, and also we aim for a static website, meaning that going with a fully-fledged frontend we would potentially be overengineering
 
 So that leaves us with the usage of a Backend framework + Templates. And within Python, the main contenders are:
 
@@ -206,21 +206,21 @@ For CM Rentals, **Flask** was the natural choice:
 
 We have our winner now. So how to proceed with the migration to Flask now?
 
-1. First and foremost, we don't want to completely erase our Streamlit code right now. Quite the opposite, this is our foundation, a reference on which we will be building up the new app
-- So from technical point, we don't overwrite the code of our app. We just create a new git repository, so in the end we will be left with two codebases, which will help us in fully understanding Flask code, as we would be able to compare it with deprecated Streamlit code
+1. **Keep the Streamlit code as reference.** We don't want to completely erase our Streamlit code right now. Quite the opposite, this is our foundation, a reference on which we will be building up the new app.
+- So from a technical point, we don't overwrite the code of our app. We just create a **new git repository**, so in the end we will be left with two codebases, which will help us in fully understanding Flask code, as we would be able to compare it with deprecated Streamlit code
 
-2. And what about the coding? Basically we have two approaches here (can be mixed together):
-- We start writing the code ourselves, which is already a little bit old-fashioned considering how fast the things in the tech world are moving
-- Or...we create the code with AI. No matter what's your approach to the usage of AI, or what you think about the quality of LLM-generated code, there was never a better time to just say:  
+2. **Choose your coding approach.** Basically we have two approaches here (can be mixed together):
+- We start **writing the code ourselves**, which is already a little bit old-fashioned considering how fast the things in the tech world are moving
+- Or...we **create the code with AI**. No matter what's your approach to the usage of AI, or what you think about the quality of LLM-generated code, there was never a better time to just say:
 *I have my app written in technology X, please rewrite it using technology Y*
 
-3. But before writing the code, we have to know exactly what we want to achieve. If we go the AI route, we cannot just say *copy this* and expect a working app, fully meeting our expectations. We should write down what we need, so creating a Product Requirements Document (PRD). 
+3. **Create a Product Requirements Document (PRD).** Before writing the code, we have to know exactly what we want to achieve. If we go the AI route, we cannot just say *copy this* and expect a working app, fully meeting our expectations.
 
 We should already have it, as we did redefine our requirements before choosing the tech stack. So listing features to retain, new features to add, and the expectations about the layout - specifying all of this will significantly decrease the chance of being disappointed at the first version.
 
-4. Whether the code will be generated by the AI, or we decide to write it ourselves to reinforce our understanding of Flask, it won't be an instant process, but rather an iteration. We should work on features one by one, ensuring that they work properly before jumping to another one.
+4. **Iterate feature by feature.** Whether the code will be generated by the AI, or we decide to write it ourselves to reinforce our understanding of Flask, it won't be an instant process, but rather an iteration. We should work on features one by one, ensuring that they work properly before jumping to another one.
 
-5. And while working on the code, we cannot forget to test our app throughout the process. And not only on the desktop, but on a mobile device as well, as the user experience and mobile-friendliness are the aspects we care about here.
+5. **Test throughout the process.** And while working on the code, we cannot forget to test our app throughout the process. And not only on the desktop, but on a **mobile device** as well, as the user experience and mobile-friendliness are the aspects we care about here.
 
 ## Flask vs Streamlit - Core Differences
 
@@ -329,7 +329,7 @@ After the migration, the differences were clear:
 | Mobile usability | Limited | Full |
 | Layout control | Constrained | Complete |
 
-The **performance** improvement was significant - almost 4x faster initial load. But the biggest win was **SEO**: going from just one indexable page to over 50 individual property pages, each discoverable through Google search.
+The **performance** improvement was significant - **almost 4x faster** initial load. But the biggest win was **SEO**: going from just one indexable page to **over 50 individual property pages**, each discoverable through Google search.
 
 And the **layout freedom** - being able to design the pages exactly how I wanted, without fighting Streamlit's constraints - was honestly a relief.
 
@@ -340,7 +340,7 @@ But does the new version of the app look any better actually?
   <img src="/images/blog/streamlit-to-flask-migration/flask-interface.png" alt="Flask interface" style="width: min(100%, 420px);" />
 </div>
 
-So the UI is much cleaner now, we have also implemented traditional layout with headers at the top, making it easy to navigate the site.
+So the UI is **much cleaner** now, we have also implemented traditional layout with headers at the top, making it easy to navigate the site.
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
   <img src="/images/blog/streamlit-to-flask-migration/streamlit-listings-table.png" alt="Streamlit table" style="width: min(100%, 420px);" />
@@ -353,40 +353,40 @@ Significant improvement is also visible at the table element, making it much mor
 
 ### 1. Each project migration will be different
 
-There's no default rule that every project can be migrated from Streamlit to Flask and this will be a good decision.
+There's **no default rule** that every project can be migrated from Streamlit to Flask and this will be a good decision.
 
-Before choosing the new framework, we have done a thorough assessment, leading us to this particular choice. And we should follow exactly the same path for every project migration. We cannot just assume that one framework will fit very different cases, where our end-goals for the app might be different.
+Before choosing the new framework, we have done a **thorough assessment**, leading us to this particular choice. And we should follow exactly the same path for every project migration. We cannot just assume that one framework will fit very different cases, where our end-goals for the app might be different.
 
 If interactivity would be our main concern, then a frontend framework like React or Vue.js would be more advisable. Similarly, if the app logic would be more complex, for instance we would have user accounts, user would be able to add comments and rate different properties, then potentially Django would make more sense as its heaviness comes together with many features working out-of-the-box, while with Flask we have to make many choices ourselves and use some external solutions.
 
 ### 2. Don't Over-Engineer
 
-Web dev world is not only vast, but also very volatile, changing rapidly. There will always be some new frameworks, shiny tools and most popular choices. And that puts us at risk of going down a rabbit hole, choosing overly complicated tools and not leveraging our current skills.
+Web dev world is not only vast, but also **very volatile**, changing rapidly. There will always be some new frameworks, shiny tools and most popular choices. And that puts us at risk of going down a rabbit hole, choosing overly complicated tools and **not leveraging our current skills**.
 
 ### 3. Control the whole migration and development process
 
-Even if we delegate most of the coding itself to the AI, we still have to stay in the loop and oversee the whole process, understanding our codebase.
+Even if we delegate most of the coding itself to the AI, we still have to **stay in the loop** and oversee the whole process, understanding our codebase.
 
 If we didn't start with the requirements, didn't use an AI tool that allows us to create code with any language and framework (Claude Code in this case), it's very likely that we would have ended up with some JavaScript framework, so following the over-engineered route we wanted to stay away from. And going further it could be only worse, having more and more code we don't really understand.
 
-Instead, we were making conscious choices from the beginning, maintaining control of the whole project, while leveraging LLMs capabilities for the code creation.
+Instead, we were making **conscious choices from the beginning**, maintaining control of the whole project, while leveraging LLMs capabilities for the code creation.
 
 ### 4. Database is the backbone, no matter the technologies used for the app itself
 
-Having a data background, we should rather understand the importance of having solid data foundations of our app from the very beginning - having the database set up with a table schema, even if it's rather simple. But outside data world, it can get neglected quite often, leading to serious issues in syncing the application itself and the database.
+Having a data background, we should rather understand the importance of having **solid data foundations** of our app from the very beginning - having the database set up with a table schema, even if it's rather simple. But outside data world, it can get neglected quite often, leading to serious issues in syncing the application itself and the database.
 
-But with a correct approach, we set our data layer and it perfectly integrates with any technology - Streamlit or Flask, we use exactly the same data and the same tables. Let it be Django or only the frontend framework with Supabase, we would still use this database in exactly the same way, only the app code would differ.
+But with a correct approach, we set our data layer and it **perfectly integrates with any technology** - Streamlit or Flask, we use exactly the same data and the same tables. Let it be Django or only the frontend framework with Supabase, we would still use this database in exactly the same way, only the app code would differ.
 
 ### 5. Streamlit Skills Transfer
 
 Here's the good news if you're coming from Streamlit: **you're not starting from zero**. The concepts of session management, caching, and database queries all carry over to Flask. The mental models are the same, just implemented differently.
-And obviously we're staying within Python ecosystem, so we can still use the same libraries, just the difference will be that we pass the objects to the HTML template, not to Streamlit's functions. 
+And obviously we're staying within **Python ecosystem**, so we can still use the same libraries, just the difference will be that we pass the objects to the HTML template, not to Streamlit's functions.
 
-If anything, having wrestled with Streamlit's session state might give you a much better appreciation for how other frameworks handle state (spoiler: usually it will be much simpler).
+If anything, having wrestled with Streamlit's session state might give you a much better appreciation for how other frameworks handle state (spoiler: usually it will be **much simpler**).
 
 ## When to Stay with Streamlit
 
-Migration isn't always the answer. Before committing to a rewrite, honestly assess if you actually need it. **Stay with Streamlit** if:
+**Migration isn't always the answer.** Before committing to a rewrite, honestly assess if you actually need it. **Stay with Streamlit** if:
 
 - Your app is **internal-only** - no SEO concerns, no public users
 - **Appearance is secondary** - the default look is fine for your use case
