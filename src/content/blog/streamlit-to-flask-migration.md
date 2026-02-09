@@ -333,7 +333,10 @@ The **performance** improvement was significant - almost 4x faster initial load.
 
 And the **layout freedom** - being able to design the pages exactly how I wanted, without fighting Streamlit's constraints - was honestly a relief.
 
-<img src="/images/blog/streamlit-to-flask-migration/streamlit-interface.png" alt="Map" width="300" /> <img src="/images/blog/streamlit-to-flask-migration/flask-interface.png" alt="Listings" width="300" />
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+  <img src="/images/blog/streamlit-to-flask-migration/streamlit-interface.png" alt="Streamlit interface" style="max-width: 360px; flex: 1 1 300px;" />
+  <img src="/images/blog/streamlit-to-flask-migration/flask-interface.png" alt="Flask interface" style="max-width: 360px; flex: 1 1 300px;" />
+</div>
 
 ## Lessons Learned
 
