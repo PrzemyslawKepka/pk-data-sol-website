@@ -268,6 +268,55 @@ And for interactivity like filtering? No need for anything fancy. Standard **HTM
 
 In Streamlit, filtering is arguably easier to set up with built-in widgets. But in Flask, once you write the form and the filtering logic, you have **full control** over how the filters look, how the URL changes, and how the results are displayed.
 
+Also project structures will differ, with Flask having relatively more folders and files.
+
+But both are still easy to follow, only with Streamlit we have only .py files, while with Flask naturally we also need these HTML and CSS files.
+
+**Streamlit project structure:**
+```
+cm-rentals-streamlit/
+├── app.py                  # Main entry point - all UI code here
+├── pg/
+│   ├── form.py             # Form page logic
+│   └── map.py              # Map page logic
+├── property_map/
+│   ├── db.py               # Database queries
+│   └── map_utils.py        # Map utilities
+├── static/
+│   └── robots.txt
+└── requirements.txt
+```
+
+**Flask project structure:**
+```
+cm-rentals-flask/
+├── flask_app/
+│   ├── __init__.py         # App factory
+│   ├── config.py           # Configuration
+│   ├── constants.py        # Constants
+│   ├── errors.py           # Error handlers
+│   ├── views.py            # Route definitions
+│   ├── services/
+│   │   └── properties.py   # Business logic
+│   └── utils/
+│       └── map_builder.py  # Map utilities
+├── templates/              # HTML templates (Jinja2)
+│   ├── base.html           # Base layout
+│   ├── index.html          # Homepage
+│   ├── listing_detail.html # Property page
+│   ├── privacy.html
+│   └── errors/
+│       ├── 404.html
+│       └── 500.html
+├── static/
+│   └── css/
+│       └── main.css        # Custom styles
+├── wsgi.py                 # WSGI entry point
+└── requirements.txt
+```
+
+The difference is clear: Streamlit has **6 Python files** and that's it. Flask has **10 Python files** plus **6 HTML templates** and a **CSS file**. More files, but also more control over every aspect of the application.
+
 ## Results
 
 After the migration, the differences were clear:
