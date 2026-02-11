@@ -132,10 +132,10 @@ Our requirements:
 - Improve **layout and mobile responsiveness**
 
 For reactivity:
-- Load all data on page load
-- Filters don't need to be instant - clicking "Apply" button is **perfectly acceptable**
+- **Load all data** on page load
+- **Filters don't need to be instant** - clicking "Apply" button is perfectly acceptable
 
-The conclusion: **we don't need a highly interactive application**. A static website with server-rendered content will do. This aligns with our SEO goals and should make the code simpler.
+The conclusion: **we don't need a highly interactive application**. A static website with pre-loaded content will do. This aligns with our SEO goals and should make the code simpler.
 
 
 ### Choosing the new tech stack
@@ -145,7 +145,7 @@ So the decision is made - farewell Streamlit. But the abundance of web technolog
 #### Tech-stack prerequisites
 
 We need constraints. Starting from our Python background:
-- **Stay with Python** - leveraging our knowledge, we shouldn't use distinct technologies like PHP or .Net
+- **Stay with Python** - leveraging what we know, not jumping to distinct (for us) technologies like PHP or .Net
 - Accept learning **some new technologies** if needed
 - Avoid frameworks with **steep learning curves** - our app isn't that complex
 
@@ -160,7 +160,7 @@ However, **switching to another data framework won't solve our problems**. They 
 So we enter the full-stack world. And that world is really vast, wth three main setups available:
 - **Separate Backend + Frontend** - Most complex, most capable
 - **Backend + HTML templates** - Server-Side Rendering (SSR), simpler if high interactivity isn't needed
-- **Frontend + Backend-as-a-Service** - Client-Side Rendering, JavaScript-heavy, highly interactive
+- **Frontend + Backend-as-a-Service** - Client-Side Rendering (CSR), JavaScript-heavy, highly interactive
 
 #### Decision process
 
@@ -194,7 +194,7 @@ We have our winner. But how to proceed with the migration now?
 
 So what does it actually look like to go from Streamlit to Flask? The fundamental difference is that **Flask separates what Streamlit combines**.
 
-In Streamlit, your Python code **is** your app - the logic, the layout, the interactivity, all in one place. In Flask, these concerns are split:
+In Streamlit, your Python code is your app - the logic, the layout, the interactivity, all in one place. In Flask, these concerns are split:
 
 - **Routes** (Python) - define what happens when someone visits a URL
 - **Templates** (HTML/Jinja2) - define what the page looks like
