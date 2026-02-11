@@ -157,7 +157,7 @@ However, **switching to another data framework won't solve our problems**. They 
 
 #### Full-stack frameworks
 
-So we enter the full-stack world. And that world is really vast, wth three main setups available:
+So we enter the full-stack world. And that world is really vast, with three main setups available:
 - **Separate Backend + Frontend** - Most complex, most capable
 - **Backend + HTML templates** - Server-Side Rendering (SSR), simpler if high interactivity isn't needed
 - **Frontend + Backend-as-a-Service** - Client-Side Rendering (CSR), JavaScript-heavy, highly interactive
@@ -313,7 +313,7 @@ The UI is **much cleaner** now, with traditional navigation headers making the s
   <img src="/images/blog/streamlit-to-flask-migration/flask-listings-table.png" alt="Flask table" style="width: min(100%, 420px);" />
 </div>
 
-The table is also much more appealing. We could have tried to makie it more sophisticated in Streamlit as well, but it would require direct HTML - not straightforward.
+The table is also much more appealing. We could have tried to make it more sophisticated in Streamlit as well, but it would require direct HTML - not straightforward.
 
 ## Lessons Learned
 
