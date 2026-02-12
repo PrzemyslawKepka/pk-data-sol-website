@@ -294,12 +294,14 @@ After the migration, the differences were clear:
 | Metric | Streamlit | Flask |
 |--------|-----------|-------|
 | Time to usable content | ~3-4s | ~1.7s |
-| Lighthouse Performance | Couldn't measure* | 68 |
+| Lighthouse Performance | Couldn't measure* | 68** |
 | Google indexed pages | 1 | 50+ |
 | Mobile usability | Limited | Full |
 | Layout control | Constrained | Complete |
 
 *Lighthouse timed out waiting for Streamlit to render content (NO_FCP error). Streamlit's HTML loads fast, but it's an empty shell - users watch the "running man" spinner while JavaScript renders the actual content. Flask sends ready-to-display HTML.
+
+Flask's 68 Lighthouse score isn't very impressive - image optimization and other tweaks could push it higher. But for a side project, "measurable and indexable" was already a big step up from "couldn't measure at all."
 
 The biggest win was **SEO**: going from one indexable page to **over 50 individual property pages**, each discoverable through Google search. If Google's tools can't measure your app, search engines will struggle to index it.
 
