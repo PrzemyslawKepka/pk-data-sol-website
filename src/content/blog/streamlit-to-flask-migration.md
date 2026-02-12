@@ -285,7 +285,7 @@ cm-rentals-flask/
 └── requirements.txt
 ```
 
-Streamlit: **6 Python files**. Flask: **10 Python files** plus **6 HTML templates** and a **CSS file**. More files, but more control. With Flask we even have custom error pages - a "real web app" in every aspect.
+Streamlit: **5 Python files**. Flask: **10 Python files** plus **6 HTML templates** and a **CSS file**. More files, but more control. With Flask we even have custom error pages - a "real web app" in every aspect.
 
 ## Results
 
