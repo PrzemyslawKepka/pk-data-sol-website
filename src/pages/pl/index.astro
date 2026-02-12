@@ -306,6 +306,7 @@ const servicesSteps = [
               {featuredProjects.map(project => (
                 <ProjectCard
                   project={project}
+                  lang={lang}
                   translations={{
                     seeMore: t.projects.seeMore,
                     viewGithub: t.projects.viewGithub,
@@ -317,7 +318,7 @@ const servicesSteps = [
 
             <div class="text-center">
               <a
-                href="/projects"
+                href="/pl/projects"
                 class="inline-block px-8 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-transparent text-amber-500 border-2 border-amber-500 hover:bg-amber-500 hover:text-white"
               >
                 {t.projects.viewAllProjects}
@@ -328,7 +329,7 @@ const servicesSteps = [
           <div class="text-center">
             <p class="text-slate-400 mb-8">Projekty wkrótce...</p>
             <a
-              href="/projects"
+              href="/pl/projects"
               class="inline-block px-8 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-amber-500 text-white hover:bg-amber-600"
             >
               {t.projects.viewAllProjects}
@@ -355,6 +356,7 @@ const servicesSteps = [
               {featuredBlogPosts.map(post => (
                 <BlogCard
                   post={post}
+                  lang={lang}
                   translations={{
                     seeFullPost: t.blog.seeFullPost,
                     minRead: t.blog.minRead
@@ -365,7 +367,7 @@ const servicesSteps = [
 
             <div class="text-center">
               <a
-                href="/blog"
+                href="/pl/blog"
                 class="inline-block px-8 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-transparent text-amber-500 border-2 border-amber-500 hover:bg-amber-500 hover:text-white"
               >
                 {t.blog.allPosts}
@@ -376,7 +378,7 @@ const servicesSteps = [
           <div class="text-center">
             <p class="text-slate-400 mb-8">Posty blogowe wkrótce...</p>
             <a
-              href="/blog"
+              href="/pl/blog"
               class="inline-block px-8 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-amber-500 text-white hover:bg-amber-600"
             >
               {t.blog.allPosts}
