@@ -62,7 +62,7 @@ Streamlit of course provides measures to prevent this and maintain the app state
 - **Caching** for saving the output of a function, meaning that effectively we can just load our dataset once
 - **Session state** for retaining the state of the app, meaning that what we've clicked once is here to stay
 
-<img src="/images/blog/streamlit-to-flask-migration/streamlit_rerun_cycle.png" alt="Streamlit rerun cycle"/>
+<img src="/images/blog/streamlit-to-flask-migration/streamlit_rerun_cycle.webp" alt="Streamlit rerun cycle"/>
 
 And while caching might be a little bit easier to harness, session state might be a real hassle if we just want to retain too much.
 
@@ -310,15 +310,15 @@ And the **layout freedom** - being able to design the pages exactly how I wanted
 But does it actually look better?
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-  <img src="/images/blog/streamlit-to-flask-migration/streamlit-interface.png" alt="Streamlit interface" style="width: min(100%, 420px);" />
-  <img src="/images/blog/streamlit-to-flask-migration/flask-interface.png" alt="Flask interface" style="width: min(100%, 420px);" />
+  <img src="/images/blog/streamlit-to-flask-migration/streamlit-interface.webp" alt="Streamlit interface" style="width: min(100%, 420px);" />
+  <img src="/images/blog/streamlit-to-flask-migration/flask-interface.webp" alt="Flask interface" style="width: min(100%, 420px);" />
 </div>
 
 The UI is **much cleaner** now, with traditional navigation headers making the site easy to browse.
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-  <img src="/images/blog/streamlit-to-flask-migration/streamlit-listings-table.png" alt="Streamlit table" style="width: min(100%, 420px);" />
-  <img src="/images/blog/streamlit-to-flask-migration/flask-listings-table.png" alt="Flask table" style="width: min(100%, 420px);" />
+  <img src="/images/blog/streamlit-to-flask-migration/streamlit-listings-table.webp" alt="Streamlit table" style="width: min(100%, 420px);" />
+  <img src="/images/blog/streamlit-to-flask-migration/flask-listings-table.webp" alt="Flask table" style="width: min(100%, 420px);" />
 </div>
 
 The table is also much more appealing. We could have tried to make it more sophisticated in Streamlit as well, but it would require direct HTML - not straightforward.
@@ -333,7 +333,7 @@ We did a **thorough assessment** leading to Flask. Different projects with diffe
 
 So while our decision process was as follows, it might still vary heavily for other projects.
 
-<img src="/images/blog/streamlit-to-flask-migration/tech_stack_decision.png" alt="Tech stack decision process"/>
+<img src="/images/blog/streamlit-to-flask-migration/tech_stack_decision.webp" alt="Tech stack decision process"/>
 
 ### 2. Don't Over-Engineer
 
