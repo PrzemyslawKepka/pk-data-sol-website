@@ -13,4 +13,13 @@ This is a personal portfolio website built with Astro and Vue.
 
 When making changes to project card styling or structure, **update BOTH files**.
 
+**Blog cards are implemented in TWO places that must be kept in sync:**
+
+| File | Used On | Type |
+|------|---------|------|
+| `src/components/BlogCard.astro` | Homepage | Astro (static) |
+| `src/components/BlogsGrid.vue` | /blog page | Vue (interactive, card markup inline) |
+
+When making changes to blog card styling or structure, **update BOTH files**.
+
 See `docs/FUTURE_OPTIMIZATIONS.md` for the full explanation and proposed consolidation plan.
