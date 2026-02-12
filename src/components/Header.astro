@@ -8,15 +8,16 @@ interface Props {
 
 const { lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
+const basePath = lang === 'pl' ? '/pl' : '';
 
 const navLinks = [
-  { text: t.nav.start, href: '/#start' },
-  { text: t.nav.about, href: '/#about' },
-  { text: t.nav.services, href: '/#services' },
-  { text: t.nav.projects, href: '/#projects' },
-  { text: t.nav.technologies, href: '/#technologies' },
-  { text: t.nav.blog, href: '/#blog' },
-  { text: t.nav.contact, href: '/#contact' }
+  { text: t.nav.start, href: `${basePath}/#start` },
+  { text: t.nav.about, href: `${basePath}/#about` },
+  { text: t.nav.services, href: `${basePath}/#services` },
+  { text: t.nav.projects, href: `${basePath}/#projects` },
+  { text: t.nav.technologies, href: `${basePath}/#technologies` },
+  { text: t.nav.blog, href: `${basePath}/#blog` },
+  { text: t.nav.contact, href: `${basePath}/#contact` }
 ];
 ---
 
@@ -24,7 +25,7 @@ const navLinks = [
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex justify-between items-center py-4">
       <!-- Left: Logo and Name -->
-      <a href="/" class="flex items-center gap-4 no-underline hover:opacity-90 transition-opacity">
+      <a href={`${basePath}/`} class="flex items-center gap-4 no-underline hover:opacity-90 transition-opacity">
         <img src="/images/logo/pk-logo.webp" alt="PK Data Solutions" class="w-12 h-12 rounded-lg" width="48" height="48" />
         <div class="flex flex-col">
           <h1 class="text-lg font-bold leading-tight text-slate-100">Przemysław Kępka</h1>
