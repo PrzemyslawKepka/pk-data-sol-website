@@ -16,9 +16,11 @@ interface Props {
     seeFullPost: string;
     minRead: string;
   };
+  lang?: string;
 }
 
-const { post, translations } = Astro.props;
+const { post, translations, lang = 'en' } = Astro.props;
+const basePath = lang === 'pl' ? '/pl' : '';
 const { data, slug } = post;
 
 // Category badge colors
@@ -32,7 +34,7 @@ const formattedDate = data.publishDate.toISOString().split('T')[0];
 ---
 
 <article class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
-  <a href={`/blog/${slug}`} class="flex-1 flex flex-col">
+  <a href={`${basePath}/blog/${slug}`} class="flex-1 flex flex-col">
     <!-- Image -->
     <div class="relative w-full aspect-video bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden">
       {data.image ? (
@@ -86,7 +88,7 @@ const formattedDate = data.publishDate.toISOString().split('T')[0];
   <!-- Action Links -->
   <div class="px-6 pb-6 flex gap-3">
     <a
-      href={`/blog/${slug}`}
+      href={`${basePath}/blog/${slug}`}
       class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
     >
       {translations.seeFullPost}
