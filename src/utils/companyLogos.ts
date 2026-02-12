@@ -1,7 +1,7 @@
 // Mapping of company names to their logo file paths
 const companyLogos: Record<string, string> = {
-  'Santander Bank Poland': '/images/icons/companies/Santander_id_cIxIG4D_logos.jpeg',
-  'Ascensia Diabetes Care': '/images/icons/companies/Ascensia_idL44xPnly_logos.jpeg',
+  'Santander Bank Poland': '/images/icons/companies/Santander_id_cIxIG4D_logos.webp',
+  'Ascensia Diabetes Care': '/images/icons/companies/Ascensia_idL44xPnly_logos.webp',
   'JLL': '/images/icons/companies/JLL_Symbol_0.svg',
 };
 
