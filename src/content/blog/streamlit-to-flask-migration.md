@@ -91,7 +91,7 @@ We wanted URLs like `https://cm-rentals.com/listing/cosy-apartment` - but this i
 
 However, in our case **dynamic** is the keyword - properties come from a database and change over time, so we can't hardcode them. The app should generate URLs automatically.
 
-The best Streamlit can do is hash-based sections like `https://cmrentals.tojest.dev/#cosy-apartment` - nowhere near what we needed.
+The best Streamlit can do for dynamic content is hash-based sections like `https://cmrentals.tojest.dev/#cosy-apartment` - nowhere near what we needed.
 
 ### 5. Layout Constraints
 
