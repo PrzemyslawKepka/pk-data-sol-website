@@ -80,7 +80,7 @@ So if our app goes 'public', there's a good chance it will struggle to climb to 
 
 ### 4. Dynamic pages
 
-Streamlit allows multipage apps, but under the hood it's still **one HTML file, one document**.
+Streamlit allows multipage apps, but it's still a **single-page application** at its core.
 
 For CM Rentals, we needed dynamic pages for:
 - **Functionality** - dedicated pages for each property with all its information
