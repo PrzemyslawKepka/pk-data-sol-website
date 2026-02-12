@@ -70,7 +70,10 @@ interface Translations {
 const props = defineProps<{
   projects: Project[];
   translations: Translations;
+  lang?: string;
 }>();
+
+const basePath = computed(() => props.lang === 'pl' ? '/pl' : '');
 
 // Multi-selection filters - empty Set means "all" (no specific filter applied)
 const activeTypeFilters = ref<Set<string>>(new Set());
@@ -528,7 +531,7 @@ const typeLabels: Record<string, string> = {
         :key="project.slug"
         class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30"
       >
-        <a :href="`/projects/${project.slug}`" class="flex-1 flex flex-col">
+        <a :href="`${basePath}/projects/${project.slug}`" class="flex-1 flex flex-col">
           <!-- Image -->
           <div class="relative w-full h-[200px] bg-gradient-to-br from-slate-700 to-slate-900 overflow-hidden">
             <img
@@ -628,7 +631,7 @@ const typeLabels: Record<string, string> = {
         <!-- Action Links -->
         <div class="px-6 pb-6 flex gap-3">
           <a
-            :href="`/projects/${project.slug}`"
+            :href="`${basePath}/projects/${project.slug}`"
             class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
           >
             {{ translations.seeMore }}
