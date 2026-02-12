@@ -62,6 +62,8 @@ Streamlit of course provides measures to prevent this and maintain the app state
 - **Caching** for saving the output of a function, meaning that effectively we can just load our dataset once
 - **Session state** for retaining the state of the app, meaning that what we've clicked once is here to stay
 
+<img src="/images/blog/streamlit-to-flask-migration/streamlit_rerun_cycle.png" alt="Streamlit rerun cycle"/>
+
 And while caching might be a little bit easier to harness, session state might be a real hassle if we just want to retain too much.
 
 ### 2. Performance
