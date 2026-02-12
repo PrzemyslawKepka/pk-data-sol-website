@@ -32,6 +32,8 @@ That's potentially **a lot of technologies**. Meanwhile, in the data world, dash
 
 And that's where **Streamlit comes in clutch**. It lets you build the entire app **in one language** - Python - abstracting away all the HTML, CSS and JavaScript complexity.
 
+<img src="/images/blog/streamlit-to-flask-migration/traditional-vs-streamlit.svg" alt="App architecture diagram"/>
+
 But the **ease of development** comes at the cost of many **compromises**, as we need some serious complexity under the hood to make it happen.
 
 What we can achieve "traditionally" might not be possible in Streamlit at all, or will turn out to be overly complex. A crucial part of Streamlit is its **reactivity** - every interaction with the app, like clicking a button, means that the code for the whole app will be re-run. This introduces concepts of caching and session state management, which can quickly turn simple code into a real headache.
