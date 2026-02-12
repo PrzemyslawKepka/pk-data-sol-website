@@ -1,11 +1,11 @@
 ---
 title: "From Streamlit to Flask: When and Why to Make the Jump"
 description: "A practical guide to migrating from Streamlit to Flask, based on real experience with the CM Rentals project. Learn when Streamlit hits its limits and how to plan a successful migration."
-publishDate: 2026-01-29
+publishDate: 2026-02-12
 category: "Technical"
 tags: ["Python", "Flask", "Streamlit", "Web Development", "Migration"]
 image: "/images/blog/streamlit-to-flask-migration/streamlit-to-flask-migration-cover.webp"
-readTime: 8
+readTime: 12
 lang: "en"
 ---
 
