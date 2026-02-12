@@ -120,7 +120,7 @@ We got a functional app in no time. But going forward, the pain points were beco
 
 We outgrew Streamlit in all the areas that matter for a **public-facing web application**. For an internal tool, most of these wouldn't be concerns.
 
-We were also **outside data-centric** app boundaries - just dozens of records, no heavy computation. Simply retrieve and display. So beside the functional layer, the importance of appearance was actually knocking here.
+We were also **outside data-centric** app boundaries - just dozens of records, no heavy computation. Simply retrieve and display. So besides the functional layer, the importance of appearance was actually knocking here.
 
 ### Redefining the requirements
 
@@ -301,7 +301,7 @@ After the migration, the differences were clear:
 
 *Lighthouse timed out waiting for Streamlit to render content (NO_FCP error). Streamlit's HTML loads fast, but it's an empty shell - users watch the "running man" spinner while JavaScript renders the actual content. Flask sends ready-to-display HTML.
 
-Flask's 68 Lighthouse score isn't very impressive - image optimization and other tweaks could push it higher. But for a side project, "measurable and indexable" was already a big step up from "couldn't measure at all."
+**Flask's 68 Lighthouse score isn't very impressive - image optimization and other tweaks could push it higher. But for a side project, "measurable and indexable" was already a big step up from "couldn't measure at all."
 
 The biggest win was **SEO**: going from one indexable page to **over 50 individual property pages**, each discoverable through Google search. If Google's tools can't measure your app, search engines will struggle to index it.
 
