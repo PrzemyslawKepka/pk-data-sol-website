@@ -164,7 +164,7 @@ However, **switching to another data framework is unlikely to solve our core pro
 So we enter the full-stack world. And that world is really vast, with three main setups available:
 - **Separate Backend + Frontend** - Most complex, most capable
 - **Backend + HTML templates** - Server-Side Rendering (SSR), simpler if high interactivity isn't needed
-- **Frontend + Backend-as-a-Service** - Client-Side Rendering (CSR), JavaScript-heavy, highly interactive
+- **Frontend + Backend-as-a-Service** - JavaScript-heavy, highly interactive, relying on Client-Side Rendering (CSR)
 
 #### Decision process
 
