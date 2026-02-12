@@ -327,9 +327,9 @@ There's **no default rule** that Streamlit-to-Flask migration is always the righ
 
 We did a **thorough assessment** leading to Flask. Different projects with different goals might need React/Vue.js (for interactivity) or Django (for complex features like user accounts, comments, ratings).
 
-So while our decission process was as follows, it might still vary heavily for other projects.
+So while our decision process was as follows, it might still vary heavily for other projects.
 
-<img src="/images/blog/streamlit-to-flask-migration/tech_stack_decision.png" alt="Tech stack decision processs"/>
+<img src="/images/blog/streamlit-to-flask-migration/tech_stack_decision.png" alt="Tech stack decision process"/>
 
 ### 2. Don't Over-Engineer
 
