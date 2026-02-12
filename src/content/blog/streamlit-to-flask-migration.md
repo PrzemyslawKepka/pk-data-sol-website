@@ -157,7 +157,7 @@ We need constraints. Starting from our Python background:
 
 Streamlit is actually not one of a kind. There are more tools boasting to be **all-in-one**, allowing to create web apps only with Python, focusing on data. **Dash**, **Panel**, **NiceGUI**, **Reflex**, the list can go on. Usually they will avoid this problematic full re-run, and will potentially offer bigger capabilities as well.
 
-However, **switching to another data framework won't solve our problems**. They share the same fundamental constraints on SEO, dynamic routing, and layout control.
+However, **switching to another data framework is unlikely to solve our core problems**. While some (like Dash) offer better URL routing, they still share fundamental constraints on SEO and layout control.
 
 #### Full-stack frameworks
 
