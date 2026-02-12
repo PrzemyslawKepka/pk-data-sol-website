@@ -293,13 +293,15 @@ After the migration, the differences were clear:
 
 | Metric | Streamlit | Flask |
 |--------|-----------|-------|
-| Initial load | ~3s | ~800ms |
+| Time to usable content | ~3-4s | ~1.7s |
+| Lighthouse Performance | Couldn't measure* | 68 |
 | Google indexed pages | 1 | 50+ |
-| Lighthouse Performance | 46 | 68 |
 | Mobile usability | Limited | Full |
 | Layout control | Constrained | Complete |
 
-The **performance** improvement was significant - **almost 4x faster** initial load. But the biggest win was **SEO**: going from just one indexable page to **over 50 individual property pages**, each discoverable through Google search.
+*Lighthouse timed out waiting for Streamlit to render content (NO_FCP error). Streamlit's HTML loads fast, but it's an empty shell - users watch the "running man" spinner while JavaScript renders the actual content. Flask sends ready-to-display HTML.
+
+The biggest win was **SEO**: going from one indexable page to **over 50 individual property pages**, each discoverable through Google search. If Google's tools can't measure your app, search engines will struggle to index it.
 
 And the **layout freedom** - being able to design the pages exactly how I wanted, without fighting Streamlit's constraints - was honestly a relief.
 
