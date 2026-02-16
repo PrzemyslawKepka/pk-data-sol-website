@@ -196,6 +196,13 @@ const getCommercialLabel = (isCommercial: boolean) =>
           </div>
         )}
 
+        <!-- Lang notice for polish language (description is in english) -->
+        {lang === 'pl' && (
+          <div class="mb-12 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+            <p class="text-yellow-400 text-sm">Na chwilę obecną szczegółowe opisy projektów dostępne są tylko w języku angielskim.</p>
+          </div>
+        )}
+
         <!-- Content -->
         <div class="prose prose-invert prose-lg max-w-none">
           <Content />
