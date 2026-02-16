@@ -197,17 +197,22 @@ const getDescription = () => {
           </div>
         </div>
 
-        <!-- NDA Notice for FTE projects -->
-        {project.data.projectType === 'fte' && (
-          <div class="mb-12 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-            <p class="text-blue-400 text-sm">{t.projects.fteNote}</p>
-          </div>
-        )}
+        <!-- Notices section -->
+        {(project.data.projectType === 'fte' || lang === 'pl') && (
+          <div class="mb-6 space-y-2">
+            <!-- NDA Notice for FTE projects -->
+            {project.data.projectType === 'fte' && (
+              <div class="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                <p class="text-blue-400 text-sm">{t.projects.fteNote}</p>
+              </div>
+            )}
 
-        <!-- Lang notice for polish language (full content is in english) -->
-        {lang === 'pl' && (
-          <div class="mb-12 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
-            <p class="text-yellow-400 text-sm">Szczegółowa treść projektu dostępna jest obecnie tylko w języku angielskim. Krótki opis po polsku znajduje się powyżej.</p>
+            <!-- Lang notice for polish language (full content is in english) -->
+            {lang === 'pl' && (
+              <div class="p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+                <p class="text-yellow-400 text-sm">Szczegółowa treść projektu dostępna jest obecnie tylko w języku angielskim. Krótki opis po polsku znajduje się powyżej.</p>
+              </div>
+            )}
           </div>
         )}
 
