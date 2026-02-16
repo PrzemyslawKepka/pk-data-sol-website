@@ -23,6 +23,11 @@ interface Props {
     seeMore: string;
     viewGithub: string;
     viewLive: string;
+    badgeLabels?: Record<string, string>;
+    categories?: Record<string, string>;
+    industries?: Record<string, string>;
+    commercial?: string;
+    nonCommercial?: string;
   };
   lang?: string;
 }
@@ -33,17 +38,53 @@ const { data, slug } = project;
 const companyLogo = getCompanyLogo(data.company);
 
 // Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
-const typeColors = {
+const typeColors: Record<string, string> = {
   fte: 'bg-blue-600/90 text-white border-blue-400/50 backdrop-blur-sm shadow-lg',
   current: 'bg-green-600/90 text-white border-green-400/50 backdrop-blur-sm shadow-lg',
   side: 'bg-purple-600/90 text-white border-purple-400/50 backdrop-blur-sm shadow-lg'
 };
 
-const typeLabels = {
+// Default English labels (fallback)
+const defaultTypeLabels: Record<string, string> = {
   fte: 'Corporate',
   current: 'Current',
   side: 'Side Project'
 };
+
+// Category key mapping (data value → translation key)
+const categoryKeyMap: Record<string, string> = {
+  'Web Application': 'webApplication',
+  'Automation': 'automation',
+  'Developer Tools': 'developerTools',
+  'Dashboard': 'dashboard',
+  'ETL Pipeline': 'etl',
+  'Data Analysis': 'dataAnalysis',
+  'Web Scraping': 'webScraping'
+};
+
+// Industry key mapping (data value → translation key)
+const industryKeyMap: Record<string, string> = {
+  'Finance': 'finance',
+  'Credit Risk': 'creditRisk',
+  'Real Estate': 'realEstate',
+  'IoT': 'iot',
+  'Accounting': 'accounting',
+  'Social Media': 'socialMedia',
+  'Gaming': 'gaming'
+};
+
+// Get translated labels with fallbacks
+const getTypeLabel = (type: string) => translations.badgeLabels?.[type] || defaultTypeLabels[type] || type;
+const getCategoryLabel = (cat: string) => {
+  const key = categoryKeyMap[cat];
+  return key && translations.categories?.[key] ? translations.categories[key] : cat;
+};
+const getIndustryLabel = (ind: string) => {
+  const key = industryKeyMap[ind];
+  return key && translations.industries?.[key] ? translations.industries[key] : ind;
+};
+const getCommercialLabel = (isCommercial: boolean) =>
+  isCommercial ? (translations.commercial || 'Commercial') : (translations.nonCommercial || 'Non-commercial');
 ---
 
 <article class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
@@ -66,14 +107,14 @@ const typeLabels = {
 
       <!-- Project Type Badge -->
       <div class={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${typeColors[data.projectType]}`}>
-        {typeLabels[data.projectType]}
+        {getTypeLabel(data.projectType)}
       </div>
 
       <!-- Category Badges -->
       <div class="absolute top-3 right-3 flex flex-row-reverse gap-2">
         {data.categories.map(category => (
           <div class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg">
-            {category}
+            {getCategoryLabel(category)}
           </div>
         ))}
       </div>
@@ -81,14 +122,14 @@ const typeLabels = {
       <!-- Industry Badge -->
       {data.industry && (
         <div class="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-pink-600/90 text-slate-100 border border-pink-400/50 backdrop-blur-sm shadow-lg">
-          {data.industry}
+          {getIndustryLabel(data.industry)}
         </div>
       )}
 
       <!-- Commercial Status Badge (only for current projects) -->
       {data.projectType === 'current' && data.isCommercial !== undefined && (
         <div class={`absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm shadow-lg border ${data.isCommercial ? 'bg-teal-600/90 text-white border-teal-400/50' : 'bg-slate-600/90 text-slate-200 border-slate-400/50'}`}>
-          {data.isCommercial ? 'Commercial' : 'Non-commercial'}
+          {getCommercialLabel(data.isCommercial)}
         </div>
       )}
     </div>

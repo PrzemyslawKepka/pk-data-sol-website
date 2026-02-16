@@ -128,6 +128,13 @@
     "sideNote": "Side projects showcase real capabilities applicable in business contexts",
     "fteNote": "Due to NDAs, no real screenshots or code can be shown for corporate projects",
     "viewAllProjects": "View All Projects",
+    "badgeLabels": {
+      "fte": "Corporate",
+      "current": "Current",
+      "side": "Side Project"
+    },
+    "commercial": "Commercial",
+    "nonCommercial": "Non-commercial",
     "sorting": {
       "label": "Sort by",
       "priority": "Priority",

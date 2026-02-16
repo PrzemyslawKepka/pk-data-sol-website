@@ -65,6 +65,13 @@ interface Translations {
     type: string;
     alpha: string;
   };
+  badgeLabels?: {
+    fte: string;
+    current: string;
+    side: string;
+  };
+  commercial?: string;
+  nonCommercial?: string;
 }
 
 const props = defineProps<{
@@ -427,11 +434,50 @@ const typeColors: Record<string, string> = {
   side: 'bg-purple-600/90 text-white border-purple-400/50 backdrop-blur-sm shadow-lg'
 };
 
-const typeLabels: Record<string, string> = {
+// Default English labels (fallback)
+const defaultTypeLabels: Record<string, string> = {
   fte: 'Corporate',
   current: 'Current',
   side: 'Side Project'
 };
+
+// Category key mapping (data value → translation key)
+const categoryKeyMap: Record<string, string> = {
+  'Web Application': 'webApplication',
+  'Automation': 'automation',
+  'Developer Tools': 'developerTools',
+  'Dashboard': 'dashboard',
+  'ETL Pipeline': 'etl',
+  'Data Analysis': 'dataAnalysis',
+  'Web Scraping': 'webScraping'
+};
+
+// Industry key mapping (data value → translation key)
+const industryKeyMap: Record<string, string> = {
+  'Finance': 'finance',
+  'Credit Risk': 'creditRisk',
+  'Real Estate': 'realEstate',
+  'IoT': 'iot',
+  'Accounting': 'accounting',
+  'Social Media': 'socialMedia',
+  'Gaming': 'gaming'
+};
+
+// Get translated labels with fallbacks
+const getTypeLabel = (type: string) => props.translations.badgeLabels?.[type as keyof typeof props.translations.badgeLabels] || defaultTypeLabels[type] || type;
+
+const getCategoryLabel = (cat: string) => {
+  const key = categoryKeyMap[cat] as keyof typeof props.translations.categories;
+  return key && props.translations.categories[key] ? props.translations.categories[key] : cat;
+};
+
+const getIndustryLabel = (ind: string) => {
+  const key = industryKeyMap[ind] as keyof typeof props.translations.industries;
+  return key && props.translations.industries[key] ? props.translations.industries[key] : ind;
+};
+
+const getCommercialLabel = (isCommercial: boolean) =>
+  isCommercial ? (props.translations.commercial || 'Commercial') : (props.translations.nonCommercial || 'Non-commercial');
 </script>
 
 <template>
@@ -548,7 +594,7 @@ const typeLabels: Record<string, string> = {
 
             <!-- Project Type Badge -->
             <div :class="`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${typeColors[project.data.projectType]}`">
-              {{ typeLabels[project.data.projectType] }}
+              {{ getTypeLabel(project.data.projectType) }}
             </div>
 
             <!-- Category Badges -->
@@ -558,7 +604,7 @@ const typeLabels: Record<string, string> = {
                 :key="category"
                 class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg"
               >
-                {{ category }}
+                {{ getCategoryLabel(category) }}
               </div>
             </div>
 
@@ -567,7 +613,7 @@ const typeLabels: Record<string, string> = {
               v-if="project.data.industry"
               class="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-pink-600/90 text-slate-100 border border-pink-400/50 backdrop-blur-sm shadow-lg"
             >
-              {{ project.data.industry }}
+              {{ getIndustryLabel(project.data.industry) }}
             </div>
 
             <!-- Commercial Status Badge (only for current projects) -->
@@ -580,7 +626,7 @@ const typeLabels: Record<string, string> = {
                   : 'bg-slate-600/90 text-slate-200 border-slate-400/50'
               ]"
             >
-              {{ project.data.isCommercial ? 'Commercial' : 'Non-commercial' }}
+              {{ getCommercialLabel(project.data.isCommercial) }}
             </div>
           </div>
 
