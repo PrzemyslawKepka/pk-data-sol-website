@@ -6,6 +6,7 @@ interface BlogPost {
   data: {
     title: string;
     description: string;
+    descriptionPl?: string; // Polish short description
     publishDate: Date;
     category: 'Technical' | 'Business';
     tags: string[];
@@ -151,6 +152,14 @@ const categoryColors: Record<string, string> = {
 function formatDate(date: Date): string {
   return new Date(date).toISOString().split('T')[0];
 }
+
+// Get description based on language (fallback to English)
+function getDescription(post: BlogPost): string {
+  if (props.lang === 'pl' && post.data.descriptionPl) {
+    return post.data.descriptionPl;
+  }
+  return post.data.description;
+}
 </script>
 
 <template>
@@ -242,7 +251,7 @@ function formatDate(date: Date): string {
             </div>
 
             <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">
-              {{ post.data.description }}
+              {{ getDescription(post) }}
             </p>
 
             <!-- Tags -->

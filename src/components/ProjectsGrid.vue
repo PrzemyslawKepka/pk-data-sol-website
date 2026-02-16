@@ -7,6 +7,7 @@ interface Project {
   data: {
     title: string;
     description: string;
+    descriptionPl?: string; // Polish short description
     categories: string[];
     technologies: string[];
     github?: string;
@@ -480,6 +481,14 @@ const getIndustryLabel = (ind: string) => {
 
 const getCommercialLabel = (isCommercial: boolean) =>
   isCommercial ? (props.translations.commercial || 'Commercial') : (props.translations.nonCommercial || 'Non-commercial');
+
+// Get description based on language (fallback to English)
+const getDescription = (project: Project) => {
+  if (props.lang === 'pl' && project.data.descriptionPl) {
+    return project.data.descriptionPl;
+  }
+  return project.data.description;
+};
 </script>
 
 <template>
@@ -654,7 +663,7 @@ const getCommercialLabel = (isCommercial: boolean) =>
             </p>
 
             <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">
-              {{ project.data.description }}
+              {{ getDescription(project) }}
             </p>
 
             <!-- Technologies -->

@@ -6,6 +6,7 @@ interface Props {
     data: {
       title: string;
       description: string;
+      descriptionPl?: string; // Polish short description
       categories: string[];
       technologies: string[];
       github?: string;
@@ -87,6 +88,13 @@ const getIndustryLabel = (ind: string) => {
 };
 const getCommercialLabel = (isCommercial: boolean) =>
   isCommercial ? (translations.commercial || 'Commercial') : (translations.nonCommercial || 'Non-commercial');
+// Get description based on language (fallback to English)
+const getDescription = () => {
+  if (lang === 'pl' && data.descriptionPl) {
+    return data.descriptionPl;
+  }
+  return data.description;
+};
 ---
 
 <article class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
@@ -154,7 +162,7 @@ const getCommercialLabel = (isCommercial: boolean) =>
         </p>
       )}
 
-      <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">{data.description}</p>
+      <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">{getDescription()}</p>
 
       <!-- Technologies -->
       <div class="flex flex-wrap gap-2 mb-4">
