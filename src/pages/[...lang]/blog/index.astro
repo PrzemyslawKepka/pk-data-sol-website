@@ -26,6 +26,7 @@ const posts = allPosts.map(post => ({
   data: {
     title: post.data.title,
     description: post.data.description,
+    descriptionPl: post.data.descriptionPl,
     publishDate: post.data.publishDate,
     category: post.data.category,
     tags: post.data.tags,
@@ -57,7 +58,8 @@ const posts = allPosts.map(post => ({
             seeFullPost: t.blog.seeFullPost,
             minRead: t.blog.minRead,
             categories: t.blog.categories,
-            filterByCategory: t.blog.filterByCategory
+            filterByCategory: t.blog.filterByCategory,
+            sorting: t.blog.sorting
           }}
         />
       </div>
