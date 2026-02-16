@@ -1,17 +1,23 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import BlogsGrid from '../../components/BlogsGrid.vue';
-import { useTranslations } from '../../utils/i18n';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import BlogsGrid from '../../../components/BlogsGrid.vue';
+import { useTranslations } from '../../../utils/i18n';
+import { getLangFromParams, getBasePath, getLanguagePaths } from '../../../utils/langHelpers';
 import { getCollection } from 'astro:content';
-import { getBlogOrder } from '../../config/blogOrder';
+import { getBlogOrder } from '../../../config/blogOrder';
 
-const lang = 'en';
+export function getStaticPaths() {
+  return getLanguagePaths();
+}
+
+const lang = getLangFromParams(Astro.params.lang);
+const basePath = getBasePath(lang);
 const t = useTranslations(lang);
 
-// Get all English blog posts
-const allPosts = await getCollection('blog', ({ data }) => data.lang === lang);
+// Get all English blog posts (Polish content doesn't exist yet)
+const allPosts = await getCollection('blog', ({ data }) => data.lang === 'en');
 
 // Transform posts for the Vue component
 const maxOrder = allPosts.length;
@@ -46,6 +52,7 @@ const posts = allPosts.map(post => ({
         <BlogsGrid
           client:load
           posts={posts}
+          lang={lang}
           translations={{
             seeFullPost: t.blog.seeFullPost,
             minRead: t.blog.minRead,

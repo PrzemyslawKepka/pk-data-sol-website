@@ -1,20 +1,27 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { useTranslations } from '../../utils/i18n';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { useTranslations } from '../../../utils/i18n';
+import { getLangFromParams, getBasePath } from '../../../utils/langHelpers';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
-    params: { slug: post.slug },
-    props: { post }
-  }));
+  // Get English posts since Polish content doesn't exist yet
+  const posts = await getCollection('blog', ({ data }) => data.lang === 'en');
+  const languages = [undefined, 'pl'] as const;
+
+  return languages.flatMap(lang =>
+    posts.map(post => ({
+      params: { lang, slug: post.slug },
+      props: { post }
+    }))
+  );
 }
 
 const { post } = Astro.props;
-const lang = post.data.lang || 'en';
+const lang = getLangFromParams(Astro.params.lang);
+const basePath = getBasePath(lang);
 const t = useTranslations(lang);
 
 const { Content, headings } = await post.render();
@@ -30,6 +37,9 @@ const formattedDate = post.data.publishDate.toISOString().split('T')[0];
 
 // Filter to only include h2 and h3 headings for TOC
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+
+// Get translated category name
+const categoryName = t.blog.categories[post.data.category] || post.data.category;
 ---
 
 <BaseLayout title={`${post.data.title} | ${t.blog.title}`} lang={lang}>
@@ -40,7 +50,7 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
       <div class="max-w-4xl mx-auto px-4">
         <!-- Back Link -->
         <a
-          href="/blog"
+          href={`${basePath}/blog`}
           class="inline-flex items-center gap-2 text-slate-400 hover:text-amber-500 transition-colors mb-8"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -70,7 +80,7 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
         <header class="mb-8">
           <div class="flex flex-wrap items-center gap-3 mb-4">
             <span class={`px-3 py-1 rounded-full text-sm font-medium border ${categoryColors[post.data.category]}`}>
-              {post.data.category}
+              {categoryName}
             </span>
             <span class="text-slate-400 text-sm">{formattedDate}</span>
             {post.data.readTime && (

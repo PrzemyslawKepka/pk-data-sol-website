@@ -6,12 +6,18 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import BlogCard from '../../components/BlogCard.astro';
 import TechnologiesSection from '../../components/TechnologiesSection.astro';
 import { useTranslations } from '../../utils/i18n';
+import { getLangFromParams, getBasePath, getLanguagePaths, getIndustries } from '../../utils/langHelpers';
 import { getCollection } from 'astro:content';
 import { featuredProjects as featuredSlugs } from '../../config/projectOrder';
 import { featuredBlogPosts as featuredBlogSlugs } from '../../config/blogOrder';
 import { getYearsOfExperience } from '../../utils/experience';
 
-const lang = 'pl';
+export function getStaticPaths() {
+  return getLanguagePaths();
+}
+
+const lang = getLangFromParams(Astro.params.lang);
+const basePath = getBasePath(lang);
 const t = useTranslations(lang);
 const yearsOfExperience = getYearsOfExperience();
 
@@ -31,15 +37,8 @@ const featuredBlogPosts = featuredBlogSlugs
   .filter((p): p is NonNullable<typeof p> => p !== undefined)
   .slice(0, 3);
 
-// Industries data - using Polish names
-const industries = [
-  { key: 'Finance', name: 'Finanse', emoji: '💰' },
-  { key: 'Accounting', name: 'Księgowość', emoji: '📊' },
-  { key: 'Credit Risk', name: 'Ryzyko Kredytowe', emoji: '📉' },
-  { key: 'IoT', name: 'Internet Rzeczy (IoT)', emoji: '🔌' },
-  { key: 'Real Estate', name: 'Nieruchomości', emoji: '🏢' },
-  { key: 'Social Media', name: 'Media Społecznościowe', emoji: '📱' }
-];
+// Industries data with translations
+const industries = getIndustries(lang);
 
 // Services pipeline steps
 const servicesSteps = [
@@ -68,9 +67,11 @@ const servicesSteps = [
     icon: '📊'
   }
 ];
+
+const pageTitle = lang === 'pl' ? 'Strona główna' : 'Home';
 ---
 
-<BaseLayout title="Strona główna" lang={lang}>
+<BaseLayout title={pageTitle} lang={lang}>
   <Header lang={lang} />
 
   <main class="pt-8">
@@ -128,6 +129,7 @@ const servicesSteps = [
               <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.timeSavedPrefix}</div>
               <div class="text-3xl font-extrabold text-amber-500">{t.about.timeSaved}</div>
               <div class="text-xs text-slate-400 uppercase tracking-wide">{t.about.timeSavedLabel}</div>
+              <!-- Description available in t.about.timeSavedDesc if needed -->
             </div>
             <div class="bg-slate-700 p-3 rounded-xl text-center">
               <div class="text-3xl font-extrabold text-amber-500">{t.about.solutionsCount}</div>
@@ -152,7 +154,7 @@ const servicesSteps = [
           <p class="text-center text-sm text-slate-500 mb-3">{t.about.industriesHint}</p>
           <div class="flex flex-wrap justify-center gap-3 mb-4">
             {industries.map(industry => (
-              <a href={`/projects?industry=${encodeURIComponent(industry.key)}`} class="flex items-center gap-2 py-3 px-6 bg-slate-700 rounded-full border border-slate-600 transition-all hover:border-amber-500 hover:-translate-y-0.5 cursor-pointer">
+              <a href={`${basePath}/projects?industry=${encodeURIComponent(industry.key)}`} class="flex items-center gap-2 py-3 px-6 bg-slate-700 rounded-full border border-slate-600 transition-all hover:border-amber-500 hover:-translate-y-0.5 cursor-pointer">
                 <span class="text-xl">{industry.emoji}</span>
                 <span class="text-[0.9375rem] font-medium text-slate-100">{industry.name}</span>
               </a>
@@ -318,7 +320,7 @@ const servicesSteps = [
 
             <div class="text-center">
               <a
-                href="/pl/projects"
+                href={`${basePath}/projects`}
                 class="inline-block px-8 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-transparent text-amber-500 border-2 border-amber-500 hover:bg-amber-500 hover:text-white"
               >
                 {t.projects.viewAllProjects}
@@ -327,9 +329,9 @@ const servicesSteps = [
           </>
         ) : (
           <div class="text-center">
-            <p class="text-slate-400 mb-8">Projekty wkrótce...</p>
+            <p class="text-slate-400 mb-8">{lang === 'pl' ? 'Projekty wkrótce...' : 'Projects coming soon...'}</p>
             <a
-              href="/pl/projects"
+              href={`${basePath}/projects`}
               class="inline-block px-8 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-amber-500 text-white hover:bg-amber-600"
             >
               {t.projects.viewAllProjects}
@@ -367,7 +369,7 @@ const servicesSteps = [
 
             <div class="text-center">
               <a
-                href="/pl/blog"
+                href={`${basePath}/blog`}
                 class="inline-block px-8 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-transparent text-amber-500 border-2 border-amber-500 hover:bg-amber-500 hover:text-white"
               >
                 {t.blog.allPosts}
@@ -376,9 +378,9 @@ const servicesSteps = [
           </>
         ) : (
           <div class="text-center">
-            <p class="text-slate-400 mb-8">Posty blogowe wkrótce...</p>
+            <p class="text-slate-400 mb-8">{lang === 'pl' ? 'Posty blogowe wkrótce...' : 'Blog posts coming soon...'}</p>
             <a
-              href="/pl/blog"
+              href={`${basePath}/blog`}
               class="inline-block px-8 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-amber-500 text-white hover:bg-amber-600"
             >
               {t.blog.allPosts}
