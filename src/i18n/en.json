@@ -135,6 +135,8 @@
     },
     "commercial": "Commercial",
     "nonCommercial": "Non-commercial",
+    "codeLabel": "Code",
+    "websiteLabel": "Website",
     "sorting": {
       "label": "Sort by",
       "priority": "Priority",

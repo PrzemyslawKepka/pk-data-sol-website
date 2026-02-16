@@ -135,6 +135,8 @@
     },
     "commercial": "Komercyjny",
     "nonCommercial": "Niekomercyjny",
+    "codeLabel": "Kod",
+    "websiteLabel": "Strona",
     "sorting": {
       "label": "Sortuj",
       "priority": "Priorytet",
