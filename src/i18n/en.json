@@ -127,7 +127,14 @@
     "year": "Year",
     "sideNote": "Side projects showcase real capabilities applicable in business contexts",
     "fteNote": "Due to NDAs, no real screenshots or code can be shown for corporate projects",
-    "viewAllProjects": "View All Projects"
+    "viewAllProjects": "View All Projects",
+    "sorting": {
+      "label": "Sort by",
+      "priority": "Priority",
+      "year": "Year",
+      "type": "Type",
+      "alpha": "Name"
+    }
   },
   "technologies": {
     "title": "Technologies",
