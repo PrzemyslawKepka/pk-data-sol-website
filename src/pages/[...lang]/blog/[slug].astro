@@ -5,6 +5,11 @@ import Footer from '../../../components/Footer.astro';
 import { useTranslations } from '../../../utils/i18n';
 import { getLangFromParams, getBasePath } from '../../../utils/langHelpers';
 import { getCollection } from 'astro:content';
+import {
+  blogCategoryColorsLight,
+  getLocalizedDescription,
+  formatDate
+} from '../../../utils/translationHelpers';
 
 export async function getStaticPaths() {
   // Get English posts since Polish content doesn't exist yet
@@ -26,28 +31,15 @@ const t = useTranslations(lang);
 
 const { Content, headings } = await post.render();
 
-// Category badge colors
-const categoryColors: Record<string, string> = {
-  Technical: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-  Business: 'bg-green-500/20 text-green-400 border-green-500/30'
-};
-
-// Format date as YYYY-MM-DD
-const formattedDate = post.data.publishDate.toISOString().split('T')[0];
+// Use centralized helpers
+const formattedDate = formatDate(post.data.publishDate);
+const description = getLocalizedDescription(post.data, lang);
 
 // Filter to only include h2 and h3 headings for TOC
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 
 // Get translated category name
 const categoryName = t.blog.categories[post.data.category] || post.data.category;
-
-// Get description based on language (fallback to English)
-const getDescription = () => {
-  if (lang === 'pl' && post.data.descriptionPl) {
-    return post.data.descriptionPl;
-  }
-  return post.data.description;
-};
 ---
 
 <BaseLayout title={`${post.data.title} | ${t.blog.title}`} lang={lang}>
@@ -87,7 +79,7 @@ const getDescription = () => {
         <!-- Header -->
         <header class="mb-8">
           <div class="flex flex-wrap items-center gap-3 mb-4">
-            <span class={`px-3 py-1 rounded-full text-sm font-medium border ${categoryColors[post.data.category]}`}>
+            <span class={`px-3 py-1 rounded-full text-sm font-medium border ${blogCategoryColorsLight[post.data.category]}`}>
               {categoryName}
             </span>
             <span class="text-slate-400 text-sm">{formattedDate}</span>
@@ -102,7 +94,7 @@ const getDescription = () => {
           </div>
 
           <h1 class="text-4xl md:text-5xl font-bold text-slate-100 mb-4">{post.data.title}</h1>
-          <p class="text-xl text-slate-300 leading-relaxed">{getDescription()}</p>
+          <p class="text-xl text-slate-300 leading-relaxed">{description}</p>
         </header>
 
         <!-- Tags -->

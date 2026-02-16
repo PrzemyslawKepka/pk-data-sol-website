@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
 import { getCompanyLogo } from '../utils/companyLogos';
+import {
+  projectTypeColors,
+  getProjectTypeLabel,
+  getCategoryLabel,
+  getIndustryLabel,
+  getCommercialLabel,
+  getLocalizedDescription
+} from '../utils/translationHelpers';
 
 interface Project {
   slug: string;
@@ -430,65 +438,12 @@ const currentTypeDesc = computed(() => {
   return props.translations.projectTypesDesc[selectedType as keyof typeof props.translations.projectTypesDesc];
 });
 
-// Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
-const typeColors: Record<string, string> = {
-  fte: 'bg-blue-600/90 text-white border-blue-400/50 backdrop-blur-sm shadow-lg',
-  current: 'bg-green-600/90 text-white border-green-400/50 backdrop-blur-sm shadow-lg',
-  side: 'bg-purple-600/90 text-white border-purple-400/50 backdrop-blur-sm shadow-lg'
-};
-
-// Default English labels (fallback)
-const defaultTypeLabels: Record<string, string> = {
-  fte: 'Corporate',
-  current: 'Current',
-  side: 'Side Project'
-};
-
-// Category key mapping (data value → translation key)
-const categoryKeyMap: Record<string, string> = {
-  'Web Application': 'webApplication',
-  'Automation': 'automation',
-  'Developer Tools': 'developerTools',
-  'Dashboard': 'dashboard',
-  'ETL Pipeline': 'etl',
-  'Data Analysis': 'dataAnalysis',
-  'Web Scraping': 'webScraping'
-};
-
-// Industry key mapping (data value → translation key)
-const industryKeyMap: Record<string, string> = {
-  'Finance': 'finance',
-  'Credit Risk': 'creditRisk',
-  'Real Estate': 'realEstate',
-  'IoT': 'iot',
-  'Accounting': 'accounting',
-  'Social Media': 'socialMedia',
-  'Gaming': 'gaming'
-};
-
-// Get translated labels with fallbacks
-const getTypeLabel = (type: string) => props.translations.badgeLabels?.[type as keyof typeof props.translations.badgeLabels] || defaultTypeLabels[type] || type;
-
-const getCategoryLabel = (cat: string) => {
-  const key = categoryKeyMap[cat] as keyof typeof props.translations.categories;
-  return key && props.translations.categories[key] ? props.translations.categories[key] : cat;
-};
-
-const getIndustryLabel = (ind: string) => {
-  const key = industryKeyMap[ind] as keyof typeof props.translations.industries;
-  return key && props.translations.industries[key] ? props.translations.industries[key] : ind;
-};
-
-const getCommercialLabel = (isCommercial: boolean) =>
-  isCommercial ? (props.translations.commercial || 'Commercial') : (props.translations.nonCommercial || 'Non-commercial');
-
-// Get description based on language (fallback to English)
-const getDescription = (project: Project) => {
-  if (props.lang === 'pl' && project.data.descriptionPl) {
-    return project.data.descriptionPl;
-  }
-  return project.data.description;
-};
+// Wrapper functions that use centralized helpers with component translations
+const getTypeLabel = (type: string) => getProjectTypeLabel(type, props.translations);
+const getCategoryLabelTranslated = (cat: string) => getCategoryLabel(cat, props.translations);
+const getIndustryLabelTranslated = (ind: string) => getIndustryLabel(ind, props.translations);
+const getCommercialLabelTranslated = (isCommercial: boolean) => getCommercialLabel(isCommercial, props.translations);
+const getDescription = (project: Project) => getLocalizedDescription(project.data, props.lang || 'en');
 </script>
 
 <template>
@@ -604,7 +559,7 @@ const getDescription = (project: Project) => {
             </div>
 
             <!-- Project Type Badge -->
-            <div :class="`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${typeColors[project.data.projectType]}`">
+            <div :class="`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${projectTypeColors[project.data.projectType]}`">
               {{ getTypeLabel(project.data.projectType) }}
             </div>
 
@@ -615,7 +570,7 @@ const getDescription = (project: Project) => {
                 :key="category"
                 class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg"
               >
-                {{ getCategoryLabel(category) }}
+                {{ getCategoryLabelTranslated(category) }}
               </div>
             </div>
 
@@ -624,7 +579,7 @@ const getDescription = (project: Project) => {
               v-if="project.data.industry"
               class="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-pink-600/90 text-slate-100 border border-pink-400/50 backdrop-blur-sm shadow-lg"
             >
-              {{ getIndustryLabel(project.data.industry) }}
+              {{ getIndustryLabelTranslated(project.data.industry) }}
             </div>
 
             <!-- Commercial Status Badge (only for current projects) -->
@@ -637,7 +592,7 @@ const getDescription = (project: Project) => {
                   : 'bg-slate-600/90 text-slate-200 border-slate-400/50'
               ]"
             >
-              {{ getCommercialLabel(project.data.isCommercial) }}
+              {{ getCommercialLabelTranslated(project.data.isCommercial) }}
             </div>
           </div>
 

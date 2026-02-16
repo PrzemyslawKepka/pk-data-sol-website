@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
+import {
+  blogCategoryColors,
+  getLocalizedDescription,
+  formatDate as formatDateHelper
+} from '../utils/translationHelpers';
 
 interface BlogPost {
   slug: string;
@@ -142,23 +147,13 @@ const filteredPosts = computed(() => {
   });
 });
 
-// Category badge colors
-const categoryColors: Record<string, string> = {
-  Technical: 'bg-blue-600/90 text-white border-blue-400/50 backdrop-blur-sm shadow-lg',
-  Business: 'bg-green-600/90 text-white border-green-400/50 backdrop-blur-sm shadow-lg'
-};
-
-// Format date as YYYY-MM-DD
+// Wrapper functions using centralized helpers
 function formatDate(date: Date): string {
-  return new Date(date).toISOString().split('T')[0];
+  return formatDateHelper(date);
 }
 
-// Get description based on language (fallback to English)
 function getDescription(post: BlogPost): string {
-  if (props.lang === 'pl' && post.data.descriptionPl) {
-    return post.data.descriptionPl;
-  }
-  return post.data.description;
+  return getLocalizedDescription(post.data, props.lang || 'en');
 }
 </script>
 
@@ -226,7 +221,7 @@ function getDescription(post: BlogPost): string {
             </div>
 
             <!-- Category Badge -->
-            <div :class="`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${categoryColors[post.data.category]}`">
+            <div :class="`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${blogCategoryColors[post.data.category]}`">
               {{ post.data.category }}
             </div>
 

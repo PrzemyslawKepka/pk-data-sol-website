@@ -1,5 +1,14 @@
 ---
 import { getCompanyLogo } from '../utils/companyLogos';
+import {
+  projectTypeColors,
+  getProjectTypeLabel,
+  getCategoryLabel,
+  getIndustryLabel,
+  getCommercialLabel,
+  getLocalizedDescription,
+  getBasePath
+} from '../utils/translationHelpers';
 
 interface Props {
   project: {
@@ -36,65 +45,13 @@ interface Props {
 }
 
 const { project, translations, lang = 'en' } = Astro.props;
-const basePath = lang === 'pl' ? '/pl' : '';
+const basePath = getBasePath(lang);
 const { data, slug } = project;
 const companyLogo = getCompanyLogo(data.company);
 
-// Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
-const typeColors: Record<string, string> = {
-  fte: 'bg-blue-600/90 text-white border-blue-400/50 backdrop-blur-sm shadow-lg',
-  current: 'bg-green-600/90 text-white border-green-400/50 backdrop-blur-sm shadow-lg',
-  side: 'bg-purple-600/90 text-white border-purple-400/50 backdrop-blur-sm shadow-lg'
-};
-
-// Default English labels (fallback)
-const defaultTypeLabels: Record<string, string> = {
-  fte: 'Corporate',
-  current: 'Current',
-  side: 'Side Project'
-};
-
-// Category key mapping (data value → translation key)
-const categoryKeyMap: Record<string, string> = {
-  'Web Application': 'webApplication',
-  'Automation': 'automation',
-  'Developer Tools': 'developerTools',
-  'Dashboard': 'dashboard',
-  'ETL Pipeline': 'etl',
-  'Data Analysis': 'dataAnalysis',
-  'Web Scraping': 'webScraping'
-};
-
-// Industry key mapping (data value → translation key)
-const industryKeyMap: Record<string, string> = {
-  'Finance': 'finance',
-  'Credit Risk': 'creditRisk',
-  'Real Estate': 'realEstate',
-  'IoT': 'iot',
-  'Accounting': 'accounting',
-  'Social Media': 'socialMedia',
-  'Gaming': 'gaming'
-};
-
-// Get translated labels with fallbacks
-const getTypeLabel = (type: string) => translations.badgeLabels?.[type] || defaultTypeLabels[type] || type;
-const getCategoryLabel = (cat: string) => {
-  const key = categoryKeyMap[cat];
-  return key && translations.categories?.[key] ? translations.categories[key] : cat;
-};
-const getIndustryLabel = (ind: string) => {
-  const key = industryKeyMap[ind];
-  return key && translations.industries?.[key] ? translations.industries[key] : ind;
-};
-const getCommercialLabel = (isCommercial: boolean) =>
-  isCommercial ? (translations.commercial || 'Commercial') : (translations.nonCommercial || 'Non-commercial');
-// Get description based on language (fallback to English)
-const getDescription = () => {
-  if (lang === 'pl' && data.descriptionPl) {
-    return data.descriptionPl;
-  }
-  return data.description;
-};
+// Use centralized helpers
+const typeLabel = getProjectTypeLabel(data.projectType, translations);
+const description = getLocalizedDescription(data, lang);
 ---
 
 <article class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
@@ -116,15 +73,15 @@ const getDescription = () => {
       )}
 
       <!-- Project Type Badge -->
-      <div class={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${typeColors[data.projectType]}`}>
-        {getTypeLabel(data.projectType)}
+      <div class={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${projectTypeColors[data.projectType]}`}>
+        {typeLabel}
       </div>
 
       <!-- Category Badges -->
       <div class="absolute top-3 right-3 flex flex-row-reverse gap-2">
         {data.categories.map(category => (
           <div class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg">
-            {getCategoryLabel(category)}
+            {getCategoryLabel(category, translations)}
           </div>
         ))}
       </div>
@@ -132,14 +89,14 @@ const getDescription = () => {
       <!-- Industry Badge -->
       {data.industry && (
         <div class="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-pink-600/90 text-slate-100 border border-pink-400/50 backdrop-blur-sm shadow-lg">
-          {getIndustryLabel(data.industry)}
+          {getIndustryLabel(data.industry, translations)}
         </div>
       )}
 
       <!-- Commercial Status Badge (only for current projects) -->
       {data.projectType === 'current' && data.isCommercial !== undefined && (
         <div class={`absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm shadow-lg border ${data.isCommercial ? 'bg-teal-600/90 text-white border-teal-400/50' : 'bg-slate-600/90 text-slate-200 border-slate-400/50'}`}>
-          {getCommercialLabel(data.isCommercial)}
+          {getCommercialLabel(data.isCommercial, translations)}
         </div>
       )}
     </div>
@@ -162,7 +119,7 @@ const getDescription = () => {
         </p>
       )}
 
-      <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">{getDescription()}</p>
+      <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">{description}</p>
 
       <!-- Technologies -->
       <div class="flex flex-wrap gap-2 mb-4">

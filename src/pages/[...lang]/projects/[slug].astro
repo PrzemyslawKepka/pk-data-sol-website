@@ -6,6 +6,14 @@ import { useTranslations } from '../../../utils/i18n';
 import { getLangFromParams, getBasePath } from '../../../utils/langHelpers';
 import { getCollection } from 'astro:content';
 import { getCompanyLogo } from '../../../utils/companyLogos';
+import {
+  projectTypeColorsLight,
+  getProjectTypeLabel,
+  getCategoryLabel,
+  getIndustryLabel,
+  getCommercialLabel,
+  getLocalizedDescription
+} from '../../../utils/translationHelpers';
 
 export async function getStaticPaths() {
   // Get English projects since Polish content doesn't exist yet
@@ -28,55 +36,16 @@ const t = useTranslations(lang);
 const { Content } = await project.render();
 const companyLogo = getCompanyLogo(project.data.company);
 
-// Project type badge colors
-const typeColors: Record<string, string> = {
-  fte: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-  current: 'bg-green-500/20 text-green-400 border-green-500/30',
-  side: 'bg-purple-500/20 text-purple-400 border-purple-500/30'
+// Use centralized helpers with project translations
+const projectTranslations = {
+  badgeLabels: t.projects.badgeLabels,
+  categories: t.projects.categories,
+  industries: t.projects.industries,
+  commercial: t.projects.commercial,
+  nonCommercial: t.projects.nonCommercial
 };
-
-// Category key mapping (data value → translation key)
-const categoryKeyMap: Record<string, string> = {
-  'Web Application': 'webApplication',
-  'Automation': 'automation',
-  'Developer Tools': 'developerTools',
-  'Dashboard': 'dashboard',
-  'ETL Pipeline': 'etl',
-  'Data Analysis': 'dataAnalysis',
-  'Web Scraping': 'webScraping'
-};
-
-// Industry key mapping (data value → translation key)
-const industryKeyMap: Record<string, string> = {
-  'Finance': 'finance',
-  'Credit Risk': 'creditRisk',
-  'Real Estate': 'realEstate',
-  'IoT': 'iot',
-  'Accounting': 'accounting',
-  'Social Media': 'socialMedia',
-  'Gaming': 'gaming'
-};
-
-// Get translated labels using JSON translations
-const getTypeLabel = (type: string) => t.projects.badgeLabels?.[type] || type;
-const getCategoryLabel = (cat: string) => {
-  const key = categoryKeyMap[cat];
-  return key && t.projects.categories?.[key] ? t.projects.categories[key] : cat;
-};
-const getIndustryLabel = (ind: string) => {
-  const key = industryKeyMap[ind];
-  return key && t.projects.industries?.[key] ? t.projects.industries[key] : ind;
-};
-const getCommercialLabel = (isCommercial: boolean) =>
-  isCommercial ? (t.projects.commercial || 'Commercial') : (t.projects.nonCommercial || 'Non-commercial');
-
-// Get description based on language (fallback to English)
-const getDescription = () => {
-  if (lang === 'pl' && project.data.descriptionPl) {
-    return project.data.descriptionPl;
-  }
-  return project.data.description;
-};
+const typeLabel = getProjectTypeLabel(project.data.projectType, projectTranslations);
+const description = getLocalizedDescription(project.data, lang);
 ---
 
 <BaseLayout title={`${project.data.title} | ${t.projects.title}`} lang={lang}>
@@ -116,20 +85,20 @@ const getDescription = () => {
         <!-- Header -->
         <header class="mb-4">
           <div class="flex flex-wrap items-center gap-3 mb-4">
-            <span class={`px-3 py-1 rounded-full text-sm font-medium border ${typeColors[project.data.projectType]}`}>
-              {getTypeLabel(project.data.projectType)}
+            <span class={`px-3 py-1 rounded-full text-sm font-medium border ${projectTypeColorsLight[project.data.projectType]}`}>
+              {typeLabel}
             </span>
             {project.data.categories.map((category: string) => (
               <span class="px-3 py-1 rounded-full text-sm font-medium bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                {getCategoryLabel(category)}
+                {getCategoryLabel(category, projectTranslations)}
               </span>
             ))}
             <span class="px-3 py-1 rounded-full text-sm font-medium bg-pink-500/20 text-pink-400 border border-pink-500/30">
-              {getIndustryLabel(project.data.industry)}
+              {getIndustryLabel(project.data.industry, projectTranslations)}
             </span>
             {project.data.projectType === 'current' && project.data.isCommercial !== undefined && (
               <span class={`px-3 py-1 rounded-full text-sm font-medium border ${project.data.isCommercial ? 'bg-teal-500/20 text-teal-400 border-teal-500/30' : 'bg-slate-500/20 text-slate-400 border-slate-500/30'}`}>
-                {getCommercialLabel(project.data.isCommercial)}
+                {getCommercialLabel(project.data.isCommercial, projectTranslations)}
               </span>
             )}
             {project.data.year && (
@@ -149,7 +118,7 @@ const getDescription = () => {
             </p>
           )}
 
-          <p class="text-xl text-slate-300 leading-relaxed">{getDescription()}</p>
+          <p class="text-xl text-slate-300 leading-relaxed">{description}</p>
         </header>
 
         <!-- Action Buttons -->

@@ -1,10 +1,17 @@
 ---
+import {
+  blogCategoryColors,
+  getLocalizedDescription,
+  getBasePath,
+  formatDate
+} from '../utils/translationHelpers';
+
 interface Props {
   post: {
     data: {
       title: string;
       description: string;
-      descriptionPl?: string; // Polish short description
+      descriptionPl?: string;
       publishDate: Date;
       category: 'Technical' | 'Business';
       tags: string[];
@@ -21,25 +28,12 @@ interface Props {
 }
 
 const { post, translations, lang = 'en' } = Astro.props;
-const basePath = lang === 'pl' ? '/pl' : '';
+const basePath = getBasePath(lang);
 const { data, slug } = post;
 
-// Get description based on language (fallback to English)
-const getDescription = () => {
-  if (lang === 'pl' && data.descriptionPl) {
-    return data.descriptionPl;
-  }
-  return data.description;
-};
-
-// Category badge colors
-const categoryColors = {
-  Technical: 'bg-blue-600/90 text-white border-blue-400/50 backdrop-blur-sm shadow-lg',
-  Business: 'bg-green-600/90 text-white border-green-400/50 backdrop-blur-sm shadow-lg'
-};
-
-// Format date as YYYY-MM-DD
-const formattedDate = data.publishDate.toISOString().split('T')[0];
+// Use centralized helpers
+const description = getLocalizedDescription(data, lang);
+const formattedDate = formatDate(data.publishDate);
 ---
 
 <article class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30">
@@ -61,7 +55,7 @@ const formattedDate = data.publishDate.toISOString().split('T')[0];
       )}
 
       <!-- Category Badge -->
-      <div class={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${categoryColors[data.category]}`}>
+      <div class={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${blogCategoryColors[data.category]}`}>
         {data.category}
       </div>
 
@@ -80,7 +74,7 @@ const formattedDate = data.publishDate.toISOString().split('T')[0];
         <span class="text-sm text-slate-500 whitespace-nowrap">{formattedDate}</span>
       </div>
 
-      <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">{getDescription()}</p>
+      <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">{description}</p>
 
       <!-- Tags -->
       <div class="flex flex-wrap gap-2 mb-4">
