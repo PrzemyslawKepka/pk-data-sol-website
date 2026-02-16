@@ -106,6 +106,13 @@ const categoryName = t.blog.categories[post.data.category] || post.data.category
           ))}
         </div>
 
+        <!-- Lang notice for polish language (blog posts are in english for now) -->
+        {lang === 'pl' && (
+        <div class="mb-12 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+          <p class="text-yellow-400 text-sm">Na chwilę obecną posty dostępne są tylko w języku angielskim.</p>
+        </div>
+      )}
+
         <!-- Table of Contents -->
         {tocHeadings.length > 0 && (
           <nav class="mb-12 p-6 bg-slate-800/50 rounded-xl border border-slate-700">
