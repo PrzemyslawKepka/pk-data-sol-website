@@ -40,6 +40,14 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 
 // Get translated category name
 const categoryName = t.blog.categories[post.data.category] || post.data.category;
+
+// Get description based on language (fallback to English)
+const getDescription = () => {
+  if (lang === 'pl' && post.data.descriptionPl) {
+    return post.data.descriptionPl;
+  }
+  return post.data.description;
+};
 ---
 
 <BaseLayout title={`${post.data.title} | ${t.blog.title}`} lang={lang}>
@@ -94,7 +102,7 @@ const categoryName = t.blog.categories[post.data.category] || post.data.category
           </div>
 
           <h1 class="text-4xl md:text-5xl font-bold text-slate-100 mb-4">{post.data.title}</h1>
-          <p class="text-xl text-slate-300 leading-relaxed">{post.data.description}</p>
+          <p class="text-xl text-slate-300 leading-relaxed">{getDescription()}</p>
         </header>
 
         <!-- Tags -->
@@ -106,10 +114,10 @@ const categoryName = t.blog.categories[post.data.category] || post.data.category
           ))}
         </div>
 
-        <!-- Lang notice for polish language (blog posts are in english for now) -->
+        <!-- Lang notice for polish language (full content is in english) -->
         {lang === 'pl' && (
         <div class="mb-12 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
-          <p class="text-yellow-400 text-sm">Na chwilę obecną posty dostępne są tylko w języku angielskim.</p>
+          <p class="text-yellow-400 text-sm">Szczegółowa treść posta dostępna jest obecnie tylko w języku angielskim. Krótki opis po polsku znajduje się powyżej.</p>
         </div>
       )}
 

@@ -69,6 +69,14 @@ const getIndustryLabel = (ind: string) => {
 };
 const getCommercialLabel = (isCommercial: boolean) =>
   isCommercial ? (t.projects.commercial || 'Commercial') : (t.projects.nonCommercial || 'Non-commercial');
+
+// Get description based on language (fallback to English)
+const getDescription = () => {
+  if (lang === 'pl' && project.data.descriptionPl) {
+    return project.data.descriptionPl;
+  }
+  return project.data.description;
+};
 ---
 
 <BaseLayout title={`${project.data.title} | ${t.projects.title}`} lang={lang}>
@@ -141,7 +149,7 @@ const getCommercialLabel = (isCommercial: boolean) =>
             </p>
           )}
 
-          <p class="text-xl text-slate-300 leading-relaxed">{project.data.description}</p>
+          <p class="text-xl text-slate-300 leading-relaxed">{getDescription()}</p>
         </header>
 
         <!-- Action Buttons -->
@@ -196,10 +204,10 @@ const getCommercialLabel = (isCommercial: boolean) =>
           </div>
         )}
 
-        <!-- Lang notice for polish language (description is in english) -->
+        <!-- Lang notice for polish language (full content is in english) -->
         {lang === 'pl' && (
           <div class="mb-12 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
-            <p class="text-yellow-400 text-sm">Na chwilę obecną szczegółowe opisy projektów dostępne są tylko w języku angielskim.</p>
+            <p class="text-yellow-400 text-sm">Szczegółowa treść projektu dostępna jest obecnie tylko w języku angielskim. Krótki opis po polsku znajduje się powyżej.</p>
           </div>
         )}
 
