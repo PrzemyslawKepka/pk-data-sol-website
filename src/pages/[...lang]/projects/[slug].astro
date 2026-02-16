@@ -114,7 +114,7 @@ const getDescription = () => {
         )}
 
         <!-- Header -->
-        <header class="mb-8">
+        <header class="mb-4">
           <div class="flex flex-wrap items-center gap-3 mb-4">
             <span class={`px-3 py-1 rounded-full text-sm font-medium border ${typeColors[project.data.projectType]}`}>
               {getTypeLabel(project.data.projectType)}
@@ -154,7 +154,7 @@ const getDescription = () => {
 
         <!-- Action Buttons -->
         {(project.data.github || project.data.liveUrl) && (
-          <div class="flex flex-wrap gap-4 mb-12">
+          <div class="flex flex-wrap gap-4 mb-4">
             {project.data.github && (
               <a
                 href={project.data.github}
@@ -186,7 +186,7 @@ const getDescription = () => {
         )}
 
         <!-- Technologies -->
-        <div class="mb-12">
+        <div class="mb-4">
           <h2 class="text-xl font-bold text-slate-100 mb-4">{t.projects.technologies}</h2>
           <div class="flex flex-wrap gap-3">
             {project.data.technologies.map((tech: string) => (
@@ -199,7 +199,7 @@ const getDescription = () => {
 
         <!-- Notices section -->
         {(project.data.projectType === 'fte' || lang === 'pl') && (
-          <div class="mb-6 space-y-2">
+          <div class="mb-4 space-y-2">
             <!-- NDA Notice for FTE projects -->
             {project.data.projectType === 'fte' && (
               <div class="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
