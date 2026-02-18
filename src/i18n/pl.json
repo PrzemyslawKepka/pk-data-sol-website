@@ -47,7 +47,7 @@
   },
   "services": {
     "title": "Usługi",
-    "subtitle": "Full-Stack Data Solutions Pipeline",
+    "subtitle": "Pełen Przepływ Rozwiązań Danowych (Full-Stack Data Solutions Pipeline)",
     "fullStack": "Obsługuję cały proces od początku do końca (kompleksowe rozwiązania danowe)",
     "flexible": "Mogę również zająć się konkretnymi częściami w zależności od Twoich potrzeb",
     "flexible2": "Pracuję zarówno z małymi firmami, jak i dużymi organizacjami",
@@ -75,7 +75,7 @@
     "step4Items": ["Interaktywne dashboardy", "Aplikacje webowe", "Analizy ad-hoc (Jupyter notebooks)", "Raporty Business Intelligence"],
     "pipelineTitle": "Jak pracuję",
     "pipelineSubtitle": "Od pierwszej rozmowy do dostarczonego rozwiązania",
-    "pipelineStep1Title": "(Roz)Poznanie potrzeb",
+    "pipelineStep1Title": "(Roz)poznanie potrzeb",
     "pipelineStep1Desc": "Omawiamy Twoje wyzwania, cele i obecną sytuację, aby zrozumieć, w jaki sposób przekuć dane w wartość biznesową.",
     "pipelineStep2Title": "Propozycja rozwiązania",
     "pipelineStep2Desc": "Analizuję możliwości i przedstawiam jasny plan działania z zakresem i harmonogramem.",
@@ -86,7 +86,7 @@
   },
   "projects": {
     "title": "Projekty",
-    "subtitle": "Moje rozwiązania - od projektów korporacyjnych do projektów 'po godzinach', wszystkie z jasno zdefiniowanymi celami i rozwiązującymi realne problemy",
+    "subtitle": "Moje rozwiązania - od projektów korporacyjnych do projektów 'po godzinach', wszystkie z jasno zdefiniowanymi celami i rozwiązujące realne problemy",
     "projectTypes": {
       "all": "Wszystkie Typy",
       "fte": "Projekty Korporacyjne",
@@ -223,6 +223,7 @@
     "errorMessage": "Ups! Coś poszło nie tak. Spróbuj ponownie."
   },
   "footer": {
+    "links": "Linki",
     "copyright": "© 2026 Przemysław Kępka. Wszelkie prawa zastrzeżone.",
     "builtWith": "Zbudowane z Astro, Tailwind CSS i Vue.js"
   }
