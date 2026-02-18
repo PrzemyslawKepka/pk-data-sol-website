@@ -223,6 +223,7 @@
     "errorMessage": "Oops! Something went wrong. Please try again."
   },
   "footer": {
+    "links": "Social",
     "copyright": "© 2026 Przemysław Kępka. All rights reserved.",
     "builtWith": "Built with Astro, Tailwind CSS, and Vue.js"
   }
