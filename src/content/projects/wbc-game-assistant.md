@@ -1,7 +1,7 @@
 ---
 title: "WBC Game Assistant"
 description: "An interactive Streamlit app, aimed as a helper tool for playing a computer game."
-descriptionPl: "Interaktywna aplikacja stworzona za pomocą Streamlita, służąca jako pomocnicze narzędzia do grania w grę komputerową."
+descriptionPl: "Interaktywna aplikacja stworzona za pomocą Streamlita, służąca jako pomocnicze narzędzie do grania w grę komputerową."
 categories: ["Web Application"]
 technologies: ["Python", "Streamlit", "pandas", "Pillow", "HTML"]
 github: "https://github.com/PrzemyslawKepka/wbc-game-assistant"
