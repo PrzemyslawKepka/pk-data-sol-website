@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pk-data-solutions.com/sitemap-index.xml
