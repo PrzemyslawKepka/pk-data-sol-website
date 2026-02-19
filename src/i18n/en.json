@@ -225,6 +225,24 @@
   "footer": {
     "links": "Social",
     "copyright": "© 2026 Przemysław Kępka. All rights reserved.",
-    "builtWith": "Built with Astro, Tailwind CSS, and Vue.js"
+    "builtWith": "Built with Astro, Tailwind CSS, and Vue.js",
+    "privacy": "Privacy Policy"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "lastUpdatedDate": "February 2026",
+    "intro": "Your privacy matters. This policy explains what data I collect and how I use it.",
+    "analyticsTitle": "Analytics",
+    "analyticsContent": "This website uses Umami, a privacy-focused analytics tool. Umami does not use cookies, does not collect personal data, and only provides aggregated statistics. No individual visitor tracking occurs.",
+    "contactFormTitle": "Contact Form",
+    "contactFormContent": "When you submit the contact form, I collect your name, email address, and message. This data is processed by Web3Forms and used solely to respond to your inquiry. I do not share this information with third parties.",
+    "dataRetentionTitle": "Data Retention",
+    "dataRetentionContent": "Contact form submissions are retained only as long as necessary to respond to your inquiry and maintain correspondence records.",
+    "thirdPartiesTitle": "Third Parties",
+    "thirdPartiesContent": "I do not sell, trade, or share your personal information with third parties. The only external services used are Umami (analytics) and Web3Forms (contact form processing).",
+    "questionsTitle": "Questions",
+    "questionsContent": "If you have any questions about this privacy policy, please contact me at:",
+    "backToHome": "Back to Home"
   }
 }

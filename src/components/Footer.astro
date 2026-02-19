@@ -67,7 +67,11 @@ const basePath = lang === 'pl' ? '/pl' : '';
 
     <div class="pt-8 border-t border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4">
       <p class="text-sm text-slate-400 m-0">{t.footer.copyright}</p>
-      <p class="text-sm text-slate-400 m-0">{t.footer.builtWith}</p>
+      <div class="flex items-center gap-4">
+        <a href={`${basePath}/privacy`} class="text-sm text-slate-400 hover:text-amber-500 transition-colors">{t.footer.privacy}</a>
+        <span class="text-slate-600">|</span>
+        <p class="text-sm text-slate-400 m-0">{t.footer.builtWith}</p>
+      </div>
     </div>
   </div>
 </footer>

@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations } from '../../utils/i18n';
+import { getLangFromParams, getBasePath, getLanguagePaths } from '../../utils/langHelpers';
+
+export function getStaticPaths() {
+  return getLanguagePaths();
+}
+
+const lang = getLangFromParams(Astro.params.lang);
+const basePath = getBasePath(lang);
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t.privacy.title} lang={lang}>
+  <Header lang={lang} />
+
+  <main class="pt-8 pb-16">
+    <div class="max-w-3xl mx-auto px-4">
+      <a href={basePath || '/'} class="inline-flex items-center gap-2 text-slate-400 hover:text-amber-500 transition-colors mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        {t.privacy.backToHome}
+      </a>
+
+      <h1 class="text-4xl font-bold mb-2 text-slate-100">{t.privacy.title}</h1>
+      <p class="text-slate-400 mb-8">{t.privacy.lastUpdated}: {t.privacy.lastUpdatedDate}</p>
+
+      <div class="prose prose-invert prose-slate max-w-none">
+        <p class="text-lg text-slate-300 mb-8">{t.privacy.intro}</p>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-slate-100 mb-3">{t.privacy.analyticsTitle}</h2>
+          <p class="text-slate-300">{t.privacy.analyticsContent}</p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-slate-100 mb-3">{t.privacy.contactFormTitle}</h2>
+          <p class="text-slate-300">{t.privacy.contactFormContent}</p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-slate-100 mb-3">{t.privacy.dataRetentionTitle}</h2>
+          <p class="text-slate-300">{t.privacy.dataRetentionContent}</p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-slate-100 mb-3">{t.privacy.thirdPartiesTitle}</h2>
+          <p class="text-slate-300">{t.privacy.thirdPartiesContent}</p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-slate-100 mb-3">{t.privacy.questionsTitle}</h2>
+          <p class="text-slate-300 mb-2">{t.privacy.questionsContent}</p>
+          <a href="mailto:przemyslaw.kepka@pk-data-solutions.com" class="text-blue-400 hover:text-blue-300 transition-colors">
+            przemek@pk-data-solutions.com
+          </a>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>

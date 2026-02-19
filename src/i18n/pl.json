@@ -225,6 +225,24 @@
   "footer": {
     "links": "Linki",
     "copyright": "© 2026 Przemysław Kępka. Wszelkie prawa zastrzeżone.",
-    "builtWith": "Zbudowane z Astro, Tailwind CSS i Vue.js"
+    "builtWith": "Zbudowane z Astro, Tailwind CSS i Vue.js",
+    "privacy": "Polityka Prywatności"
+  },
+  "privacy": {
+    "title": "Polityka Prywatności",
+    "lastUpdated": "Ostatnia aktualizacja",
+    "lastUpdatedDate": "Luty 2026",
+    "intro": "Twoja prywatność ma znaczenie. Ta polityka wyjaśnia, jakie dane zbieram i jak ich używam.",
+    "analyticsTitle": "Analityka",
+    "analyticsContent": "Ta strona korzysta z Umami - narzędzia analitycznego skupionego na prywatności. Umami nie używa ciasteczek, nie zbiera danych osobowych i dostarcza jedynie zagregowane statystyki. Nie ma śledzenia indywidualnych odwiedzających.",
+    "contactFormTitle": "Formularz Kontaktowy",
+    "contactFormContent": "Gdy wysyłasz formularz kontaktowy, zbieram Twoje imię, adres email i wiadomość. Te dane są przetwarzane przez Web3Forms i używane wyłącznie do odpowiedzi na Twoje zapytanie. Nie udostępniam tych informacji osobom trzecim.",
+    "dataRetentionTitle": "Przechowywanie Danych",
+    "dataRetentionContent": "Zgłoszenia z formularza kontaktowego są przechowywane tylko tak długo, jak jest to konieczne do odpowiedzi na zapytanie i utrzymania korespondencji.",
+    "thirdPartiesTitle": "Strony Trzecie",
+    "thirdPartiesContent": "Nie sprzedaję, nie wymieniam ani nie udostępniam Twoich danych osobowych stronom trzecim. Jedyne zewnętrzne usługi to Umami (analityka) i Web3Forms (przetwarzanie formularza kontaktowego).",
+    "questionsTitle": "Pytania",
+    "questionsContent": "Jeśli masz pytania dotyczące tej polityki prywatności, skontaktuj się ze mną:",
+    "backToHome": "Powrót do Strony Głównej"
   }
 }
