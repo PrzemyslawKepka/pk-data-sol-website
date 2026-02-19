@@ -13,6 +13,7 @@ const t = useTranslations(lang);
 
 const pageTitle = title ? `${title} - ${t.site.title}` : t.site.title;
 const pageDescription = description || t.site.description;
+const ogImageUrl = new URL('/images/og-image.png', Astro.site).href;
 ---
 
 <!DOCTYPE html>
@@ -33,14 +34,14 @@ const pageDescription = description || t.site.description;
   <meta property="og:url" content={Astro.url}>
   <meta property="og:title" content={pageTitle}>
   <meta property="og:description" content={pageDescription}>
-  <meta property="og:image" content="/images/og-image.png">
+  <meta property="og:image" content={ogImageUrl}>
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content={Astro.url}>
   <meta property="twitter:title" content={pageTitle}>
   <meta property="twitter:description" content={pageDescription}>
-  <meta property="twitter:image" content="/images/og-image.png">
+  <meta property="twitter:image" content={ogImageUrl}>
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="48x48">
