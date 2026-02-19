@@ -240,7 +240,7 @@ function getDescription(post: BlogPost): string {
               <h3 class="text-xl font-bold text-slate-100 group-hover:text-amber-500 transition-colors">
                 {{ post.data.title }}
               </h3>
-              <span class="text-sm text-slate-500 whitespace-nowrap">
+              <span class="text-sm text-slate-400 whitespace-nowrap">
                 {{ formatDate(post.data.publishDate) }}
               </span>
             </div>
@@ -260,7 +260,7 @@ function getDescription(post: BlogPost): string {
               </span>
               <span
                 v-if="post.data.tags.length > 5"
-                class="px-2 py-1 text-xs bg-slate-700 text-slate-400 rounded"
+                class="px-2 py-1 text-xs bg-slate-700 text-slate-300 rounded"
               >
                 +{{ post.data.tags.length - 5 }}
               </span>

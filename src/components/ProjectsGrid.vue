@@ -602,7 +602,7 @@ const getDescription = (project: Project) => getLocalizedDescription(project.dat
               <h3 class="text-xl font-bold text-slate-100 group-hover:text-amber-500 transition-colors">
                 {{ project.data.title }}
               </h3>
-              <span v-if="project.data.year" class="text-sm text-slate-500 whitespace-nowrap">
+              <span v-if="project.data.year" class="text-sm text-slate-400 whitespace-nowrap">
                 {{ project.data.year }}
               </span>
             </div>
@@ -634,7 +634,7 @@ const getDescription = (project: Project) => getLocalizedDescription(project.dat
               </span>
               <span
                 v-if="project.data.technologies.length > 5"
-                class="px-2 py-1 text-xs bg-slate-700 text-slate-400 rounded"
+                class="px-2 py-1 text-xs bg-slate-700 text-slate-300 rounded"
               >
                 +{{ project.data.technologies.length - 5 }}
               </span>
