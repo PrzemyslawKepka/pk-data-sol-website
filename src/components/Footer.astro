@@ -70,7 +70,13 @@ const basePath = lang === 'pl' ? '/pl' : '';
       <div class="flex items-center gap-4">
         <a href={`${basePath}/privacy`} class="text-sm text-slate-400 hover:text-amber-500 transition-colors">{t.footer.privacy}</a>
         <span class="text-slate-600">|</span>
-        <p class="text-sm text-slate-400 m-0">{t.footer.builtWith}</p>
+        <p class="text-sm text-slate-400 m-0">
+          {lang === 'pl' ? 'Zbudowane z' : 'Built with'}
+          <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="hover:text-amber-500 transition-colors">Astro</a>,
+          <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="hover:text-amber-500 transition-colors">Tailwind CSS</a>,
+          {lang === 'pl' ? 'i' : 'and'}
+          <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer" class="hover:text-amber-500 transition-colors">Vue.js</a>
+        </p>
       </div>
     </div>
   </div>
