@@ -1,6 +1,6 @@
 # PK Data Solutions - Project Structure Documentation
 
-**Last Updated:** January 16, 2026
+**Last Updated:** February 2026
 **Framework:** Astro + Tailwind CSS + Vue.js
 **Domain:** pk-data-solutions.com
 
@@ -70,7 +70,10 @@ pk-data-sol/
 │   │   └── pl.json              # Polish text
 │   │
 │   ├── utils/                   # Helper functions
-│   │   └── i18n.js              # Translation utilities
+│   │   ├── i18n.js              # Translation loader
+│   │   ├── langHelpers.ts       # Language routing helpers
+│   │   ├── languageStore.ts     # Language persistence (localStorage)
+│   │   └── translationHelpers.ts # Translation lookup utilities
 │   │
 │   └── styles/                  # Stylesheets
 │       └── global.css           # Global styles + Tailwind
@@ -387,11 +390,12 @@ your-new-domain.com
 
 **Type:** Vue component (interactive)
 
-**Current State:** Basic functionality (changes state, updates HTML lang attribute)
+**How it works:**
+- Displays EN/PL toggle buttons
+- On click: saves preference to `localStorage` and navigates to the equivalent URL in the new language
+- Automatically detects current language from URL path
 
-**Future Enhancement:** Full language switching with route changes
-
-**Why Vue?** Needs reactivity (button states, click handling)
+**Why Vue?** Needs reactivity (button states, click handling, navigation)
 
 ---
 
@@ -436,7 +440,8 @@ Each project markdown file must include these frontmatter fields:
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `title` | string | Yes | Project name |
-| `description` | string | Yes | Short description (shown on cards) |
+| `description` | string | Yes | Short description in English (shown on cards) |
+| `descriptionPl` | string | No | Short description in Polish (shown on cards when browsing in Polish) |
 | `category` | string | Yes | e.g., "Web Application", "Automation", "Dashboard" |
 | `technologies` | string[] | Yes | Array of tech used |
 | `github` | string | No | GitHub repository URL |
@@ -487,6 +492,7 @@ src/content/projects/my-project.md
 ---
 title: "My Project Name"
 description: "A brief description that appears on the card (keep it concise, 1-2 sentences)"
+descriptionPl: "Krótki opis wyświetlany na karcie (zwięźle, 1-2 zdania)"
 category: "Web Application"
 technologies: ["Python", "Flask", "PostgreSQL", "HTML", "CSS"]
 github: "https://github.com/username/my-project"
@@ -656,6 +662,7 @@ Copy this template for new projects:
 ---
 title: ""
 description: ""
+descriptionPl: ""
 category: ""
 technologies: []
 github: ""
@@ -680,6 +687,8 @@ lang: "en"
 
 ## Results
 ```
+
+> **Tip:** Always add `descriptionPl` for Polish card descriptions. See [INTERNATIONALIZATION.md](./INTERNATIONALIZATION.md) for full translation guide.
 
 ---
 
@@ -777,105 +786,62 @@ Defined in `src/styles/global.css`:
 
 ## Internationalization (i18n)
 
-### How It Works
+The site supports **English (en)** and **Polish (pl)** with URL-based language routing.
+
+> **📖 For full details, see [INTERNATIONALIZATION.md](./INTERNATIONALIZATION.md)**
+
+### Quick Overview
 
 ```
-1. Translation files store all text
-   ├── src/i18n/en.json (English)
-   └── src/i18n/pl.json (Polish)
+URL Structure:
+  /                    → English homepage
+  /projects            → English projects
+  /pl                  → Polish homepage
+  /pl/projects         → Polish projects
 
-2. Utility function loads translations
-   └── src/utils/i18n.js
+Translation Files:
+  src/i18n/en.json     → English UI text
+  src/i18n/pl.json     → Polish UI text
 
-3. Pages/components use translations
-   └── const t = useTranslations('en');
-   └── <h1>{t.hero.greeting}</h1>
+Content Translations:
+  Projects/blog posts use 'descriptionPl' field for Polish short descriptions
 ```
 
----
+### Current State
 
-### Translation File Structure
+| Content Type | English | Polish |
+|--------------|---------|--------|
+| UI (nav, buttons, labels) | ✅ Full | ✅ Full |
+| Project short descriptions | ✅ | ✅ (via `descriptionPl`) |
+| Blog post short descriptions | ✅ | ✅ (via `descriptionPl`) |
+| Project full content | ✅ | ⏳ English with note |
+| Blog post full content | ✅ | ⏳ English with note |
 
-**File:** `src/i18n/en.json`
+### Basic Usage
 
-```json
-{
-  "site": {
-    "title": "Przemysław Kępka - PK Data Solutions"
-  },
-  "nav": {
-    "start": "Start",
-    "about": "About"
-  },
-  "hero": {
-    "greeting": "Hi, I'm Przemek",
-    "tagline": "I do all things data."
-  }
-}
-```
-
-**Nested structure:** `site.title`, `nav.start`, `hero.greeting`
-
----
-
-### Using Translations in Code
-
-**Step 1:** Import utility function
 ```astro
 ---
 import { useTranslations } from '../utils/i18n';
----
-```
+import { getLangFromParams, getBasePath } from '../utils/langHelpers';
 
-**Step 2:** Load translations for language
-```astro
----
-const lang = 'en'; // or 'pl'
+const lang = getLangFromParams(Astro.params.lang); // 'en' or 'pl'
 const t = useTranslations(lang);
+const basePath = getBasePath(lang); // '' or '/pl'
 ---
-```
 
-**Step 3:** Use in template
-```astro
 <h1>{t.hero.greeting}</h1>
-<p>{t.hero.tagline}</p>
+<a href={`${basePath}/projects`}>{t.nav.projects}</a>
 ```
 
-**Output:**
-```html
-<h1>Hi, I'm Przemek</h1>
-<p>I do all things data.</p>
+### Adding Polish Description to Content
+
+```yaml
+# In project or blog post frontmatter
+description: "English description for cards"
+descriptionPl: "Polski opis na karty"
 ```
 
----
-
-### Adding New Translations
-
-**1. Add to English:** `src/i18n/en.json`
-```json
-{
-  "newSection": {
-    "title": "My New Title",
-    "description": "My new description"
-  }
-}
-```
-
-**2. Add to Polish:** `src/i18n/pl.json`
-```json
-{
-  "newSection": {
-    "title": "Mój Nowy Tytuł",
-    "description": "Mój nowy opis"
-  }
-}
-```
-
-**3. Use in page:**
-```astro
-<h2>{t.newSection.title}</h2>
-<p>{t.newSection.description}</p>
-```
+The system automatically displays the Polish version when browsing in Polish, with English fallback if `descriptionPl` is not provided
 
 ---
 
@@ -891,7 +857,8 @@ const t = useTranslations(lang);
 ---
 title: "Getting Started with Astro"
 description: "A beginner's guide to building static sites"
-date: 2026-01-14
+descriptionPl: "Przewodnik dla początkujących po budowaniu statycznych stron"
+publishDate: 2026-01-14
 category: "Tutorial"
 tags: ["astro", "web development"]
 image: "/images/blog/astro-tutorial.png"
@@ -1360,7 +1327,10 @@ A: Text from `src/i18n/*.json`, images from `public/images/`, blog/projects from
 A: Yes! Astro components are basically HTML with superpowers. You can write regular HTML/CSS inside them.
 
 **Q: How do I add a new language?**
-A: Create `src/i18n/de.json` (German example), add translations, update `src/utils/i18n.js` to include it.
+A: See [INTERNATIONALIZATION.md](./INTERNATIONALIZATION.md) for full details. Brief steps: create `src/i18n/de.json`, update `langHelpers.ts` types, add to routing in `getStaticPaths()`.
+
+**Q: How do I add Polish translations to my projects/blog posts?**
+A: Add `descriptionPl: "Polski opis"` to the frontmatter. The system automatically shows it when browsing in Polish.
 
 **Q: Do I need to know Vue.js?**
 A: Not really! Only for interactive components like the language switcher. Most of the site is plain Astro.
@@ -1382,12 +1352,13 @@ Now that you understand the structure, you can:
 ---
 
 **Questions?** Check the files mentioned above or refer to:
+- [INTERNATIONALIZATION.md](./INTERNATIONALIZATION.md) - Full i18n/translation guide
 - [Astro Documentation](https://docs.astro.build)
 - [PRD Document](PRD/PORTFOLIO_WEBSITE_PRD.md)
 - [Astro Getting Started Guide](PRD/ASTRO_GETTING_STARTED_GUIDE.md)
 
 ---
 
-**Last Updated:** January 16, 2026
-**Version:** 1.0
+**Last Updated:** February 2026
+**Version:** 1.1
 **Author:** Claude Code

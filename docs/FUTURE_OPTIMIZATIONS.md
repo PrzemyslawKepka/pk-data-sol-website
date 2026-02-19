@@ -1,26 +1,34 @@
 # Future Optimizations
 
 **Created:** January 16, 2026
+**Updated:** February 2026
 
 This document tracks potential code improvements and optimizations to revisit in the future.
 
 ---
 
-## 1. Consolidate ProjectCard Components
+## 1. Consolidate Card Components
 
 **Status:** Not Started
 **Priority:** Low (code works, just not DRY)
 
 ### Current Situation
 
-Project cards are implemented in **two separate places**:
+Both project and blog cards are implemented in **two separate places**:
 
+**Project Cards:**
 | File | Used On | Type |
 |------|---------|------|
-| `src/components/ProjectCard.astro` | Index page (homepage) | Astro (static) |
+| `src/components/ProjectCard.astro` | Homepage | Astro (static) |
 | `src/components/ProjectsGrid.vue` | /projects page | Vue (interactive, card markup inline) |
 
-Both render visually identical cards but the code is duplicated. When changes are made (e.g., adding badges, updating button styles), they must be applied in both files.
+**Blog Cards:**
+| File | Used On | Type |
+|------|---------|------|
+| `src/components/BlogCard.astro` | Homepage | Astro (static) |
+| `src/components/BlogsGrid.vue` | /blog page | Vue (interactive, card markup inline) |
+
+Both sets render visually identical cards but the code is duplicated. When changes are made (e.g., adding badges, updating button styles), they must be applied in both files.
 
 ### Why It Exists This Way
 
@@ -31,20 +39,22 @@ Both render visually identical cards but the code is duplicated. When changes ar
 
 ### Proposed Solution
 
-**Create a single `ProjectCard.vue` component** and use it everywhere:
+**Create single Vue components** for both card types:
 
 ```
 src/components/
-├── ProjectCard.vue      # Single source of truth for card markup
-└── ProjectsGrid.vue     # Imports ProjectCard.vue, handles filtering
+├── ProjectCard.vue      # Single source of truth for project card markup
+├── ProjectsGrid.vue     # Imports ProjectCard.vue, handles filtering
+├── BlogCard.vue         # Single source of truth for blog card markup
+└── BlogsGrid.vue        # Imports BlogCard.vue, handles filtering
 ```
 
-**Implementation steps:**
+**Implementation steps (for each card type):**
 
-1. Extract card markup from `ProjectsGrid.vue` into a new `ProjectCard.vue`
-2. Update `ProjectsGrid.vue` to import and use `ProjectCard.vue`
-3. Replace `ProjectCard.astro` usage on index page with `ProjectCard.vue` using `client:load`
-4. Delete `ProjectCard.astro`
+1. Extract card markup from Grid.vue into a new Card.vue
+2. Update Grid.vue to import and use Card.vue
+3. Replace Card.astro usage on homepage with Card.vue using `client:load`
+4. Delete Card.astro
 
 **Index page usage would change from:**
 ```astro
@@ -75,7 +85,40 @@ Consider doing this refactor when:
 
 ---
 
-## 2. (Future items can be added here)
+## 2. Full Polish Content for Projects/Blog Posts
+
+**Status:** Not Started
+**Priority:** Low (current descriptionPl approach works well)
+
+### Current Situation
+
+Projects and blog posts have:
+- Full English content (markdown body)
+- Polish short descriptions (via `descriptionPl` field)
+
+When viewing in Polish, users see Polish card descriptions but English full content with a note.
+
+### Potential Enhancement
+
+For important content, create fully translated Polish versions:
+
+```
+src/content/projects/
+├── my-project.md      # lang: "en" - English version
+└── my-project-pl.md   # lang: "pl" - Full Polish version
+```
+
+### When to Consider
+
+- When a specific project/post is particularly important for Polish audience
+- When you have time/resources for full translation
+- For flagship projects that represent core skills
+
+See [INTERNATIONALIZATION.md](./INTERNATIONALIZATION.md) for implementation details.
+
+---
+
+## 3. (Future items can be added here)
 
 *Add other optimization ideas as they come up.*
 
