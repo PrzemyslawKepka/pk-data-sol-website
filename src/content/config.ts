@@ -5,6 +5,7 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    descriptionPl: z.string().optional(), // Polish short description (for cards and header)
     publishDate: z.date(), // Full date: year-month-day
     category: z.enum(['Technical', 'Business']), // Only one badge per post
     tags: z.array(z.string()), // Hashtags like #python #flask
@@ -19,6 +20,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    descriptionPl: z.string().optional(), // Polish short description (for cards and header)
     categories: z.array(z.string()), // ["Web Application", "ETL Pipeline", "Dashboard", etc.]
     technologies: z.array(z.string()),
     github: z.string().optional(),

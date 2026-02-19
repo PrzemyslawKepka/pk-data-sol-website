@@ -1,6 +1,7 @@
 ---
 title: "Streamlit Center & Standards"
 description: "A comprehensive initiative to standardize Streamlit usage across a 150+ person BI department, including a visual cookiecutter for scaffolding new projects and unified authentication mechanism."
+descriptionPl: "Kompleksowa inicjatywa mająca na celu ustandaryzowanie użytkowania Streamlita w ramach działu BI, liczącego łącznie ponad 150 osób. Zawierała m.in. generator projektów czy ujednolicony mechanizm logowania. "
 categories: ["Developer Tools"]
 technologies: ["Python", "Streamlit", "Jinja2", "LDAP", "JWT", "Posit Connect"]
 image: "/images/projects/streamlit-center/streamlit-center-cover.webp"

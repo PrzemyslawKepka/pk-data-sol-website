@@ -11,16 +11,44 @@ interface Props {
     foundationsDesc: string;
     dataManipulation: string;
     databases: string;
+    databasesDesc?: string;
     etl: string;
     dataApps: string;
     fullStack: string;
     automation: string;
     infrastructure: string;
     ides: string;
+    techDescriptions: {
+      python: string;
+      sql: string;
+      pandas: string;
+      plotly: string;
+      jupyter: string;
+      excel: string;
+      postgresql: string;
+      supabase: string;
+      airflow: string;
+      cron: string;
+      streamlit: string;
+      panel: string;
+      flask: string;
+      fastapi: string;
+      vuejs: string;
+      pythonAutomation: string;
+      n8n: string;
+      git: string;
+      docker: string;
+      vps: string;
+      cloud: string;
+      vscode: string;
+      cursor: string;
+      claudeCode: string;
+    };
   };
 }
 
 const { translations: t } = Astro.props;
+const desc = t.techDescriptions;
 
 // Technology icon paths
 const icons = {
@@ -56,18 +84,18 @@ const categories = [
     title: t.foundations,
     description: t.foundationsDesc,
     technologies: [
-      { name: 'Python', icon: icons.python, description: 'Primary language for data engineering, automation, and web development' },
-      { name: 'SQL', icon: icons.sql, description: 'Database querying, data modeling, and analytics' }
+      { name: 'Python', icon: icons.python, description: desc.python },
+      { name: 'SQL', icon: icons.sql, description: desc.sql }
     ]
   },
   {
     id: 'dataManipulation',
     title: t.dataManipulation,
     technologies: [
-      { name: 'Pandas', icon: icons.pandas, description: 'Data manipulation and analysis' },
-      { name: 'Plotly', icon: icons.plotly, description: 'Interactive visualizations and dashboards' },
-      { name: 'Jupyter', icon: icons.jupyter, description: 'Exploratory data analysis and reporting' },
-      { name: 'Excel', icon: icons.excel, description: 'Good old Excel. Usually I make processes Excel-free, but sometimes you have to use it' }
+      { name: 'Pandas', icon: icons.pandas, description: desc.pandas },
+      { name: 'Plotly', icon: icons.plotly, description: desc.plotly },
+      { name: 'Jupyter', icon: icons.jupyter, description: desc.jupyter },
+      { name: 'Excel', icon: icons.excel, description: desc.excel }
     ]
   },
   {
@@ -75,60 +103,60 @@ const categories = [
     title: t.databases,
     description: t.databasesDesc,
     technologies: [
-      { name: 'PostgreSQL', icon: icons.postgresql, description: 'Primary database, staple nowadays' },
-      { name: 'Supabase', icon: icons.supabase, description: 'Backend-as-a-service with PostgreSQL' }
+      { name: 'PostgreSQL', icon: icons.postgresql, description: desc.postgresql },
+      { name: 'Supabase', icon: icons.supabase, description: desc.supabase }
     ]
   },
   {
     id: 'etl',
     title: t.etl,
     technologies: [
-      { name: 'Airflow', icon: icons.airflow, description: 'Workflow orchestration and ETL pipelines.\nHeavyweight.' },
-      { name: 'Cron', icon: icons.cron, description: 'Unix-based task scheduling.\nLightweight.' }
+      { name: 'Airflow', icon: icons.airflow, description: desc.airflow },
+      { name: 'Cron', icon: icons.cron, description: desc.cron }
     ]
   },
   {
     id: 'dataApps',
     title: t.dataApps,
     technologies: [
-      { name: 'Streamlit', icon: icons.streamlit, description: 'Python-based data apps' },
-      { name: 'Panel', icon: icons.panel, description: 'Interactive dashboards and reports' }
+      { name: 'Streamlit', icon: icons.streamlit, description: desc.streamlit },
+      { name: 'Panel', icon: icons.panel, description: desc.panel }
     ]
   },
   {
     id: 'fullStack',
     title: t.fullStack,
     technologies: [
-      { name: 'Flask', icon: icons.flask, description: 'Python web framework' },
-      { name: 'FastAPI', icon: icons.fastapi, description: 'Modern Python API framework', isLearning: true },
-      { name: 'Vue.js', icon: icons.vuejs, description: 'Progressive JavaScript framework', isLearning: true }
+      { name: 'Flask', icon: icons.flask, description: desc.flask },
+      { name: 'FastAPI', icon: icons.fastapi, description: desc.fastapi, isLearning: true },
+      { name: 'Vue.js', icon: icons.vuejs, description: desc.vuejs, isLearning: true }
     ]
   },
   {
     id: 'automation',
     title: t.automation,
     technologies: [
-      { name: 'Python', icon: icons.python, description: "Yes, it's python all over again." },
-      { name: 'n8n', icon: icons.n8n, description: 'Workflow automation platform', isLearning: true }
+      { name: 'Python', icon: icons.python, description: desc.pythonAutomation },
+      { name: 'n8n', icon: icons.n8n, description: desc.n8n, isLearning: true }
     ]
   },
   {
     id: 'infrastructure',
     title: t.infrastructure,
     technologies: [
-      { name: 'Git', icon: icons.git, description: 'Version control' },
-      { name: 'Docker', icon: icons.docker, description: 'Containerization and deployment' },
-      { name: 'VPS', icon: icons.vps, description: 'Self-hosted server management' },
-      { name: 'Cloud', icon: icons.cloud, description: 'Cloud infrastructure and services', isLearning: true }
+      { name: 'Git', icon: icons.git, description: desc.git },
+      { name: 'Docker', icon: icons.docker, description: desc.docker },
+      { name: 'VPS', icon: icons.vps, description: desc.vps },
+      { name: 'Cloud', icon: icons.cloud, description: desc.cloud, isLearning: true }
     ]
   },
   {
     id: 'ides',
     title: t.ides,
     technologies: [
-      { name: 'VSCode', icon: icons.vscode, description: 'Primary code editor' },
-      { name: 'Cursor', icon: icons.cursor, description: 'AI-powered development environment' },
-      { name: 'Claude Code', icon: icons.claudecode, description: 'AI pair programming assistant' }
+      { name: 'VSCode', icon: icons.vscode, description: desc.vscode },
+      { name: 'Cursor', icon: icons.cursor, description: desc.cursor },
+      { name: 'Claude Code', icon: icons.claudecode, description: desc.claudeCode }
     ]
   }
 ];

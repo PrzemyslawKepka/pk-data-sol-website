@@ -1,6 +1,7 @@
 ---
 title: "Financial Data Reconciliation Tool"
 description: "Python automation for reconciling financial data across multiple enterprise systems, replacing a tedious Excel-based process prone to crashes and errors."
+descriptionPl: "Automatyzacja w Pythonie do uzgadania danych finansowych pomiędzy różnymi systemami korporacyjnymi, zastępująca manualny i mozolny proces w Excelu."
 categories: ["Automation"]
 technologies: ["Python", "pandas", "openpyxl", "Excel"]
 image: "/images/projects/financial-data-reconciliation/financial-data-reconciliation-cover.webp"

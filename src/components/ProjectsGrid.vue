@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
 import { getCompanyLogo } from '../utils/companyLogos';
+import {
+  projectTypeColors,
+  getProjectTypeLabel,
+  getCategoryLabel,
+  getIndustryLabel,
+  getCommercialLabel,
+  getLocalizedDescription
+} from '../utils/translationHelpers';
 
 interface Project {
   slug: string;
   data: {
     title: string;
     description: string;
+    descriptionPl?: string; // Polish short description
     categories: string[];
     technologies: string[];
     github?: string;
@@ -65,12 +74,24 @@ interface Translations {
     type: string;
     alpha: string;
   };
+  badgeLabels?: {
+    fte: string;
+    current: string;
+    side: string;
+  };
+  commercial?: string;
+  nonCommercial?: string;
+  codeLabel?: string;
+  websiteLabel?: string;
 }
 
 const props = defineProps<{
   projects: Project[];
   translations: Translations;
+  lang?: string;
 }>();
+
+const basePath = computed(() => props.lang === 'pl' ? '/pl' : '');
 
 // Multi-selection filters - empty Set means "all" (no specific filter applied)
 const activeTypeFilters = ref<Set<string>>(new Set());
@@ -417,18 +438,12 @@ const currentTypeDesc = computed(() => {
   return props.translations.projectTypesDesc[selectedType as keyof typeof props.translations.projectTypesDesc];
 });
 
-// Project type badge colors - using solid backgrounds with backdrop blur for visibility on any image
-const typeColors: Record<string, string> = {
-  fte: 'bg-blue-600/90 text-white border-blue-400/50 backdrop-blur-sm shadow-lg',
-  current: 'bg-green-600/90 text-white border-green-400/50 backdrop-blur-sm shadow-lg',
-  side: 'bg-purple-600/90 text-white border-purple-400/50 backdrop-blur-sm shadow-lg'
-};
-
-const typeLabels: Record<string, string> = {
-  fte: 'Corporate',
-  current: 'Current',
-  side: 'Side Project'
-};
+// Wrapper functions that use centralized helpers with component translations
+const getTypeLabel = (type: string) => getProjectTypeLabel(type, props.translations);
+const getCategoryLabelTranslated = (cat: string) => getCategoryLabel(cat, props.translations);
+const getIndustryLabelTranslated = (ind: string) => getIndustryLabel(ind, props.translations);
+const getCommercialLabelTranslated = (isCommercial: boolean) => getCommercialLabel(isCommercial, props.translations);
+const getDescription = (project: Project) => getLocalizedDescription(project.data, props.lang || 'en');
 </script>
 
 <template>
@@ -528,7 +543,7 @@ const typeLabels: Record<string, string> = {
         :key="project.slug"
         class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30"
       >
-        <a :href="`/projects/${project.slug}`" class="flex-1 flex flex-col">
+        <a :href="`${basePath}/projects/${project.slug}`" class="flex-1 flex flex-col">
           <!-- Image -->
           <div class="relative w-full h-[200px] bg-gradient-to-br from-slate-700 to-slate-900 overflow-hidden">
             <img
@@ -544,8 +559,8 @@ const typeLabels: Record<string, string> = {
             </div>
 
             <!-- Project Type Badge -->
-            <div :class="`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${typeColors[project.data.projectType]}`">
-              {{ typeLabels[project.data.projectType] }}
+            <div :class="`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${projectTypeColors[project.data.projectType]}`">
+              {{ getTypeLabel(project.data.projectType) }}
             </div>
 
             <!-- Category Badges -->
@@ -555,7 +570,7 @@ const typeLabels: Record<string, string> = {
                 :key="category"
                 class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg"
               >
-                {{ category }}
+                {{ getCategoryLabelTranslated(category) }}
               </div>
             </div>
 
@@ -564,7 +579,7 @@ const typeLabels: Record<string, string> = {
               v-if="project.data.industry"
               class="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-medium bg-pink-600/90 text-slate-100 border border-pink-400/50 backdrop-blur-sm shadow-lg"
             >
-              {{ project.data.industry }}
+              {{ getIndustryLabelTranslated(project.data.industry) }}
             </div>
 
             <!-- Commercial Status Badge (only for current projects) -->
@@ -577,7 +592,7 @@ const typeLabels: Record<string, string> = {
                   : 'bg-slate-600/90 text-slate-200 border-slate-400/50'
               ]"
             >
-              {{ project.data.isCommercial ? 'Commercial' : 'Non-commercial' }}
+              {{ getCommercialLabelTranslated(project.data.isCommercial) }}
             </div>
           </div>
 
@@ -603,7 +618,7 @@ const typeLabels: Record<string, string> = {
             </p>
 
             <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">
-              {{ project.data.description }}
+              {{ getDescription(project) }}
             </p>
 
             <!-- Technologies -->
@@ -628,7 +643,7 @@ const typeLabels: Record<string, string> = {
         <!-- Action Links -->
         <div class="px-6 pb-6 flex gap-3">
           <a
-            :href="`/projects/${project.slug}`"
+            :href="`${basePath}/projects/${project.slug}`"
             class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
           >
             {{ translations.seeMore }}
@@ -645,7 +660,7 @@ const typeLabels: Record<string, string> = {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
             </svg>
-            Code
+{{ translations.codeLabel || 'Code' }}
           </a>
 
           <a
@@ -659,7 +674,7 @@ const typeLabels: Record<string, string> = {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
             </svg>
-            Website
+{{ translations.websiteLabel || 'Website' }}
           </a>
         </div>
       </article>

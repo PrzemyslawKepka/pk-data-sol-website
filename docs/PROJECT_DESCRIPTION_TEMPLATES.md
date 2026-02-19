@@ -2,6 +2,25 @@
 
 Use these templates when writing project descriptions. Choose the template based on project type.
 
+---
+
+## Language Notes
+
+The site supports **English** and **Polish**. For each project:
+
+1. **Main content** - Write in English (the markdown body)
+2. **Polish short description** - Add `descriptionPl` to frontmatter for Polish card descriptions
+
+```yaml
+# In frontmatter
+description: "English description shown on cards"
+descriptionPl: "Polski opis wyświetlany na kartach"
+```
+
+The Polish description should be a direct translation of the English description. See [INTERNATIONALIZATION.md](./INTERNATIONALIZATION.md) for full details.
+
+---
+
 ## Guiding Principles
 
 1. **Story-driven** - Focus on the WHY before the WHAT. The reader should understand the motivation and context before diving into details.

@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
+import {
+  blogCategoryColors,
+  getLocalizedDescription,
+  formatDate as formatDateHelper
+} from '../utils/translationHelpers';
 
 interface BlogPost {
   slug: string;
   data: {
     title: string;
     description: string;
+    descriptionPl?: string; // Polish short description
     publishDate: Date;
     category: 'Technical' | 'Business';
     tags: string[];
@@ -34,7 +40,10 @@ interface Translations {
 const props = defineProps<{
   posts: BlogPost[];
   translations: Translations;
+  lang?: string;
 }>();
+
+const basePath = computed(() => props.lang === 'pl' ? '/pl' : '');
 
 // Category filter - empty means "all"
 const activeCategoryFilter = ref<string>('');
@@ -138,15 +147,13 @@ const filteredPosts = computed(() => {
   });
 });
 
-// Category badge colors
-const categoryColors: Record<string, string> = {
-  Technical: 'bg-blue-600/90 text-white border-blue-400/50 backdrop-blur-sm shadow-lg',
-  Business: 'bg-green-600/90 text-white border-green-400/50 backdrop-blur-sm shadow-lg'
-};
-
-// Format date as YYYY-MM-DD
+// Wrapper functions using centralized helpers
 function formatDate(date: Date): string {
-  return new Date(date).toISOString().split('T')[0];
+  return formatDateHelper(date);
+}
+
+function getDescription(post: BlogPost): string {
+  return getLocalizedDescription(post.data, props.lang || 'en');
 }
 </script>
 
@@ -198,7 +205,7 @@ function formatDate(date: Date): string {
         :key="post.slug"
         class="group h-full flex flex-col bg-slate-800 rounded-xl border border-slate-700 overflow-hidden transition-all hover:border-amber-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30"
       >
-        <a :href="`/blog/${post.slug}`" class="flex-1 flex flex-col">
+        <a :href="`${basePath}/blog/${post.slug}`" class="flex-1 flex flex-col">
           <!-- Image -->
           <div class="relative w-full aspect-video bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden">
             <img
@@ -214,7 +221,7 @@ function formatDate(date: Date): string {
             </div>
 
             <!-- Category Badge -->
-            <div :class="`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${categoryColors[post.data.category]}`">
+            <div :class="`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium border ${blogCategoryColors[post.data.category]}`">
               {{ post.data.category }}
             </div>
 
@@ -239,7 +246,7 @@ function formatDate(date: Date): string {
             </div>
 
             <p class="text-slate-300 text-sm mb-4 line-clamp-3 flex-1">
-              {{ post.data.description }}
+              {{ getDescription(post) }}
             </p>
 
             <!-- Tags -->
@@ -264,7 +271,7 @@ function formatDate(date: Date): string {
         <!-- Action Links -->
         <div class="px-6 pb-6 flex gap-3">
           <a
-            :href="`/blog/${post.slug}`"
+            :href="`${basePath}/blog/${post.slug}`"
             class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
           >
             {{ translations.seeFullPost }}

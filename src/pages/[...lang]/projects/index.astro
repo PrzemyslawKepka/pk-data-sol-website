@@ -1,17 +1,22 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import ProjectsGrid from '../../components/ProjectsGrid.vue';
-import { useTranslations } from '../../utils/i18n';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import ProjectsGrid from '../../../components/ProjectsGrid.vue';
+import { useTranslations } from '../../../utils/i18n';
+import { getLangFromParams, getLanguagePaths } from '../../../utils/langHelpers';
 import { getCollection } from 'astro:content';
-import { getProjectOrder } from '../../config/projectOrder';
+import { getProjectOrder } from '../../../config/projectOrder';
 
-const lang = 'en';
+export function getStaticPaths() {
+  return getLanguagePaths();
+}
+
+const lang = getLangFromParams(Astro.params.lang);
 const t = useTranslations(lang);
 
-// Get all English projects
-const allProjects = await getCollection('projects', ({ data }) => data.lang === lang);
+// Get all English projects (Polish content doesn't exist yet)
+const allProjects = await getCollection('projects', ({ data }) => data.lang === 'en');
 
 // Transform projects for the Vue component
 // Order is derived from centralized config (lower index = higher priority, so we invert it)
@@ -21,6 +26,7 @@ const projects = allProjects.map(project => ({
   data: {
     title: project.data.title,
     description: project.data.description,
+    descriptionPl: project.data.descriptionPl,
     categories: project.data.categories,
     technologies: project.data.technologies,
     github: project.data.github,
@@ -45,13 +51,14 @@ const projects = allProjects.map(project => ({
         <!-- Header -->
         <div class="text-center mb-8">
           <h1 class="text-4xl md:text-5xl font-bold mb-4 text-slate-100">{t.projects.title}</h1>
-          <p class="text-xl text-slate-300 max-w-2xl mx-auto">{t.projects.subtitle}</p>
+          <p class="text-base md:text-lg text-slate-300">{t.projects.subtitle}</p>
         </div>
 
         <!-- Projects Grid with Filter -->
         <ProjectsGrid
           client:load
           projects={projects}
+          lang={lang}
           translations={{
             projectTypes: t.projects.projectTypes,
             projectTypesDesc: t.projects.projectTypesDesc,
@@ -61,7 +68,13 @@ const projects = allProjects.map(project => ({
             viewGithub: t.projects.viewGithub,
             viewLive: t.projects.viewLive,
             sideNote: t.projects.sideNote,
-            fteNote: t.projects.fteNote
+            fteNote: t.projects.fteNote,
+            sorting: t.projects.sorting,
+            badgeLabels: t.projects.badgeLabels,
+            commercial: t.projects.commercial,
+            nonCommercial: t.projects.nonCommercial,
+            codeLabel: t.projects.codeLabel,
+            websiteLabel: t.projects.websiteLabel
           }}
         />
       </div>

@@ -1,12 +1,20 @@
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { getLanguageFromPath, getLocalizedPath, setStoredLanguage } from '../utils/languageStore';
+import type { Language } from '../utils/languageStore';
 
-const currentLang = ref('en');
+const currentLang = ref<Language>('en');
 
-function switchLanguage(lang) {
-  currentLang.value = lang;
-  document.documentElement.lang = lang;
-  // Future: Add actual language switching logic
+onMounted(() => {
+  currentLang.value = getLanguageFromPath();
+});
+
+function switchLanguage(lang: Language) {
+  if (lang === currentLang.value) return;
+
+  setStoredLanguage(lang);
+  const newPath = getLocalizedPath(lang, window.location.pathname);
+  window.location.href = newPath + window.location.hash;
 }
 </script>
 
