@@ -460,7 +460,7 @@ const getDescription = (project: Project) => getLocalizedDescription(project.dat
           :class="[
             'px-5 py-2.5 rounded-full text-sm font-medium transition-all',
             isTypeActive(type.key)
-              ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
+              ? 'bg-amber-500 text-slate-900 shadow-lg shadow-amber-500/30'
               : 'bg-slate-800 text-slate-300 border border-slate-700 hover:border-amber-500 hover:text-amber-500'
           ]"
         >
@@ -478,7 +478,7 @@ const getDescription = (project: Project) => getLocalizedDescription(project.dat
           :class="[
             'px-4 py-2 rounded-full text-sm font-medium transition-all',
             isCategoryActive(category.key)
-              ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
+              ? 'bg-amber-600 text-slate-900 shadow-lg shadow-amber-600/30'
               : 'bg-slate-800/70 text-slate-400 border border-slate-700/70 hover:border-amber-500 hover:text-amber-500'
           ]"
         >
@@ -568,7 +568,7 @@ const getDescription = (project: Project) => getLocalizedDescription(project.dat
               <div
                 v-for="category in project.data.categories"
                 :key="category"
-                class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg"
+                class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-slate-900 border border-amber-400/50 backdrop-blur-sm shadow-lg"
               >
                 {{ getCategoryLabelTranslated(category) }}
               </div>
@@ -588,7 +588,7 @@ const getDescription = (project: Project) => getLocalizedDescription(project.dat
               :class="[
                 'absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm shadow-lg border',
                 project.data.isCommercial
-                  ? 'bg-teal-600/90 text-white border-teal-400/50'
+                  ? 'bg-teal-600/90 text-slate-900 border-teal-400/50'
                   : 'bg-slate-600/90 text-slate-200 border-slate-400/50'
               ]"
             >
@@ -613,6 +613,8 @@ const getDescription = (project: Project) => getLocalizedDescription(project.dat
                 :src="getCompanyLogo(project.data.company)!"
                 :alt="project.data.company"
                 class="h-6 w-auto object-contain"
+                width="24"
+                height="24"
               />
               {{ project.data.company }}
             </p>
@@ -644,7 +646,7 @@ const getDescription = (project: Project) => getLocalizedDescription(project.dat
         <div class="px-6 pb-6 flex gap-3">
           <a
             :href="`${basePath}/projects/${project.slug}`"
-            class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
+            class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-slate-900 hover:bg-amber-600 transition-colors"
           >
             {{ translations.seeMore }}
           </a>

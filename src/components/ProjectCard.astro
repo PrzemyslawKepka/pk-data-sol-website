@@ -80,7 +80,7 @@ const description = getLocalizedDescription(data, lang);
       <!-- Category Badges -->
       <div class="absolute top-3 right-3 flex flex-row-reverse gap-2">
         {data.categories.map(category => (
-          <div class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-white border border-amber-400/50 backdrop-blur-sm shadow-lg">
+          <div class="px-3 py-1 rounded-full text-xs font-medium bg-amber-600/90 text-slate-900 border border-amber-400/50 backdrop-blur-sm shadow-lg">
             {getCategoryLabel(category, translations)}
           </div>
         ))}
@@ -95,7 +95,7 @@ const description = getLocalizedDescription(data, lang);
 
       <!-- Commercial Status Badge (only for current projects) -->
       {data.projectType === 'current' && data.isCommercial !== undefined && (
-        <div class={`absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm shadow-lg border ${data.isCommercial ? 'bg-teal-600/90 text-white border-teal-400/50' : 'bg-slate-600/90 text-slate-200 border-slate-400/50'}`}>
+        <div class={`absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm shadow-lg border ${data.isCommercial ? 'bg-teal-600/90 text-slate-900 border-teal-400/50' : 'bg-slate-600/90 text-slate-200 border-slate-400/50'}`}>
           {getCommercialLabel(data.isCommercial, translations)}
         </div>
       )}
@@ -113,7 +113,7 @@ const description = getLocalizedDescription(data, lang);
       {data.company && (
         <p class="text-sm text-slate-400 mb-2 flex items-center gap-2">
           {companyLogo && (
-            <img src={companyLogo} alt={data.company} class="h-6 w-auto object-contain" />
+            <img src={companyLogo} alt={data.company} class="h-6 w-auto object-contain" width="24" height="24" />
           )}
           {data.company}
         </p>
@@ -137,7 +137,7 @@ const description = getLocalizedDescription(data, lang);
   <div class="px-6 pb-6 flex gap-3">
     <a
       href={`${basePath}/projects/${slug}`}
-      class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
+      class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-slate-900 hover:bg-amber-600 transition-colors"
     >
       {translations.seeMore}
     </a>
