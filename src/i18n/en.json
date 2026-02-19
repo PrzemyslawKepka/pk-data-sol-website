@@ -228,6 +228,14 @@
     "builtWith": "Built with Astro, Tailwind CSS, and Vue.js",
     "privacy": "Privacy Policy"
   },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "heading": "Oops! No data here.",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Back to Home",
+    "browseProjects": "Browse Projects",
+    "readBlog": "Read Blog"
+  },
   "privacy": {
     "title": "Privacy Policy",
     "lastUpdated": "Last updated",

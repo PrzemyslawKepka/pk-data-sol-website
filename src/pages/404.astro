@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations } from '../utils/i18n';
+
+// Detect language from URL if possible
+const url = Astro.url.pathname;
+const lang = url.startsWith('/pl') ? 'pl' : 'en';
+const basePath = lang === 'pl' ? '/pl' : '';
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t.notFound.title} lang={lang}>
+  <Header lang={lang} />
+
+  <main class="pt-8 pb-16 min-h-[60vh] flex items-center">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <p class="text-8xl font-bold text-amber-500 mb-4">404</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">{t.notFound.heading}</h1>
+      <p class="text-lg text-slate-400 mb-8">{t.notFound.description}</p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={basePath || '/'}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold rounded-lg transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+          </svg>
+          {t.notFound.backHome}
+        </a>
+        <a
+          href={`${basePath}/projects`}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-slate-600 hover:border-amber-500 text-slate-300 hover:text-amber-500 font-semibold rounded-lg transition-colors"
+        >
+          {t.notFound.browseProjects}
+        </a>
+        <a
+          href={`${basePath}/blog`}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-slate-600 hover:border-amber-500 text-slate-300 hover:text-amber-500 font-semibold rounded-lg transition-colors"
+        >
+          {t.notFound.readBlog}
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>

@@ -228,6 +228,14 @@
     "builtWith": "Zbudowane z Astro, Tailwind CSS i Vue.js",
     "privacy": "Polityka Prywatności"
   },
+  "notFound": {
+    "title": "404 - Nie znaleziono strony",
+    "heading": "Ups! Brak danych!",
+    "description": "Strona, której szukasz, nie istnieje lub została przeniesiona.",
+    "backHome": "Powrót do strony głównej",
+    "browseProjects": "Przeglądaj projekty",
+    "readBlog": "Czytaj blog"
+  },
   "privacy": {
     "title": "Polityka Prywatności",
     "lastUpdated": "Ostatnia aktualizacja",
