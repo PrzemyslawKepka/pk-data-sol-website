@@ -1,6 +1,7 @@
 ---
 title: "Rapid Production Streamlit App"
 description: "A mission-critical, client-facing Streamlit application built under very high time pressure."
+descriptionPl: "Aplikacja 'błyskawiczna' o wysokiej krytyczności, zbudowana pod dużą presją czasową. Stworzona przy użyciu Streamlita."
 categories: ["Web Application"]
 technologies: ["Python", "Streamlit", "SQL", "Teradata"]
 image: "/images/projects/rapid-streamlit-app/rapid-streamlit-app-cover.webp"

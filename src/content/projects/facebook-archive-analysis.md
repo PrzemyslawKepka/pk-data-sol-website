@@ -1,6 +1,7 @@
 ---
 title: "Facebook Archive Analysis"
 description: "A data pipeline that processes Facebook's personal data archive to extract insights about messaging patterns, friend connections, and communication habits using Python and SQL."
+descriptionPl: "Przepływ danych przetwarzający archiwum użytkownika, pochodzące z Facebooka, i za pomocą Pythona i SQL-a pozwalający na analizę historii i nawyków komunikacyjnych."
 categories: ["Data Analysis"]
 technologies: ["Python", "pandas", "SQLite", "matplotlib", "plotly", "Jupyter", "DB Browser for SQLite"]
 github: "https://github.com/PrzemyslawKepka/facebook-archive-analysis"

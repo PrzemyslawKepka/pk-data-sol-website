@@ -1,6 +1,7 @@
 ---
 title: "Bank Statement Processing Automation"
 description: "Python automation that transformed manual bank statement processing from hours of copy-paste work to minutes of automated document generation, saving up to 95% of work time."
+descriptionPl: "Automatyzacja przetwarzania wyciągów bankowych za pomocą Pythona, która zamieniła długie godziny ręcznego kopiuj-wklej w kilkuminotowy proces, zaoszczędzając nawet 95% czasu."
 categories: ["Automation"]
 technologies: ["Python", "CSV", "Excel", "NetSuite"]
 image: "/images/projects/bank-statement-automation/bank-statement-automation-cover.webp"

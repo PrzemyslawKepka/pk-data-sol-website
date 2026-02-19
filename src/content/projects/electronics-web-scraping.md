@@ -1,6 +1,7 @@
 ---
 title: "Electronics Price Tracker"
-description: "A web scraping pipeline intended to capture the best deals, while exposing fake discounts at the same time."
+description: "A web scraping pipeline intended to capture the best deals, while exposing fake discounts at the same time. Includes a Streamlit dashboard as well."
+descriptionPl: "Przepływ danych ściągający ceny ze sklepu internetowego (web scraping), mający na celu znalezienie najlepszych okazji i jednocześnie wykrycie 'fałszywych promocji'. Zawiera również dashboard stworzony za pomocą Streamlita."
 categories: ["Web Scraping", "Dashboard"]
 technologies: ["Python", "BeautifulSoup", "Streamlit", "pandas", "plotly", "Raspberry Pi"]
 github: "https://github.com/PrzemyslawKepka/electronics-web-scraping"

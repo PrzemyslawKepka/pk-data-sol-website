@@ -1,6 +1,7 @@
 ---
 title: "Report Automation Framework"
-description: "Automated generation of a comprehensive C-level Credit Risk report in PowerPoint format, replacing a semi-manual Excel-based process and significantly reducing the time required from days to hours."
+description: "Automated generation of a comprehensive C-level Credit Risk report, replacing a semi-manual Excel-based process and significantly reducing the time required from days to hours."
+descriptionPl: "Program pozwalający na automatyczne generowanie złożonego raportu 'wysokiego szczebla' dotyczącego Ryzyka Kredytowego, zastępujący półautomatyczne rozwiązanie bazujące na Excelu, i redukujący czas przygotowania z dni do godzin."
 categories: ["Automation"]
 technologies: ["Python", "Streamlit", "pandas", "plotly", "python-pptx", "pyodbc", "openpyxl", "PowerPoint", "SharePoint"]
 image: "/images/projects/entity-report/entity-report-cover.webp"

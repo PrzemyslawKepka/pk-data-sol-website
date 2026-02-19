@@ -1,6 +1,7 @@
 ---
 title: "Tekyous"
-description: "Coming Soon 😎"
+description: "Coming soon 😎"
+descriptionPl: "Szczegóły wkrótce 😎"
 categories: ["Web Application"]
 technologies: ["FastAPI", "PostgreSQL", "Vue.js", "Vue Flow", "Tailwind CSS", "TypeScript"]
 projectType: "current"

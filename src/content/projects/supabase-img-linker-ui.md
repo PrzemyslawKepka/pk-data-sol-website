@@ -1,6 +1,7 @@
 ---
 title: "Supabase Image Linker UI"
-description: "A modular Panel web application for managing images in any Supabase database table. Features automatic image validation, optimization, and batch processing with a configuration-driven architecture."
+description: "Panel web application serving as a UI for managing images in a Supabase project. Allows to upload images and automatically link them to a record inside a database table, offering links validation and image optimization as well. Works fully locally."
+descriptionPl: "Aplikacja służąca jako interfejs do zarządzania obrazami w ramach projektów na Supabase. Pozwala na wgrywanie obrazów i automatyczne linkowanie ich do rekordów w bazie danych, oferując również walidację linków i optymalizację obrazów. Działa w pełni lokalnie, stworzona za pomocą frameworku Panel."
 categories: ["Developer Tools"]
 technologies: ["Python", "Panel", "Supabase", "Pillow", "PostgreSQL"]
 github: "https://github.com/PrzemyslawKepka/supabase-img-linker-ui"
