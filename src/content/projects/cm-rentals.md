@@ -82,7 +82,7 @@ But what's interesting, and also rather unexpected, it has already been noticed 
 <br>
 And it looks like the Reddit post still has some discoverability as well, and other LLMs and search engines might be picking up the site directly too, meaning that the site could potentially grow organically without any actions on my end.
 
-<img src="/images/projects/cm-rentals/cloudflare-visits-google-reddit.webp" alt="Visits Source" width=400/>
+<img src="/images/projects/cm-rentals/cloudflare-visits-google-reddit.webp" alt="Visits Source" width=300/>
 
 ## Real-world Application
 
