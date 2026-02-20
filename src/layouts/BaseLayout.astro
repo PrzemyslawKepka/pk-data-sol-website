@@ -13,7 +13,7 @@ const t = useTranslations(lang);
 
 const pageTitle = title ? `${title} - ${t.site.title}` : t.site.title;
 const pageDescription = description || t.site.description;
-const ogImageUrl = new URL('/images/og-image.png', Astro.site).href;
+const ogImageUrl = new URL('/images/og-image.webp', Astro.site).href;
 ---
 
 <!DOCTYPE html>
