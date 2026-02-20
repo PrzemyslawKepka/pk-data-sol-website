@@ -44,12 +44,18 @@ So what started as a simple, personal tool ended up as CM Rentals - a web applic
 
 The project went through three phases:
 - **Streamlit prototype as an internal tool** - used for saving and displaying places
+<img src="/images/projects/cm-rentals/property-form-streamlit.webp" alt="Property Form Streamlit" width=500/>
+
+  And it was built universally, so could be adapted to any city
+  <img src="/images/projects/cm-rentals/property-map-streamlit.webp" alt="Property Map Streamlit" width=500/>
+
 - **Public Streamlit version** - first public version, only for viewing places
+<img src="/images/projects/cm-rentals/cm-rentals-streamlit.webp" alt="CM Rentals Streamlit version" width=500/>
 - **Flask version** - the final, production-grade version, rewritten to Flask
 
 So I've started the app with Streamlit, which is great for prototyping. And I've went with it as far as to a public app, available on the internet, not as an internal tool only. However, with Streamlit limitations in both functional and visual aspects, paired with limited SEO options, I've decided to revamp the app to a 'proper web application', so that's how I ended up with Flask.
 
-(More about Streamlit to Flask transition in a dedicated blog post)
+(More about Streamlit to Flask transition can found in a dedicated blog post here: [From Streamlit to Flask: When and Why to Make the Jump](https://przemek-kepka.com/blog/streamlit-to-flask-migration))
 
 ### App Reception
 
@@ -63,6 +69,17 @@ So I've posted the app on Facebook and Reddit, and especially on Reddit, where I
 
 <img src="/images/projects/cm-rentals/reddit-stats.webp" alt="Reddit statistics" width=400/>
 
+### Discoverability
+
+As expected, the app started to appear in searches, and although firsty in rather limited numbers, it should get more visibility over time.
+
+<img src="/images/projects/cm-rentals/google-search-console.webp" alt="Google Search Console" width=700/>
+
+But what's interesting, and also rather unexpected, it already got noticed by AI, being recommended by ChatGPT as a go-to resource.
+
+<img src="/images/projects/cm-rentals/chatgpt-answer.webp" alt="ChatGPT Recommendation" width=700/>
+<img src="/images/projects/cm-rentals/cloudflare-visits-chatgpt.webp" alt="ChatGPT Visits" width=600/>
+<img src="/images/projects/cm-rentals/cloudflare-visits-google-reddit.webp" alt="Visits Source" width=400/>
 
 ## Real-world Application
 
