@@ -23,7 +23,7 @@ Streamlit can be a fantastic tool when you **embrace its strengths**, while bein
 
 So in this guide we will tackle the problem of Streamlit not being the best fit anymore. The line between when it's shining and when it's underperforming can be blurry, so we will cover the process from the very beginning until the end - a successful migration to another tool.
 
-And we approach it from a practical perspective - I do have a couple of Streamlit applications under my belt, and with the last one, [CM Rentals](https://pk-data-solutions.com/projects/cm-rentals), I went through exactly this migration path to Flask.
+And we approach it from a practical perspective - I do have a couple of Streamlit applications under my belt, and with the last one, [CM Rentals](https://przemek-kepka.com/projects/cm-rentals), I went through exactly this migration path to Flask.
 
 ## What makes Streamlit unique
 
@@ -376,4 +376,4 @@ The CM Rentals migration was a significant effort. But the result - a **faster, 
 
 The real takeaway isn't "Flask is better than Streamlit." It's that **Streamlit and Flask aren't competitors - they're tools for different stages and different needs**. Start fast with Streamlit to validate your idea, and migrate when (and if) you outgrow it.
 
-Facing a similar decision? Check out the [CM Rentals project page](https://pk-data-solutions.com/projects/cm-rentals) to see the result, or reach out if you want to discuss specifics.
+Facing a similar decision? Check out the [CM Rentals project page](https://przemek-kepka.com/projects/cm-rentals) to see the result, or reach out if you want to discuss specifics.

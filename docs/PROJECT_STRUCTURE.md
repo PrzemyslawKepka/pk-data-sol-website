@@ -1,8 +1,9 @@
-# PK Data Solutions - Project Structure Documentation
+# Przemek-Kepka / PK Data Solutions website - Project Structure Documentation
 
 **Last Updated:** February 2026
 **Framework:** Astro + Tailwind CSS + Vue.js
-**Domain:** pk-data-solutions.com
+**Domain:** przemek-kepka.com
+(secondary name, with a redirect: pk-data-solutions.com)
 
 ---
 
@@ -1194,7 +1195,7 @@ Tests production build locally before deployment.
 
 1. Commit and push to GitHub
 2. GitHub Actions automatically builds and deploys
-3. Site live at: pk-data-solutions.com
+3. Site live at: przemek-kepka.com
 
 **Configuration files:**
 - `.github/workflows/deploy.yml` (GitHub Actions workflow)
@@ -1208,7 +1209,7 @@ Tests production build locally before deployment.
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                         USER VISITS                         │
-│                    pk-data-solutions.com                    │
+│                    przemek-kepka.com                    │
 └────────────────────────┬────────────────────────────────────┘
                          │
                          ▼

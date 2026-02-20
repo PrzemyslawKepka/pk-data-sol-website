@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://pk-data-solutions.com',
+  site: 'https://przemek-kepka.com',
   base: '/',
   vite: {
     plugins: [tailwindcss()]

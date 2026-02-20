@@ -14,7 +14,7 @@ lang: "en"
 
 ## Context
 
-While building [CM Rentals](http://pk-data-solutions.com/projects/cm-rentals), I kept running into an annoying workflow for managing property images:
+While building [CM Rentals](http://przemek-kepka.com/projects/cm-rentals), I kept running into an annoying workflow for managing property images:
 
 1. Save image from some source (Facebook listing, provided file, wherever)
 2. Upload to Supabase Storage through their web UI
