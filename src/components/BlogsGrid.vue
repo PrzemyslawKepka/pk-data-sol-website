@@ -171,7 +171,7 @@ function getDescription(post: BlogPost): string {
           :class="[
             'px-5 py-2.5 rounded-full text-sm font-medium transition-all',
             isCategoryActive(category.key)
-              ? 'bg-amber-500 text-slate-900 shadow-lg shadow-amber-500/30'
+              ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
               : 'bg-slate-800 text-slate-300 border border-slate-700 hover:border-amber-500 hover:text-amber-500'
           ]"
         >
@@ -240,7 +240,7 @@ function getDescription(post: BlogPost): string {
               <h3 class="text-xl font-bold text-slate-100 group-hover:text-amber-500 transition-colors">
                 {{ post.data.title }}
               </h3>
-              <span class="text-sm text-slate-400 whitespace-nowrap">
+              <span class="text-sm text-slate-500 whitespace-nowrap">
                 {{ formatDate(post.data.publishDate) }}
               </span>
             </div>
@@ -260,7 +260,7 @@ function getDescription(post: BlogPost): string {
               </span>
               <span
                 v-if="post.data.tags.length > 5"
-                class="px-2 py-1 text-xs bg-slate-700 text-slate-300 rounded"
+                class="px-2 py-1 text-xs bg-slate-700 text-slate-400 rounded"
               >
                 +{{ post.data.tags.length - 5 }}
               </span>
@@ -272,7 +272,7 @@ function getDescription(post: BlogPost): string {
         <div class="px-6 pb-6 flex gap-3">
           <a
             :href="`${basePath}/blog/${post.slug}`"
-            class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-slate-900 hover:bg-amber-600 transition-colors"
+            class="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-white hover:bg-amber-600 transition-colors"
           >
             {{ translations.seeFullPost }}
           </a>
