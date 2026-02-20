@@ -12,7 +12,7 @@
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/vue": "^5.1.4",
     "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.16.9",
+    "astro": "^5.17.3",
     "tailwindcss": "^4.1.18",
     "vue": "^3.5.26"
   }
