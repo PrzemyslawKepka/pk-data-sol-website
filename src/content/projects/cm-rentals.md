@@ -71,14 +71,17 @@ So I've posted the app on Facebook and Reddit, and especially on Reddit, where I
 
 ### Discoverability
 
-As expected, the app started to appear in searches, and although firsty in rather limited numbers, it should get more visibility over time.
+As expected, the app started to appear in searches, and although first in rather limited numbers, it should get more visibility over time.
 
 <img src="/images/projects/cm-rentals/google-search-console.webp" alt="Google Search Console" width=700/>
-
-But what's interesting, and also rather unexpected, it already got noticed by AI, being recommended by ChatGPT as a go-to resource.
+<br>
+But what's interesting, and also rather unexpected, it has already been noticed by AI, being recommended by ChatGPT as a go-to resource.
 
 <img src="/images/projects/cm-rentals/chatgpt-answer.webp" alt="ChatGPT Recommendation" width=700/>
 <img src="/images/projects/cm-rentals/cloudflare-visits-chatgpt.webp" alt="ChatGPT Visits" width=600/>
+<br>
+And it looks like the Reddit post still has some discoverability as well, and other LLMs and search engines might be picking up the site directly too, meaning that the site could potentially grow organically without any actions on my end.
+
 <img src="/images/projects/cm-rentals/cloudflare-visits-google-reddit.webp" alt="Visits Source" width=400/>
 
 ## Real-world Application
