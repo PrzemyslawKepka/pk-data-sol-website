@@ -78,7 +78,7 @@ const pageTitle = lang === 'pl' ? 'Strona główna' : 'Home';
     <!-- Hero/Start Section -->
     <section id="start" class="flex items-start pt-6 pb-8 scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div class="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-12 items-center">
           <div class="text-center md:text-left">
             <h1 class="text-4xl md:text-5xl font-bold mb-2 text-slate-100">{t.hero.greeting}</h1>
             <p class="text-3xl md:text-4xl font-extrabold mb-6 text-gradient">{t.hero.tagline}</p>
@@ -88,7 +88,13 @@ const pageTitle = lang === 'pl' ? 'Strona główna' : 'Home';
               <li class="text-base text-slate-300 py-2 pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.hero.point2}</li>
               <li class="text-base text-slate-300 py-2 pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-amber-500 before:font-bold">{t.hero.point3}</li>
             </ul>
-            <div class="flex gap-4 mt-8 justify-center md:justify-start">
+            <div class="flex flex-wrap gap-2 mt-6 justify-center md:justify-start">
+              <span class="px-3 py-1 text-sm font-medium rounded-full border border-slate-600 text-slate-300 bg-slate-800/50 transition-all hover:border-amber-500 hover:-translate-y-0.5">{t.hero.badge1}</span>
+              <span class="px-3 py-1 text-sm font-medium rounded-full border border-slate-600 text-slate-300 bg-slate-800/50 transition-all hover:border-amber-500 hover:-translate-y-0.5">{t.hero.badge2}</span>
+              <span class="px-3 py-1 text-sm font-medium rounded-full border border-slate-600 text-slate-300 bg-slate-800/50 transition-all hover:border-amber-500 hover:-translate-y-0.5">{t.hero.badge3}</span>
+              <span class="px-3 py-1 text-sm font-medium rounded-full border border-slate-600 text-slate-300 bg-slate-800/50 transition-all hover:border-amber-500 hover:-translate-y-0.5">{t.hero.badge4}</span>
+            </div>
+            <div class="flex gap-4 mt-6 justify-center md:justify-start">
               <a href="#projects" class="inline-block px-6 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-amber-500 text-white hover:bg-amber-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30">{t.cta.viewWork}</a>
               <a href="#contact" class="inline-block px-6 py-3 rounded-lg font-semibold text-center transition-all cursor-pointer bg-transparent text-amber-500 border-2 border-amber-500 hover:bg-amber-500 hover:text-white">{t.cta.contactMe}</a>
             </div>

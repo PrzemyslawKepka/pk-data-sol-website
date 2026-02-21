@@ -18,7 +18,11 @@
     "description": "Łączę świat biznesu i IT, tworząc kompleksowe rozwiązania danowe:",
     "point1": "Od surowych danych do stron internetowych, dashboardów i analiz",
     "point2": "Od prostych skryptów automatyzujących do pełnoprawnych aplikacji webowych",
-    "point3": "Od ręcznych procesów do automatycznych przepływów danych, oszczędzających dziesiątki godzin tygodniowo"
+    "point3": "Od ręcznych procesów do automatycznych przepływów danych, oszczędzających dziesiątki godzin tygodniowo",
+    "badge1": "⚙️ Inżynieria Danych",
+    "badge2": "📊 Analiza Danych",
+    "badge3": "💻 Programowanie",
+    "badge4": "🤖 Automatyzacja"
   },
   "cta": {
     "viewWork": "Zobacz moje projekty",

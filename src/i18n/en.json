@@ -18,7 +18,11 @@
     "description": "I make business and IT worlds come together by developing full-stack data solutions:",
     "point1": "From raw data to websites, dashboards and insights",
     "point2": "From simple automation scripts to fully-fledged web applications",
-    "point3": "From manual processes to automated workflows that save dozens of hours weekly"
+    "point3": "From manual processes to automated workflows that save dozens of hours weekly",
+    "badge1": "⚙️ Data Engineering",
+    "badge2": "📊 Data Analytics",
+    "badge3": "💻 Software Engineering",
+    "badge4": "🤖 Automation"
   },
   "cta": {
     "viewWork": "View My Work",
