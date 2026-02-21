@@ -130,7 +130,7 @@
     "company": "Company",
     "year": "Year",
     "sideNote": "Side projects showcase real capabilities applicable in business contexts",
-    "fteNote": "Due to NDAs, no real screenshots or code can be shown for corporate projects",
+    "fteNote": "Due to NDAs, no real screenshots or code can be shown for corporate projects. Instead, mockup scripts were created to generate images resembling the original projects.",
     "viewAllProjects": "View All Projects",
     "badgeLabels": {
       "fte": "Corporate",
