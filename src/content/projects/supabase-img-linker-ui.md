@@ -36,7 +36,8 @@ A web application that streamlines the entire image management workflow. It show
 - **Dashboard view** - all records with their current image status (working/broken), so your user won't be the first to notice a broken image link
 - **Parallel URL checking** - validates all image URLs on load, fast enough to be usable
 - **One-click updates** - upload a new image (file or URL), it gets optimized, uploaded to Supabase, signed URL generated, database updated. Done. (Okay, maybe three clicks - but still far less than doing it manually.)
-- **Automatic optimization** - images get resized and compressed (50-80% size reduction typical)
+- **Automatic optimization** - images get resized and compressed (50-80% size reduction typical, can be less if the image was pre-optimized already)
+<img src="/images/projects/supabase-img-linker-ui/image-optimization.webp" alt="Image optimization" width="300"/>
 
 ### The Configuration-Driven Part
 
