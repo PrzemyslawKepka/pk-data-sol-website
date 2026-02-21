@@ -45,9 +45,16 @@ And the rest? How to implement it? Well, it was left for my ~~fantasy~~...expert
 
 And what I've built together with my coworkers was:
 - **Data layer** connecting to multiple SQL databases and processing Excel files, checking data availability in the first place as well
+<img src="/images/projects/entity-report/data-layer-status-table.webp" alt="Data layer - source status table"/>
+
 - **Visualization engine** generating dozens of charts with Plotly, exported as images
+<img src="/images/projects/entity-report/chart-example.webp" alt="Visualization layer - chart example" width="500"/>
+
 - **Report generator** using `python-pptx` to create and manipulate PowerPoint slides, including dynamic slide creation and table generation
-- **Streamlit "Control Panel"** - a user-friendly interface guiding users step by step through the process, checking if all data sources are available before proceeding
+<img src="/images/projects/entity-report/report-generator-checklist.webp" alt="Report generator - checklist"/>
+  <img src="/images/projects/entity-report/report-generator-summary.webp" alt="Report generator - summary"/>
+
+- **Streamlit "Control Panel"** - a user-friendly interface wrapping everything together and guiding users step-by-step through the process
 
 The interface was crucial - it made the whole thing accessible to non-technical users who just needed to click through the steps.
 
