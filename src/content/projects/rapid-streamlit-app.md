@@ -65,7 +65,7 @@ After a few exhausting days (it stretched beyond 24 hours, of course), the appli
 
 ## Impact
 
-This was a **proof point for Streamlit in production** at the bank. Previously considered just a prototyping tool, this project showed it can handle real load when the use case fits.
+This was a **proof point for Streamlit in production** at a big organization. Previously considered just a prototyping tool, this project showed it can handle real load when the use case fits.
 
 The app served as a temporary solution while a permanent system was being developed. Of course, "temporary" in enterprise often means "runs longer than expected" - and it held up.
 
