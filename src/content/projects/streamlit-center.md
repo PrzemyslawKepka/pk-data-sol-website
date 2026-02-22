@@ -35,7 +35,12 @@ The main feature was a **project generator with a visual interface**:
 - Choose which features to include
 - Click generate, download a ZIP with a **ready-to-use project template**
 
-Under the hood, it used the **Python Cookiecutter** module and **Jinja2 templates** to generate consistent code patterns. Every new project would start with the same structure, coding style, and patterns (no more different logos for every app).
+Under the hood, it used the **Python Cookiecutter** module and **Jinja2 templates** to generate consistent code patterns. Every new project would start with the same structure, coding style, and patterns (no more different logos for every app), while at the same time it would come pre-configured and ready to go, with names, pages and modules defined during the configuration.
+
+<img src="/images/projects/streamlit-center/cookiecutter-settings.webp" alt="Cookiecutter settings" width="800"/>
+<img src="/images/projects/streamlit-center/cookiecutter-archive.webp" alt="Cookiecutter generated archive" width="800"/>
+<img src="/images/projects/streamlit-center/cookiecutter-app-structure.webp" alt="Cookiecutter generated app structure" width="800"/>
+<img src="/images/projects/streamlit-center/cookiecutter-app-pages.webp" alt="Cookiecutter generated app pages" width="800"/>
 
 ### Authentication Module
 
@@ -46,6 +51,8 @@ One of the biggest pain points was authentication - not every app should be acce
 - **Per-app access control** - app owners could individually decide who gets access
 
 This ran across multiple applications for several months, until licensing changes at Posit Connect (the hosting platform) deprecated this approach.
+
+<img src="/images/projects/streamlit-center/login-form.webp" alt="Login form"/>
 
 ### Logging Module
 
@@ -63,9 +70,13 @@ We also handled **deduplication** - Streamlit's re-run on every interaction coul
 
 Several apps successfully implemented this logging. Some tables now have tens of thousands of rows (probably hundreds of thousands by now).
 
+<img src="/images/projects/streamlit-center/usage-logs.webp" alt="App usage logs"/>
+
 ### The Guidelines Hub
 
 The app also served as **a central place for documentation** - best practices, code examples, integration guides, solutions to common problems. All in one place, searchable, maintained.
+
+<img src="/images/projects/streamlit-center/guidelines-pages.webp" alt="Streamlit Center guidelines" width="800"/>
 
 ## Impact
 
