@@ -30,6 +30,7 @@ pk-data-sol/
 │   ├── styles/             # Global CSS
 │   └── utils/              # Helper functions
 ├── docs/                   # Documentation
+├── scripts/                # Utility scripts, like image processing, used outside the app
 ├── astro.config.mjs        # Astro configuration
 └── package.json
 ```
