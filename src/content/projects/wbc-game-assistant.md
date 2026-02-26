@@ -5,7 +5,7 @@ descriptionPl: "Interaktywna aplikacja stworzona za pomocą Streamlita, służą
 categories: ["Web Application"]
 technologies: ["Python", "Streamlit", "pandas", "Pillow", "HTML"]
 github: "https://github.com/PrzemyslawKepka/wbc-game-assistant"
-liveUrl: "https://wbc-game-assistant.onrender.com/"
+liveUrl: "https://wbc-game-assistant.streamlit.app"
 image: "/images/projects/wbc-game-assistant/wbc-game-assistant-cover.webp"
 projectType: "side"
 year: "2022"
