@@ -31,7 +31,7 @@ And the app should have been ready yesterday.
 
 ## Solution
 
-Building a functional app in one day? With AI tools, maybe. But AI usage was still limited at the organization - I had to build this myself.
+Building a functional app in one day? With AI tools, maybe. But when you have to build it fully yourself?
 
 **Streamlit** was the answer. Already established in the organization and known for rapid development, it was a natural choice.
 

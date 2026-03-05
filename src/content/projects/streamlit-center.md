@@ -1,9 +1,9 @@
 ---
 title: "Streamlit Center & Standards"
-description: "A comprehensive initiative to standardize Streamlit usage across a 150+ person BI department, including a visual cookiecutter for scaffolding new projects and unified authentication mechanism."
-descriptionPl: "Kompleksowa inicjatywa mająca na celu ustandaryzowanie użytkowania Streamlita w ramach działu BI, liczącego łącznie ponad 150 osób. Zawierała m.in. generator projektów czy ujednolicony mechanizm logowania. "
+description: "A comprehensive initiative to standardize Streamlit usage across a large BI department, including a visual cookiecutter for scaffolding new projects and unified authentication mechanism."
+descriptionPl: "Kompleksowa inicjatywa mająca na celu ustandaryzowanie użytkowania Streamlita w ramach dużego działu BI. Zawierała m.in. generator projektów czy ujednolicony mechanizm logowania."
 categories: ["Developer Tools"]
-technologies: ["Python", "Streamlit", "Jinja2", "LDAP", "JWT", "Posit Connect"]
+technologies: ["Python", "Streamlit", "Jinja2", "LDAP", "JWT"]
 image: "/images/projects/streamlit-center/streamlit-center-cover.webp"
 projectType: "fte"
 company: "Santander Bank Poland"
@@ -15,7 +15,7 @@ lang: "en"
 
 What happens when a tool becomes popular but nobody coordinates how it's used?
 
-Streamlit was growing rapidly within our Business Intelligence department - around 150 people including data engineers, data scientists and data analysts. Different teams were building applications independently, which led to the predictable problems:
+Streamlit was growing rapidly within our Business Intelligence department, spanning data engineers, data scientists and data analysts. Different teams were building applications independently, which led to the predictable problems:
 
 - **Inconsistent project structures** - everyone organizing code differently
 - **Duplicated effort** - teams solving the same problems over and over
@@ -50,7 +50,7 @@ One of the biggest pain points was authentication - not every app should be acce
 - **Reusable code** that could be easily implemented in any project (ultimately intended to be released as an internal library)
 - **Per-app access control** - app owners could individually decide who gets access
 
-This ran across multiple applications for several months, until licensing changes at Posit Connect (the hosting platform) deprecated this approach.
+This ran across multiple applications for several months, until licensing changes at the internal hosting platform deprecated this approach.
 
 <img src="/images/projects/streamlit-center/login-form.webp" alt="Login form"/>
 
