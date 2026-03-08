@@ -669,7 +669,7 @@ const getDescription = (project: Project) => getLocalizedDescription(project.dat
             v-if="project.data.liveUrl"
             :href="project.data.liveUrl"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             class="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold border border-slate-600 text-slate-300 hover:border-amber-500 hover:text-amber-500 transition-colors"
             @click.stop
           >
