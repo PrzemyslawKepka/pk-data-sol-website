@@ -21,7 +21,7 @@ These words might be like a nightmare in the data world, haunting many people. B
 
 However, what we do have an impact on is **how we generate these slides** (or Excel files, but in this case it will be the slides).
 
-And one of the biggest slide decks I have encountered was **"Entity Report"** - a comprehensive **C-level summary** of all risk information for the Polish branch of the bank, created by Credit Risk department on a **monthly basis**. Dozens of pages of PowerPoint slides, packed with charts and tables.
+And one of the biggest slide decks I have encountered was a comprehensive, **C-level summary** report of all risk information for the Polish branch of the bank, created by Credit Risk department on a **monthly basis**. Dozens of pages of PowerPoint slides, packed with charts and tables.
 
 And how to create it? The process was already semi-automated, Excel-based:
 - Source data would come from SQL database and other Excel files

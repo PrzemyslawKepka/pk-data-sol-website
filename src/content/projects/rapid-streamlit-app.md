@@ -14,11 +14,9 @@ lang: "en"
 
 ## Problem Definition
 
-*"What are your plans for the next 24 hours?"*
+If your work is project-based, it might happen that some of the projects will require you to operate in a very quick pace.
 
-When your superiors ask this, it usually means overtime and a lot of coffee at unusual hours.
-
-I was asked to quickly develop an app for bank tellers to check clients' eligibility for financial products.
+And one of such cases was when I was asked to develop an app for bank tellers to check clients' eligibility for financial products.
 
 Sounds simple, right? Just an interface and a database check. But there were complications:
 - **Business logic was still being finalized** while we were building
@@ -27,7 +25,7 @@ Sounds simple, right? Just an interface and a database check. But there were com
 - **Production-grade deployment** - previous Streamlit apps were non-critical; this one was client-facing
 - **Higher scale** - dozens of concurrent users, potentially hundreds daily
 
-And the app should have been ready yesterday.
+And the app should have been ready yesterday. Or in the next 24 hours the latest.
 
 ## Solution
 
