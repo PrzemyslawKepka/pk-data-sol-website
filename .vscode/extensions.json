@@ -1,4 +1,12 @@
 {
-  "recommendations": ["astro-build.astro-vscode"],
-  "unwantedRecommendations": []
+  "recommendations": [
+    "anthropic.claude-code",
+    "astro-build.astro-vscode",
+    "vue.volar",
+    "bradlc.vscode-tailwindcss",
+    "ecmel.vscode-html-css",
+    "eamodio.gitlens",
+    "alefragnani.bookmarks",
+    "johnpapa.vscode-peacock"
+  ]
 }
