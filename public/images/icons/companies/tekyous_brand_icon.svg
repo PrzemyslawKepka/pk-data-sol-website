@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- tekyous app icon — Stack Cube on rounded dark background -->
+  <rect width="64" height="64" rx="14" fill="#0d1535"/>
+
+  <!-- Stack Cube mark: 48×48, centred (x=8, y=8) -->
+  <svg x="8" y="8" width="48" height="48" viewBox="0 0 32 32">
+    <defs>
+      <clipPath id="sct-ic"><rect x="9" y="4" width="14" height="7" rx="2.5"/></clipPath>
+      <clipPath id="scm-ic"><rect x="5" y="13" width="22" height="7" rx="2.5"/></clipPath>
+      <clipPath id="scb-ic"><rect x="2" y="22" width="28" height="7" rx="2.5"/></clipPath>
+    </defs>
+    <!-- Top: amber | blue -->
+    <g clip-path="url(#sct-ic)">
+      <rect x="9"    y="4" width="6.5"  height="7" fill="#fbbf24"/>
+      <rect x="16.5" y="4" width="6.5"  height="7" fill="#60a5fa"/>
+    </g>
+    <!-- Middle: orange | red | green -->
+    <g clip-path="url(#scm-ic)">
+      <rect x="5"     y="13" width="6.67" height="7" fill="#fb923c"/>
+      <rect x="12.67" y="13" width="6.67" height="7" fill="#f87171"/>
+      <rect x="20.34" y="13" width="6.66" height="7" fill="#34d399"/>
+    </g>
+    <!-- Bottom: blue | amber | orange | red -->
+    <g clip-path="url(#scb-ic)">
+      <rect x="2"     y="22" width="6.25" height="7" fill="#60a5fa"/>
+      <rect x="9.25"  y="22" width="6.25" height="7" fill="#fbbf24"/>
+      <rect x="16.5"  y="22" width="6.25" height="7" fill="#fb923c"/>
+      <rect x="23.75" y="22" width="6.25" height="7" fill="#f87171"/>
+    </g>
+  </svg>
+</svg>

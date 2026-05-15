@@ -3,6 +3,7 @@ const companyLogos: Record<string, string> = {
   'Santander Bank Poland': '/images/icons/companies/Santander_id_cIxIG4D_logos.webp',
   'Ascensia Diabetes Care': '/images/icons/companies/Ascensia_idL44xPnly_logos.webp',
   'JLL': '/images/icons/companies/JLL_Symbol_0.svg',
+  'Tekyous': '/images/icons/companies/tekyous_brand_icon.svg',
 };
 
 export function getCompanyLogo(companyName: string | undefined): string | null {
