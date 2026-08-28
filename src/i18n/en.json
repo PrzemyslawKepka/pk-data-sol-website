@@ -12,6 +12,10 @@
     "blog": "Blog",
     "contact": "Contact"
   },
+  "promoBanner": {
+    "text": "Launching Tekyous — an interactive tech stack builder & tools directory platform.",
+    "cta": "Check it out to find the perfect tools for your next project →"
+  },
   "hero": {
     "greeting": "Hi, I'm Przemek (🇬🇧 Sh-am-ack).",
     "tagline": "I do all things data.",

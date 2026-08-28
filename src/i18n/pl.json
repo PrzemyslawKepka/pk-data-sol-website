@@ -12,6 +12,10 @@
     "blog": "Blog",
     "contact": "Kontakt"
   },
+  "promoBanner": {
+    "text": "Uruchamiam Tekyous — interaktywną platformę do budowania stosów technologicznych i odkrywania narzędzi.",
+    "cta": "Sprawdź, aby znaleźć idealne narzędzia do swojego kolejnego projektu →"
+  },
   "hero": {
     "greeting": "Cześć, jestem Przemek.",
     "tagline": "Zajmuję się danymi.",

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Header from '../../../components/Header.astro';
+import PromoBanner from '../../../components/PromoBanner.astro';
 import Footer from '../../../components/Footer.astro';
 import ProjectsGrid from '../../../components/ProjectsGrid.vue';
 import { useTranslations } from '../../../utils/i18n';
@@ -43,7 +44,10 @@ const projects = allProjects.map(project => ({
 ---
 
 <BaseLayout title={t.projects.title} lang={lang}>
-  <Header lang={lang} />
+  <div class="sticky top-0 z-50">
+    <Header lang={lang} />
+    <PromoBanner lang={lang} />
+  </div>
 
   <main class="pt-8">
     <section class="pt-2 pb-8">

@@ -1,0 +1,50 @@
+---
+import { useTranslations } from '../utils/i18n';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div id="promo-banner" class="relative bg-emerald-900 border-b border-emerald-800">
+  <div class="max-w-7xl mx-auto px-8 sm:px-10 py-3 flex justify-center">
+    <a
+      href="https://tekyous.dev"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center no-underline hover:opacity-90 transition-opacity"
+    >
+      <img
+        src="/images/icons/companies/tekyous_brand_icon.svg"
+        alt="Tekyous"
+        class="w-8 h-8 rounded-md shrink-0"
+        width="32"
+        height="32"
+      />
+      <p class="text-sm sm:text-[0.9375rem] font-medium text-slate-300 leading-snug">
+        {t.promoBanner.text}
+        <span class="text-emerald-400 font-semibold">{t.promoBanner.cta}</span>
+      </p>
+    </a>
+  </div>
+
+  <button
+    id="promo-banner-close"
+    type="button"
+    aria-label="Dismiss"
+    class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1.5 text-emerald-200/70 hover:text-emerald-100 transition-colors"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+</div>
+
+<script>
+  document.getElementById('promo-banner-close')?.addEventListener('click', () => {
+    document.getElementById('promo-banner')?.remove();
+  });
+</script>
