@@ -6,6 +6,8 @@ Personal portfolio website built with Astro, Vue, and Tailwind CSS.
 
 ## Tech Stack
 
+[![pk-data-sol portfolio website tech stack: tech stack diagram made with tekyous.dev](docs/tech-stack-diagram.png)](https://tekyous.dev/builder?utm_source=mcp&utm_medium=readme#doc=v1.tZVRb9owEMe_CvJeoYM0UJK3qtXUvUyTeNjDNE1OcgEPxxfZDpQhvvvOTkIIhXWrVJ7ii333-5-Pf_YsR11wy2JmYb3DyoxSrjbcsCHbgDYCFYuDIcuEKSXfsXjPsLJSKKATKdcZ7ZO4RBZbXcGQKV5A-5xyC0vUO7-zeRyyUotUqCWLcy4N7aKslJH2JGBEBuzQhfbEVFBZ64olkqu1e4vJL0itYfH3PVsLlXn0Z0uphX8WVgItfCxm5XqUcctHBuWgRG1zlAIHW0iMsDCwkK4GxvJ0TSeM3UlXaQU8c4SkACVqinzI_Y8iXIqlcoJAWdBODlIi36U9e2ZxOB4yEhzMCdSI3-DCWxZHYXA4DI-8uXZtaoB5WTpcjx2ze79qC5u1a1kupHQLzJ3KBHUG_iVJydqj9w2YBL_Jx75KnrqcQvnOXoONZn3Y6TQcshWJiMKr0Ab0RqRgTsgXXajF3wiUYN9RwSyqJUzC8c24ryKIglrFeHZVxQqNrW-6FfF0jLQaoADNZfaOIibj25taRjgN-yLmk9klERZRHsfHWI1uemW1PFmeNyqo-zQNzroUzn2ByXhyrcDKFrLL36zO0t8G4Zvzbyro0teLy_DB7O6_k1su5JbCqTFdkX7wipR_rZZWxmLx87Qoucuts1WXvTZE9o1Cn5qQSOtidlf6sXBLclsuK7csCM7Z3Il78lKYkVA0unS5VWorfaFJd5PmiqPZi79CS17bUm1ze6pQ1ufZAyryQDtw0OxaK5fCrqpkVPIlnPTyLHo-2sG0Ge3p5H-hFmTQr8EQNG1-idPFz293fvdmoIfPHx8erxKlEqssl1yfTHMvdj7UYfRmkscvix4HTZCibyLqI8yIviqjdgZzjUX3ocG-fUuegLO1RZUUwnkW1xq3zvhU1px94irz7qj9-ePSad-KzK7c2EImKhqeV6E6z32J1b1rqR6hlLj7O1XSp7IXqH4c_gA)
+
 - **[Astro](https://astro.build)** - Static site generator
 - **[Vue.js](https://vuejs.org)** - Interactive components
 - **[Tailwind CSS v4](https://tailwindcss.com)** - Utility-first styling

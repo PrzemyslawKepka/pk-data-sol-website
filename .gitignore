@@ -29,5 +29,8 @@ pnpm-debug.log*
 # Claude folder
 .claude/
 
+# Cursor folder
+.cursor/
+
 # Internal documents
 potential-future-projects.md
